@@ -1,5 +1,10 @@
 from .base import *
 
+# secret vars
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DATABASE_URL = os.environ.get("DATABASE_URL")
+DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
+
 DEBUG = False
 
 ADMINS = [

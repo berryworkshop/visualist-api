@@ -8,12 +8,6 @@ PROJECT_DIR = os.path.dirname(
             os.path.abspath(__file__))))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-# secret vars
-dotenv_path = os.path.join(BASE_DIR, '.env')
-load_dotenv(dotenv_path)
-SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
-DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -54,18 +48,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'visualist.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
