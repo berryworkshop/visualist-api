@@ -1,0 +1,27 @@
+{
+  "name": "visualist",
+  "version": "1.0.0",
+  "description": "Art, current and archived, from Chicago and beyond.",
+  "main": "visualist/manage.py",
+  "scripts": {
+    "test": "visualist/manage.py test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/berryworkshop/visualist.git"
+  },
+  "keywords": [
+    "art",
+    "chicago",
+    "archive"
+  ],
+  "author": "Berry Catalog Workshop, Culture/Math",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/berryworkshop/visualist/issues"
+  },
+  "homepage": "https://github.com/berryworkshop/visualist#readme",
+  "devDependencies": {
+    "react": "^15.4.0"
+  }
+}
