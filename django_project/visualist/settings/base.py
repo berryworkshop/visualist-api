@@ -9,7 +9,7 @@ PROJECT_DIR = os.path.dirname(
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 # secret vars
-dotenv_path = join(BASE_DIR, '.env')
+dotenv_path = os.path.join(BASE_DIR, '.env')
 load_dotenv(dotenv_path)
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DATABASE_PASSWORD = os.environ.get("DATABASE_PASSWORD")
@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'visualist',
 ]
 
 MIDDLEWARE = [

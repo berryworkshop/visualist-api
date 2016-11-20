@@ -1,0 +1,1 @@
+web: gunicorn django_project.visualist.wsgi --log-file -

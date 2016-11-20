@@ -9,6 +9,7 @@ ADMINS = [
 ALLOWED_HOSTS = [
     '.berryworkshop.com',
     '.allanberry.com',
+    'localhost',
     ]
 
 DATABASES = {
@@ -21,6 +22,13 @@ DATABASES = {
         'PORT': '5432',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(PROJECT_DIR, 'db.sqlite3'),
+#     }
+# }
 
 # should be moved to amazon?
 STATIC_ROOT = '%s/static/' % BASE_DIR

@@ -21,3 +21,6 @@ settings/local.py
 
 # node
 node_modules/
+
+# dev database
+*.sqlite3
