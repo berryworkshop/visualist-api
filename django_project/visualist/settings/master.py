@@ -15,6 +15,8 @@ ALLOWED_HOSTS = [
     '.berryworkshop.com',
     '.allanberry.com',
     'localhost',
+    'bcw-visualist.herokuapp.com',
+    'bcw-visualist-staging.herokuapp.com',
     ]
 
 DATABASES = {
