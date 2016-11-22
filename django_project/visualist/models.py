@@ -1,25 +1,51 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-# User
-# Group
+# Auth
+    # User
+    # Group
 
-# Event
-# Collection
-    # Events
-    # Media
-# Work?
-# Entity
+# Visualist
+    # Collection
+        # Events
+        # Media
+
+# Dublin Core
+    # Contributor
+    # Coverage
+    # Creator
+    # Date
+    # Description
+    # Format
+    # Identifier
+    # Language
+    # Publisher
+    # Relation
+    # Rights
+    # Source
+    # Subject
+    # Title
+    # Type
+
+# Calendar
+    # Event
+
+# Directory
     # Person
     # Organization
-# Multimedia
-    # Image
-    # Video
-    # Audio
+
+# Catalog
+    # Work
+    # Multimedia
+        # Image
+        # Video
+        # Audio
+
 # Category
 
-# Map region
-# Map place
+# Map
+    # Region
+    # Place
 
 class Base(models.Model):
     class Meta:
@@ -40,7 +66,7 @@ class Base(models.Model):
 
 
 class Event(Base):
-    date = models.DateTimeField()
+    when = models.DateTimeField()
     duration = models.IntegerField()
     venue = models.ForeignKey('Organization', models.SET_NULL)
 
@@ -63,7 +89,7 @@ class Event(Base):
     event_type = models.CharField(max_length=15, choices=EVENT_TYPES)
     parent_event = models.ForeignKey('Event',
         models.CASCADE, related_name='child_events')
-    
+
     # TODO: relationship to parent
     # TODO: integrate with iCal, gCal, etc.
 
@@ -72,8 +98,10 @@ class Entity(Base):
     class Meta:
         abstract = True
 
+    born = models.DateField()
     lifespan = models.IntegerField(blank=True)
 
+    # should Entities, Organizations, and Persons be in a separate app, a "directory"?
     # TODO: social media / websites
     # TODO: phones
     # TODO: emails
@@ -94,7 +122,6 @@ class OrganizationCategory(Base):
         ('MUSEUM', 'museum'),
         ('SCHOOL', 'school'),
         )
-
     category = models.CharField(
         max_length=20,
         choices=CATEGORIES,
@@ -107,68 +134,28 @@ class OrganizationCategory(Base):
 
 
 class Organization(Entity):
-    address = models.TextField()
     open_by_appointment = models.BooleanField()
     nonprofit = models.BooleanField()
-    incorporated = models.DateTimeField()
     categories = models.ManyToManyField('OrganizationCategory', blank=True)
-    # TODO: hours
-
     loc_name_authority_id = models.IntegerField(blank=True)
-
-    related_organizations = models.ManyToManyField('Organization',
-        through='OrgOrgRelationship',
-        through_fields=('parent', 'child'),
-        symmetrical=False,
-        blank=True,
-        )
-
-
-class OrgOrgRelationship(models.Model):
-    class Meta:
-        verbose_name='organization relationship'
-    born = models.DateTimeField()
-    parent = models.ForeignKey('Organization',
-        on_delete=models.CASCADE,
-        related_name='child_relation_set', # from related parent
-        )
-    child = models.ForeignKey('Organization',
-        on_delete=models.CASCADE,
-        related_name='parent_relation_set', # from related child
-        )
-    CATEGORIES = (
-        ('DEPARTMENT', 'is department of'), 
-        ('LOCATED', 'is located in'), 
-        ('MEMBER', 'is member of'), 
-        ('OWNED', 'is owned by'), 
-        ('PART', 'is part of'), 
-        )
-    category = models.CharField(
-        max_length=50,
-        choices=CATEGORIES,
-        default='DEPARTMENT',   
-        )
-
-    # TODO: validate combination of parent and child?
+    # TODO: hours
 
 
 class Person(Entity):
     name = None
     first_name = models.CharField(max_length=250)
     last_name = models.CharField(max_length=250)
-
     getty_ulan_id = models.IntegerField(blank=True)
 
 
-class Location(Base):    
+class Location(Base):
+    address = models.TextField()
     getty_tgn_id = models.IntegerField(blank=True)
-
     # TODO: GIS points
 
 
 class Work(Base):
     pass
-
 
 class Category(Base):
     pass
