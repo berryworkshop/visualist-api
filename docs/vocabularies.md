@@ -1,10 +1,10 @@
 # Controlled Vocabularies
 
 Artists
-    AAT
+    ULAN
 Neighborhoods
-    ?
+    TGN
 Cities
-    ?
+    TGN
 Galleries, Organizations
     LoC

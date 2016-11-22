@@ -22,20 +22,13 @@ ALLOWED_HOSTS = [
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'artcase_db',
-        'USER': 'artcase_admin',
+        'NAME': 'visualist_db',
+        'USER': 'visualist_admin',
         'PASSWORD': DATABASE_PASSWORD,
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(PROJECT_DIR, 'db.sqlite3'),
-#     }
-# }
 
 # should be moved to amazon?
 STATIC_ROOT = '%s/static/' % BASE_DIR

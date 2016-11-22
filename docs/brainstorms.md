@@ -7,4 +7,5 @@
 * visualist.us
 * vsl.ist
 
-
+# future submissions
+* museums and the web: [Muse Awards](http://aam-us.org/about-us/grants-awards-and-competitions/muse-awards)?  Too soon?  :)  
