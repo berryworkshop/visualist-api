@@ -29,6 +29,7 @@ from django.contrib.auth.models import User
 
 # Calendar
     # Event
+    # Reminder
 
 # Directory
     # Person
