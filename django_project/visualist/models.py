@@ -1,6 +1,171 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
+# Notes
+    # All fields which pull from external sources should be sourced: Citation
+
+
+# Events
+    # date start
+    # date end
+    # Receptions
+    # names
+    # Venue -> org
+    # Facebook links
+    # weblinks
+# Artists
+    # Names
+# Pictures
+    # largely limited to a single postcard-esque image per show
+# Venues
+    # Name
+    # Address
+    # Hours (comma separated)
+    # By appointment (y/n)
+    # Website
+    # Facebook page
+
+# Services/ APIs
+    # Art Institute of Chicago
+    # Art Fact City
+    # Art Forum
+    # Art In America
+    # Art Journal
+    # Art News
+    # College Art Association
+    # Chicago Artist Writers
+    # Chicago Artists Resource
+    # Chicago gallery news
+    # Chicago Reader
+    # Chicago Tribune
+    # Code4Lib
+    # Crains
+    # Dialogue
+    # DNAInfo
+    # Facebook
+    # Getty Art and Architecture Thesaurus
+    # Getty Union List of Artist Names
+    # Getty Thesaurus of Geographic Names
+    # Chicago Public Library
+    # Hyde Park Herald
+    # Hyperallergic
+    # Library of Congress Subject Headings
+    # New Art Examiner
+    # New City
+    # October
+    # PForm
+    # RedEye
+    # South Side Weekly
+    # TimeOut
+
+# Citation
+    # Author
+    # Date
+    # Publisher
+    # Title
+    # Place
+    # URL
+    # Version
+    # Type
+    # etc.?
+        # Consult APA, Chicago, MLA guidelines to ensure we have sufficient data
+
+# Potential Data
+#---
+# Dates
+# Neighborhoods
+# From Allan
+    # More info for artists?
+        # Dates?
+        # Hometown?
+        # Specialties?
+    # Individual artworks?
+        # Values?
+        # Media?
+    # Hashtags/Keywords?  (non-hierarchical structure, for sorting/finding)
+    # Categories? (hierarchical structure, for browsing).  Existing (overlapping) rhizomatic hierarchies:
+        # Neighborhoods
+        # Event types
+        # etc.
+    # Event Collections?
+# Events
+    # Title
+    # Venue
+    # Address
+    # City, State, Zip
+    # Phone
+    # Email
+    # Web
+    # Admission Fee
+    # Group-friendly
+        # Tiered?
+    # Kind of Event
+        # Exhibition
+            # Opening Date
+            # Closing Date
+            # Reception Date
+            # Reception Time
+            # description
+            # Image
+            # Facebook link
+        # Reading
+            # Date(s)
+            # Time
+            # Description
+            # Image
+            # Facebook link
+        # Lecture/Panel/Artist Talk
+            # Date(s)
+            # Time
+            # Description
+            # Image
+            # Facebook link
+        # Performance
+            # Date(s)
+            # Time
+            # Description
+            # Image
+            # Facebook link
+    # Are there other programs associated with this event (y/n)
+        # If yes
+        # How many? (Adds the amount of drop downs needed)
+        # Title
+        # Date
+        # Time
+        # Kind of Event
+            # Exhibition
+            # Reading
+            # Lecture
+            # Performance
+        # Facebook link
+        # Description
+        # Is this event on-site (y/n)
+    # If not
+        # Venue
+        # Address
+        # City, State, Zip
+        # Phone 
+        # Email
+        # Web
+        # For internal use only
+            # Contact name
+            # Contact email
+# Other media
+    # video fills
+    # alternate image file types
+        # (currently we can only upload .jpg)
+        # gif files
+    # Audio
+    # photo albums
+# web links
+    # Calendar We’d like to be able to incorporate some calendar data into maps.
+    # Google
+    # Ical
+    # Yahoo
+    # Facebook
+    # Outlook
+
 # Auth
     # User
     # Group
@@ -9,6 +174,37 @@ from django.contrib.auth.models import User
     # Collection
         # Events
         # Media
+
+# Person
+    # Think “Artist” or “Gallerist”.  A Person can be anyone involved in a Venue or Event
+    # Has many Events
+    # Has many Venues
+    # dates
+    # alias (Madonna)
+# Event
+    # Has one Venue
+    # Has many People
+    # dates
+    # sub-events: parties, openings, closings
+        # defaults: parent Event
+    # pricing
+# Venue
+    # Has many Events
+    # Has many People
+    # dates
+    # pricing
+    # independence: gradient between 0: institutional and 1: independent
+# User
+    # Has many Tours
+    # Has many Venues
+# Tour
+    # An ordered collection of Events and/or Venues
+    # Has one User
+    # Has many Events
+    # Has many Venues
+
+# Ephemera
+
 
 # Dublin Core
     # Contributor
@@ -37,6 +233,9 @@ from django.contrib.auth.models import User
 
 # Catalog
     # Work
+        # Website/Software
+        # Object/Hardware
+        # Performance
     # Multimedia
         # Image
         # Video
@@ -68,7 +267,7 @@ class Base(models.Model):
 
 class Event(Base):
     when = models.DateTimeField()
-    duration = models.IntegerField()
+    # duration = models.IntegerField()
     venue = models.ForeignKey('Organization', models.SET_NULL)
 
     # not sure about these ones
@@ -76,7 +275,6 @@ class Event(Base):
     # contact_name = ...
     # contact_email = ...
 
-    # events can have sub-events, independent of main access hours. Optional.
     EVENT_TYPES = (
         ('EXHIBITION', 'exhibition'),
         ('READING', 'reading'),
@@ -88,8 +286,6 @@ class Event(Base):
         ('CLOSING', 'closing reception'),
         )
     event_type = models.CharField(max_length=15, choices=EVENT_TYPES)
-    parent_event = models.ForeignKey('Event',
-        models.CASCADE, related_name='child_events')
 
     # TODO: relationship to parent
     # TODO: integrate with iCal, gCal, etc.
@@ -100,7 +296,7 @@ class Entity(Base):
         abstract = True
 
     born = models.DateField()
-    lifespan = models.IntegerField(blank=True)
+    # lifespan = models.IntegerField(blank=True)
 
     # should Entities, Organizations, and Persons be in a separate app, a "directory"?
     # TODO: social media / websites
