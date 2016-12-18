@@ -1,0 +1,79 @@
+# Apps
+---
+Authority:
+  - Vocabulary # (Base)
+  - Term # (Base)
+CMS:
+  - Base # (Model)
+  - Log # (Base)
+  - Announcement # (Base)
+
+  - RecordSet # (Base)
+  - Record # (Base)
+    - Page # (Record)
+      - Article # (Page)
+      - Review # (Page)
+    - Link # (Record)
+  - Relation # (Base)
+
+  - Name # (Base)
+  - Identifier # (Base)
+  - Abstract # (Base)
+  - Description # (Base)
+
+  - Language # (Term)
+  - Unit # (Term)
+  - Audience # (Term)
+  - Subject # (Term)
+  - License # (Term)
+Visualist:
+Artcase:
+  - Value # (Base)
+  - Appraisal # (Base)
+Aggregator:
+  - Source # (Record)
+  - Service # (Term)
+  - Rights # (Base)
+Archive:
+  - File # (Record)
+    - Image # (File)
+    - Document # (File)
+    - Video # (File)
+  - ArchiveEvent # (Base)
+Calendar:
+  - Period # (Term)  
+  - Event # (Record)
+    - Exhibit # (Event)
+    - Performance # (Event)
+Catalog:
+  - Work # (Record)
+    - Ephemeron # (Work)
+  - Dimension # (Base)
+  - Medium # (Term)
+  - Genre # (Term)
+Crosswalk:
+  - Schema # (Term)
+  # - Key # (Term)
+Directory:
+  - Entity # (Record)
+    - Person # (Entity)
+    - Organization # (Entity)
+      - School # (Organization)
+      - Gallery # (Organization)
+      - Museum # (Organization)
+      - Venue # (Organization)
+  - ContactItem # (Base)
+    - Account # (ContactItem)
+    - Address # (ContactItem)
+    - Email # (ContactItem)
+    - Phone # (ContactItem)
+    - Website # (ContactItem)
+  - Hours # (Base)
+Tour:
+  - Place # (Record)
+    - Space # (Place)
+      - State # (Space)
+      - City # (Space)
+      - Neighborhood/Community Area # (Space)
+      - District # (Space)
+      - Zipcode # (Space)
