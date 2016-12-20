@@ -1,8 +1,6 @@
 # Apps
 ---
-Authority:
-  - Vocabulary # (Base)
-  - Term # (Base)
+
 CMS:
   - Base # (Model)
   - Log # (Base)
@@ -12,7 +10,6 @@ CMS:
   - Record # (Base)
     - Page # (Record)
       - Article # (Page)
-      - Review # (Page)
     - Link # (Record)
   - Relation # (Base)
 
@@ -21,39 +18,55 @@ CMS:
   - Abstract # (Base)
   - Description # (Base)
 
+  - Vocabulary # (Base)
+  - Term # (Base)
+
   - Language # (Term)
   - Unit # (Term)
   - Audience # (Term)
   - Subject # (Term)
   - License # (Term)
+
 Visualist:
+
 Artcase:
   - Value # (Base)
   - Appraisal # (Base)
+
+  - ValueType # (Term)
+  - Status # (Term)
+  - Currency # (Term)
+
 Aggregator:
   - Source # (Record)
   - Service # (Term)
   - Rights # (Base)
+
 Archive:
   - File # (Record)
     - Image # (File)
     - Document # (File)
     - Video # (File)
   - ArchiveEvent # (Base)
-Calendar:
+  - Aspect # (Term)
+
+Timeline:
   - Period # (Term)  
   - Event # (Record)
     - Exhibit # (Event)
     - Performance # (Event)
+
 Catalog:
   - Work # (Record)
     - Ephemeron # (Work)
   - Dimension # (Base)
   - Medium # (Term)
   - Genre # (Term)
+  - Condition # (Term)
+
 Crosswalk:
   - Schema # (Term)
-  # - Key # (Term)
+
 Directory:
   - Entity # (Record)
     - Person # (Entity)
@@ -69,6 +82,7 @@ Directory:
     - Phone # (ContactItem)
     - Website # (ContactItem)
   - Hours # (Base)
+
 Tour:
   - Place # (Record)
     - Space # (Place)
