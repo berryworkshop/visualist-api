@@ -1,38 +1,38 @@
 from django.db import models
-from cms.models import Record
+from cms.models import Record, Term
 
 
 class Place(Record):
-    '''Place'''
+    '''A named point in space.'''
     pass
 
 
-class Space(Place):
-    '''Space'''
+class Venue(Place):
+    '''A venue for showing or experiencing art.'''
+    pass
+
+
+class Space(Term):
+    '''A named two-dimensional area, with many points, of arbitrary shape.'''
     pass
 
 
 class State(Space):
-    '''State'''
+    '''A US State.'''
     pass
 
 
 class City(Space):
-    '''City'''
+    '''A city, town or village.'''
     pass
 
 
 class Neighborhood(Space):
-    '''Neighborhood'''
+    '''A neighborhood or community area, officially recognized or not.'''
     pass
 
 
-class District(Space):
-    '''District'''
-    pass
-
-
-class Zipcode(Space):
-    '''Zipcode'''
+class PostalCode(Space):
+    '''A postal code, e.g. a US Zip Code.'''
     pass
 

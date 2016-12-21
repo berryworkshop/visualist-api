@@ -3,5 +3,5 @@ from cms.models import Term
 
 
 class Schema(Term):
-    '''Schema'''
+    '''A defined metadata format: a conversion standard.'''
     pass

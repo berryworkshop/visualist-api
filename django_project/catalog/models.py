@@ -2,32 +2,48 @@ from django.db import models
 from cms.models import Record, Term, Base
 
 
-class Work(Record):
-    '''Work'''
+class Thing(Record):
+    '''
+    A physical object, without the characteristics of anartwork,
+    e.g. an ephemeron or natural structure.
+    '''
     pass
 
 
-class Ephemeron(Work):
-    '''Ephemeron'''
+class Work(Thing):
+    '''
+    Usually a piece of artwork, a Work is the primary unit used.
+    '''
     pass
 
+    CONDITIONS = [
+        'mint',
+        'excellent', 
+        'very good',
+        'good',
+        'fair',
+        'poor',
+    ]
 
 class Dimension(Base):
-    '''Dimension'''
+    '''Length, width, height, or duration.'''
     pass
+
+    TYPES = [
+        'length',
+        'width', 
+        'height', 
+        'duration',
+    ]
 
 
 class Medium(Term):
-    '''Medium'''
+    '''The materials, tools or techniques used to make the work.'''
     pass
 
 
 class Genre(Term):
-    '''Genre'''
+    '''
+    A formal art historical classification.
+    '''
     pass
-
-
-class Condition(Term):
-    '''Condition'''
-    pass
-

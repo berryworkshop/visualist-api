@@ -3,31 +3,37 @@ from cms.models import Record, Term, Base
 
 
 class File(Record):
-    '''File'''
+    '''A digital computer file.'''
     pass
 
 
 class Image(File):
-    '''Image'''
+    '''An image File, e.g. TIF or JPG.'''
     pass
+
+    ASPECTS = [
+        'default',
+        'recto',
+        'verso',
+        'detail',
+        'signature',        
+    ]
 
 
 class Document(File):
-    '''Document'''
+    '''A document File, e.g. PDF or XLS.'''
     pass
 
 
 class Video(File):
-    '''Video'''
+    '''A video File, e.g. MOV.'''
     pass
 
 
 class ArchiveEvent(Base):
-    '''ArchiveEvent'''
-    pass
-
-
-class Aspect(Term):
-    '''Aspect'''
+    '''
+    Created when any ingestion, modification or migration occurs, 
+    and saved in a log.
+    '''
     pass
 

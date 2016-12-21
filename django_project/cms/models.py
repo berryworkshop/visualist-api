@@ -18,23 +18,13 @@ class Base(models.Model):
 
 
 class Log(Base):
-    '''Misc. website logs, for blame, among other things.'''
-    pass
-
-
-class Announcement(Base):
-    '''Announcement'''
+    '''Misc. website logs, for migrations, blame, among other things.'''
     pass
 
 
 #
 # Records
 #
-
-
-class RecordSet(Base):
-    '''RecordSet'''
-    pass
 
 
 class Record(Base):
@@ -44,24 +34,42 @@ class Record(Base):
     '''
     pass
 
+    AUDIENCES = [
+        'for all ages', 
+        'young children: 0-5',
+        'children: 5-10',
+        'young adult',
+        'primarily for adults',
+        'adults only',
+    ]
 
 class Page(Record):
-    '''Page'''
+    '''
+    A general-purpose, arbitrary website page, e.g. About, Copyright, etc.
+    '''
     pass
 
 
 class Article(Page):
-    '''Article'''
+    '''A Page with a listed author, post date, and other blog-like features.'''
     pass
 
 
 class Link(Record):
-    '''Link'''
+    '''A formal, named link, usually to an external resource on the web.'''
+    pass
+
+
+class RecordSet(Base):
+    '''A list of records for Users to share and save.'''
     pass
 
 
 class Relation(Base):
-    '''Relation'''
+    '''
+    A connection to another local model, usually between Records
+    and their derivatives.
+    '''
     pass
 
 
@@ -70,60 +78,66 @@ class Relation(Base):
 #
 
 class Name(Base):
-    '''Name'''
+    '''
+    A structured (additional) Name attribute, usable in multiple,
+    i.e. to simulate Dublin Core.  Usually from an external source.
+    '''
     pass
 
 
 class Identifier(Base):
-    '''Identifier'''
-    pass
-
-
-class Abstract(Base):
-    '''Abstract'''
+    '''
+    A structured (additional) Identifier attribute, usable in multiple,
+    i.e. to simulate Dublin Core.  Usually from an external source.
+    '''
     pass
 
 
 class Description(Base):
-    '''Description'''
+    '''
+    A structured (additional) Description attribute, usable in multiple,
+    i.e. to simulate Dublin Core.  Usually from an external source.
+    '''
     pass
 
+    TYPES = [
+        'abstract',
+        'subtitle',
+    ]
 
 #
 # Controlled Vocabulary
 #
 
 class Vocabulary(Base):
-    '''Vocabulary'''
+    '''A named, controlled vocabulary.'''
     pass
 
 
 class Term(Base):
-    '''Term'''
+    '''A single Vocabulary term.'''
     pass
 
 
 class Language(Term):
-    '''Language'''
+    '''The languages of the world.'''
     pass
 
 
 class Unit(Term):
-    '''Unit'''
-    pass
-
-
-class Audience(Term):
-    '''Audience'''
+    '''English and Metric units for space and time.'''
     pass
 
 
 class Subject(Term):
-    '''Subject'''
+    '''Keywords, tags, and categories oh my.'''
     pass
 
 
 class License(Term):
-    '''License'''
+    '''
+    Creative Commons, FOSS, and proprietary licenses,
+    defined against standard URLs.
+    '''
     pass
 

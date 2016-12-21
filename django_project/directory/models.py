@@ -3,71 +3,72 @@ from cms.models import Record, Base
 
 
 class Entity(Record):
-    '''Entity'''
+    '''
+    Superclass to collect shared functionality between Person and Organization.
+    '''
+
+    class Meta:
+        abstract = True
     pass
 
 
 class Person(Entity):
-    '''Person'''
+    '''A human being.'''
     pass
 
 
 class Organization(Entity):
-    '''Organization'''
+    '''An organized group of humans.'''
     pass
 
-
-class School(Organization):
-    '''School'''
-    pass
-
-
-class Gallery(Organization):
-    '''Gallery'''
-    pass
-
-
-class Museum(Organization):
-    '''Museum'''
-    pass
-
-
-class Venue(Organization):
-    '''Venue'''
-    pass
+    TYPES = [
+        'school',
+        'gallery', 
+        'museum',
+    ]
 
 
 class ContactItem(Base):
-    '''ContactItem'''
+    '''A superclass for shared functionality between contact line-items.'''
+
+    class Meta:
+        abstract = True
+
+    TYPES = [
+        'default',
+        'work', 
+        'personal',
+    ]
+
     pass
 
 
 class Account(ContactItem):
-    '''Account'''
+    '''A social media account'''
     pass
 
 
 class Address(ContactItem):
-    '''Address'''
+    '''A street address.'''
     pass
 
 
 class Email(ContactItem):
-    '''Email'''
+    '''An email address.'''
     pass
 
 
 class Phone(ContactItem):
-    '''Phone'''
+    '''A phone number.'''
     pass
 
 
 class Website(ContactItem):
-    '''Website'''
+    '''The highest-level relevant website URL of a website.'''
     pass
 
 
-class Hours(Base):
-    '''Hours'''
+class HourSet(Base):
+    '''A defined set of operating hours.'''
     pass
 
