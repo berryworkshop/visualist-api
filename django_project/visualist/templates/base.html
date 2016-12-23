@@ -8,11 +8,22 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
-{% block body %}
-{% endblock body %}
+{% block header %}
+    {% include '_header.html' %}
+{% endblock header %}
 
-<!-- recaptcha -->
-<div class="g-recaptcha" data-sitekey="6LfqHA4UAAAAAOyJPhhOp4CXONHplooHq1XX6Ht0"></div>
+{% block main %}
+    <main>
+        <p>Base template Main.</p>
+    </main>
+{% endblock main %}
 
+{% block ankle %}
+    {% include '_ankle.html' %}
+{% endblock ankle %}
+
+{% block footer %}
+    {% include '_footer.html' %}
+{% endblock footer %}
 </body>
 </html>

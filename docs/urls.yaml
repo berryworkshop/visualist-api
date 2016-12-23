@@ -1,0 +1,89 @@
+- base:
+
+    /
+
+- django:
+
+    /users
+    /users/123
+        /users/123/lists
+        /users/123/lists/123
+    /groups
+    /groups/123
+
+- combination sets:
+
+    /search     (any/all)
+    /magazine   (any/all, curated)
+
+    /calendar   (events and reminders)
+    /catalog    (works and links)
+    /itinerary  (venues and events)
+    /map        (venues and organizations)
+    /directory  (entites)
+
+- records:
+
+    /events
+    /events/123
+    /events/expo-2016
+    
+    /people
+    /people/123
+    /people/smith-john
+
+    /venues
+    /venues/123
+    /venues/double-door
+
+    /works
+    /works/123
+    /works/les-demoiselles-du-avignon
+    
+    /users
+    /users/123
+    /users/admin
+    /profile
+
+    /groups
+    /groups/123
+    /groups/administrators
+
+    /files
+    /files/123
+    
+    /images
+    /images/123
+    
+    /documents
+    /documents/123
+    
+    /links
+    /links/123
+
+- pages:
+
+    /about
+    /rights
+    /sitemap
+    /contact
+    /submission-guidelines
+
+- forms:
+
+    /submit
+        /submit/event
+        /submit/person
+        /submit/venue
+        /submit/work
+
+- custom:
+
+    /import
+        /import/facebook
+        /import/chicago-reader
+        /import/cpl-artist-files
+        /import/sixty-inches-from-center
+        /import/web
+    /password
+    /password/confirm

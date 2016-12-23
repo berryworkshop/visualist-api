@@ -16,3 +16,10 @@ The Heroku server will have niceties like debugging turned off, to show whether 
 or for a daemon:
 
 * `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start` or `stop`
+
+
+# Running tests
+
+* from https://docs.djangoproject.com/en/1.10/topics/testing/advanced/#integration-with-coverage-py
+* `coverage run --source='.' manage.py test`
+* `coverage report`
