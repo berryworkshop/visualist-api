@@ -50,7 +50,8 @@ class HomePageTestCase(TestCase):
         Ensures templates used by response.
         '''
         templates = [
-            'home.html',
-            'base.html',
+            'visualist/home.html',
+            'visualist/base.html',
         ]
-        self.assertTemplateUsed(self.response, 'home.html')
+        for t in templates:
+            self.assertTemplateUsed(self.response, t)

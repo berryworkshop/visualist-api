@@ -5,11 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Visualist</title>
 
+    {% block styles %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="/static/visualist/base.css">
+    {% endblock styles %}
+
     <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 {% block header %}
-    {% include '_header.html' %}
+    {% include 'visualist/_header.html' %}
 {% endblock header %}
 
 {% block main %}
@@ -19,11 +24,11 @@
 {% endblock main %}
 
 {% block ankle %}
-    {% include '_ankle.html' %}
+    {% include 'visualist/_ankle.html' %}
 {% endblock ankle %}
 
 {% block footer %}
-    {% include '_footer.html' %}
+    {% include 'visualist/_footer.html' %}
 {% endblock footer %}
 </body>
 </html>
