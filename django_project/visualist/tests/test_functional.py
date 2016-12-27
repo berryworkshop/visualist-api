@@ -1,8 +1,12 @@
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
+from timeline.models import Event
 
 
-class HomePageTestCase(TestCase):
+class HomeTestCase(TestCase):
+    '''
+    Tests for the Home page.
+    '''
 
     def setUp(self):
         self.url = reverse('home')
@@ -35,6 +39,11 @@ class HomePageTestCase(TestCase):
         for f in fragments:
             self.assertContains(self.response, f, html=False)
 
+    # def test_messages(self):
+    #     fragment = '<section id="messages">'
+    #     # self.assertContains(self.response, fragment, html=False)
+    #     pass
+
     def test_renders_elements(self):
         '''
         Ensures elements are present in response.
@@ -55,3 +64,20 @@ class HomePageTestCase(TestCase):
         ]
         for t in templates:
             self.assertTemplateUsed(self.response, t)
+
+
+class EventTestCase(TestCase):
+    '''
+    Tests for the Event page.
+    '''
+
+    def setUp(self):
+        event = Event.objects.create(name='Test Event')
+        self.url = reverse('event', args=[event.pk])
+        self.response = self.client.get(self.url)
+
+    def test_loads(self):
+        '''
+        Ensure loads OK.
+        '''
+        self.assertEqual(self.response.status_code, 200)

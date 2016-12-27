@@ -1,6 +1,23 @@
 body {
-  background-color: #ddd;
-  color: #222;
-  padding: 1rem; }
+  background-color: #ccc;
+  color: #222; }
+header {
+  border: 1px solid navy;
+  background-color: lightblue; }
+section#messages {
+  border: 1px solid red;
+  background-color: pink; }
+section#ankle {
+  border: 1px solid green;
+  background-color: lightgreen; }
+footer {
+  border: 1px solid orangered;
+  background-color: goldenrod; }
+#card_root {
+  display: -ms-flexbox;
+  display: flex; }
+main {
+  border: 1px solid orange;
+  background-color: yellow; }
 
 /*# sourceMappingURL=base.css.map*/

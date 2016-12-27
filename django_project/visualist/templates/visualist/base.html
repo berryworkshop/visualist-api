@@ -5,17 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Visualist</title>
 
+    {% block libs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.7/d3.js"></script>
+    {% endblock libs %}
+
     {% block styles %}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.css" />
     <link rel="stylesheet" href="/static/visualist/base.css">
     {% endblock styles %}
 
-    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body>
 {% block header %}
     {% include 'visualist/_header.html' %}
 {% endblock header %}
+
+{% block messages %}
+    {% if messages %}            
+        {% include "visualist/_messages.html" %}
+    {% endif %}
+{% endblock messages %}
 
 {% block main %}
     <main>
@@ -30,5 +41,8 @@
 {% block footer %}
     {% include 'visualist/_footer.html' %}
 {% endblock footer %}
+
+{% block js %}
+{% endblock js %}
 </body>
 </html>
