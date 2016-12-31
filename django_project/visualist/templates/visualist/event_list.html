@@ -1,13 +1,18 @@
 {% extends 'visualist/base.html' %}
 
 {% block js %}
-    <script src="/static/visualist/bundle.js"></script>
+    {{ block.super }}
+    <script src="/static/visualist/card.js"></script>
 {% endblock js %}
+
+{% block styles %}
+    {{ block.super }}
+    {# <link rel="stylesheet" href="/static/visualist/card.css"> #}
+{% endblock styles %}
 
 {% block main %}
     <main>
         <h1>Events</h1>
-        <div id="card_root">
-        </div>
+        <div id="card_root"></div>
     </main>
 {% endblock main %}

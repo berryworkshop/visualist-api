@@ -4,7 +4,7 @@ var autoprefixer = require('autoprefixer')
 var config = {
     context: __dirname + "/django_project",
     entry: {
-        // base css, not embedded in javascript
+        // // base css, not embedded in javascript
         'visualist/static/visualist/base.css': [
             './visualist/templates/visualist/base.scss',
             './visualist/templates/visualist/_header.scss',
@@ -15,8 +15,8 @@ var config = {
             './visualist/templates/visualist/event_list.scss',
             './visualist/templates/visualist/home.scss',
         ],
-        'visualist/static/visualist/bundle.js': [
-            './visualist/components/card.jsx',
+        'visualist/static/visualist/card.js': [
+            './visualist/components/card/card.jsx',
         ],
     },
     output: {
@@ -28,15 +28,20 @@ var config = {
         loaders: [
             {
                 test: /\.jsx$/,
-                loader: 'babel-loader',
+                loader: 'babel',
                 query: {
                     presets: ['es2015', 'react']
                 }
             },
             {
                 test: /\.scss$/,
+                loader: "style!css!postcss!sass",
+                exclude: /templates/
+            },
+            {
+                test: /templates.*\.s?css$/,
                 loader: ExtractTextPlugin.extract("style", "css!postcss!sass")
-            }
+            },
         ]
     },
     externals: {
@@ -56,10 +61,6 @@ var config = {
             browsers: "last 2 versions"
         })
     ],
-    resolve: {
-        // require('file') instead of require('file.js')
-        extensions: ['', '.js', '.jsx', '.json', '.css', '.scss']
-    }
 }
 
 module.exports = config

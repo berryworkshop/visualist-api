@@ -20,7 +20,7 @@ class Command(StaticfilesRunserverCommand):
     def start_webpack(self):
         self.stdout.write('>>> Starting webpack')
         self.webpack_process = subprocess.Popen(
-            ['cd .. && webpack --watch'],
+            ['cd .. && webpack --watch --display-error-details'],
             shell=True,
             stdin=subprocess.PIPE,
             stdout=self.stdout,
