@@ -44,7 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(19);
+	__webpack_require__(19);
+	module.exports = __webpack_require__(20);
 
 
 /***/ },
@@ -377,61 +378,163 @@
 
 	'use strict';
 	
-	var _react = __webpack_require__(20);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(21);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(21);
+	var _reactDom = __webpack_require__(22);
+	
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+	
+	var _card = __webpack_require__(20);
+	
+	var _card2 = _interopRequireDefault(_card);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var EventList = function (_React$Component) {
+	  _inherits(EventList, _React$Component);
+	
+	  function EventList() {
+	    _classCallCheck(this, EventList);
+	
+	    return _possibleConstructorReturn(this, (EventList.__proto__ || Object.getPrototypeOf(EventList)).apply(this, arguments));
+	  }
+	
+	  _createClass(EventList, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        null,
+	        _react2.default.createElement(_card2.default, null),
+	        _react2.default.createElement(_card2.default, null),
+	        _react2.default.createElement(_card2.default, null)
+	      );
+	    }
+	  }]);
+	
+	  return EventList;
+	}(_react2.default.Component);
+	
+	var EVENTS = [{
+	  name: "An unforgettable night out.",
+	  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	}, {
+	  name: "Flurble Blork Fladdurk.",
+	  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	}, {
+	  name: "Glimburbula.",
+	  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	}];
+	
+	_reactDom2.default.render(_react2.default.createElement(EventList, null), document.getElementById('event_list_root'));
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(21);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _reactDom = __webpack_require__(22);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	__webpack_require__(22);
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	_reactDom2.default.render(_react2.default.createElement(
-	    'div',
-	    { className: 'card' },
-	    _react2.default.createElement(
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	__webpack_require__(23);
+	
+	var Card = function (_React$Component) {
+	  _inherits(Card, _React$Component);
+	
+	  function Card() {
+	    _classCallCheck(this, Card);
+	
+	    return _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).apply(this, arguments));
+	  }
+	
+	  _createClass(Card, [{
+	    key: 'render',
+	    value: function render() {
+	      // var name = this.props.product.stocked ?
+	      //   this.props.product.name :
+	      //   <span style={{color: 'red'}}>
+	      //     {this.props.product.name}
+	      //   </span>;
+	      return _react2.default.createElement(
 	        'div',
-	        { className: 'card_head' },
+	        { className: 'card' },
 	        _react2.default.createElement(
+	          'div',
+	          { className: 'card_head' },
+	          _react2.default.createElement(
 	            'h3',
 	            null,
 	            'Card Name'
-	        )
-	    ),
-	    _react2.default.createElement(
-	        'div',
-	        { className: 'card_body' },
+	          )
+	        ),
 	        _react2.default.createElement(
+	          'div',
+	          { className: 'card_body' },
+	          _react2.default.createElement(
 	            'p',
 	            null,
 	            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris... '
+	          )
 	        )
-	    )
-	), document.getElementById('card_root'));
-
-/***/ },
-/* 20 */
-/***/ function(module, exports) {
-
-	module.exports = React;
+	      );
+	    }
+	  }]);
+	
+	  return Card;
+	}(_react2.default.Component);
+	
+	exports.default = Card;
 
 /***/ },
 /* 21 */
 /***/ function(module, exports) {
 
-	module.exports = ReactDOM;
+	module.exports = React;
 
 /***/ },
 /* 22 */
+/***/ function(module, exports) {
+
+	module.exports = ReactDOM;
+
+/***/ },
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(23);
+	var content = __webpack_require__(24);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -451,7 +554,7 @@
 	}
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();

@@ -25,7 +25,8 @@ var config = {
 
         // page bundles; one per template
         './static/visualist/event_list.js': [
-            './components/card/card.jsx',
+            './components/event_list.jsx',
+            './components/card/card.jsx'
         ],
     },
     devtool: 'source-map',
