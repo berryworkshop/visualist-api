@@ -459,7 +459,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".card {\n  background-color: green;\n  border: 1px solid red; }\n", ""]);
+	exports.push([module.id, ".card {\n  background-color: #ddd;\n  border: 1px solid red; }\n", ""]);
 	
 	// exports
 

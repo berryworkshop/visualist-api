@@ -11,7 +11,7 @@ var config = {
     },
     context: project_dir,
     entry: {
-        // base css, not embedded in javascript
+        // synchronous styles
         './static/visualist/bundle.css': [
             './templates/visualist/base.scss',
             './templates/visualist/_header.scss',
@@ -23,7 +23,7 @@ var config = {
             './templates/visualist/home.scss',
         ],
 
-        // bundled components, one per template
+        // page bundles; one per template
         './static/visualist/event_list.js': [
             './components/card/card.jsx',
         ],
@@ -44,7 +44,7 @@ var config = {
                 exclude: /templates/
             },
             {
-                test: /templates.*\.s?css$/,
+                test: /templates.*\.scss$/,
                 loader: ExtractTextPlugin.extract("style", "css!postcss!sass")
             },
         ]
