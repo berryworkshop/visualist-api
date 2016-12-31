@@ -466,4 +466,4 @@
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=card.js.map
+//# sourceMappingURL=event_list.js.map

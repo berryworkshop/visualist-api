@@ -1,27 +1,32 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var autoprefixer = require('autoprefixer')
 
+// all UI is handled by the visualist app
+var project_dir = __dirname + '/django_project/visualist'
+
 var config = {
-    context: __dirname + "/django_project",
-    entry: {
-        // // base css, not embedded in javascript
-        'visualist/static/visualist/base.css': [
-            './visualist/templates/visualist/base.scss',
-            './visualist/templates/visualist/_header.scss',
-            './visualist/templates/visualist/_messages.scss',
-            './visualist/templates/visualist/_ankle.scss',
-            './visualist/templates/visualist/_footer.scss',
-            './visualist/templates/visualist/event.scss',
-            './visualist/templates/visualist/event_list.scss',
-            './visualist/templates/visualist/home.scss',
-        ],
-        'visualist/static/visualist/card.js': [
-            './visualist/components/card/card.jsx',
-        ],
-    },
     output: {
-        path: './django_project/',
+        path: project_dir,
         filename: '[name]'
+    },
+    context: project_dir,
+    entry: {
+        // base css, not embedded in javascript
+        './static/visualist/bundle.css': [
+            './templates/visualist/base.scss',
+            './templates/visualist/_header.scss',
+            './templates/visualist/_messages.scss',
+            './templates/visualist/_ankle.scss',
+            './templates/visualist/_footer.scss',
+            './templates/visualist/event.scss',
+            './templates/visualist/event_list.scss',
+            './templates/visualist/home.scss',
+        ],
+
+        // bundled components, one per template
+        './static/visualist/event_list.js': [
+            './components/card/card.jsx',
+        ],
     },
     devtool: 'source-map',
     module: {
