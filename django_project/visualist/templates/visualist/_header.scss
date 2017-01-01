@@ -1,4 +1,11 @@
-header {
-    border: 1px solid navy;
-    background-color: lightblue;
+header#site_header {
+    border: 1px solid #333;
+    background-color: #111;
+    padding: .25rem;
+
+    #branding {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #777;
+    }
 }

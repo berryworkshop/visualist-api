@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(19);
-	module.exports = __webpack_require__(20);
+	__webpack_require__(21);
+	module.exports = __webpack_require__(24);
 
 
 /***/ },
@@ -373,22 +373,24 @@
 /* 16 */,
 /* 17 */,
 /* 18 */,
-/* 19 */
+/* 19 */,
+/* 20 */,
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _react = __webpack_require__(21);
+	var _react = __webpack_require__(22);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(22);
+	var _reactDom = __webpack_require__(23);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _card = __webpack_require__(20);
+	var _card = __webpack_require__(24);
 	
 	var _card2 = _interopRequireDefault(_card);
 	
@@ -401,45 +403,67 @@
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
 	var EventList = function (_React$Component) {
-	  _inherits(EventList, _React$Component);
+	    _inherits(EventList, _React$Component);
 	
-	  function EventList() {
-	    _classCallCheck(this, EventList);
+	    function EventList() {
+	        _classCallCheck(this, EventList);
 	
-	    return _possibleConstructorReturn(this, (EventList.__proto__ || Object.getPrototypeOf(EventList)).apply(this, arguments));
-	  }
-	
-	  _createClass(EventList, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement(_card2.default, null),
-	        _react2.default.createElement(_card2.default, null),
-	        _react2.default.createElement(_card2.default, null)
-	      );
+	        return _possibleConstructorReturn(this, (EventList.__proto__ || Object.getPrototypeOf(EventList)).apply(this, arguments));
 	    }
-	  }]);
 	
-	  return EventList;
+	    _createClass(EventList, [{
+	        key: 'render',
+	        value: function render() {
+	            var events = [];
+	            EVENTS.forEach(function (event) {
+	                events.push(_react2.default.createElement(_card2.default, {
+	                    name: event.name,
+	                    description: event.description,
+	                    id: event.pk,
+	                    key: event.pk
+	                }));
+	            });
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                events
+	            );
+	        }
+	    }]);
+	
+	    return EventList;
 	}(_react2.default.Component);
 	
 	var EVENTS = [{
-	  name: "An unforgettable night out.",
-	  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	    name: "An unforgettable night out.",
+	    pk: "123",
+	    description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
 	}, {
-	  name: "Flurble Blork Fladdurk.",
-	  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	    name: "Flurble Blork Fladdurk.",
+	    pk: "345",
+	    description: "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.."
 	}, {
-	  name: "Glimburbula.",
-	  description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	    name: "Glimburbula.",
+	    pk: "567",
+	    description: "Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.."
 	}];
 	
-	_reactDom2.default.render(_react2.default.createElement(EventList, null), document.getElementById('event_list_root'));
+	_reactDom2.default.render(_react2.default.createElement(EventList, null), document.getElementById('event_list-react_root'));
 
 /***/ },
-/* 20 */
+/* 22 */
+/***/ function(module, exports) {
+
+	module.exports = React;
+
+/***/ },
+/* 23 */
+/***/ function(module, exports) {
+
+	module.exports = ReactDOM;
+
+/***/ },
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -450,11 +474,11 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _react = __webpack_require__(21);
+	var _react = __webpack_require__(22);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(22);
+	var _reactDom = __webpack_require__(23);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
@@ -466,15 +490,19 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(23);
+	__webpack_require__(25);
 	
 	var Card = function (_React$Component) {
 	  _inherits(Card, _React$Component);
 	
-	  function Card() {
+	  function Card(props) {
 	    _classCallCheck(this, Card);
 	
-	    return _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).apply(this, arguments));
+	    var _this = _possibleConstructorReturn(this, (Card.__proto__ || Object.getPrototypeOf(Card)).call(this, props));
+	
+	    console.log(props);
+	    _this.id = "card_" + _this.props.id;
+	    return _this;
 	  }
 	
 	  _createClass(Card, [{
@@ -485,16 +513,17 @@
 	      //   <span style={{color: 'red'}}>
 	      //     {this.props.product.name}
 	      //   </span>;
+	
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'card' },
+	        { className: 'card', id: this.id },
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'card_head' },
 	          _react2.default.createElement(
 	            'h3',
 	            null,
-	            'Card Name'
+	            this.props.name
 	          )
 	        ),
 	        _react2.default.createElement(
@@ -503,7 +532,7 @@
 	          _react2.default.createElement(
 	            'p',
 	            null,
-	            'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris... '
+	            this.props.description
 	          )
 	        )
 	      );
@@ -516,25 +545,13 @@
 	exports.default = Card;
 
 /***/ },
-/* 21 */
-/***/ function(module, exports) {
-
-	module.exports = React;
-
-/***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	module.exports = ReactDOM;
-
-/***/ },
-/* 23 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(24);
+	var content = __webpack_require__(26);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -554,7 +571,7 @@
 	}
 
 /***/ },
-/* 24 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -562,7 +579,7 @@
 	
 	
 	// module
-	exports.push([module.id, ".card {\n  background-color: #ddd;\n  border: 1px solid red; }\n", ""]);
+	exports.push([module.id, ".card {\n  background-color: #efefef;\n  border: 1px solid #ccc;\n  padding-left: 1rem;\n  padding-right: 1rem; }\n", ""]);
 	
 	// exports
 

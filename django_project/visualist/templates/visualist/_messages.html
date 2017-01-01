@@ -1,5 +1,5 @@
-<section id="messages">
-    <ul class="messages">
+<section id="site_messages">
+    <ul>
         {% for message in messages %}
         <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}

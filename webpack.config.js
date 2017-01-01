@@ -15,12 +15,14 @@ var config = {
         './static/visualist/bundle.css': [
             './templates/visualist/base.scss',
             './templates/visualist/_header.scss',
+            './templates/visualist/_eyebrow.scss',
             './templates/visualist/_messages.scss',
             './templates/visualist/_ankle.scss',
             './templates/visualist/_footer.scss',
+            
+            './templates/visualist/home.scss',
             './templates/visualist/event.scss',
             './templates/visualist/event_list.scss',
-            './templates/visualist/home.scss',
         ],
 
         // page bundles; one per template

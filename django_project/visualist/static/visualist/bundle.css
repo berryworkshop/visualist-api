@@ -1,23 +1,30 @@
 body {
   background-color: #334;
   color: #222; }
-header {
+header#site_header {
+  border: 1px solid #333;
+  background-color: #111;
+  padding: .25rem; }
+  header#site_header #branding {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #777; }
+section#site_eyebrow {
   border: 1px solid navy;
   background-color: lightblue; }
-section#messages {
+section#site_messages {
   border: 1px solid red;
   background-color: pink; }
-section#ankle {
+section#site_ankle {
   border: 1px solid green;
   background-color: lightgreen; }
-footer {
+footer#site_footer {
   border: 1px solid orangered;
   background-color: goldenrod; }
-#card_root {
-  display: -ms-flexbox;
-  display: flex; }
 main {
   border: 1px solid orange;
   background-color: yellow; }
+main#event_list h1 {
+  margin-left: 1rem; }
 
 /*# sourceMappingURL=bundle.css.map*/
