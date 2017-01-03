@@ -44,8 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(21);
-	module.exports = __webpack_require__(24);
+	__webpack_require__(20);
+	module.exports = __webpack_require__(21);
 
 
 /***/ },
@@ -369,27 +369,36 @@
 /* 13 */,
 /* 14 */,
 /* 15 */,
-/* 16 */,
-/* 17 */,
+/* 16 */
+/***/ function(module, exports) {
+
+	module.exports = React;
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
+	module.exports = ReactDOM;
+
+/***/ },
 /* 18 */,
 /* 19 */,
-/* 20 */,
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _react = __webpack_require__(22);
+	var _react = __webpack_require__(16);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(23);
+	var _reactDom = __webpack_require__(17);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _card = __webpack_require__(24);
+	var _card = __webpack_require__(21);
 	
 	var _card2 = _interopRequireDefault(_card);
 	
@@ -450,19 +459,7 @@
 	_reactDom2.default.render(_react2.default.createElement(EventList, null), document.getElementById('event_list-react_root'));
 
 /***/ },
-/* 22 */
-/***/ function(module, exports) {
-
-	module.exports = React;
-
-/***/ },
-/* 23 */
-/***/ function(module, exports) {
-
-	module.exports = ReactDOM;
-
-/***/ },
-/* 24 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -473,11 +470,11 @@
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
-	var _react = __webpack_require__(22);
+	var _react = __webpack_require__(16);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(23);
+	var _reactDom = __webpack_require__(17);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
@@ -489,7 +486,7 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	__webpack_require__(25);
+	__webpack_require__(22);
 	
 	var Card = function (_React$Component) {
 	  _inherits(Card, _React$Component);
@@ -544,13 +541,13 @@
 	exports.default = Card;
 
 /***/ },
-/* 25 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(26);
+	var content = __webpack_require__(23);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(4)(content, {});
@@ -570,7 +567,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();

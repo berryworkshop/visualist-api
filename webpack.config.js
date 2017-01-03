@@ -22,7 +22,10 @@ var config = {
             './templates/visualist/_footer.scss',
         ],
 
-        // page bundles; one set per template
+        // page bundles; one set per view
+        './static/visualist/event.js': [
+            './components/event/event.jsx'
+        ],
         './static/visualist/event_list.js': [
             './components/event_list.jsx',
             './components/card/card.jsx'
@@ -30,9 +33,9 @@ var config = {
         './static/visualist/event_list.css': [
             './templates/visualist/event_list.scss'
         ],
-        './static/visualist/event.js': [
-            './components/event/_event.js',
-        ],
+        // './static/visualist/event.js': [
+        //     './components/event/_event.js',
+        // ],
     },
     devtool: 'source-map',
     module: {
@@ -82,7 +85,7 @@ var config = {
     plugins: [
         new webpack.ProvidePlugin({
           // d3: 'd3',
-          riot: 'riot'
+          // riot: 'riot'
         }),
         new ExtractTextPlugin('[name]')
     ],

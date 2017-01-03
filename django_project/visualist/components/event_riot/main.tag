@@ -8,9 +8,15 @@ require('./cross_refs.tag')
     <h1>Title</h1>
     <p>Other titles</p>
 
+    <h2>Friday, January 6, 2017</h2>
+    <h2>Chicago Artist Coalition</h2>
+    <p>1234 Anywhere St.</p>
+    <p>Chicago, IL 60600</p>
+
     <p>Distance to this event from your current location: 123 miles</p>
 
-    <img src="https://placebear.com/g/300/300.jpg" />
+    <img class="primary_visual" />
+    <p>This is a caption for the above visual.</p>
 
     <h3>Description</h3>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -36,6 +42,11 @@ require('./cross_refs.tag')
     <style>
         main {
             background-color: #eee;
+        }
+        .primary_visual {
+            width: 300px;
+            height: 300px;
+            background-color: #ddd;
         }
     </style>
 </main>

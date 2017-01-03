@@ -7,3 +7,5 @@
 * vislist.org
 * visualist.us
 * vsl.ist
+
+* bcw.design
