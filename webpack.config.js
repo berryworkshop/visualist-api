@@ -1,5 +1,6 @@
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var autoprefixer = require('autoprefixer')
+var webpack = require('webpack')
 
 // all UI is handled by the visualist app
 var project_dir = __dirname + '/django_project/visualist'
@@ -19,21 +20,41 @@ var config = {
             './templates/visualist/_messages.scss',
             './templates/visualist/_ankle.scss',
             './templates/visualist/_footer.scss',
-            
-            './templates/visualist/home.scss',
-            './templates/visualist/event.scss',
-            './templates/visualist/event_list.scss',
         ],
 
-        // page bundles; one per template
+        // page bundles; one set per template
         './static/visualist/event_list.js': [
             './components/event_list.jsx',
             './components/card/card.jsx'
         ],
+        './static/visualist/event_list.css': [
+            './templates/visualist/event_list.scss'
+        ],
+        './static/visualist/event.js': [
+            './components/event/_event.js',
+        ],
     },
     devtool: 'source-map',
     module: {
+        preLoaders: [
+            {
+                test: /\.tag$/,
+                // exclude: /node_modules/,
+                loader: 'riotjs',
+                query: {
+                    type: 'none'
+                }
+            }
+        ],
         loaders: [
+            {
+                test: /\.js$|\.tag$/,
+                // exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['es2015']
+                }
+            },
             {
                 test: /\.jsx$/,
                 loader: 'babel',
@@ -59,9 +80,10 @@ var config = {
         'd3': 'd3'
     },
     plugins: [
-        // new webpack.ProvidePlugin({
-        //     d3: 'd3'
-        // })
+        new webpack.ProvidePlugin({
+          // d3: 'd3',
+          riot: 'riot'
+        }),
         new ExtractTextPlugin('[name]')
     ],
     postcss: [

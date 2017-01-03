@@ -1,0 +1,42 @@
+<controls>
+    <h3>Controls</h3>
+    <ul>
+        <li>New</li>
+        <li>Edit</li>
+        <li>Delete</li>
+        <li>Map it</li>
+        <li>Featured</li>
+        <li>Bookmark</li>
+        <li>Add to Bucket List</li>
+        <li>
+            <h4>Cite</h4>
+            <ul>
+                <li>APA</li>
+                <li>Chicago</li>
+                <li>MLA</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Permissions</h4>
+            <ul>
+                <li>Public</li>
+                <li>Private</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Share</h4>
+            <ul>
+                <li>Email</li>
+                <li>Facebook</li>
+                <li>Pinterest</li>
+            </ul>
+        </li>
+        <li>
+            <h4>Add to List</h4>
+            <ul>
+                <li>Checklist</li>
+                <li>Bookmarks</li>
+            </ul>
+        </li>
+    </ul>
+</controls>

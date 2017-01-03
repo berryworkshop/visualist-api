@@ -4,11 +4,10 @@ body {
 header#site_header {
   border: 1px solid #333;
   background-color: #111;
-  padding: .25rem; }
+  color: white; }
   header#site_header #branding {
     font-size: 2rem;
-    font-weight: bold;
-    color: #777; }
+    font-weight: bold; }
 section#site_eyebrow {
   border: 1px solid navy;
   background-color: lightblue; }
@@ -19,12 +18,10 @@ section#site_ankle {
   border: 1px solid green;
   background-color: lightgreen; }
 footer#site_footer {
-  border: 1px solid orangered;
-  background-color: goldenrod; }
-main {
-  border: 1px solid orange;
-  background-color: yellow; }
-main#event_list h1 {
-  margin-left: 1rem; }
+  border: 1px solid #333;
+  background-color: #222;
+  color: #eee; }
+  footer#site_footer a {
+    color: goldenrod; }
 
 /*# sourceMappingURL=bundle.css.map*/

@@ -15,3 +15,7 @@ class EventView(DetailView):
 class EventListView(ListView):
     model = Event
     template_name = 'visualist/event_list.html'
+
+
+class SpaView(TemplateView):
+    template_name = 'visualist/spa.html'

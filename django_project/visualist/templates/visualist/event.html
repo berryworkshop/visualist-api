@@ -1,8 +1,14 @@
 {% extends 'visualist/base.html' %}
 
+{% block js %}
+    {{ block.super }}
+    <script src="/static/visualist/event.js"></script>
+{% endblock js %}
+
+{% block eyebrow %}{% endblock %}
+{% block ankle %}{% endblock %}
+{% block messages %}{% endblock %}
+
 {% block main %}
-    <main id="event">
-        <h1>{{ object.name }}</h1>
-        <p>This is an event.</p>
-    </main>
+    <main></main>
 {% endblock main %}

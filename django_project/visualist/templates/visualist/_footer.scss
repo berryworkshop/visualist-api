@@ -1,4 +1,8 @@
 footer#site_footer {
-    border: 1px solid orangered;
-    background-color: goldenrod;
+    a {
+        color: goldenrod;
+    }
+    border: 1px solid #333;
+    background-color: #222;
+    color: #eee;
 }
