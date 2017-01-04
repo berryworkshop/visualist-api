@@ -1,4 +1,4 @@
-import Refs from './Refs.vue'
+var Refs = require('./Refs.vue')
 Vue.component('refs', Refs)
 
 var SecondaryVisuals = Vue.component('secondary_visuals', {
@@ -82,18 +82,29 @@ var event = new Vue({
     delimiters: ['[{', '}]'],
     el: 'main',
     data: {
-        title: 'A Great Event',
-        description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        obj: {
+            title: 'A Totally Great Event',
+            date_start: 'January 1, 2014',
+            date_end: false,
+            description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
             consequat. Duis aute irure dolor in reprehenderit.`,
-    components: [
-        SecondaryVisuals,
-        MiniTile,
-        Refs,
-        RelatedItems,
-        Controls
-    ]
-  }
+        },
+        components: [
+            SecondaryVisuals,
+            MiniTile,
+            Refs,
+            RelatedItems,
+            Controls
+        ]
+    },
+    mounted: function() {
+        $.ajax({
+            url: "http://localhost:8000/timeline/events/1.json",
+        }).done(function(data) {
+            console.log(data)
+        })
+    }
 })
 

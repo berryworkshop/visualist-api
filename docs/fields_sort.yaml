@@ -92,36 +92,6 @@ Source
             Right to display
             Right to prepare derivative works
             Right to perform (for A/V items) in digital form
-Event
-    date start
-    date end
-    Receptions
-    names
-    Venue -> org
-    Facebook links
-    weblinks
-    picture
-        largely limited to a single postcard-esque image per show
-        multiples possible
-Event
-    Import
-        Google
-        iCal
-        Yahoo
-        Facebook
-        Outlook
-    Suitable for
-        All Ages
-        Adults
-        Babies
-        Kids
-        Preschoolers
-        Seniors
-        Teens
-        Toddlers
-    Custom fields
-        ApproxDateField
-        TimeSpanField
 Venues
     Name
     Address
@@ -207,57 +177,6 @@ Events
     Admission Fee
     Group-friendly
         Tiered?
-    Kind of Event
-        Exhibition
-            Opening Date
-            Closing Date
-            Reception Date
-            Reception Time
-            description
-            Image
-            Facebook link
-        Reading
-            Date(s)
-            Time
-            Description
-            Image
-            Facebook link
-        Lecture/Panel/Artist Talk
-            Date(s)
-            Time
-            Description
-            Image
-            Facebook link
-        Performance
-            Date(s)
-            Time
-            Description
-            Image
-            Facebook link
-    Are there other programs associated with this event (y/n)
-        If yes
-        How many? (Adds the amount of drop downs needed)
-        Title
-        Date
-        Time
-        Kind of Event
-            Exhibition
-            Reading
-            Lecture
-            Performance
-        Facebook link
-        Description
-        Is this event on-site (y/n)
-    If not
-        Venue
-        Address
-        City, State, Zip
-        Phone 
-        Email
-        Web
-        For internal use only
-            Contact name
-            Contact email
 Other media
     video fills
     alternate image file types

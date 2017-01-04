@@ -6,6 +6,7 @@ var webpack = require('webpack')
 var project_dir = __dirname + '/django_project/visualist'
 
 var config = {
+    // cache: false, // turn on if "$export" bug occurs
     output: {
         path: project_dir,
         filename: '[name]'
@@ -29,11 +30,8 @@ var config = {
         loaders: [
             {
                 test: /\.js$/,
-                // exclude: /node_modules/,
                 loader: 'babel',
-                query: {
-                    presets: ['es2015']
-                }
+                exclude: /node_modules/
             },
             {
                 test: /\.vue$/,
@@ -41,20 +39,9 @@ var config = {
                 options: {
                     loaders: {
                         'js': 'babel',
-                        // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-                        // the "scss" and "sass" values for the lang attribute to the right configs here.
-                        // other preprocessors should work out of the box, no loader config like this nessessary.
                         'scss': 'vue-style!css!sass',
                         'sass': 'vue-style!css!sass?indentedSyntax'
                     }
-                // other vue-loader options go here`
-                }
-            },
-            {
-                test: /\.(png|jpg|gif|svg)$/,
-                loader: 'file',
-                options: {
-                    name: '[name].[ext]?[hash]'
                 }
             },
             {
@@ -68,31 +55,19 @@ var config = {
             },
         ]
     },
-    externals: {
-        // libraries from CDN
-        // 'vue': 'vue',
-        'd3': 'd3'
-    },
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.common.js'
         }
     },
     plugins: [
-        new webpack.ProvidePlugin({
-          // d3: 'd3',
-        }),
         new ExtractTextPlugin('[name]')
     ],
     postcss: [
         autoprefixer({
             browsers: "last 2 versions"
         })
-    ],
-    babel: {
-        presets: ['es2015'],
-        plugins: ['transform-runtime']
-    },
+    ]
 }
 
 module.exports = config

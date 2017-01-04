@@ -51,10 +51,9 @@ Archive:
   - Aspect # (Term)
 
 Timeline:
-  - Period # (Term)  
-  - Event # (Record)
-    - Exhibit # (Event)
-    - Performance # (Event)
+  - Moment # (Record)
+    - Event # (Moment)
+  - Period # (Term)
 
 Catalog:
   - Work # (Record)

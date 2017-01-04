@@ -46,13 +46,8 @@
 
 	'use strict';
 	
-	var _Refs = __webpack_require__(10);
-	
-	var _Refs2 = _interopRequireDefault(_Refs);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	Vue.component('refs', _Refs2.default);
+	var Refs = __webpack_require__(10);
+	Vue.component('refs', Refs);
 	
 	var SecondaryVisuals = Vue.component('secondary_visuals', {
 	    template: '\n        <ul>\n            <h3>Secondary Visuals</h3>\n            <mini_tile></mini_tile>\n            <mini_tile></mini_tile>\n            <mini_tile></mini_tile>\n        </ul>'
@@ -74,9 +69,20 @@
 	    delimiters: ['[{', '}]'],
 	    el: 'main',
 	    data: {
-	        title: 'A Great Event',
-	        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n            consequat. Duis aute irure dolor in reprehenderit.',
-	        components: [SecondaryVisuals, MiniTile, _Refs2.default, RelatedItems, Controls]
+	        obj: {
+	            title: 'A Totally Great Event',
+	            date_start: 'January 1, 2014',
+	            date_end: false,
+	            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n            consequat. Duis aute irure dolor in reprehenderit.'
+	        },
+	        components: [SecondaryVisuals, MiniTile, Refs, RelatedItems, Controls]
+	    },
+	    mounted: function mounted() {
+	        $.ajax({
+	            url: "http://localhost:8000/timeline/events/1.json"
+	        }).done(function (data) {
+	            console.log(data);
+	        });
 	    }
 	});
 

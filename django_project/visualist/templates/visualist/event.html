@@ -13,24 +13,29 @@
 {% block main %}
     
 <main>
-    <h1>[{ title }]</h1>
-    <p>Other titles</p>
+    <h1>[{ obj.title }]</h1>
 
-    <h2>Friday, January 6, 2017</h2>
+    <h2>[{ obj.date_start }]</h2>
     <h2>Chicago Artist Coalition</h2>
     <p>1234 Anywhere St.</p>
     <p>Chicago, IL 60600</p>
-
-    <p>Distance to this event from your current location: 123 miles</p>
 
     <img class="primary_visual" />
     <p>This is a caption for the above visual.</p>
 
     <h3>Description</h3>
-    <p>[{ description }]</p>
+    <p>[{ obj.description }]</p>
+    
+    <secondary_visuals></secondary_visuals>
+    
+    {% comment %}
+    <p>Other titles</p>
+
     <p>Other Descriptions</p>
 
-    <secondary_visuals></secondary_visuals>
+    <p>Distance to this event from your current location: 123 miles</p>
+
+    
 
     <p>Record created by admin on January 1, 2017</p>
     <source></source>
@@ -41,7 +46,7 @@
     <related_items title="Similar Items"></related_items>
 
     <controls></controls>
-
+    {% endcomment %}
 </main>
 
 {% endblock main %}

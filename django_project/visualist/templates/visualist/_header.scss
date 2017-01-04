@@ -1,10 +1,14 @@
 header#site_header {
-    border: 1px solid #333;
-    background-color: #111;
-    color: white;
+    background-color: #222;
+    color: #eee;
+    padding: 1rem;
 
     #branding {
         font-size: 2rem;
         font-weight: bold;
+    }
+
+    a {
+        color: goldenrod;
     }
 }

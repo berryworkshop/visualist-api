@@ -1,20 +1,23 @@
 body {
   color: #222; }
+  body a {
+    color: #99f; }
 
 main {
-  border: 1px solid #ccc;
   background-color: #eee; }
 header#site_header {
-  border: 1px solid #333;
-  background-color: #111;
-  color: white; }
+  background-color: #222;
+  color: #eee;
+  padding: 1rem; }
   header#site_header #branding {
     font-size: 2rem;
     font-weight: bold; }
+  header#site_header a {
+    color: goldenrod; }
 footer#site_footer {
-  border: 1px solid #333;
   background-color: #222;
-  color: #eee; }
+  color: #eee;
+  padding: 1rem; }
   footer#site_footer a {
     color: goldenrod; }
 
