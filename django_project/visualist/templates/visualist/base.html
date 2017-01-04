@@ -6,9 +6,8 @@
     <title>Visualist</title>
 
     {% block libs %}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.7/d3.js"></script>
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.2.7/d3.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/vue/latest/vue.js"></script>
     {% endblock libs %}
 
     {% block styles %}
@@ -22,25 +21,11 @@
     {% include 'visualist/_header.html' %}
 {% endblock header %}
 
-{% block eyebrow %}
-    {% include 'visualist/_eyebrow.html' %}
-{% endblock eyebrow %}
-
-{% block messages %}
-    {% if messages %}            
-        {% include "visualist/_messages.html" %}
-    {% endif %}
-{% endblock messages %}
-
 {% block main %}
     <main>
         <p>Base template Main.</p>
     </main>
 {% endblock main %}
-
-{% block ankle %}
-    {% include 'visualist/_ankle.html' %}
-{% endblock ankle %}
 
 {% block footer %}
     {% include 'visualist/_footer.html' %}

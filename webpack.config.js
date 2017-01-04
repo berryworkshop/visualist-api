@@ -16,42 +16,19 @@ var config = {
         './static/visualist/bundle.css': [
             './templates/visualist/base.scss',
             './templates/visualist/_header.scss',
-            './templates/visualist/_eyebrow.scss',
-            './templates/visualist/_messages.scss',
-            './templates/visualist/_ankle.scss',
             './templates/visualist/_footer.scss',
         ],
 
         // page bundles; one set per view
-        './static/visualist/event.js': [
-            './components/event/event.jsx'
-        ],
-        './static/visualist/event_list.js': [
-            './components/event_list.jsx',
-            './components/card/card.jsx'
-        ],
-        './static/visualist/event_list.css': [
-            './templates/visualist/event_list.scss'
-        ],
-        // './static/visualist/event.js': [
-        //     './components/event/_event.js',
-        // ],
+        './static/visualist/event.js':  './components/event/event.js',
+        './static/visualist/event.css': './templates/visualist/event.scss',
     },
     devtool: 'source-map',
     module: {
-        preLoaders: [
-            {
-                test: /\.tag$/,
-                // exclude: /node_modules/,
-                loader: 'riotjs',
-                query: {
-                    type: 'none'
-                }
-            }
-        ],
+        // preLoaders: [],
         loaders: [
             {
-                test: /\.js$|\.tag$/,
+                test: /\.js$/,
                 // exclude: /node_modules/,
                 loader: 'babel',
                 query: {
@@ -59,10 +36,25 @@ var config = {
                 }
             },
             {
-                test: /\.jsx$/,
-                loader: 'babel',
-                query: {
-                    presets: ['es2015', 'react']
+                test: /\.vue$/,
+                loader: 'vue',
+                options: {
+                    loaders: {
+                        'js': 'babel',
+                        // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
+                        // the "scss" and "sass" values for the lang attribute to the right configs here.
+                        // other preprocessors should work out of the box, no loader config like this nessessary.
+                        'scss': 'vue-style!css!sass',
+                        'sass': 'vue-style!css!sass?indentedSyntax'
+                    }
+                // other vue-loader options go here`
+                }
+            },
+            {
+                test: /\.(png|jpg|gif|svg)$/,
+                loader: 'file',
+                options: {
+                    name: '[name].[ext]?[hash]'
                 }
             },
             {
@@ -78,14 +70,17 @@ var config = {
     },
     externals: {
         // libraries from CDN
-        'react': 'React',
-        'react-dom': 'ReactDOM',
+        // 'vue': 'vue',
         'd3': 'd3'
+    },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.common.js'
+        }
     },
     plugins: [
         new webpack.ProvidePlugin({
           // d3: 'd3',
-          // riot: 'riot'
         }),
         new ExtractTextPlugin('[name]')
     ],
@@ -94,6 +89,10 @@ var config = {
             browsers: "last 2 versions"
         })
     ],
+    babel: {
+        presets: ['es2015'],
+        plugins: ['transform-runtime']
+    },
 }
 
 module.exports = config

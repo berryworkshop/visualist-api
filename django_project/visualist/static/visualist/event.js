@@ -40,534 +40,144 @@
 /******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = __webpack_require__(15);
-
-
-/***/ },
-
-/***/ 15:
+/******/ ([
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	var _Refs = __webpack_require__(10);
 	
-	var _react = __webpack_require__(16);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _reactDom = __webpack_require__(17);
-	
-	var _reactDom2 = _interopRequireDefault(_reactDom);
+	var _Refs2 = _interopRequireDefault(_Refs);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	Vue.component('refs', _Refs2.default);
 	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	var SecondaryVisuals = Vue.component('secondary_visuals', {
+	    template: '\n        <ul>\n            <h3>Secondary Visuals</h3>\n            <mini_tile></mini_tile>\n            <mini_tile></mini_tile>\n            <mini_tile></mini_tile>\n        </ul>'
+	});
 	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	var MiniTile = Vue.component('mini_tile', {
+	    template: '\n        <div>\n            <img class="secondary_visual" />\n            <p>This is a caption.</p>\n        </div>'
+	});
 	
-	var Event = function (_React$Component) {
-	    _inherits(Event, _React$Component);
+	var RelatedItems = Vue.component('related_items', {
+	    template: '\n        <ul>\n            <h3>Related Items</h3>\n            <ul>\n                <li>Related Item</li>\n                <li>Related Item</li>\n                <li>Related Item</li>\n            </ul>\n        </ul>\n    '
+	});
 	
-	    function Event() {
-	        _classCallCheck(this, Event);
+	var Controls = Vue.component('controls', {
+	    template: '\n        <div>\n            <h3>Controls</h3>\n            <ul>\n                <li>New</li>\n                <li>Edit</li>\n                <li>Delete</li>\n                <li>Map it</li>\n                <li>Featured</li>\n                <li>Bookmark</li>\n                <li>Add to Bucket List</li>\n                <li>\n                    <h4>Cite</h4>\n                    <ul>\n                        <li>APA</li>\n                        <li>Chicago</li>\n                        <li>MLA</li>\n                    </ul>\n                </li>\n                <li>\n                    <h4>Permissions</h4>\n                    <ul>\n                        <li>Public</li>\n                        <li>Private</li>\n                    </ul>\n                </li>\n                <li>\n                    <h4>Share</h4>\n                    <ul>\n                        <li>Email</li>\n                        <li>Facebook</li>\n                        <li>Pinterest</li>\n                    </ul>\n                </li>\n                <li>\n                    <h4>Add to List</h4>\n                    <ul>\n                        <li>Checklist</li>\n                        <li>Bookmarks</li>\n                    </ul>\n                </li>\n            </ul>\n        </div>'
+	});
 	
-	        return _possibleConstructorReturn(this, (Event.__proto__ || Object.getPrototypeOf(Event)).apply(this, arguments));
+	var event = new Vue({
+	    delimiters: ['[{', '}]'],
+	    el: 'main',
+	    data: {
+	        title: 'A Great Event',
+	        description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n            consequat. Duis aute irure dolor in reprehenderit.',
+	        components: [SecondaryVisuals, MiniTile, _Refs2.default, RelatedItems, Controls]
 	    }
-	
-	    _createClass(Event, [{
-	        key: 'render',
-	        value: function render() {
-	            var style = {
-	                "backgroundColor": 'white'
-	            };
-	            return _react2.default.createElement(
-	                'div',
-	                { style: style },
-	                _react2.default.createElement(
-	                    'h1',
-	                    null,
-	                    'This is an awesome event.'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Other titles'
-	                ),
-	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'Friday, January 6, 2017'
-	                ),
-	                _react2.default.createElement(
-	                    'h2',
-	                    null,
-	                    'Chicago Artist Coalition'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    '1234 Anywhere St.'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Chicago, IL 60600'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Distance to this event from your current location: 123 miles'
-	                ),
-	                _react2.default.createElement('img', { className: 'primary_visual' }),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'This is a caption for the above visual.'
-	                ),
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    'Description'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
-	                ),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Other Descriptions'
-	                ),
-	                _react2.default.createElement(SecondaryVisuals, { title: 'Other Images' }),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'Record created by admin on January 1, 2017'
-	                ),
-	                _react2.default.createElement(Sources, null),
-	                _react2.default.createElement(CrossReferences, null),
-	                _react2.default.createElement(RelatedItems, { title: 'Related Items' }),
-	                _react2.default.createElement(RelatedItems, { title: 'Similar Items' }),
-	                _react2.default.createElement(Controls, null)
-	            );
-	        }
-	    }]);
-	
-	    return Event;
-	}(_react2.default.Component);
-	
-	var SecondaryVisuals = function (_React$Component2) {
-	    _inherits(SecondaryVisuals, _React$Component2);
-	
-	    function SecondaryVisuals() {
-	        _classCallCheck(this, SecondaryVisuals);
-	
-	        return _possibleConstructorReturn(this, (SecondaryVisuals.__proto__ || Object.getPrototypeOf(SecondaryVisuals)).apply(this, arguments));
-	    }
-	
-	    _createClass(SecondaryVisuals, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'ul',
-	                null,
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    this.props.title
-	                ),
-	                _react2.default.createElement('img', { className: 'secondary_visual' }),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'This is a caption.'
-	                ),
-	                _react2.default.createElement('img', { className: 'secondary_visual' }),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'This is a caption.'
-	                ),
-	                _react2.default.createElement('img', { className: 'secondary_visual' }),
-	                _react2.default.createElement(
-	                    'p',
-	                    null,
-	                    'This is a caption.'
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return SecondaryVisuals;
-	}(_react2.default.Component);
-	
-	var Sources = function (_React$Component3) {
-	    _inherits(Sources, _React$Component3);
-	
-	    function Sources() {
-	        _classCallCheck(this, Sources);
-	
-	        return _possibleConstructorReturn(this, (Sources.__proto__ || Object.getPrototypeOf(Sources)).apply(this, arguments));
-	    }
-	
-	    _createClass(Sources, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    'Sources'
-	                ),
-	                _react2.default.createElement(
-	                    'dl',
-	                    null,
-	                    _react2.default.createElement(
-	                        'dd',
-	                        null,
-	                        'Source'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dt',
-	                        null,
-	                        'The Art Institute of Chicago'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dd',
-	                        null,
-	                        'Format'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dt',
-	                        null,
-	                        'Website'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dd',
-	                        null,
-	                        'Accessed'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dt',
-	                        null,
-	                        'January 1, 2017'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dd',
-	                        null,
-	                        'Rights'
-	                    ),
-	                    _react2.default.createElement(
-	                        'dt',
-	                        null,
-	                        'Public Domain'
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Sources;
-	}(_react2.default.Component);
-	
-	var CrossReferences = function (_React$Component4) {
-	    _inherits(CrossReferences, _React$Component4);
-	
-	    function CrossReferences() {
-	        _classCallCheck(this, CrossReferences);
-	
-	        return _possibleConstructorReturn(this, (CrossReferences.__proto__ || Object.getPrototypeOf(CrossReferences)).apply(this, arguments));
-	    }
-	
-	    _createClass(CrossReferences, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    'Cross References'
-	                ),
-	                _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Getty'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Art Institute of Chicago'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Library of Congress'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Artnet'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Chicago Gallery News'
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return CrossReferences;
-	}(_react2.default.Component);
-	
-	var RelatedItems = function (_React$Component5) {
-	    _inherits(RelatedItems, _React$Component5);
-	
-	    function RelatedItems() {
-	        _classCallCheck(this, RelatedItems);
-	
-	        return _possibleConstructorReturn(this, (RelatedItems.__proto__ || Object.getPrototypeOf(RelatedItems)).apply(this, arguments));
-	    }
-	
-	    _createClass(RelatedItems, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    this.props.title
-	                ),
-	                _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Related Item'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Related Item'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Related Item'
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return RelatedItems;
-	}(_react2.default.Component);
-	
-	var Controls = function (_React$Component6) {
-	    _inherits(Controls, _React$Component6);
-	
-	    function Controls() {
-	        _classCallCheck(this, Controls);
-	
-	        return _possibleConstructorReturn(this, (Controls.__proto__ || Object.getPrototypeOf(Controls)).apply(this, arguments));
-	    }
-	
-	    _createClass(Controls, [{
-	        key: 'render',
-	        value: function render() {
-	            return _react2.default.createElement(
-	                'div',
-	                null,
-	                _react2.default.createElement(
-	                    'h3',
-	                    null,
-	                    'Controls'
-	                ),
-	                _react2.default.createElement(
-	                    'ul',
-	                    null,
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'New'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Edit'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Delete'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Map it'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Featured'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Bookmark'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        'Add to Bucket List'
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        _react2.default.createElement(
-	                            'h4',
-	                            null,
-	                            'Cite'
-	                        ),
-	                        _react2.default.createElement(
-	                            'ul',
-	                            null,
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'APA'
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Chicago'
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'MLA'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        _react2.default.createElement(
-	                            'h4',
-	                            null,
-	                            'Permissions'
-	                        ),
-	                        _react2.default.createElement(
-	                            'ul',
-	                            null,
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Public'
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Private'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        _react2.default.createElement(
-	                            'h4',
-	                            null,
-	                            'Share'
-	                        ),
-	                        _react2.default.createElement(
-	                            'ul',
-	                            null,
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Email'
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Facebook'
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Pinterest'
-	                            )
-	                        )
-	                    ),
-	                    _react2.default.createElement(
-	                        'li',
-	                        null,
-	                        _react2.default.createElement(
-	                            'h4',
-	                            null,
-	                            'Add to List'
-	                        ),
-	                        _react2.default.createElement(
-	                            'ul',
-	                            null,
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Checklist'
-	                            ),
-	                            _react2.default.createElement(
-	                                'li',
-	                                null,
-	                                'Bookmarks'
-	                            )
-	                        )
-	                    )
-	                )
-	            );
-	        }
-	    }]);
-	
-	    return Controls;
-	}(_react2.default.Component);
-	
-	_reactDom2.default.render(_react2.default.createElement(Event, null), document.getElementById('app_root'));
+	});
 
 /***/ },
+/* 1 */,
+/* 2 */,
+/* 3 */,
+/* 4 */,
+/* 5 */,
+/* 6 */,
+/* 7 */,
+/* 8 */,
+/* 9 */,
+/* 10 */
+/***/ function(module, exports, __webpack_require__) {
 
-/***/ 16:
-/***/ function(module, exports) {
+	var __vue_exports__, __vue_options__
+	var __vue_styles__ = {}
+	
+	/* script */
+	__vue_exports__ = __webpack_require__(11)
+	
+	/* template */
+	var __vue_template__ = __webpack_require__(12)
+	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
+	if (
+	  typeof __vue_exports__.default === "object" ||
+	  typeof __vue_exports__.default === "function"
+	) {
+	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
+	__vue_options__ = __vue_exports__ = __vue_exports__.default
+	}
+	if (typeof __vue_options__ === "function") {
+	  __vue_options__ = __vue_options__.options
+	}
+	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/components/event/Refs.vue"
+	__vue_options__.render = __vue_template__.render
+	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	
+	/* hot reload */
+	if (false) {(function () {
+	  var hotAPI = require("vue-hot-reload-api")
+	  hotAPI.install(require("vue"), false)
+	  if (!hotAPI.compatible) return
+	  module.hot.accept()
+	  if (!module.hot.data) {
+	    hotAPI.createRecord("data-v-52aa6d70", __vue_options__)
+	  } else {
+	    hotAPI.reload("data-v-52aa6d70", __vue_options__)
+	  }
+	})()}
+	if (__vue_options__.functional) {console.error("[vue-loader] Refs.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	
+	module.exports = __vue_exports__
 
-	module.exports = React;
 
 /***/ },
-
-/***/ 17:
+/* 11 */
 /***/ function(module, exports) {
 
-	module.exports = ReactDOM;
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	
+	exports.default = {
+	  name: 'refs',
+	  data: function data() {
+	    return {
+	      title: 'Cross References'
+	    };
+	  }
+	};
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('ul', [_c('h3', [_vm._v(_vm._s(_vm.title))]), _vm._v(" "), _c('li', [_vm._v("Getty")]), _vm._v(" "), _c('li', [_vm._v("Art Institute of Chicago")]), _vm._v(" "), _c('li', [_vm._v("Library of Congress")]), _vm._v(" "), _c('li', [_vm._v("Artnet")]), _vm._v(" "), _c('li', [_vm._v("Chicago Gallery News")])])
+	},staticRenderFns: []}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-52aa6d70", module.exports)
+	  }
+	}
 
 /***/ }
-
-/******/ });
+/******/ ]);
 //# sourceMappingURL=event.js.map

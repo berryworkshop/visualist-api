@@ -1,5 +1,9 @@
 body {
   color: #222; }
+
+main {
+  border: 1px solid #ccc;
+  background-color: #eee; }
 header#site_header {
   border: 1px solid #333;
   background-color: #111;
@@ -7,15 +11,6 @@ header#site_header {
   header#site_header #branding {
     font-size: 2rem;
     font-weight: bold; }
-section#site_eyebrow {
-  border: 1px solid navy;
-  background-color: lightblue; }
-section#site_messages {
-  border: 1px solid red;
-  background-color: pink; }
-section#site_ankle {
-  border: 1px solid green;
-  background-color: lightgreen; }
 footer#site_footer {
   border: 1px solid #333;
   background-color: #222;
