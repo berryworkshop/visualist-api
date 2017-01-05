@@ -17,7 +17,7 @@
         mounted: function() {
             $.ajax({
                 context: this,
-                url: "http://localhost:8000/timeline/events.json",
+                url: "/timeline/events.json",
             }).done(function(data) {
                 this.object_list = data.results
             })

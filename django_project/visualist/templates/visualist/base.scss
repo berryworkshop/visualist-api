@@ -3,14 +3,18 @@ $breakpoint_a: 450px;
 $breakpoint_b: 750px;
 $breakpoint_c: 875px;
 
-html, body {
+body {
     color: #222;
-
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    
+    > main {
+        background-color: #eee;
+        flex: 1;
+    }
+    
     a {
         color: #99f
     }
-}
-
-main {
-    background-color: #eee;
 }

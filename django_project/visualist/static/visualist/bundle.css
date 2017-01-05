@@ -1,10 +1,16 @@
-html, body {
-  color: #222; }
-  html a, body a {
+body {
+  color: #222;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+  -ms-flex-direction: column;
+      flex-direction: column; }
+  body > main {
+    background-color: #eee;
+    -ms-flex: 1;
+        flex: 1; }
+  body a {
     color: #99f; }
-
-main {
-  background-color: #eee; }
 header#site_header {
   background-color: #222;
   color: #eee;
@@ -12,6 +18,9 @@ header#site_header {
   header#site_header #branding {
     font-size: 2rem;
     font-weight: bold; }
+    header#site_header #branding a {
+      color: white;
+      text-decoration: none; }
   header#site_header a {
     color: goldenrod; }
 footer#site_footer {
