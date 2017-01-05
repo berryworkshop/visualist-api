@@ -14,20 +14,72 @@ body {
 header#site_header {
   background-color: #222;
   color: #eee;
-  padding: 1rem; }
-  header#site_header #branding {
-    font-size: 2rem;
-    font-weight: bold; }
-    header#site_header #branding a {
-      color: white;
-      text-decoration: none; }
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column; }
   header#site_header a {
-    color: goldenrod; }
+    text-decoration: none; }
+  header#site_header #masthead {
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: center;
+        align-items: center; }
+    header#site_header #masthead #branding {
+      font-size: 2rem;
+      font-weight: bold;
+      -ms-flex: auto;
+          flex: auto; }
+      header#site_header #masthead #branding a {
+        color: white; }
+    header#site_header #masthead #user {
+      color: #777; }
+  header#site_header #primary_nav {
+    background-color: #333;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-align: center;
+        align-items: center;
+    box-sizing: border-box;
+    color: #999; }
+    header#site_header #primary_nav a {
+      color: #999; }
+    header#site_header #primary_nav > * {
+      margin: 1rem 1rem 1rem 0; }
+    header#site_header #primary_nav #browse {
+      -ms-flex: auto;
+          flex: auto;
+      margin-left: 1rem; }
+    header#site_header #primary_nav #search input {
+      margin-right: -.27rem;
+      padding: .25rem .5rem;
+      border: 0;
+      background-color: #ddd; }
+    header#site_header #primary_nav #search button {
+      background: rgba(0, 0, 0, 0.5);
+      color: #999;
+      padding: .25rem .5rem;
+      border: none; }
+    header#site_header #primary_nav .search-field, header#site_header #primary_nav .search-submit {
+      margin: 0; }
+    header#site_header #primary_nav .search-field + .search-submit {
+      border: 1px solid #a9a9a9;
+      border-left: 0px;
+      height: 22px; }
 footer#site_footer {
   background-color: #222;
-  color: #eee;
+  color: #777;
   padding: 1rem; }
   footer#site_footer a {
-    color: goldenrod; }
+    color: #a60;
+    text-decoration: none; }
 
 /*# sourceMappingURL=bundle.css.map*/
