@@ -43,8 +43,8 @@ var config = {
                 options: {
                     loaders: {
                         'js': 'babel',
-                        'scss': 'vue-style!css!sass',
-                        'sass': 'vue-style!css!sass?indentedSyntax'
+                        'scss': 'vue-style-loader!style!css!postcss!sass',
+                        'sass': 'vue-style-loader!style!css!postcss!sass?indentedSyntax'
                     }
                 }
             },

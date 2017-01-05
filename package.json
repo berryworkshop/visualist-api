@@ -33,9 +33,11 @@
     "node-sass": "^4.1.1",
     "postcss-loader": "^1.2.1",
     "sass-loader": "^4.1.1",
+    "scss-loader": "^0.0.1",
     "style-loader": "^0.13.1",
     "vue": "^2.1.8",
     "vue-loader": "^10.0.2",
+    "vue-style-loader": "^1.0.0",
     "vue-template-compiler": "^2.1.8",
     "webpack": "^1.14.0"
   },
