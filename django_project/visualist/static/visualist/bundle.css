@@ -1,6 +1,6 @@
-body {
+html, body {
   color: #222; }
-  body a {
+  html a, body a {
     color: #99f; }
 
 main {

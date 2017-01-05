@@ -5,6 +5,15 @@
     <script src="/static/visualist/event_list.js"></script>
 {% endblock js %}
 
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/visualist/event.css">
+{% endblock styles %}
+
 {% block main %}
-    <main id="vueroot"></main>
+    <main>
+        <h1>Events</h1>
+
+        <events></events>
+    </main>
 {% endblock main %}

@@ -70,7 +70,7 @@
 	    el: 'main',
 	    data: {
 	        obj: {
-	            title: 'A Totally Great Event',
+	            title: '',
 	            date_start: 'January 1, 2014',
 	            date_end: false,
 	            description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n            consequat. Duis aute irure dolor in reprehenderit.'
@@ -79,9 +79,10 @@
 	    },
 	    mounted: function mounted() {
 	        $.ajax({
+	            context: this,
 	            url: "http://localhost:8000/timeline/events/1.json"
 	        }).done(function (data) {
-	            console.log(data);
+	            this.obj.title = data.name;
 	        });
 	    }
 	});

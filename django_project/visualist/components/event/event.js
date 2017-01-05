@@ -1,6 +1,7 @@
 var Refs = require('./Refs.vue')
 Vue.component('refs', Refs)
 
+
 var SecondaryVisuals = Vue.component('secondary_visuals', {
     template: `
         <ul>
@@ -83,7 +84,7 @@ var event = new Vue({
     el: 'main',
     data: {
         obj: {
-            title: 'A Totally Great Event',
+            title: '',
             date_start: 'January 1, 2014',
             date_end: false,
             description: `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -101,9 +102,10 @@ var event = new Vue({
     },
     mounted: function() {
         $.ajax({
+            context: this,
             url: "http://localhost:8000/timeline/events/1.json",
         }).done(function(data) {
-            console.log(data)
+            this.obj.title = data.name      
         })
     }
 })

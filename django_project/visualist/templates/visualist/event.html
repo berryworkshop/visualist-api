@@ -13,21 +13,21 @@
 {% block main %}
     
 <main>
-    <h1>[{ obj.title }]</h1>
+    <h1>{{ object.name }}</h1>
 
-    <h2>[{ obj.date_start }]</h2>
-    <h2>Chicago Artist Coalition</h2>
+    <h2>{{ object.datetime_start }}</h2>
+    <h2>Test Venue</h2>
     <p>1234 Anywhere St.</p>
     <p>Chicago, IL 60600</p>
 
     <img class="primary_visual" />
-    <p>This is a caption for the above visual.</p>
+    <p>Test image caption.</p>
 
     <h3>Description</h3>
-    <p>[{ obj.description }]</p>
+    <p>{{ object.description }}</p>
     
-    <secondary_visuals></secondary_visuals>
-    
+    {# <secondary_visuals></secondary_visuals> #}
+
     {% comment %}
     <p>Other titles</p>
 

@@ -1,5 +1,21 @@
 {% extends 'visualist/base.html' %}
 
+{% block js %}
+    {{ block.super }}
+    <script src="/static/visualist/home.js"></script>
+{% endblock js %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/visualist/home.css">
+{% endblock styles %}
+
 {% block main %}
-    <main id="vueroot"></main>
+    <main>
+        <h1>Home</h1>
+
+        <ul>
+            <li><a href="{% url 'event_list' %}">Events</a></li>
+        </ul>
+    </main>
 {% endblock main %}
