@@ -1,4 +1,4 @@
-var Events = require('./Events.vue')
+var Events = require('../../../components/Events.vue')
 Vue.component('events', Events)
 
 var home = new Vue({

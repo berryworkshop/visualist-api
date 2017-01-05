@@ -21,14 +21,12 @@ var config = {
         ],
 
         // page bundles; one set per view
-        './static/visualist/home.js':  './components/home/home.js',
-        './static/visualist/home.css': './templates/visualist/home.scss',
-
-        './static/visualist/event.js':  './components/event/event.js',
-        './static/visualist/event.css': './templates/visualist/event.scss',
-
-        './static/visualist/event_list.js':  './components/event_list/event_list.js',
-        './static/visualist/event_list.css': './templates/visualist/event_list.scss',
+        './static/visualist/home.js':        './templates/visualist/home/home.js',
+        './static/visualist/home.css':       './templates/visualist/home/home.scss',
+        './static/visualist/event.js':       './templates/visualist/event/event.js',
+        './static/visualist/event.css':      './templates/visualist/event/event.scss',
+        './static/visualist/event_list.js':  './templates/visualist/event_list/event_list.js',
+        './static/visualist/event_list.css': './templates/visualist/event_list/event_list.scss',
     },
     devtool: 'source-map',
     module: {

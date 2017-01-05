@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from .views import HomeView, EventView, EventListView, SpaView
+from .views import HomeView, EventView, EventListView
 
 from cms import urls as cms_urls
 from timeline import urls as timeline_urls

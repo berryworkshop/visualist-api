@@ -119,7 +119,7 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/components/event/Refs.vue"
+	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/components/Refs.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 	
@@ -130,9 +130,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-52aa6d70", __vue_options__)
+	    hotAPI.createRecord("data-v-54ec45b3", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-52aa6d70", __vue_options__)
+	    hotAPI.reload("data-v-54ec45b3", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Refs.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -181,7 +181,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-52aa6d70", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-54ec45b3", module.exports)
 	  }
 	}
 

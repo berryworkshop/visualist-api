@@ -47,7 +47,7 @@
 
 	'use strict';
 	
-	var Events = __webpack_require__(18);
+	var Events = __webpack_require__(14);
 	Vue.component('events', Events);
 	
 	var home = new Vue({
@@ -61,17 +61,17 @@
 
 /***/ },
 
-/***/ 18:
+/***/ 14:
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(19)
+	__vue_exports__ = __webpack_require__(15)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(20)
+	var __vue_template__ = __webpack_require__(16)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -83,7 +83,7 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/components/event_list/Events.vue"
+	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/components/Events.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
 	
@@ -94,9 +94,9 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-3f7d94e2", __vue_options__)
+	    hotAPI.createRecord("data-v-428aed4c", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-3f7d94e2", __vue_options__)
+	    hotAPI.reload("data-v-428aed4c", __vue_options__)
 	  }
 	})()}
 	if (__vue_options__.functional) {console.error("[vue-loader] Events.vue: functional components are not supported and should be defined in plain js files using render functions.")}
@@ -106,7 +106,7 @@
 
 /***/ },
 
-/***/ 19:
+/***/ 15:
 /***/ function(module, exports) {
 
 	"use strict";
@@ -143,7 +143,7 @@
 
 /***/ },
 
-/***/ 20:
+/***/ 16:
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
@@ -159,7 +159,7 @@
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-3f7d94e2", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-428aed4c", module.exports)
 	  }
 	}
 
