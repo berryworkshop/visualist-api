@@ -1,7 +1,64 @@
-// media breakpoints
-$breakpoint_a: 450px;
-$breakpoint_b: 750px;
-$breakpoint_c: 875px;
+@import "./_shared.scss";
+
+// breakpoints (base)
+$xs: 350px;
+$sm: 650px;
+$md: 1000px;
+$lg: 2000px;
+
+$low_res:  75dpi;
+$med_res:  150dpi;
+$high_res: 300dpi;
+
+@mixin phone {
+    @media  (min-width:    1px) and (max-width: #{$xs}    ) and (min-resolution:        1dpi)  and (max-resolution: #{$low_res}),
+            (min-width:    1px) and (max-width: #{$xs} * 2) and (min-resolution: #{$low_res})  and (max-resolution: #{$med_res}), 
+            (min-width:    1px) and (max-width: #{$xs} * 3) and (min-resolution: #{$med_res})  and (max-resolution: #{$high_res}),
+            (min-width:    1px) and (max-width: #{$xs} * 4) and (min-resolution: #{$high_res}) and (max-resolution: 9999dpi)
+    {
+        @content;
+    }
+}
+
+@mixin phablet {
+    @media  (min-width: #{$xs}) and (max-width: #{$sm}    ) and (min-resolution:        1dpi)  and (max-resolution: #{$low_res}),
+            (min-width: #{$xs}) and (max-width: #{$sm} * 2) and (min-resolution: #{$low_res})  and (max-resolution: #{$med_res}), 
+            (min-width: #{$xs}) and (max-width: #{$sm} * 3) and (min-resolution: #{$med_res})  and (max-resolution: #{$high_res}),
+            (min-width: #{$xs}) and (max-width: #{$sm} * 4) and (min-resolution: #{$high_res}) and (max-resolution: 9999dpi)
+    {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media  (min-width: #{$sm}) and (max-width: #{$md}    ) and (min-resolution:        1dpi)  and (max-resolution: #{$low_res}),
+            (min-width: #{$sm}) and (max-width: #{$md} * 2) and (min-resolution: #{$low_res})  and (max-resolution: #{$med_res}), 
+            (min-width: #{$sm}) and (max-width: #{$md} * 3) and (min-resolution: #{$med_res})  and (max-resolution: #{$high_res}),
+            (min-width: #{$sm}) and (max-width: #{$md} * 4) and (min-resolution: #{$high_res}) and (max-resolution: 9999dpi)
+    {
+        @content;
+    }
+}
+
+@mixin laptop {
+    @media  (min-width: #{$md}) and (max-width: #{$lg}    ) and (min-resolution:        1dpi)  and (max-resolution: #{$low_res}),
+            (min-width: #{$md}) and (max-width: #{$lg} * 2) and (min-resolution: #{$low_res})  and (max-resolution: #{$med_res}), 
+            (min-width: #{$md}) and (max-width: #{$lg} * 3) and (min-resolution: #{$med_res})  and (max-resolution: #{$high_res}),
+            (min-width: #{$md}) and (max-width: #{$lg} * 4) and (min-resolution: #{$high_res}) and (max-resolution: 9999dpi)
+    {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media  (min-width: #{$lg}) and (max-width: 99999px    ) and (min-resolution:        1dpi)  and (max-resolution: #{$low_res}),
+            (min-width: #{$lg}) and (max-width: 99999px * 2) and (min-resolution: #{$low_res})  and (max-resolution: #{$med_res}), 
+            (min-width: #{$lg}) and (max-width: 99999px * 3) and (min-resolution: #{$med_res})  and (max-resolution: #{$high_res}),
+            (min-width: #{$lg}) and (max-width: 99999px * 4) and (min-resolution: #{$high_res}) and (max-resolution: 9999dpi)
+    {
+        @content;
+    }
+}
 
 body {
     color: #222;
@@ -10,11 +67,32 @@ body {
     flex-direction: column;
     
     > main {
-        background-color: #eee;
+        font-size: 16;
+
+        @include phone {
+            background-color: yellow;
+        }
+
+        @include phablet {
+            background-color: orange;
+        }
+
+        @include tablet {
+            background-color: red;
+        }
+
+        @include laptop {
+            background-color: purple;
+        }
+
+        @include desktop {
+            background-color: blue;
+        }
+
         flex: 1;
     }
     
     a {
-        color: #33c
+        color: #33c;
     }
 }

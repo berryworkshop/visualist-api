@@ -1,4 +1,4 @@
-var Refs = require('../../../components/Refs.vue')
+var Refs = require('../components/Refs.vue')
 Vue.component('refs', Refs)
 
 

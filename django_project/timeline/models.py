@@ -112,3 +112,23 @@ class Period(Term):
 #         For internal use only
 #             Contact name
 #             Contact email
+
+# class Event(Base):
+   # when = models.DateTimeField()
+   # duration = models.IntegerField()
+   # venue = models.ForeignKey('Organization', models.SET_NULL)
+  # not sure about these ones
+   # on_site = models.BooleanField(default=True)
+   # contact_name = ...
+   # contact_email = ...
+  # EVENT_TYPES = (
+       # ('EXHIBITION', 'exhibition'),
+       # ('READING', 'reading'),
+       # ('TALK', 'talk'),
+       # ('LECTURE', 'lecture'),
+       # ('PANEL', 'panel'),
+       # ('PERFORMANCE', 'performance'),
+       # ('OPENING', 'opening reception'),
+       # ('CLOSING', 'closing reception'),
+       # )
+   # event_type = models.CharField(max_length=15, choices=EVENT_TYPES)

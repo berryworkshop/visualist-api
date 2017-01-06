@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Visualist</title>
 
@@ -19,14 +20,14 @@
 </head>
 <body>
 {% block header %}
-    {% include 'visualist/_header.html' %}
+    {% include 'visualist/_header/_header.html' %}
 {% endblock header %}
 
 {% block main %}
 {% endblock main %}
 
 {% block footer %}
-    {% include 'visualist/_footer.html' %}
+    {% include 'visualist/_footer/_footer.html' %}
 {% endblock footer %}
 
 {% block js %}

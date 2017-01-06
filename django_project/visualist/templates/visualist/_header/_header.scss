@@ -26,7 +26,7 @@ header#site_header {
             }
         }
     
-        #user {
+        #menu {
             color: #777;
         }
     }
@@ -36,26 +36,20 @@ header#site_header {
         width: 100%;
         display: flex;
         flex-direction: row;
-        align-items: center;
         box-sizing: border-box;
         color: #999;
+        padding: 1rem;
 
         a {
             color: #999
         }
-        
-        > * {
-            margin: 1rem 1rem 1rem 0;
-        }
-
-        #browse {
-            flex: auto;
-            margin-left: 1rem;
-        }
 
         #search {
+            display: flex;
+            flex: auto;
+
             input {
-                margin-right: -.27rem;
+                flex: auto;
                 padding: .25rem .5rem;
                 border: 0;
                 background-color: #ddd;
@@ -67,17 +61,9 @@ header#site_header {
                 border: none;
             }
         }
+        #browse {
+            margin-left: 1rem;
+        }
 
-.search-field, .search-submit{
-    margin:0;
-}
-
-.search-field + .search-submit{
-    border:1px solid #a9a9a9;
-    border-left:0px;
-    height:22px;
-}
-
-        #links {}
-    }
+    }   
 }

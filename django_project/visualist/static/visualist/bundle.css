@@ -6,9 +6,24 @@ body {
   -ms-flex-direction: column;
       flex-direction: column; }
   body > main {
-    background-color: #eee;
+    font-size: 16;
     -ms-flex: 1;
         flex: 1; }
+    @media (min-width: 1px) and (max-width: 350px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 1px) and (max-width: 350px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 1px) and (max-width: 700px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 1px) and (max-width: 700px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 1px) and (max-width: 1050px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 1px) and (max-width: 1050px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 1px) and (max-width: 1400px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 1px) and (max-width: 1400px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
+      body > main {
+        background-color: yellow; } }
+    @media (min-width: 350px) and (max-width: 650px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 350px) and (max-width: 650px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 350px) and (max-width: 1300px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 350px) and (max-width: 1300px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 350px) and (max-width: 1950px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 350px) and (max-width: 1950px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 350px) and (max-width: 2600px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 350px) and (max-width: 2600px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
+      body > main {
+        background-color: orange; } }
+    @media (min-width: 650px) and (max-width: 1000px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 650px) and (max-width: 1000px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 650px) and (max-width: 2000px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 650px) and (max-width: 2000px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 650px) and (max-width: 3000px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 650px) and (max-width: 3000px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 650px) and (max-width: 4000px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 650px) and (max-width: 4000px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
+      body > main {
+        background-color: red; } }
+    @media (min-width: 1000px) and (max-width: 2000px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 1000px) and (max-width: 2000px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 1000px) and (max-width: 4000px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 1000px) and (max-width: 4000px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 1000px) and (max-width: 6000px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 1000px) and (max-width: 6000px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 1000px) and (max-width: 8000px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 1000px) and (max-width: 8000px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
+      body > main {
+        background-color: purple; } }
+    @media (min-width: 2000px) and (max-width: 99999px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 2000px) and (max-width: 99999px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 2000px) and (max-width: 199998px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 2000px) and (max-width: 199998px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 2000px) and (max-width: 299997px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 2000px) and (max-width: 299997px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 2000px) and (max-width: 399996px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 2000px) and (max-width: 399996px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
+      body > main {
+        background-color: blue; } }
   body a {
     color: #33c; }
 header#site_header {
@@ -37,7 +52,7 @@ header#site_header {
           flex: auto; }
       header#site_header #masthead #branding a {
         color: white; }
-    header#site_header #masthead #user {
+    header#site_header #masthead #menu {
       color: #777; }
   header#site_header #primary_nav {
     background-color: #333;
@@ -46,34 +61,29 @@ header#site_header {
     display: flex;
     -ms-flex-direction: row;
         flex-direction: row;
-    -ms-flex-align: center;
-        align-items: center;
     box-sizing: border-box;
-    color: #999; }
+    color: #999;
+    padding: 1rem; }
     header#site_header #primary_nav a {
       color: #999; }
-    header#site_header #primary_nav > * {
-      margin: 1rem 1rem 1rem 0; }
-    header#site_header #primary_nav #browse {
+    header#site_header #primary_nav #search {
+      display: -ms-flexbox;
+      display: flex;
       -ms-flex: auto;
-          flex: auto;
+          flex: auto; }
+      header#site_header #primary_nav #search input {
+        -ms-flex: auto;
+            flex: auto;
+        padding: .25rem .5rem;
+        border: 0;
+        background-color: #ddd; }
+      header#site_header #primary_nav #search button {
+        background: rgba(0, 0, 0, 0.5);
+        color: #999;
+        padding: .25rem .5rem;
+        border: none; }
+    header#site_header #primary_nav #browse {
       margin-left: 1rem; }
-    header#site_header #primary_nav #search input {
-      margin-right: -.27rem;
-      padding: .25rem .5rem;
-      border: 0;
-      background-color: #ddd; }
-    header#site_header #primary_nav #search button {
-      background: rgba(0, 0, 0, 0.5);
-      color: #999;
-      padding: .25rem .5rem;
-      border: none; }
-    header#site_header #primary_nav .search-field, header#site_header #primary_nav .search-submit {
-      margin: 0; }
-    header#site_header #primary_nav .search-field + .search-submit {
-      border: 1px solid #a9a9a9;
-      border-left: 0px;
-      height: 22px; }
 footer#site_footer {
   background-color: #222;
   color: #777;

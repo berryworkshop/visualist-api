@@ -6,11 +6,17 @@
         </span>
         <ul class="event_list">
             <li v-for="obj in object_list" class="event">
-                <img class="event_image" />
+                <div class="event_visuals">
+                    <img class="event_image" />
+                    <h4 class="event_date_icon">Jan 1 – Jan 30</h4>
+                    <p>More Images</p>
+                </div>
                 <div class="event_info">
-                    <h3 class="md event_title"><a :href="obj.get_absolute_url">{{ obj.name }}</a></h3>
-                    <p class="md event_when_where"><strong>Chicago Artist Coalition</strong>: Jan 1 - Jan 7, 2017</p>
-                    <p class="md event_synopsis">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.</p>
+                    <p class="location">Chicago: Pilsen @ Storefront Gallery</p>
+                    <h3 class="title"><a <a :href="obj.get_absolute_url">{{ obj.name }}</a></h3>
+                    <p class="synopsis">This is the synopsis.  It's limited to 255 characters.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisiut.</p>
+                    <p class="audience">All ages welcome</p><!-- tiered as a vocab -->
+                    <i class="fa fa-usd" aria-hidden="true"></i>    
                 </div>
                 <div class="event_controls">
                     <a class="button" href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
@@ -52,51 +58,40 @@
 
         .event {
             background-color: white;
-            border: 1px solid #ccc;
-            border-bottom: 0;
-            padding: .5rem;
+            margin-bottom: 1rem;
             list-style-type: none;
             display: flex;
-            
-            .event_image {
-                min-width: 4rem; 
-                height: 4rem;
-                background-color: #ddd;              
-            }
+            flex-direction: column;
 
-            .event_info {
+            .event_visuals {
                 flex: auto;
-                padding: 0 .5rem;
-                flex-wrap: wrap;
+                height: 10rem;
+                background-color: silver;
+            }
+            .event_info {
+                padding: 1rem;
 
-                .event_title {
-                    margin: 0 0 .5em 0;
-                    a {
-                        text-decoration: none;                    
-                    }
-                }
-
-                .event_when_where,
-                .event_synopsis {
-                    margin: 0 0 .5em 0;
+                .location {
                     font-size: smaller;
                 }
-
-                .event_when_where {}
-                .event_synopsis {
-                    color: #777;
+                .title {
+                    a {
+                        text-decoration: none;
+                    }
                 }
+                .synopsis {
+                    font-style: italic;
+                }
+                .audience {}
             }
             .event_controls {
-                margin-top: .5rem;    
-                white-space: nowrap;
-
-                .button {}
+                padding: 1rem;
+                padding-bottom: 1.5rem;
             }
         }
 
         .event:last-child {
-            border-bottom: 1px solid #ccc;
+            margin-bottom: none;
         }
     }
 </style>

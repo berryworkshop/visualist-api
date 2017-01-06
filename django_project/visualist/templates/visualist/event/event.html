@@ -13,18 +13,32 @@
 {% block main %}
     
 <main>
+    <p><a>Chicago</a>: <a>Pilsen</a> @ <a>Storefront Gallery</a></p>
     <h1>{{ object.name }}</h1>
+    <p>This is the synopsis.  It's limited to 255 characters.</p>
 
-    <h2>{{ object.datetime_start }}</h2>
-    <h2>Test Venue</h2>
-    <p>1234 Anywhere St.</p>
-    <p>Chicago, IL 60600</p>
+    <div class="visiting_info">
+        <p class="display_times">On display: {{ object.datetime_start }}–{{ object.datetime_start }}</p>
+        <p class="reception">Opening reception: Jan 1, 2017 @ 8pm</p>
+        <p class="admission">Admission: Free</p>
+        <p class="audience">All ages welcome</p><!-- tiered as a vocab -->
+    </div>
 
     <img class="primary_visual" />
     <p>Test image caption.</p>
 
     <h3>Description</h3>
     <p>{{ object.description }}</p>
+
+    <div class="venue_contact">
+        <h3>Storefront Gallery</h3>
+        <p>1234 Anywhere St.</p>
+        <p>Chicago, IL 60600</p>
+        <p><a>(312) 555-1212</a></p>
+        <p><a>gallery@example.com</a></p>
+        <p><a>Website</a></p>
+        <p><a>Facebook</a></p>
+    </div>
     
     {# <secondary_visuals></secondary_visuals> #}
 
@@ -50,3 +64,4 @@
 </main>
 
 {% endblock main %}
+

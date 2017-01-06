@@ -6,7 +6,7 @@ var webpack = require('webpack')
 var project_dir = __dirname + '/django_project/visualist'
 
 var config = {
-    // cache: false, // turn on if "$export" bug occurs
+    cache: false, // turn on if "$export" bug occurs
     output: {
         path: project_dir,
         filename: '[name]'
@@ -16,8 +16,8 @@ var config = {
         // synchronous styles
         './static/visualist/bundle.css': [
             './templates/visualist/base.scss',
-            './templates/visualist/_header.scss',
-            './templates/visualist/_footer.scss',
+            './templates/visualist/_header/_header.scss',
+            './templates/visualist/_footer/_footer.scss',
         ],
 
         // page bundles; one set per view

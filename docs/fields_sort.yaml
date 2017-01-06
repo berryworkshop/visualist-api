@@ -166,17 +166,6 @@ From Allan
         Event types
         etc.
     Event Collections?
-Events
-    Title
-    Venue
-    Address
-    City, State, Zip
-    Phone
-    Email
-    Web
-    Admission Fee
-    Group-friendly
-        Tiered?
 Other media
     video fills
     alternate image file types
@@ -276,25 +265,7 @@ name = models.CharField(max_length=250)
            self.created = datetime.datetime.now()
        self.updated = datetime.datetime.now()
        super().save()
-class Event(Base):
-   when = models.DateTimeField()
-   duration = models.IntegerField()
-   venue = models.ForeignKey('Organization', models.SET_NULL)
-  not sure about these ones
-   on_site = models.BooleanField(default=True)
-   contact_name = ...
-   contact_email = ...
-  EVENT_TYPES = (
-       ('EXHIBITION', 'exhibition'),
-       ('READING', 'reading'),
-       ('TALK', 'talk'),
-       ('LECTURE', 'lecture'),
-       ('PANEL', 'panel'),
-       ('PERFORMANCE', 'performance'),
-       ('OPENING', 'opening reception'),
-       ('CLOSING', 'closing reception'),
-       )
-   event_type = models.CharField(max_length=15, choices=EVENT_TYPES)
+
   TODO: relationship to parent
    TODO: integrate with iCal, gCal, etc.
 class Entity(Base):
