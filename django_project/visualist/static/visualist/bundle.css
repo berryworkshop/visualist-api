@@ -1,4 +1,22 @@
+.visually_hidden {
+  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
+  position: absolute !important;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  width: 1px !important;
+  overflow: hidden; }
+
+body:hover .visually_hidden a,
+body:hover .visually_hidden input,
+body:hover .visually_hidden button {
+  display: none !important; }
+
 body {
+  background-color: #eee;
   color: #222;
   display: -ms-flexbox;
   display: flex;
@@ -9,24 +27,10 @@ body {
     font-size: 16;
     -ms-flex: 1;
         flex: 1; }
-    @media (min-width: 1px) and (max-width: 350px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 1px) and (max-width: 350px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 1px) and (max-width: 700px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 1px) and (max-width: 700px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 1px) and (max-width: 1050px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 1px) and (max-width: 1050px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 1px) and (max-width: 1400px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 1px) and (max-width: 1400px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
-      body > main {
-        background-color: yellow; } }
-    @media (min-width: 350px) and (max-width: 650px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 350px) and (max-width: 650px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 350px) and (max-width: 1300px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 350px) and (max-width: 1300px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 350px) and (max-width: 1950px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 350px) and (max-width: 1950px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 350px) and (max-width: 2600px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 350px) and (max-width: 2600px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
-      body > main {
-        background-color: orange; } }
-    @media (min-width: 650px) and (max-width: 1000px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 650px) and (max-width: 1000px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 650px) and (max-width: 2000px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 650px) and (max-width: 2000px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 650px) and (max-width: 3000px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 650px) and (max-width: 3000px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 650px) and (max-width: 4000px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 650px) and (max-width: 4000px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
-      body > main {
-        background-color: red; } }
-    @media (min-width: 1000px) and (max-width: 2000px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 1000px) and (max-width: 2000px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 1000px) and (max-width: 4000px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 1000px) and (max-width: 4000px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 1000px) and (max-width: 6000px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 1000px) and (max-width: 6000px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 1000px) and (max-width: 8000px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 1000px) and (max-width: 8000px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
-      body > main {
-        background-color: purple; } }
-    @media (min-width: 2000px) and (max-width: 99999px) and (-webkit-min-device-pixel-ratio: 0.010416666666666666) and (-webkit-max-device-pixel-ratio: 0.78125), (min-width: 2000px) and (max-width: 99999px) and (min-resolution: 1dpi) and (max-resolution: 75dpi), (min-width: 2000px) and (max-width: 199998px) and (-webkit-min-device-pixel-ratio: 0.78125) and (-webkit-max-device-pixel-ratio: 1.5625), (min-width: 2000px) and (max-width: 199998px) and (min-resolution: 75dpi) and (max-resolution: 150dpi), (min-width: 2000px) and (max-width: 299997px) and (-webkit-min-device-pixel-ratio: 1.5625) and (-webkit-max-device-pixel-ratio: 3.125), (min-width: 2000px) and (max-width: 299997px) and (min-resolution: 150dpi) and (max-resolution: 300dpi), (min-width: 2000px) and (max-width: 399996px) and (-webkit-min-device-pixel-ratio: 3.125) and (-webkit-max-device-pixel-ratio: 104.15625), (min-width: 2000px) and (max-width: 399996px) and (min-resolution: 300dpi) and (max-resolution: 9999dpi) {
-      body > main {
-        background-color: blue; } }
   body a {
     color: #33c; }
 header#site_header {
+  position: relative;
   background-color: #222;
   color: #eee;
   display: -ms-flexbox;
@@ -66,6 +70,9 @@ header#site_header {
     padding: 1rem; }
     header#site_header #primary_nav a {
       color: #999; }
+    header#site_header #primary_nav button {
+      color: #999;
+      border: none; }
     header#site_header #primary_nav #search {
       display: -ms-flexbox;
       display: flex;
@@ -78,12 +85,22 @@ header#site_header {
         border: 0;
         background-color: #ddd; }
       header#site_header #primary_nav #search button {
-        background: rgba(0, 0, 0, 0.5);
-        color: #999;
         padding: .25rem .5rem;
-        border: none; }
+        background-color: rgba(0, 0, 0, 0.5); }
     header#site_header #primary_nav #browse {
       margin-left: 1rem; }
+      header#site_header #primary_nav #browse button {
+        padding: 0;
+        background-color: transparent; }
+  header#site_header #browse_modal {
+    box-sizing: border-box;
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    left: 0;
+    background-color: #222;
+    padding: 1rem;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5); }
 footer#site_footer {
   background-color: #222;
   color: #777;

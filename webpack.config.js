@@ -20,6 +20,13 @@ var config = {
             './templates/visualist/_footer/_footer.scss',
         ],
 
+        // synchronous header and footer logic
+        './static/visualist/bundle.js': [
+            // './templates/visualist/base.js',
+            './templates/visualist/_header/_header.js',
+            // './templates/visualist/_footer/_footer.js',
+        ],
+
         // page bundles; one set per view
         './static/visualist/home.js':        './templates/visualist/home/home.js',
         './static/visualist/home.css':       './templates/visualist/home/home.scss',

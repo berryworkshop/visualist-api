@@ -46,7 +46,7 @@
 
 	'use strict';
 	
-	var Refs = __webpack_require__(10);
+	var Refs = __webpack_require__(11);
 	Vue.component('refs', Refs);
 	
 	var SecondaryVisuals = Vue.component('secondary_visuals', {
@@ -97,17 +97,18 @@
 /* 7 */,
 /* 8 */,
 /* 9 */,
-/* 10 */
+/* 10 */,
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(11)
+	__vue_exports__ = __webpack_require__(12)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(12)
+	var __vue_template__ = __webpack_require__(13)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -141,7 +142,7 @@
 
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -171,7 +172,7 @@
 	};
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;

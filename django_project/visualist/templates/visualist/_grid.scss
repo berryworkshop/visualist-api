@@ -1,0 +1,39 @@
+// breakpoints (base)
+$bp1: 40em;
+$bp2: 50em;
+$bp3: 60em;
+$bp4: 90em;
+
+$low_res:  99dpi;
+$med_res:  199dpi;
+$high_res: 299dpi; // and up
+
+@mixin sm_only {
+    @media (min-width: 1px) and (max-width: #{$bp1}) {
+        @content;
+    }
+}
+
+@mixin sm_up {
+    @media (min-width: 1px) {
+        @content;
+    }
+}
+
+@mixin md_only {
+    @media  (min-width: #{$bp1}) and (max-width: #{$bp2}) {
+        @content;
+    }
+}
+
+@mixin md_up {
+    @media  (min-width: #{$bp1}) {
+        @content;
+    }
+}
+
+@mixin lg_up {
+    @media  (min-width: #{$bp2}) {
+        @content;
+    }
+}
