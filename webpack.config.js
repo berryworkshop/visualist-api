@@ -30,6 +30,8 @@ var config = {
         // page bundles; one set per view
         './static/visualist/home.js':        './templates/visualist/home/home.js',
         './static/visualist/home.css':       './templates/visualist/home/home.scss',
+        './static/visualist/search.js':      './templates/visualist/search/search.js',
+        './static/visualist/search.css':     './templates/visualist/search/search.scss',
         './static/visualist/event.js':       './templates/visualist/event/event.js',
         './static/visualist/event.css':      './templates/visualist/event/event.scss',
         './static/visualist/event_list.js':  './templates/visualist/event_list/event_list.js',

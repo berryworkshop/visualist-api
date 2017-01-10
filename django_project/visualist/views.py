@@ -6,6 +6,9 @@ from timeline.models import Event
 class HomeView(TemplateView):
     template_name = 'visualist/home/home.html'
 
+class SearchView(TemplateView):
+    template_name = 'visualist/search/search.html'
+
 
 class EventView(DetailView):
     model = Event

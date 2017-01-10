@@ -9,6 +9,7 @@ header#site_header {
 
     a {
         text-decoration: none;
+        color: $secondary_anchor;
     }
 
     #masthead {
@@ -43,7 +44,16 @@ header#site_header {
         color: #999;
         padding: 1rem;
 
-        a {
+        > * {
+            margin-right: 1rem;
+
+        }
+
+        > :last-child {
+            margin-right: 0;
+        }
+
+        > a {
             color: #999
         }
 
@@ -68,8 +78,6 @@ header#site_header {
             }
         }
         #browse {
-            margin-left: 1rem;
-
             button {   
                 padding: 0;
                 background-color: transparent;

@@ -5,7 +5,8 @@
         </div>
     </div>
     <div id="primary_nav">
-        <form id="search">
+        <a href="{% url 'home' %}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        <form id="search" action="{% url 'search' %}">
             <input type="search" placeholder="Search" name="q" >
             <button type="submit">
                 <i class="fa fa-search" aria-hidden="true"></i>
@@ -17,9 +18,18 @@
             </button>
             <div id="browse_modal" class="visually_hidden">
                 <ul>
-                    <li>Events</li>
+                    <li><a href="{% url 'event_list' %}">Events</a></li>
                     <li>Venues</li>
                     <li>People</li>
+                    <li>Artworks</li>
+                </ul>
+                <ul>
+                    <li>Cities</li><!-- hierarchy -->
+                    <li>Neighborhoods/Communities</li>
+                </ul>
+                <ul>
+                    <li>User</li>
+                    <li>About Us</li>
                 </ul>
             </div>
         </div>

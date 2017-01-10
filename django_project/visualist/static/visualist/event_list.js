@@ -135,7 +135,7 @@
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(16)
+	__webpack_require__(23)
 	
 	/* script */
 	__vue_exports__ = __webpack_require__(19)
@@ -156,7 +156,6 @@
 	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/templates/visualist/components/Events.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-8f7b4b1e"
 	
 	/* hot reload */
 	if (false) {(function () {
@@ -176,46 +175,8 @@
 
 
 /***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(17);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e&scoped=true!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e&scoped=true!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.button[data-v-8f7b4b1e] {\n  padding: .5em;\n  background-color: rgba(0, 0, 0, 0.125);\n  text-decoration: none;\n}\n.event_list[data-v-8f7b4b1e] {\n  padding-left: 0;\n}\n.event_list .event[data-v-8f7b4b1e] {\n    background-color: white;\n    margin-bottom: 1rem;\n    list-style-type: none;\n    display: flex;\n    flex-direction: column;\n}\n.event_list .event .event_visuals[data-v-8f7b4b1e] {\n      flex: auto;\n      height: 10rem;\n      background-color: silver;\n}\n.event_list .event .event_info[data-v-8f7b4b1e] {\n      padding: 1rem;\n}\n.event_list .event .event_info .location[data-v-8f7b4b1e] {\n        font-size: smaller;\n}\n.event_list .event .event_info .title a[data-v-8f7b4b1e] {\n        text-decoration: none;\n}\n.event_list .event .event_info .synopsis[data-v-8f7b4b1e] {\n        font-style: italic;\n}\n.event_list .event .event_controls[data-v-8f7b4b1e] {\n      padding: 1rem;\n      padding-bottom: 1.5rem;\n}\n.event_list .event[data-v-8f7b4b1e]:last-child {\n    margin-bottom: none;\n}\n", "", {"version":3,"sources":["/./templates/visualist/components/Events.vue"],"names":[],"mappings":";AAAA;EACE,cAAc;EACd,uCAAuC;EACvC,sBAAsB;CAAE;AAE1B;EACE,gBAAgB;CAAE;AAClB;IACE,wBAAwB;IACxB,oBAAoB;IACpB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;CAAE;AACzB;MACE,WAAW;MACX,cAAc;MACd,yBAAyB;CAAE;AAC7B;MACE,cAAc;CAAE;AAChB;QACE,mBAAmB;CAAE;AACvB;QACE,sBAAsB;CAAE;AAC1B;QACE,mBAAmB;CAAE;AACzB;MACE,cAAc;MACd,uBAAuB;CAAE;AAC7B;IACE,oBAAoB;CAAE","file":"Events.vue","sourcesContent":[".button {\n  padding: .5em;\n  background-color: rgba(0, 0, 0, 0.125);\n  text-decoration: none; }\n\n.event_list {\n  padding-left: 0; }\n  .event_list .event {\n    background-color: white;\n    margin-bottom: 1rem;\n    list-style-type: none;\n    display: flex;\n    flex-direction: column; }\n    .event_list .event .event_visuals {\n      flex: auto;\n      height: 10rem;\n      background-color: silver; }\n    .event_list .event .event_info {\n      padding: 1rem; }\n      .event_list .event .event_info .location {\n        font-size: smaller; }\n      .event_list .event .event_info .title a {\n        text-decoration: none; }\n      .event_list .event .event_info .synopsis {\n        font-style: italic; }\n    .event_list .event .event_controls {\n      padding: 1rem;\n      padding-bottom: 1.5rem; }\n  .event_list .event:last-child {\n    margin-bottom: none; }\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 16 */,
+/* 17 */,
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -475,6 +436,14 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
+	//
 	
 	exports.default = {
 	    name: 'events',
@@ -499,12 +468,18 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_vm._m(0), _vm._v(" "), _c('ul', {
-	    staticClass: "event_list"
-	  }, _vm._l((_vm.object_list), function(obj) {
+	  return _c('div', [_vm._m(0), _vm._v(" "), _c('button', {
+	    attrs: {
+	      "type": "button"
+	    }
+	  }, [_vm._v("Filter")]), _vm._v(" "), _c('div', {
+	    attrs: {
+	      "id": "list"
+	    }
+	  }, [_vm._m(1), _vm._v(" "), _c('ul', _vm._l((_vm.object_list), function(obj) {
 	    return _c('li', {
 	      staticClass: "event"
-	    }, [_vm._m(1, true), _vm._v(" "), _c('div', {
+	    }, [_vm._m(2, true), _vm._v(" "), _c('div', {
 	      staticClass: "event_info"
 	    }, [_c('p', {
 	      staticClass: "location"
@@ -523,27 +498,29 @@
 	      attrs: {
 	        "aria-hidden": "true"
 	      }
-	    })]), _vm._v(" "), _vm._m(2, true)])
-	  }))])
+	    })]), _vm._v(" "), _vm._m(3, true)])
+	  }))]), _vm._v(" "), _vm._m(4)])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('span', {
-	    staticClass: "button_group"
-	  }, [_c('a', {
-	    staticClass: "button",
+	  return _c('ul', [_c('li', [_c('a', {
 	    attrs: {
-	      "href": "#"
+	      "href": "#list"
+	    }
+	  }, [_vm._v("List")])]), _vm._v(" "), _c('li', [_c('a', {
+	    attrs: {
+	      "href": "#map"
+	    }
+	  }, [_vm._v("Map")])])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('button', {
+	    attrs: {
+	      "type": "button"
 	    }
 	  }, [_c('i', {
 	    staticClass: "fa fa-sort",
 	    attrs: {
 	      "aria-hidden": "true"
 	    }
-	  }), _vm._v(" Sort")]), _vm._v(" "), _c('a', {
-	    staticClass: "button",
-	    attrs: {
-	      "href": "#"
-	    }
-	  }, [_vm._v("Filter")])])
+	  }), _vm._v(" Sort")])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "event_visuals"
@@ -576,6 +553,21 @@
 	      "aria-hidden": "true"
 	    }
 	  })])])
+	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    attrs: {
+	      "id": "map"
+	    }
+	  }, [_c('div', {
+	    attrs: {
+	      "id": "mapid"
+	    }
+	  }), _vm._v(" "), _c('link', {
+	    attrs: {
+	      "rel": "stylesheet",
+	      "href": "https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css"
+	    }
+	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
@@ -584,6 +576,48 @@
 	     require("vue-hot-reload-api").rerender("data-v-8f7b4b1e", module.exports)
 	  }
 	}
+
+/***/ },
+/* 21 */,
+/* 22 */,
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(24);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(18)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n#map {\n  background-color: silver;\n  border: 1px solid #333;\n}\n#map #mapid {\n    height: 360px;\n}\n#list > ul {\n  padding-left: 0;\n  display: flex;\n  flex-wrap: wrap;\n}\n#list .event {\n  background-color: white;\n  margin-bottom: 1rem;\n  list-style-type: none;\n  display: flex;\n  flex-direction: column;\n}\n#list .event .event_visuals {\n    flex: auto;\n    height: 10rem;\n    background-color: silver;\n}\n#list .event .event_info {\n    padding: 1rem;\n}\n#list .event .event_info .location {\n      font-size: smaller;\n}\n#list .event .event_info .title a {\n      text-decoration: none;\n}\n#list .event .event_info .synopsis {\n      font-style: italic;\n}\n#list .event .event_controls {\n    padding: 1rem;\n    padding-bottom: 1.5rem;\n}\n#list .event:last-child {\n  margin-bottom: none;\n}\n", "", {"version":3,"sources":["/./templates/visualist/components/Events.vue"],"names":[],"mappings":";AAAA;EACE,yBAAyB;EACzB,uBAAuB;CAAE;AACzB;IACE,cAAc;CAAE;AAEpB;EACE,gBAAgB;EAChB,cAAc;EACd,gBAAgB;CAAE;AAEpB;EACE,wBAAwB;EACxB,oBAAoB;EACpB,sBAAsB;EACtB,cAAc;EACd,uBAAuB;CAAE;AACzB;IACE,WAAW;IACX,cAAc;IACd,yBAAyB;CAAE;AAC7B;IACE,cAAc;CAAE;AAChB;MACE,mBAAmB;CAAE;AACvB;MACE,sBAAsB;CAAE;AAC1B;MACE,mBAAmB;CAAE;AACzB;IACE,cAAc;IACd,uBAAuB;CAAE;AAE7B;EACE,oBAAoB;CAAE","file":"Events.vue","sourcesContent":["#map {\n  background-color: silver;\n  border: 1px solid #333; }\n  #map #mapid {\n    height: 360px; }\n\n#list > ul {\n  padding-left: 0;\n  display: flex;\n  flex-wrap: wrap; }\n\n#list .event {\n  background-color: white;\n  margin-bottom: 1rem;\n  list-style-type: none;\n  display: flex;\n  flex-direction: column; }\n  #list .event .event_visuals {\n    flex: auto;\n    height: 10rem;\n    background-color: silver; }\n  #list .event .event_info {\n    padding: 1rem; }\n    #list .event .event_info .location {\n      font-size: smaller; }\n    #list .event .event_info .title a {\n      text-decoration: none; }\n    #list .event .event_info .synopsis {\n      font-style: italic; }\n  #list .event .event_controls {\n    padding: 1rem;\n    padding-bottom: 1.5rem; }\n\n#list .event:last-child {\n  margin-bottom: none; }\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);
