@@ -6,11 +6,16 @@
     <script src="/static/visualist/events.js"></script>
 {% endblock js %}
 
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/visualist/events.css">
+{% endblock styles %}
+
 {% block main %}
     <main>
         <h1>Events</h1>
 
-        <div class="panel" id="controls">
+        <div id="event_controls" class="panel">
             <ul class="tabs">
                 <li><a class="tab" href="#item_list">List</a></li>
                 <li><a class="tab" href="#item_map">Map</a></li>
@@ -18,9 +23,9 @@
             <button>Filter</button>
         </div>
         
-        <event_cards></event_cards>
+        <event_cards id="event_list"></event_cards>
 
-        <div class="panel" id="item_map">
+        <div id="event_map" class="panel">
             <div id="mapid"></div>
             <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
         </div>

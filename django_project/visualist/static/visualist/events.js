@@ -141,7 +141,7 @@
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(16)
+	__webpack_require__(23)
 	
 	/* script */
 	__vue_exports__ = __webpack_require__(19)
@@ -162,7 +162,6 @@
 	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/templates/visualist/events/event_cards.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	__vue_options__._scopeId = "data-v-c8ec730e"
 	
 	/* hot reload */
 	if (false) {(function () {
@@ -182,46 +181,8 @@
 
 
 /***/ },
-/* 16 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(17);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e&scoped=true!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e&scoped=true!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 17 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.visually_hidden[data-v-c8ec730e] {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .visually_hidden a[data-v-c8ec730e],\nbody:hover .visually_hidden input[data-v-c8ec730e],\nbody:hover .visually_hidden button[data-v-c8ec730e] {\n  display: none !important;\n}\n.card_list[data-v-c8ec730e] {\n  display: flex;\n  flex-wrap: wrap;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE;AAE7B;EACE,cAAc;EACd,gBAAgB;CAAE","file":"event_cards.vue","sourcesContent":[".visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important; }\n\n.card_list {\n  display: flex;\n  flex-wrap: wrap; }\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
+/* 16 */,
+/* 17 */,
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -581,6 +542,48 @@
 	     require("vue-hot-reload-api").rerender("data-v-c8ec730e", module.exports)
 	  }
 	}
+
+/***/ },
+/* 21 */,
+/* 22 */,
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(24);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(18)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE","file":"event_cards.vue","sourcesContent":[".visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important; }\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
 
 /***/ }
 /******/ ]);

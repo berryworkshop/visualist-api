@@ -43,12 +43,8 @@
     }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
     @import "../_grid.scss";
     @import "../_utility.scss";
 
-    .card_list {
-        display: flex;
-        flex-wrap: wrap;
-    }
 </style>

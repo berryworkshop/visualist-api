@@ -29,10 +29,11 @@ body {
         flex: 1;
     background-color: #ddd;
     padding: 1rem; }
+    body > main > .panel {
+      margin-left: -1rem;
+      margin-right: -1rem; }
   body a {
     color: #33c; }
-  body .panel, body .card {
-    border: 1px solid goldenrod; }
   body .panel {
     margin: 0;
     padding: 0; }
@@ -43,7 +44,11 @@ body {
   body ul.card_list {
     margin: 0;
     padding: 0;
-    list-style-type: none; }
+    list-style-type: none;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap; }
 header#site_header {
   position: relative;
   background-color: #222;
