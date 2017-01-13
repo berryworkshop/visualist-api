@@ -16,7 +16,7 @@ body:hover .visually_hidden button {
   display: none !important; }
 
 body {
-  background-color: #eee;
+  background-color: #ddd;
   color: #222;
   display: -ms-flexbox;
   display: flex;
@@ -26,9 +26,24 @@ body {
   body > main {
     font-size: 16;
     -ms-flex: 1;
-        flex: 1; }
+        flex: 1;
+    background-color: #ddd;
+    padding: 1rem; }
   body a {
     color: #33c; }
+  body .panel, body .card {
+    border: 1px solid goldenrod; }
+  body .panel {
+    margin: 0;
+    padding: 0; }
+  body .card {
+    background-color: #eee;
+    margin: 0 0 1rem 0;
+    padding: 1rem; }
+  body ul.card_list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
 header#site_header {
   position: relative;
   background-color: #222;

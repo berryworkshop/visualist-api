@@ -1,5 +1,7 @@
+@import "../_brand.scss";
+
 main {
-    background-color: #eee;
+    background-color: $primary_bg;
     padding: 1rem;
     
     .primary_visual {

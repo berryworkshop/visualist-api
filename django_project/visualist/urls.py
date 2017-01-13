@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from .views import HomeView, SearchView, EventView, EventListView
+from .views import HomeView, SearchView, EventView, EventsView
 
 from cms import urls as cms_urls
 from timeline import urls as timeline_urls
@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^$', HomeView.as_view(), name='home'),
     url(r'^search$', SearchView.as_view(), name='search'),
     
-    url(r'^events$', EventListView.as_view(), name='event_list'),
+    url(r'^events$', EventsView.as_view(), name='events'),
     url(r'^events/(?P<pk>[0-9]+)$', EventView.as_view(), name='event'),
 
     url(r'^cms/', include(cms_urls)),

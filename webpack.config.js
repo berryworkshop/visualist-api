@@ -34,8 +34,8 @@ var config = {
         './static/visualist/search.css':     './templates/visualist/search/search.scss',
         './static/visualist/event.js':       './templates/visualist/event/event.js',
         './static/visualist/event.css':      './templates/visualist/event/event.scss',
-        './static/visualist/event_list.js':  './templates/visualist/event_list/event_list.js',
-        './static/visualist/event_list.css': './templates/visualist/event_list/event_list.scss',
+        './static/visualist/events.js':  './templates/visualist/events/events.js',
+        './static/visualist/events.css': './templates/visualist/events/events.scss',
     },
     devtool: 'source-map',
     module: {

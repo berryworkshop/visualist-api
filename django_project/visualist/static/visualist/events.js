@@ -46,17 +46,23 @@
 
 	'use strict';
 	
-	var Events = __webpack_require__(15);
-	Vue.component('events', Events);
+	var EventCards = __webpack_require__(15);
+	Vue.component('event_cards', EventCards);
 	
 	var home = new Vue({
 	    delimiters: ['[{', '}]'],
 	    el: 'main',
 	    data: {
 	        events: [],
-	        components: [Events]
+	        components: [EventCards]
 	    }
 	});
+	
+	var mymap = L.map('mapid').setView([41.8781, -87.6298], 13);
+	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/cit4vck8m001v2wrpq6lhhcfk/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
+	    id: 'aljabear',
+	    accessToken: 'pk.eyJ1IjoiYWxqYWJlYXIiLCJhIjoiY2l0NHJtM3plMDAwMjJ6bzM4Y3M2Z201biJ9.HvF_jJ4TnzYXle8uL5XhtQ'
+	}).addTo(mymap);
 
 /***/ },
 /* 1 */,
@@ -153,9 +159,10 @@
 	if (typeof __vue_options__ === "function") {
 	  __vue_options__ = __vue_options__.options
 	}
-	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/templates/visualist/components/Events.vue"
+	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/templates/visualist/events/event_cards.vue"
 	__vue_options__.render = __vue_template__.render
 	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
+	__vue_options__._scopeId = "data-v-c8ec730e"
 	
 	/* hot reload */
 	if (false) {(function () {
@@ -164,12 +171,12 @@
 	  if (!hotAPI.compatible) return
 	  module.hot.accept()
 	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-8f7b4b1e", __vue_options__)
+	    hotAPI.createRecord("data-v-c8ec730e", __vue_options__)
 	  } else {
-	    hotAPI.reload("data-v-8f7b4b1e", __vue_options__)
+	    hotAPI.reload("data-v-c8ec730e", __vue_options__)
 	  }
 	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] Events.vue: functional components are not supported and should be defined in plain js files using render functions.")}
+	if (__vue_options__.functional) {console.error("[vue-loader] event_cards.vue: functional components are not supported and should be defined in plain js files using render functions.")}
 	
 	module.exports = __vue_exports__
 
@@ -190,8 +197,8 @@
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue");
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e&scoped=true!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e&scoped=true!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -209,7 +216,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important;\n}\n.tabset #list {\n  top: 0;\n}\n.tabset #list > ul {\n    padding-left: 0;\n    display: flex;\n    flex-wrap: wrap;\n}\n.tabset #list .event {\n    background-color: white;\n    margin-bottom: 1rem;\n    list-style-type: none;\n    display: flex;\n    flex-direction: column;\n}\n.tabset #list .event .event_visuals {\n      flex: auto;\n      height: 10rem;\n      background-color: silver;\n}\n.tabset #list .event .event_info {\n      padding: 1rem;\n}\n.tabset #list .event .event_info .location {\n        font-size: smaller;\n}\n.tabset #list .event .event_info .title a {\n        text-decoration: none;\n}\n.tabset #list .event .event_info .synopsis {\n        font-style: italic;\n}\n.tabset #list .event .event_controls {\n      padding: 1rem;\n      padding-bottom: 1.5rem;\n}\n.tabset #list .event:last-child {\n    margin-bottom: none;\n}\n.tabset #map {\n  top: 0;\n  background-color: silver;\n}\n.tabset #map #mapid {\n    height: 100vh;\n}\n", "", {"version":3,"sources":["/./templates/visualist/components/Events.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE;AAE7B;EACE,OAAO;CAAE;AACT;IACE,gBAAgB;IAChB,cAAc;IACd,gBAAgB;CAAE;AACpB;IACE,wBAAwB;IACxB,oBAAoB;IACpB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;CAAE;AACzB;MACE,WAAW;MACX,cAAc;MACd,yBAAyB;CAAE;AAC7B;MACE,cAAc;CAAE;AAChB;QACE,mBAAmB;CAAE;AACvB;QACE,sBAAsB;CAAE;AAC1B;QACE,mBAAmB;CAAE;AACzB;MACE,cAAc;MACd,uBAAuB;CAAE;AAC7B;IACE,oBAAoB;CAAE;AAE1B;EACE,OAAO;EACP,yBAAyB;CAAE;AAC3B;IACE,cAAc;CAAE","file":"Events.vue","sourcesContent":[".visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important; }\n\n.tabset #list {\n  top: 0; }\n  .tabset #list > ul {\n    padding-left: 0;\n    display: flex;\n    flex-wrap: wrap; }\n  .tabset #list .event {\n    background-color: white;\n    margin-bottom: 1rem;\n    list-style-type: none;\n    display: flex;\n    flex-direction: column; }\n    .tabset #list .event .event_visuals {\n      flex: auto;\n      height: 10rem;\n      background-color: silver; }\n    .tabset #list .event .event_info {\n      padding: 1rem; }\n      .tabset #list .event .event_info .location {\n        font-size: smaller; }\n      .tabset #list .event .event_info .title a {\n        text-decoration: none; }\n      .tabset #list .event .event_info .synopsis {\n        font-style: italic; }\n    .tabset #list .event .event_controls {\n      padding: 1rem;\n      padding-bottom: 1.5rem; }\n  .tabset #list .event:last-child {\n    margin-bottom: none; }\n\n.tabset #map {\n  top: 0;\n  background-color: silver; }\n  .tabset #map #mapid {\n    height: 100vh; }\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.visually_hidden[data-v-c8ec730e] {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .visually_hidden a[data-v-c8ec730e],\nbody:hover .visually_hidden input[data-v-c8ec730e],\nbody:hover .visually_hidden button[data-v-c8ec730e] {\n  display: none !important;\n}\n.card_list[data-v-c8ec730e] {\n  display: flex;\n  flex-wrap: wrap;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE;AAE7B;EACE,cAAc;EACd,gBAAgB;CAAE","file":"event_cards.vue","sourcesContent":[".visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important; }\n\n.card_list {\n  display: flex;\n  flex-wrap: wrap; }\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -471,20 +478,9 @@
 	//
 	//
 	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
 	
 	exports.default = {
-	    name: 'events',
+	    name: 'event_cards',
 	    data: function data() {
 	        return {
 	            object_list: []
@@ -507,21 +503,13 @@
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
-	    attrs: {
-	      "id": "events"
-	    }
-	  }, [_vm._m(0), _vm._v(" "), _c('button', {
-	    attrs: {
-	      "type": "button"
-	    }
-	  }, [_vm._v("Filter")]), _vm._v(" "), _c('div', {
-	    attrs: {
-	      "id": "list"
-	    }
-	  }, [_vm._m(1), _vm._v(" "), _c('ul', _vm._l((_vm.object_list), function(obj) {
+	    staticClass: "panel"
+	  }, [_vm._m(0), _vm._v(" "), _c('ul', {
+	    staticClass: "card_list"
+	  }, _vm._l((_vm.object_list), function(obj) {
 	    return _c('li', {
-	      staticClass: "event"
-	    }, [_vm._m(2, true), _vm._v(" "), _c('div', {
+	      staticClass: "card"
+	    }, [_vm._m(1, true), _vm._v(" "), _c('div', {
 	      staticClass: "event_info"
 	    }, [_c('p', {
 	      staticClass: "location"
@@ -540,23 +528,9 @@
 	      attrs: {
 	        "aria-hidden": "true"
 	      }
-	    })]), _vm._v(" "), _vm._m(3, true)])
-	  }))]), _vm._v(" "), _vm._m(4)])
+	    })]), _vm._v(" "), _vm._m(2, true)])
+	  }))])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('ul', {
-	    staticClass: "tabs"
-	  }, [_c('li', [_c('a', {
-	    staticClass: "tab",
-	    attrs: {
-	      "href": "#list"
-	    }
-	  }, [_vm._v("List")])]), _vm._v(" "), _c('li', [_c('a', {
-	    staticClass: "tab",
-	    attrs: {
-	      "href": "#map"
-	    }
-	  }, [_vm._v("Map")])])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('button', {
 	    attrs: {
 	      "type": "button"
@@ -599,30 +573,15 @@
 	      "aria-hidden": "true"
 	    }
 	  })])])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    attrs: {
-	      "id": "map"
-	    }
-	  }, [_c('div', {
-	    attrs: {
-	      "id": "mapid"
-	    }
-	  }), _vm._v(" "), _c('link', {
-	    attrs: {
-	      "rel": "stylesheet",
-	      "href": "https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css"
-	    }
-	  })])
 	}]}
 	module.exports.render._withStripped = true
 	if (false) {
 	  module.hot.accept()
 	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-8f7b4b1e", module.exports)
+	     require("vue-hot-reload-api").rerender("data-v-c8ec730e", module.exports)
 	  }
 	}
 
 /***/ }
 /******/ ]);
-//# sourceMappingURL=event_list.js.map
+//# sourceMappingURL=events.js.map

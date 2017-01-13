@@ -12,9 +12,45 @@ body {
     > main {
         font-size: 16;
         flex: 1;
+        background-color: $primary_bg;
+        padding: 1rem;
+
     }
-    
+
     a {
         color: $primary_anchor;
+    }
+
+    // an abstract superclass for panels and cards.
+    %block {
+        border: 1px solid goldenrod;
+    }
+
+    // good for interface items like control panels and maps
+    // can be used to contain cards, or be used within cards
+    .panel {
+        @extend %block;
+        margin: 0;
+        padding: 0;
+    }
+
+    // good for information presentation like Records, lists, or other items from the database
+    // not meant to be nested inside other cards
+    .card {
+        @extend %block;
+        background-color: $card_bg;
+        margin: 0 0 1rem 0;
+        padding: 1rem;
+
+        .header {}
+        .body {}
+        .footer{}
+    }
+
+    // supporting container for cards
+    ul.card_list {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
     }
 }

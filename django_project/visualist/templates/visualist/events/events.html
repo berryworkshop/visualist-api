@@ -1,0 +1,28 @@
+{% extends 'visualist/base.html' %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+    <script src="/static/visualist/events.js"></script>
+{% endblock js %}
+
+{% block main %}
+    <main>
+        <h1>Events</h1>
+
+        <div class="panel" id="controls">
+            <ul class="tabs">
+                <li><a class="tab" href="#item_list">List</a></li>
+                <li><a class="tab" href="#item_map">Map</a></li>
+            </ul>
+            <button>Filter</button>
+        </div>
+        
+        <event_cards></event_cards>
+
+        <div class="panel" id="item_map">
+            <div id="mapid"></div>
+            <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css" />
+        </div>
+    </main>
+{% endblock main %}
