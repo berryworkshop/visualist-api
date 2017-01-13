@@ -135,7 +135,7 @@
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(23)
+	__webpack_require__(16)
 	
 	/* script */
 	__vue_exports__ = __webpack_require__(19)
@@ -175,8 +175,46 @@
 
 
 /***/ },
-/* 16 */,
-/* 17 */,
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(17);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(18)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important;\n}\n.tabset #list {\n  top: 0;\n}\n.tabset #list > ul {\n    padding-left: 0;\n    display: flex;\n    flex-wrap: wrap;\n}\n.tabset #list .event {\n    background-color: white;\n    margin-bottom: 1rem;\n    list-style-type: none;\n    display: flex;\n    flex-direction: column;\n}\n.tabset #list .event .event_visuals {\n      flex: auto;\n      height: 10rem;\n      background-color: silver;\n}\n.tabset #list .event .event_info {\n      padding: 1rem;\n}\n.tabset #list .event .event_info .location {\n        font-size: smaller;\n}\n.tabset #list .event .event_info .title a {\n        text-decoration: none;\n}\n.tabset #list .event .event_info .synopsis {\n        font-style: italic;\n}\n.tabset #list .event .event_controls {\n      padding: 1rem;\n      padding-bottom: 1.5rem;\n}\n.tabset #list .event:last-child {\n    margin-bottom: none;\n}\n.tabset #map {\n  top: 0;\n  background-color: silver;\n}\n.tabset #map #mapid {\n    height: 100vh;\n}\n", "", {"version":3,"sources":["/./templates/visualist/components/Events.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE;AAE7B;EACE,OAAO;CAAE;AACT;IACE,gBAAgB;IAChB,cAAc;IACd,gBAAgB;CAAE;AACpB;IACE,wBAAwB;IACxB,oBAAoB;IACpB,sBAAsB;IACtB,cAAc;IACd,uBAAuB;CAAE;AACzB;MACE,WAAW;MACX,cAAc;MACd,yBAAyB;CAAE;AAC7B;MACE,cAAc;CAAE;AAChB;QACE,mBAAmB;CAAE;AACvB;QACE,sBAAsB;CAAE;AAC1B;QACE,mBAAmB;CAAE;AACzB;MACE,cAAc;MACd,uBAAuB;CAAE;AAC7B;IACE,oBAAoB;CAAE;AAE1B;EACE,OAAO;EACP,yBAAyB;CAAE;AAC3B;IACE,cAAc;CAAE","file":"Events.vue","sourcesContent":[".visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important; }\n\n.tabset #list {\n  top: 0; }\n  .tabset #list > ul {\n    padding-left: 0;\n    display: flex;\n    flex-wrap: wrap; }\n  .tabset #list .event {\n    background-color: white;\n    margin-bottom: 1rem;\n    list-style-type: none;\n    display: flex;\n    flex-direction: column; }\n    .tabset #list .event .event_visuals {\n      flex: auto;\n      height: 10rem;\n      background-color: silver; }\n    .tabset #list .event .event_info {\n      padding: 1rem; }\n      .tabset #list .event .event_info .location {\n        font-size: smaller; }\n      .tabset #list .event .event_info .title a {\n        text-decoration: none; }\n      .tabset #list .event .event_info .synopsis {\n        font-style: italic; }\n    .tabset #list .event .event_controls {\n      padding: 1rem;\n      padding-bottom: 1.5rem; }\n  .tabset #list .event:last-child {\n    margin-bottom: none; }\n\n.tabset #map {\n  top: 0;\n  background-color: silver; }\n  .tabset #map #mapid {\n    height: 100vh; }\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -468,7 +506,11 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', [_vm._m(0), _vm._v(" "), _c('button', {
+	  return _c('div', {
+	    attrs: {
+	      "id": "events"
+	    }
+	  }, [_vm._m(0), _vm._v(" "), _c('button', {
 	    attrs: {
 	      "type": "button"
 	    }
@@ -501,11 +543,15 @@
 	    })]), _vm._v(" "), _vm._m(3, true)])
 	  }))]), _vm._v(" "), _vm._m(4)])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('ul', [_c('li', [_c('a', {
+	  return _c('ul', {
+	    staticClass: "tabs"
+	  }, [_c('li', [_c('a', {
+	    staticClass: "tab",
 	    attrs: {
 	      "href": "#list"
 	    }
 	  }, [_vm._v("List")])]), _vm._v(" "), _c('li', [_c('a', {
+	    staticClass: "tab",
 	    attrs: {
 	      "href": "#map"
 	    }
@@ -576,48 +622,6 @@
 	     require("vue-hot-reload-api").rerender("data-v-8f7b4b1e", module.exports)
 	  }
 	}
-
-/***/ },
-/* 21 */,
-/* 22 */,
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(24);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-8f7b4b1e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Events.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n#map {\n  background-color: silver;\n  border: 1px solid #333;\n}\n#map #mapid {\n    height: 360px;\n}\n#list > ul {\n  padding-left: 0;\n  display: flex;\n  flex-wrap: wrap;\n}\n#list .event {\n  background-color: white;\n  margin-bottom: 1rem;\n  list-style-type: none;\n  display: flex;\n  flex-direction: column;\n}\n#list .event .event_visuals {\n    flex: auto;\n    height: 10rem;\n    background-color: silver;\n}\n#list .event .event_info {\n    padding: 1rem;\n}\n#list .event .event_info .location {\n      font-size: smaller;\n}\n#list .event .event_info .title a {\n      text-decoration: none;\n}\n#list .event .event_info .synopsis {\n      font-style: italic;\n}\n#list .event .event_controls {\n    padding: 1rem;\n    padding-bottom: 1.5rem;\n}\n#list .event:last-child {\n  margin-bottom: none;\n}\n", "", {"version":3,"sources":["/./templates/visualist/components/Events.vue"],"names":[],"mappings":";AAAA;EACE,yBAAyB;EACzB,uBAAuB;CAAE;AACzB;IACE,cAAc;CAAE;AAEpB;EACE,gBAAgB;EAChB,cAAc;EACd,gBAAgB;CAAE;AAEpB;EACE,wBAAwB;EACxB,oBAAoB;EACpB,sBAAsB;EACtB,cAAc;EACd,uBAAuB;CAAE;AACzB;IACE,WAAW;IACX,cAAc;IACd,yBAAyB;CAAE;AAC7B;IACE,cAAc;CAAE;AAChB;MACE,mBAAmB;CAAE;AACvB;MACE,sBAAsB;CAAE;AAC1B;MACE,mBAAmB;CAAE;AACzB;IACE,cAAc;IACd,uBAAuB;CAAE;AAE7B;EACE,oBAAoB;CAAE","file":"Events.vue","sourcesContent":["#map {\n  background-color: silver;\n  border: 1px solid #333; }\n  #map #mapid {\n    height: 360px; }\n\n#list > ul {\n  padding-left: 0;\n  display: flex;\n  flex-wrap: wrap; }\n\n#list .event {\n  background-color: white;\n  margin-bottom: 1rem;\n  list-style-type: none;\n  display: flex;\n  flex-direction: column; }\n  #list .event .event_visuals {\n    flex: auto;\n    height: 10rem;\n    background-color: silver; }\n  #list .event .event_info {\n    padding: 1rem; }\n    #list .event .event_info .location {\n      font-size: smaller; }\n    #list .event .event_info .title a {\n      text-decoration: none; }\n    #list .event .event_info .synopsis {\n      font-style: italic; }\n  #list .event .event_controls {\n    padding: 1rem;\n    padding-bottom: 1.5rem; }\n\n#list .event:last-child {\n  margin-bottom: none; }\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
 
 /***/ }
 /******/ ]);

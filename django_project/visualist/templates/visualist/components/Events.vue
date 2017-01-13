@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <ul>
-            <li><a href="#list">List</a></li>
-            <li><a href="#map">Map</a></li>
+    <div id="events">
+        <ul class="tabs">
+            <li><a class="tab" href="#list">List</a></li>
+            <li><a class="tab" href="#map">Map</a></li>
         </ul>
         <button type="button">Filter</button>
         <div id="list">
@@ -56,63 +56,69 @@
 
 <style lang="sass">
     @import "../_grid.scss";
+    @import "../_utility.scss";
 
-    #map {
-        background-color: silver;
-        border: 1px solid #333;
-        
-        #mapid {
-            height: 360px;
-        }
-    }
+        // .tabs
 
-    #list {
+    .tabset {
+        #list {
+            top: 0;
 
-        > ul {
-            padding-left: 0;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .event {
-            @include md_up {
-                // flex: 1 0 50%;
+            > ul {
+                padding-left: 0;
+                display: flex;
+                flex-wrap: wrap;
             }
-            background-color: white;
-            margin-bottom: 1rem;
-            list-style-type: none;
-            display: flex;
-            flex-direction: column;
 
-            .event_visuals {
-                flex: auto;
-                height: 10rem;
-                background-color: silver;
-            }
-            .event_info {
-                padding: 1rem;
-
-                .location {
-                    font-size: smaller;
+            .event {
+                @include md_up {
+                    // flex: 1 0 50%;
                 }
-                .title {
-                    a {
-                        text-decoration: none;
+                background-color: white;
+                margin-bottom: 1rem;
+                list-style-type: none;
+                display: flex;
+                flex-direction: column;
+
+                .event_visuals {
+                    flex: auto;
+                    height: 10rem;
+                    background-color: silver;
+                }
+                .event_info {
+                    padding: 1rem;
+
+                    .location {
+                        font-size: smaller;
                     }
+                    .title {
+                        a {
+                            text-decoration: none;
+                        }
+                    }
+                    .synopsis {
+                        font-style: italic;
+                    }
+                    .audience {}
                 }
-                .synopsis {
-                    font-style: italic;
+                .event_controls {
+                    padding: 1rem;
+                    padding-bottom: 1.5rem;
                 }
-                .audience {}
             }
-            .event_controls {
-                padding: 1rem;
-                padding-bottom: 1.5rem;
+
+            .event:last-child {
+                margin-bottom: none;
             }
         }
 
-        .event:last-child {
-            margin-bottom: none;
+        #map {
+            top: 0;
+            background-color: silver;
+            
+            #mapid {
+                height: 100vh;
+            }
         }
     }
 </style>
