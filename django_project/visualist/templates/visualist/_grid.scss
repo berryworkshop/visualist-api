@@ -1,8 +1,13 @@
 // breakpoints (base)
 $bp1: 40em;
 $bp2: 50em;
-$bp3: 60em;
-$bp4: 90em;
+// $bp3: 60em;
+// $bp4: 90em;
+
+// $bp1: 640px;
+// $bp2: 800px;
+// $bp3: 960px;
+// $bp4: 1440px;
 
 $low_res:  99dpi;
 $med_res:  199dpi;
@@ -16,6 +21,12 @@ $high_res: 299dpi; // and up
 
 @mixin sm_up {
     @media (min-width: 1px) {
+        @content;
+    }
+}
+
+@mixin md_down {
+    @media  (max-width: #{$bp2}) {
         @content;
     }
 }

@@ -3,9 +3,7 @@
         <ul class="card_list">
             <li v-for="obj in object_list" class="card">
                 <div class="event_visuals">
-                    <img class="event_image" />
                     <h4 class="event_date_icon">Jan 1 – Jan 30</h4>
-                    <p>More Images</p>
                 </div>
                 <div class="event_info">
                     <p class="location">Chicago: Pilsen @ Storefront Gallery</p>
@@ -17,6 +15,12 @@
                 <div class="event_controls">
                     <a class="button" href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
                     <a class="button" href="#"><i class="fa fa-flag" aria-hidden="true"></i></a>
+
+                    <a class="button" href="#"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a class="button" href="#"><i class="fa fa-trash" aria-hidden="true"></i></a>
+
+                    <a class="button" href="#"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+                    <a class="button" href="#"><i class="fa fa-share" aria-hidden="true"></i></a>
                 </div>
             </li>
         </ul>
@@ -45,5 +49,28 @@
 <style lang="sass">
     @import "../_grid.scss";
     @import "../_utility.scss";
+
+    .event_visuals {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        margin-top: -1rem;
+        padding: 1rem;
+        background-color: silver;
+        background: url("http://placehold.it/600x300.png?text=image") center center no-repeat;
+        background-size: cover; 
+        height: 17.5rem;
+
+        > * {
+            position: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .event_date_icon {
+            font-size: x-large;
+            font-weight: normal;
+            margin: auto;
+        }
+    }
 
 </style>

@@ -14,11 +14,10 @@ header#site_header {
 
     #masthead {
         width: 100%;
-        padding: 1rem;
-        box-sizing: border-box;
         display: flex;
         flex-direction: row;
         align-items: center;
+        padding: 1rem 0;
 
         #branding {
             font-size: 2rem;
@@ -40,9 +39,9 @@ header#site_header {
         width: 100%;
         display: flex;
         flex-direction: row;
-        box-sizing: border-box;
         color: #999;
         padding: 1rem;
+        margin: 0 -1rem;
 
         > * {
             margin-right: 1rem;
@@ -85,11 +84,11 @@ header#site_header {
         }
     } 
     #browse_modal {
-        box-sizing: border-box;
         position: absolute;
         top: 100%;
-        width: 100%;
         left: 0;
+        right: 0;
+        z-index: 1;
         background-color: $secondary_bg;
         padding: 1rem;
         box-shadow: 0 3px 3px hsla(0,0%,0%,0.5);

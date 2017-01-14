@@ -1,4 +1,4 @@
-<header id="site_header">
+<header id="site_header"><div class="container">
     <div id="masthead">
         <div id="branding">
             <a href="{% url 'home' %}">Visualist</a>
@@ -16,22 +16,22 @@
             <button type="button" class="browse_modal_toggle">
                 <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
             </button>
-            <div id="browse_modal" class="hide">
-                <ul>
-                    <li><a href="{% url 'events' %}">Events</a></li>
-                    <li>Venues</li>
-                    <li>People</li>
-                    <li>Artworks</li>
-                </ul>
-                <ul>
-                    <li>Cities</li><!-- hierarchy -->
-                    <li>Neighborhoods/Communities</li>
-                </ul>
-                <ul>
-                    <li>User</li>
-                    <li>About Us</li>
-                </ul>
-            </div>
         </div>
     </div>
-</header>
+    <div id="browse_modal" class="hide">
+        <ul>
+            <li><a href="{% url 'events' %}">Events</a></li>
+            <li>Venues</li>
+            <li>People</li>
+            <li>Artworks</li>
+        </ul>
+        <ul>
+            <li>Cities</li><!-- hierarchy -->
+            <li>Neighborhoods/Communities</li>
+        </ul>
+        <ul>
+            <li>User</li>
+            <li>About Us</li>
+        </ul>
+    </div>
+</div></header>

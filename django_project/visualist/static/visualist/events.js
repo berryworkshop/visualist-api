@@ -229,7 +229,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n.hide {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .hide a,\nbody:hover .hide input,\nbody:hover .hide button {\n  display: none !important;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE","file":"event_cards.vue","sourcesContent":[".hide {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .hide a,\nbody:hover .hide input,\nbody:hover .hide button {\n  display: none !important; }\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n.hide {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .hide a,\nbody:hover .hide input,\nbody:hover .hide button {\n  display: none !important;\n}\n.event_visuals {\n  margin-left: -1rem;\n  margin-right: -1rem;\n  margin-top: -1rem;\n  padding: 1rem;\n  background-color: silver;\n  background: url(\"http://placehold.it/600x300.png?text=image\") center center no-repeat;\n  background-size: cover;\n  height: 17.5rem;\n}\n.event_visuals > * {\n    position: flex;\n    flex-direction: column;\n    color: white;\n}\n.event_visuals .event_date_icon {\n    font-size: x-large;\n    font-weight: normal;\n    margin: auto;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE;AAE7B;EACE,mBAAmB;EACnB,oBAAoB;EACpB,kBAAkB;EAClB,cAAc;EACd,yBAAyB;EACzB,sFAAsF;EACtF,uBAAuB;EACvB,gBAAgB;CAAE;AAClB;IACE,eAAe;IACf,uBAAuB;IACvB,aAAa;CAAE;AACjB;IACE,mBAAmB;IACnB,oBAAoB;IACpB,aAAa;CAAE","file":"event_cards.vue","sourcesContent":[".hide {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .hide a,\nbody:hover .hide input,\nbody:hover .hide button {\n  display: none !important; }\n\n.event_visuals {\n  margin-left: -1rem;\n  margin-right: -1rem;\n  margin-top: -1rem;\n  padding: 1rem;\n  background-color: silver;\n  background: url(\"http://placehold.it/600x300.png?text=image\") center center no-repeat;\n  background-size: cover;\n  height: 17.5rem; }\n  .event_visuals > * {\n    position: flex;\n    flex-direction: column;\n    color: white; }\n  .event_visuals .event_date_icon {\n    font-size: x-large;\n    font-weight: normal;\n    margin: auto; }\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
@@ -490,6 +490,10 @@
 	//
 	//
 	//
+	//
+	//
+	//
+	//
 	
 	exports.default = {
 	    name: 'event-cards',
@@ -545,11 +549,9 @@
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "event_visuals"
-	  }, [_c('img', {
-	    staticClass: "event_image"
-	  }), _vm._v(" "), _c('h4', {
+	  }, [_c('h4', {
 	    staticClass: "event_date_icon"
-	  }, [_vm._v("Jan 1 – Jan 30")]), _vm._v(" "), _c('p', [_vm._v("More Images")])])
+	  }, [_vm._v("Jan 1 – Jan 30")])])
 	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "event_controls"
@@ -570,6 +572,46 @@
 	    }
 	  }, [_c('i', {
 	    staticClass: "fa fa-flag",
+	    attrs: {
+	      "aria-hidden": "true"
+	    }
+	  })]), _vm._v(" "), _c('a', {
+	    staticClass: "button",
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_c('i', {
+	    staticClass: "fa fa-pencil",
+	    attrs: {
+	      "aria-hidden": "true"
+	    }
+	  })]), _vm._v(" "), _c('a', {
+	    staticClass: "button",
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_c('i', {
+	    staticClass: "fa fa-trash",
+	    attrs: {
+	      "aria-hidden": "true"
+	    }
+	  })]), _vm._v(" "), _c('a', {
+	    staticClass: "button",
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_c('i', {
+	    staticClass: "fa fa-map-marker",
+	    attrs: {
+	      "aria-hidden": "true"
+	    }
+	  })]), _vm._v(" "), _c('a', {
+	    staticClass: "button",
+	    attrs: {
+	      "href": "#"
+	    }
+	  }, [_c('i', {
+	    staticClass: "fa fa-share",
 	    attrs: {
 	      "aria-hidden": "true"
 	    }

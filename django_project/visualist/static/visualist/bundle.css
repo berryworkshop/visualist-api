@@ -22,16 +22,25 @@ body {
   display: flex;
   min-height: 100vh;
   -ms-flex-direction: column;
-      flex-direction: column; }
-  body > main {
+      flex-direction: column;
+  box-sizing: border-box; }
+  body .container {
+    position: relative;
+    margin: 0;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    box-sizing: border-box; }
+    @media (min-width: 50em) {
+      body .container {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 50em; } }
+  body main {
     font-size: 16;
     -ms-flex: 1;
         flex: 1;
-    background-color: #ddd;
-    padding: 1rem; }
-    body > main > .panel {
-      margin-left: -1rem;
-      margin-right: -1rem; }
+    background-color: #ddd; }
   body a {
     color: #33c; }
   body a.disabled {
@@ -97,14 +106,13 @@ header#site_header {
     color: #a60; }
   header#site_header #masthead {
     width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
     display: -ms-flexbox;
     display: flex;
     -ms-flex-direction: row;
         flex-direction: row;
     -ms-flex-align: center;
-        align-items: center; }
+        align-items: center;
+    padding: 1rem 0; }
     header#site_header #masthead #branding {
       font-size: 2rem;
       font-weight: bold;
@@ -121,9 +129,9 @@ header#site_header {
     display: flex;
     -ms-flex-direction: row;
         flex-direction: row;
-    box-sizing: border-box;
     color: #999;
-    padding: 1rem; }
+    padding: 1rem;
+    margin: 0 -1rem; }
     header#site_header #primary_nav > * {
       margin-right: 1rem; }
     header#site_header #primary_nav > :last-child {
@@ -151,18 +159,18 @@ header#site_header {
       padding: 0;
       background-color: transparent; }
   header#site_header #browse_modal {
-    box-sizing: border-box;
     position: absolute;
     top: 100%;
-    width: 100%;
     left: 0;
+    right: 0;
+    z-index: 1;
     background-color: #222;
     padding: 1rem;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.5); }
 footer#site_footer {
   background-color: #222;
   color: #777;
-  padding: 1rem; }
+  padding-bottom: 8rem; }
   footer#site_footer a {
     color: #a60;
     text-decoration: none; }
