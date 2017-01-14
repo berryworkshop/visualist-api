@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import (
-    Period, Event)
+    Event,
+    # Period,
+    )
 
-# Register your models here.
-admin.site.register(Period)
+# admin.site.register(Period)
 admin.site.register(Event)

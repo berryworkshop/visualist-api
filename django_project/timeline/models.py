@@ -1,21 +1,24 @@
 from django.db import models
-from django.urls import reverse
 from cms.models import Record, Term
+from django.urls import reverse
 
 
 class Event(Record):
     '''A named art event, performance or happening.'''
 
-    name = models.CharField(blank=False, null=False, max_length=255)
+    name = models.CharField(max_length=255)
     description = models.TextField()
 
     datetime_start = models.DateTimeField(blank=False, null=False)
     datetime_end = models.DateTimeField(blank=True, null=True)
 
-    TYPES = [
-        "event",
-        "performance",
-    ]
+    TYPES = (
+        ("EXHIBITION", "exhibition"),
+        ("PERFORMANCE", "performance"),
+    )
+
+    event_type = models.CharField(max_length=20,
+      choices=TYPES, default="EXHIBITION")
 
     def __str__(self):
         return self.name
@@ -24,12 +27,32 @@ class Event(Record):
         return reverse('event', args=[self.pk])
 
 
-class Period(Term):
-    '''
-    A named span of time, e.g. an epoch, era, or an art historical movement.
-    '''
-    pass
+# class Period(Term):
+#     '''
+#     A named span of time, e.g. an epoch, era, or an art historical movement.
+#     '''
+#     pass
 
+
+
+
+
+
+
+
+
+
+# --------------------------------- #
+# following are just brainstorms
+
+    # AUDIENCES = [
+    #     'for all ages', 
+    #     'young children: 0-5',
+    #     'children: 5-10',
+    #     'young adult',
+    #     'primarily for adults',
+    #     'adults only',
+    # ]
 
 # Event
 #     date start

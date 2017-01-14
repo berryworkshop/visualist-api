@@ -13,13 +13,10 @@ class Base(models.Model):
     modified = models.DateTimeField(auto_now=True)
     # created_by = User.???
 
-    def get_absolute_url(self):
-        return reverse('home')
 
-
-class Log(Base):
-    '''Misc. website logs, for migrations, blame, among other things.'''
-    pass
+# class Log(Base):
+#     '''Misc. website logs, for migrations, blame, among other things.'''
+#     pass
 
 
 #
@@ -31,17 +28,16 @@ class Record(Base):
     '''
     The central class for the Visualist system; the basic unit manipulated
     by the User in the interface.
-    '''
-    pass
 
-    AUDIENCES = [
-        'for all ages', 
-        'young children: 0-5',
-        'children: 5-10',
-        'young adult',
-        'primarily for adults',
-        'adults only',
-    ]
+    This is a very important class, and is used in other apps and classes.
+    Manipulate with care.
+    '''
+    
+    slug = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.slug
+
 
 class Page(Record):
     '''
@@ -50,60 +46,60 @@ class Page(Record):
     pass
 
 
-class Article(Page):
-    '''A Page with a listed author, post date, and other blog-like features.'''
-    pass
+# class Article(Page):
+#     '''A Page with a listed author, post date, and other blog-like features.'''
+#     pass
 
 
-class Link(Record):
-    '''A formal, named link, usually to an external resource on the web.'''
-    pass
+# class Link(Record):
+#     '''A formal, named link, usually to an external resource on the web.'''
+#     pass
 
 
-class RecordSet(Base):
-    '''A list of records for Users to share and save.'''
-    pass
+# class RecordSet(Base):
+#     '''A list of records for Users to share and save.'''
+#     pass
 
 
-class Relation(Base):
-    '''
-    A connection to another local model, usually between Records
-    and their derivatives.
-    '''
-    pass
+# class Relation(Base):
+#     '''
+#     A connection to another local model, usually between Records
+#     and their derivatives.
+#     '''
+#     pass
 
 
 #
 # Field Tables
 #
 
-class Name(Base):
-    '''
-    A structured (additional) Name attribute, usable in multiple,
-    i.e. to simulate Dublin Core.  Usually from an external source.
-    '''
-    pass
+# class Name(Base):
+#     '''
+#     A structured (additional) Name attribute, usable in multiple,
+#     i.e. to simulate Dublin Core.  Usually from an external source.
+#     '''
+#     pass
 
 
-class Identifier(Base):
-    '''
-    A structured (additional) Identifier attribute, usable in multiple,
-    i.e. to simulate Dublin Core.  Usually from an external source.
-    '''
-    pass
+# class Identifier(Base):
+#     '''
+#     A structured (additional) Identifier attribute, usable in multiple,
+#     i.e. to simulate Dublin Core.  Usually from an external source.
+#     '''
+#     pass
 
 
-class Description(Base):
-    '''
-    A structured (additional) Description attribute, usable in multiple,
-    i.e. to simulate Dublin Core.  Usually from an external source.
-    '''
-    pass
+# class Description(Base):
+#     '''
+#     A structured (additional) Description attribute, usable in multiple,
+#     i.e. to simulate Dublin Core.  Usually from an external source.
+#     '''
+#     pass
 
-    TYPES = [
-        'abstract',
-        'subtitle',
-    ]
+#     TYPES = [
+#         'abstract',
+#         'subtitle',
+#     ]
 
 #
 # Controlled Vocabulary
@@ -111,33 +107,41 @@ class Description(Base):
 
 class Vocabulary(Base):
     '''A named, controlled vocabulary.'''
-    pass
+    
+    name = models.CharField(max_length=255)
 
 
 class Term(Base):
-    '''A single Vocabulary term.'''
-    pass
-
-
-class Language(Term):
-    '''The languages of the world.'''
-    pass
-
-
-class Unit(Term):
-    '''English and Metric units for space and time.'''
-    pass
-
-
-class Subject(Term):
-    '''Keywords, tags, and categories oh my.'''
-    pass
-
-
-class License(Term):
     '''
-    Creative Commons, FOSS, and proprietary licenses,
-    defined against standard URLs.
-    '''
-    pass
+    A single Vocabulary term.
 
+    This is an important class, used in other apps.  Be careful.
+    '''
+    
+    name = models.CharField(max_length=255)
+    vocabulary = models.ForeignKey('Vocabulary',
+        on_delete=models.CASCADE,
+        )
+
+
+# class Language(Term):
+#     '''The languages of the world.'''
+#     pass
+
+
+# class Unit(Term):
+#     '''English and Metric units for space and time.'''
+#     pass
+
+
+# class Subject(Term):
+#     '''Keywords, tags, and categories oh my.'''
+#     pass
+
+
+# class License(Term):
+#     '''
+#     Creative Commons, FOSS, and proprietary licenses,
+#     defined against standard URLs.
+#     '''
+#     pass

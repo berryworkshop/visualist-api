@@ -17,15 +17,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'django_extensions',
+
     'visualist',
     'cms',
-    'aggregator', 
-    'archive', 
-    'catalog', 
-    'crosswalk', 
-    'directory', 
-    'timeline', 
-    'tour',
+    'directory',
+    'timeline',
+    # 'aggregator',
+    # 'archive',
+    # 'catalog',
+    # 'crosswalk',
+    # 'tour',
 ]
 
 MIDDLEWARE = [
