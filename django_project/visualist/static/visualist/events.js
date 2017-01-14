@@ -707,7 +707,7 @@
 	
 	
 	// module
-	exports.push([module.id, "\n#leaflet_map {\n  height: 100vh;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_map.vue"],"names":[],"mappings":";AAAA;EACE,cAAc;CAAE","file":"event_map.vue","sourcesContent":["#leaflet_map {\n  height: 100vh; }\n"],"sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n#leaflet_map {\n  height: 100vh;\n  z-index: 0;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_map.vue"],"names":[],"mappings":";AAAA;EACE,cAAc;EACd,WAAW;CAAE","file":"event_map.vue","sourcesContent":["#leaflet_map {\n  height: 100vh;\n  z-index: 0; }\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 

@@ -28,5 +28,6 @@
 <style lang="sass">
     #leaflet_map {
         height: 100vh;
+        z-index: 0;
     }
 </style>
