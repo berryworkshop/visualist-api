@@ -11,8 +11,6 @@ class Contact(Record):
     pass
 
 
-
-
 class Person(Contact):
     '''A human being.'''
 

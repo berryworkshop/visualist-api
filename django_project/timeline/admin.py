@@ -4,5 +4,10 @@ from .models import (
     # Period,
     )
 
+
+class EventAdmin(admin.ModelAdmin):
+    prepopulated_fields = {"slug": ("name",)}
+
+
 # admin.site.register(Period)
-admin.site.register(Event)
+admin.site.register(Event, EventAdmin)

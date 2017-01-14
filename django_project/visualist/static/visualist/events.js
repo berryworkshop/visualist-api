@@ -56,7 +56,6 @@
 	    delimiters: ['[{', '}]'],
 	    el: 'main',
 	    data: {
-	        events: [],
 	        panel: 'list',
 	        panels_collapsed: true,
 	        components: [EventCards, EventMap]
