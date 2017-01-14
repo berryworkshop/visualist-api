@@ -14,9 +14,23 @@
     <main>
         <h1>Events</h1>
 
-        <event_controls id="event_controls"></event_controls>
-        <event_cards id="event_list"></event_cards>
-        <event_map id="event_map"></event_map>
+        <div class="panel" id="events_controls">
+            <ul class="tab_list">
+                <li><a class="tab" href="#list"
+                    v-on:click.prevent="showPanel('list')">List</a></li>
+                <li><a class="tab" href="#map"
+                    v-on:click.prevent="showPanel('map')">Map</a></li>
+            </ul>
+            <div class="controls">
+                <button type="button">Filter</button>
+                <button type="button">Sort</button>
+            </div>
+        </div>
+
+        <event-cards id="list"
+            :class="{hide: panelHidden('list')}"></event-cards>
+        <event-map id="map" ref="map_component"
+            :class="{hide: panelHidden('map')}"></event-map>
 
     </main>
 {% endblock main %}

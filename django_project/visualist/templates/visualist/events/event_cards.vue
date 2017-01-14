@@ -1,6 +1,5 @@
 <template>
     <div class="panel">
-        <button type="button"><i class="fa fa-sort" aria-hidden="true"></i> Sort</button>
         <ul class="card_list">
             <li v-for="obj in object_list" class="card">
                 <div class="event_visuals">
@@ -26,7 +25,7 @@
 
 <script>
     export default {
-        name: 'event_cards',
+        name: 'event-cards',
         data() {
             return {
                 object_list: [],

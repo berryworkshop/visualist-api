@@ -89,9 +89,9 @@
 	    function update_state() {
 	        // browse modal
 	        if (state.browse_modal == true) {
-	            $('#browse_modal').removeClass('visually_hidden');
+	            $('#browse_modal').removeClass('hide');
 	        } else {
-	            $('#browse_modal').addClass('visually_hidden');
+	            $('#browse_modal').addClass('hide');
 	        }
 	    }
 	});

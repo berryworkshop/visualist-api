@@ -1,4 +1,4 @@
-.visually_hidden {
+.hide {
   /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
   position: absolute !important;
   clip: rect(1px 1px 1px 1px);
@@ -10,9 +10,9 @@
   width: 1px !important;
   overflow: hidden; }
 
-body:hover .visually_hidden a,
-body:hover .visually_hidden input,
-body:hover .visually_hidden button {
+body:hover .hide a,
+body:hover .hide input,
+body:hover .hide button {
   display: none !important; }
 
 body {
@@ -34,6 +34,29 @@ body {
       margin-right: -1rem; }
   body a {
     color: #33c; }
+  body a.disabled {
+    color: #999 !important;
+    pointer-events: none;
+    cursor: default; }
+  body button, body ul.tab_list li a {
+    color: #33c;
+    background-color: #eee;
+    padding: .5em .75em;
+    margin: 0;
+    border: 1px solid silver;
+    text-decoration: none;
+    cursor: pointer; }
+    body button:hover, body ul.tab_list li a:hover {
+      background-color: #fff; }
+    body button:active, body ul.tab_list li a:active {
+      background-color: #ccc; }
+  body button {
+    color: #33c; }
+  body .panel, body .card {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+        flex-direction: column; }
   body .panel {
     margin: 0;
     padding: 0; }
@@ -45,10 +68,22 @@ body {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    display: inline-block; }
+  body ul.tab_list {
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    body ul.tab_list li {
+      margin-right: .25rem; }
+      body ul.tab_list li:last-child {
+        margin-right: 0; }
+      body ul.tab_list li a {
+        font-size: 20px;
+        display: block;
+        padding: 1em 1em 1rem 1em;
+        border-bottom-width: 0; }
 header#site_header {
   position: relative;
   background-color: #222;

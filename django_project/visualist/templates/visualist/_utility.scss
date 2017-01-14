@@ -1,4 +1,4 @@
-.visually_hidden { /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
+.hide { /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/
     position: absolute !important;
     clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
     clip: rect(1px, 1px, 1px, 1px);
@@ -8,8 +8,8 @@
     width: 1px !important;
     overflow: hidden;
 } 
-body:hover .visually_hidden a,
-body:hover .visually_hidden input,
-body:hover .visually_hidden button {
+body:hover .hide a,
+body:hover .hide input,
+body:hover .hide button {
     display: none !important;
 }

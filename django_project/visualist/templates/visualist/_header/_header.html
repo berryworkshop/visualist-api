@@ -5,7 +5,7 @@
         </div>
     </div>
     <div id="primary_nav">
-        <a href="{% url 'home' %}"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
+        <a href="{% url 'home' %}" tabindex="0"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
         <form id="search" action="{% url 'search' %}">
             <input type="search" placeholder="Search" name="q" >
             <button type="submit">
@@ -16,7 +16,7 @@
             <button type="button" class="browse_modal_toggle">
                 <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
             </button>
-            <div id="browse_modal" class="visually_hidden">
+            <div id="browse_modal" class="hide">
                 <ul>
                     <li><a href="{% url 'events' %}">Events</a></li>
                     <li>Venues</li>

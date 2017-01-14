@@ -46,21 +46,35 @@
 
 	'use strict';
 	
-	var EventControls = __webpack_require__(25);
-	Vue.component('event_controls', EventControls);
-	
 	var EventCards = __webpack_require__(15);
-	Vue.component('event_cards', EventCards);
+	Vue.component('event-cards', EventCards);
 	
-	var EventMap = __webpack_require__(30);
-	Vue.component('event_map', EventMap);
+	var EventMap = __webpack_require__(21);
+	Vue.component('event-map', EventMap);
 	
-	var home = new Vue({
+	window.vue = new Vue({
 	    delimiters: ['[{', '}]'],
 	    el: 'main',
 	    data: {
 	        events: [],
-	        components: [EventControls, EventCards, EventMap]
+	        panel: 'list',
+	        panels_collapsed: true,
+	        components: [EventCards, EventMap]
+	    },
+	    methods: {
+	        panelHidden: function panelHidden(panel) {
+	            // determine if a panel should be hidden or not
+	            var hide = this.panels_collapsed && panel != this.panel ? true : false;
+	            return hide;
+	        },
+	        showPanel: function showPanel(panel) {
+	            // show a panel
+	            this.panel = panel;
+	            Vue.nextTick(function () {
+	                // resizes map to fit width, difficult/impossible when off screen
+	                this.$refs.map_component.$data.map.invalidateSize();
+	            }.bind(this));
+	        }
 	    }
 	});
 
@@ -141,7 +155,7 @@
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(23)
+	__webpack_require__(16)
 	
 	/* script */
 	__vue_exports__ = __webpack_require__(19)
@@ -181,8 +195,46 @@
 
 
 /***/ },
-/* 16 */,
-/* 17 */,
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+	
+	// load the styles
+	var content = __webpack_require__(17);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(18)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue", function() {
+				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(3)();
+	// imports
+	
+	
+	// module
+	exports.push([module.id, "\n.hide {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .hide a,\nbody:hover .hide input,\nbody:hover .hide button {\n  display: none !important;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE","file":"event_cards.vue","sourcesContent":[".hide {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .hide a,\nbody:hover .hide input,\nbody:hover .hide button {\n  display: none !important; }\n"],"sourceRoot":"webpack://"}]);
+	
+	// exports
+
+
+/***/ },
 /* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -438,10 +490,9 @@
 	//
 	//
 	//
-	//
 	
 	exports.default = {
-	    name: 'event_cards',
+	    name: 'event-cards',
 	    data: function data() {
 	        return {
 	            object_list: []
@@ -465,12 +516,12 @@
 	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "panel"
-	  }, [_vm._m(0), _vm._v(" "), _c('ul', {
+	  }, [_c('ul', {
 	    staticClass: "card_list"
 	  }, _vm._l((_vm.object_list), function(obj) {
 	    return _c('li', {
 	      staticClass: "card"
-	    }, [_vm._m(1, true), _vm._v(" "), _c('div', {
+	    }, [_vm._m(0, true), _vm._v(" "), _c('div', {
 	      staticClass: "event_info"
 	    }, [_c('p', {
 	      staticClass: "location"
@@ -489,20 +540,9 @@
 	      attrs: {
 	        "aria-hidden": "true"
 	      }
-	    })]), _vm._v(" "), _vm._m(2, true)])
+	    })]), _vm._v(" "), _vm._m(1, true)])
 	  }))])
 	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('button', {
-	    attrs: {
-	      "type": "button"
-	    }
-	  }, [_c('i', {
-	    staticClass: "fa fa-sort",
-	    attrs: {
-	      "aria-hidden": "true"
-	    }
-	  }), _vm._v(" Sort")])
-	},function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
 	  return _c('div', {
 	    staticClass: "event_visuals"
 	  }, [_c('img', {
@@ -544,207 +584,20 @@
 	}
 
 /***/ },
-/* 21 */,
-/* 22 */,
-/* 23 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(24);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-c8ec730e!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_cards.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 24 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n.visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden;\n}\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_cards.vue"],"names":[],"mappings":";AAAA;EACE,6FAA6F;EAC7F,8BAA8B;EAC9B,4BAA4B;EAC5B,cAAc;EACd,+BAA+B;EAC/B,sBAAsB;EACtB,qBAAqB;EACrB,uBAAuB;EACvB,sBAAsB;EACtB,iBAAiB;CAAE;AAErB;;;EAGE,yBAAyB;CAAE","file":"event_cards.vue","sourcesContent":[".visually_hidden {\n  /*https://developer.yahoo.com/blogs/ydn/clip-hidden-content-better-accessibility-53456.html*/\n  position: absolute !important;\n  clip: rect(1px 1px 1px 1px);\n  /* IE6, IE7 */\n  clip: rect(1px, 1px, 1px, 1px);\n  padding: 0 !important;\n  border: 0 !important;\n  height: 1px !important;\n  width: 1px !important;\n  overflow: hidden; }\n\nbody:hover .visually_hidden a,\nbody:hover .visually_hidden input,\nbody:hover .visually_hidden button {\n  display: none !important; }\n"],"sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 25 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __vue_exports__, __vue_options__
 	var __vue_styles__ = {}
 	
 	/* styles */
-	__webpack_require__(26)
+	__webpack_require__(22)
 	
 	/* script */
-	__vue_exports__ = __webpack_require__(28)
+	__vue_exports__ = __webpack_require__(24)
 	
 	/* template */
-	var __vue_template__ = __webpack_require__(29)
-	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
-	if (
-	  typeof __vue_exports__.default === "object" ||
-	  typeof __vue_exports__.default === "function"
-	) {
-	if (Object.keys(__vue_exports__).some(function (key) { return key !== "default" && key !== "__esModule" })) {console.error("named exports are not supported in *.vue files.")}
-	__vue_options__ = __vue_exports__ = __vue_exports__.default
-	}
-	if (typeof __vue_options__ === "function") {
-	  __vue_options__ = __vue_options__.options
-	}
-	__vue_options__.__file = "/Users/aljabear/Projects/visualist/django_project/visualist/templates/visualist/events/event_controls.vue"
-	__vue_options__.render = __vue_template__.render
-	__vue_options__.staticRenderFns = __vue_template__.staticRenderFns
-	
-	/* hot reload */
-	if (false) {(function () {
-	  var hotAPI = require("vue-hot-reload-api")
-	  hotAPI.install(require("vue"), false)
-	  if (!hotAPI.compatible) return
-	  module.hot.accept()
-	  if (!module.hot.data) {
-	    hotAPI.createRecord("data-v-99fb20e0", __vue_options__)
-	  } else {
-	    hotAPI.reload("data-v-99fb20e0", __vue_options__)
-	  }
-	})()}
-	if (__vue_options__.functional) {console.error("[vue-loader] event_controls.vue: functional components are not supported and should be defined in plain js files using render functions.")}
-	
-	module.exports = __vue_exports__
-
-
-/***/ },
-/* 26 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-	
-	// load the styles
-	var content = __webpack_require__(27);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(18)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-99fb20e0!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_controls.vue", function() {
-				var newContent = require("!!./../../../../../node_modules/css-loader/index.js?sourceMap!./../../../../../node_modules/vue-loader/lib/style-rewriter.js?id=data-v-99fb20e0!./../../../../../node_modules/sass-loader/index.js!./../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./event_controls.vue");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 27 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(3)();
-	// imports
-	
-	
-	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"event_controls.vue","sourceRoot":"webpack://"}]);
-	
-	// exports
-
-
-/***/ },
-/* 28 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	//
-	
-	exports.default = {
-	    name: 'event_controls',
-	    data: function data() {
-	        return {};
-	    }
-	};
-
-/***/ },
-/* 29 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _vm._m(0)
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: "panel"
-	  }, [_c('ul', {
-	    staticClass: "tabs"
-	  }, [_c('li', [_c('a', {
-	    staticClass: "tab",
-	    attrs: {
-	      "href": "#event_list"
-	    }
-	  }, [_vm._v("List")])]), _vm._v(" "), _c('li', [_c('a', {
-	    staticClass: "tab",
-	    attrs: {
-	      "href": "#event_map"
-	    }
-	  }, [_vm._v("Map")])])]), _vm._v(" "), _c('button', [_vm._v("Filter")])])
-	}]}
-	module.exports.render._withStripped = true
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-99fb20e0", module.exports)
-	  }
-	}
-
-/***/ },
-/* 30 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var __vue_exports__, __vue_options__
-	var __vue_styles__ = {}
-	
-	/* styles */
-	__webpack_require__(31)
-	
-	/* script */
-	__vue_exports__ = __webpack_require__(33)
-	
-	/* template */
-	var __vue_template__ = __webpack_require__(34)
+	var __vue_template__ = __webpack_require__(26)
 	__vue_options__ = __vue_exports__ = __vue_exports__ || {}
 	if (
 	  typeof __vue_exports__.default === "object" ||
@@ -778,13 +631,13 @@
 
 
 /***/ },
-/* 31 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 	
 	// load the styles
-	var content = __webpack_require__(32);
+	var content = __webpack_require__(23);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(18)(content, {});
@@ -804,7 +657,7 @@
 	}
 
 /***/ },
-/* 32 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(3)();
@@ -812,13 +665,13 @@
 	
 	
 	// module
-	exports.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", "", {"version":3,"sources":[],"names":[],"mappings":"","file":"event_map.vue","sourceRoot":"webpack://"}]);
+	exports.push([module.id, "\n#leaflet_map {\n  height: 100vh;\n}\n", "", {"version":3,"sources":["/./templates/visualist/events/event_map.vue"],"names":[],"mappings":";AAAA;EACE,cAAc;CAAE","file":"event_map.vue","sourcesContent":["#leaflet_map {\n  height: 100vh; }\n"],"sourceRoot":"webpack://"}]);
 	
 	// exports
 
 
 /***/ },
-/* 33 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -834,53 +687,27 @@
 	//
 	//
 	
-	__webpack_require__(35);
+	__webpack_require__(25);
 	
 	exports.default = {
-	    name: 'event_map',
+	    name: 'event-map',
 	    data: function data() {
-	        return {};
+	        return {
+	            map: undefined
+	        };
 	    },
 	
 	    mounted: function mounted() {
-	        var mymap = L.map('leaflet_map').setView([41.8781, -87.6298], 13);
+	        this.$data.map = L.map('leaflet_map').setView([41.8781, -87.6298], 13);
 	        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/cit4vck8m001v2wrpq6lhhcfk/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
 	            id: 'aljabear',
 	            accessToken: 'pk.eyJ1IjoiYWxqYWJlYXIiLCJhIjoiY2l0NHJtM3plMDAwMjJ6bzM4Y3M2Z201biJ9.HvF_jJ4TnzYXle8uL5XhtQ'
-	        }).addTo(mymap);
+	        }).addTo(this.$data.map);
 	    }
 	};
 
 /***/ },
-/* 34 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _vm._m(0)
-	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-	  return _c('div', {
-	    staticClass: "panel"
-	  }, [_c('div', {
-	    attrs: {
-	      "id": "leaflet_map"
-	    }
-	  }), _vm._v(" "), _c('link', {
-	    attrs: {
-	      "rel": "stylesheet",
-	      "href": "https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css"
-	    }
-	  })])
-	}]}
-	module.exports.render._withStripped = true
-	if (false) {
-	  module.hot.accept()
-	  if (module.hot.data) {
-	     require("vue-hot-reload-api").rerender("data-v-cffb711c", module.exports)
-	  }
-	}
-
-/***/ },
-/* 35 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -14053,6 +13880,34 @@
 	
 	}(window, document));
 	//# sourceMappingURL=leaflet-src.map
+
+/***/ },
+/* 26 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _vm._m(0)
+	},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+	  return _c('div', {
+	    staticClass: "panel"
+	  }, [_c('div', {
+	    attrs: {
+	      "id": "leaflet_map"
+	    }
+	  }), _vm._v(" "), _c('link', {
+	    attrs: {
+	      "rel": "stylesheet",
+	      "href": "https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.css"
+	    }
+	  })])
+	}]}
+	module.exports.render._withStripped = true
+	if (false) {
+	  module.hot.accept()
+	  if (module.hot.data) {
+	     require("vue-hot-reload-api").rerender("data-v-cffb711c", module.exports)
+	  }
+	}
 
 /***/ }
 /******/ ]);
