@@ -1,9 +1,20 @@
 from django.db import models
-from cms.models import Record, Term
+from base.models import Record
+from thesaurus.models import Term
 from django.urls import reverse
 
 
-class Event(Record):
+class PointInTime(Record):
+    '''
+    A spot on a timeline.
+    This uses multi-table inheritance, so be careful with adjustments.
+    The abstract superclass for Events, or other relevant future Record types.
+    Not generally to be used directly.  Should not have a view, for example.
+    '''
+    pass
+
+
+class Event(PointInTime):
     '''A named art event, performance or happening.'''
 
     name = models.CharField(max_length=255)

@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import (
     Account,
     Address,
-    Contact,
+    # Contact,
     Email,
     # HourSet,
     Organization,
@@ -22,7 +22,7 @@ class PersonAdmin(admin.ModelAdmin):
 
 admin.site.register(Account)
 admin.site.register(Address)
-admin.site.register(Contact)
+# admin.site.register(Contact)
 admin.site.register(Email)
 # admin.site.register(HourSet)
 admin.site.register(Organization, OrganizationAdmin)

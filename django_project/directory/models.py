@@ -1,12 +1,15 @@
 from django.db import models
-from cms.models import Record, Base
+from base.models import Base, Record
 from .countries import COUNTRIES
 from django.core.validators import MaxValueValidator
 
+
 class Contact(Record):
     '''
-    Superclass for shared functionality between Person and Organization.
     This uses multi-table inheritance, so be careful with adjustments.
+    The abstract superclass for People and Organizations,
+    or other relevant future Record types.
+    Not generally to be used directly.  Should not have a view, for example.
     '''
     pass
 
@@ -33,7 +36,7 @@ class Organization(Contact):
        ('ARCHIVE', 'archive'),
        ('ASSOCIATION', 'association'),
        ('COMPANY', 'company'),
-       ('CONSORTIUM', 'consortium'),
+       ('ENSEMBLE', 'ensemble'),
        ('FOUNDATION', 'foundation'),
        ('GALLERY', 'gallery'),
        ('LIBRARY', 'library'),

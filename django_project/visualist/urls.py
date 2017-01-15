@@ -3,7 +3,7 @@ from django.contrib import admin
 from .views import HomeView, SearchView, EventView, EventsView
 
 from cms import urls as cms_urls
-from timeline import urls as timeline_urls
+from calendar import urls as calendar_urls
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^events/(?P<pk>[0-9]+)$', EventView.as_view(), name='event'),
 
     url(r'^cms/', include(cms_urls)),
-    url(r'^timeline/', include(timeline_urls)),
+    url(r'^calendar/', include(calendar_urls)),
 
     url(r'^django-admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))

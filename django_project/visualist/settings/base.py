@@ -15,18 +15,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'rest_framework',
     'django_extensions',
 
     'visualist',
+    'base',
     'cms',
+    'thesaurus',
+
+    'atlas',
+    'calendar',
+    'catalog',
     'directory',
-    'timeline',
+
     # 'aggregator',
     # 'archive',
-    # 'catalog',
     # 'crosswalk',
-    # 'tour',
 ]
 
 MIDDLEWARE = [

@@ -1,11 +1,16 @@
 from django.db import models
-from cms.models import Record, Term, Base
+from base.models import Base, Record
+from thesaurus.models import Term
+
 
 
 class Thing(Record):
     '''
     A physical object, without the characteristics of anartwork,
     e.g. an ephemeron or natural structure.
+    This uses multi-table inheritance, so be careful with adjustments.
+    The abstract superclass for Works, or other relevant future Record types.
+    Not generally to be used directly.  Should not have a view, for example.
     '''
     pass
 
@@ -37,13 +42,13 @@ class Dimension(Base):
     ]
 
 
-class Medium(Term):
-    '''The materials, tools or techniques used to make the work.'''
-    pass
+# class Medium(Term):
+#     '''The materials, tools or techniques used to make the work.'''
+#     pass
 
 
-class Genre(Term):
-    '''
-    A formal art historical classification.
-    '''
-    pass
+# class Genre(Term):
+#     '''
+#     A formal art historical classification.
+#     '''
+#     pass
