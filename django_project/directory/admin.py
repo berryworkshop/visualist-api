@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import (
     Account,
-    Address,
     # Contact,
     Email,
     # HourSet,
@@ -21,7 +20,6 @@ class PersonAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Account)
-admin.site.register(Address)
 # admin.site.register(Contact)
 admin.site.register(Email)
 # admin.site.register(HourSet)

@@ -5,7 +5,7 @@ from base.models import Base
 class Vocabulary(Base):
     '''A named, controlled vocabulary.'''
     
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
 
 
 class Term(Base):
@@ -13,7 +13,7 @@ class Term(Base):
     A single Vocabulary term.
     '''
     
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     vocabulary = models.ForeignKey('Vocabulary',
         on_delete=models.CASCADE,
         )

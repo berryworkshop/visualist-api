@@ -25,7 +25,7 @@ class Record(Base):
     by the User in the interface, often via "cards".
     '''
     
-    slug = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.slug
@@ -42,7 +42,7 @@ class Name(Base):
     i.e. to simulate Dublin Core.  Usually from an external source.
     '''
 
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=100)
     records = models.ForeignKey('Record',
         on_delete=models.CASCADE, related_name="names")
 
@@ -64,7 +64,7 @@ class Description(Base):
     i.e. to simulate Dublin Core.  Usually from an external source.
     '''
 
-    description = models.CharField(max_length=255)
+    description = models.CharField(max_length=250)
     records = models.ForeignKey('Record', 
         on_delete=models.CASCADE, related_name="descriptions")
 

@@ -6,13 +6,13 @@ from thesaurus.models import Term
 
 class Thing(Record):
     '''
-    A physical object, without the characteristics of anartwork,
+    A physical object, without the characteristics of an artwork,
     e.g. an ephemeron or natural structure.
-    This uses multi-table inheritance, so be careful with adjustments.
-    The abstract superclass for Works, or other relevant future Record types.
-    Not generally to be used directly.  Should not have a view, for example.
     '''
-    pass
+    
+    name = models.CharField(max_length=100)
+    synopsis = models.TextField(max_length=250, blank=True, null=True)
+    dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True)
 
 
 class Work(Thing):
@@ -21,25 +21,35 @@ class Work(Thing):
     '''
     pass
 
-    CONDITIONS = [
-        'mint',
-        'excellent', 
-        'very good',
-        'good',
-        'fair',
-        'poor',
-    ]
+    # Medium
+    # Genre
+    # Condition
 
-class Dimension(Base):
-    '''Length, width, height, or duration.'''
-    pass
 
-    TYPES = [
-        'length',
-        'width', 
-        'height', 
-        'duration',
-    ]
+# class Ephemeron(Thing):
+#     '''
+#     A thing associated with an Event or Work.
+#     '''
+#     pass
+
+
+class DimensionSet(Base):
+    '''A set of dimensions for '''
+
+    UNITS = (
+        ('mm', 'millimeters'),
+        ('cm', 'centimeters'),
+        ('m',  'meters'),
+        ('in', 'inches'),
+        ('ft', 'feet'),
+    )
+    
+    length = models.DecimalField(max_digits=7, decimal_places=3)
+    width  = models.DecimalField(max_digits=7, decimal_places=3)
+    height = models.DecimalField(max_digits=7, decimal_places=3,
+        blank=True, null=True)
+    dimension_unit = models.CharField(max_length=2,
+        choices=UNITS, default='in')
 
 
 # class Medium(Term):
@@ -52,3 +62,17 @@ class Dimension(Base):
 #     A formal art historical classification.
 #     '''
 #     pass
+
+# class Condition(Term):
+#     '''
+#     What shape is this thing in.
+#     '''
+#
+#     CONDITIONS = [
+#         'mint',
+#         'excellent', 
+#         'very good',
+#         'good',
+#         'fair',
+#         'poor',
+#     ]

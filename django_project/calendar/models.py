@@ -1,56 +1,33 @@
 from django.db import models
-from base.models import Record
+from base.models import Base, Record
 from thesaurus.models import Term
 from django.urls import reverse
+from django.utils.timezone import now
 
 
-class PointInTime(Record):
+class Event(Record):
     '''
-    A spot on a timeline.
-    This uses multi-table inheritance, so be careful with adjustments.
-    The abstract superclass for Events, or other relevant future Record types.
-    Not generally to be used directly.  Should not have a view, for example.
+    A span on a timeline with a beginning and end.
     '''
-    pass
-
-
-class Event(PointInTime):
-    '''A named art event, performance or happening.'''
-
-    name = models.CharField(max_length=255)
-    description = models.TextField()
-
-    datetime_start = models.DateTimeField(blank=False, null=False)
-    datetime_end = models.DateTimeField(blank=True, null=True)
+    start = models.DateTimeField(blank=False, null=False, default=now)
+    end = models.DateTimeField(blank=True, null=True, default=now)
 
     TYPES = (
         ("EXHIBITION", "exhibition"),
         ("PERFORMANCE", "performance"),
     )
 
+    name = models.CharField(max_length=100)
+    synopsis = models.TextField(max_length=250, blank=True, null=True)
     event_type = models.CharField(max_length=20,
-      choices=TYPES, default="EXHIBITION")
-
-    def __str__(self):
-        return self.name
+        choices=TYPES, default="EXHIBITION")
 
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])
 
 
-# class Period(Term):
-#     '''
-#     A named span of time, e.g. an epoch, era, or an art historical movement.
-#     '''
+# class Reminder(Record):
 #     pass
-
-
-
-
-
-
-
-
 
 
 # --------------------------------- #

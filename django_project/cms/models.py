@@ -7,7 +7,10 @@ class Page(Record):
     '''
     A general-purpose, arbitrary website page, e.g. About, Copyright, etc.
     '''
-    pass
+    
+    name = models.CharField(max_length=100)
+    synopsis = models.TextField(max_length=250, blank=True, null=True)
+    body = models.TextField()
 
 
 # class Article(Page):
