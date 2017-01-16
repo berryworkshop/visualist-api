@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.timezone import now
+from aggregator.models import Source
 
 
 # This set of classes isn't really for direct use, but through subclasses.
@@ -26,6 +27,7 @@ class Record(Base):
     '''
     
     slug = models.CharField(max_length=100, unique=True)
+    sources = models.ManyToManyField(Source)
 
     def __str__(self):
         return self.slug
@@ -36,37 +38,37 @@ class Record(Base):
 #     pass
 
 
-class Name(Base):
-    '''
-    A structured (additional) Name attribute, usable in multiple,
-    i.e. to simulate Dublin Core.  Usually from an external source.
-    '''
+# class Name(Base):
+#     '''
+#     A structured (additional) Name attribute, usable in multiple,
+#     i.e. to simulate Dublin Core.  Usually from an external source.
+#     '''
 
-    name = models.CharField(max_length=100)
-    records = models.ForeignKey('Record',
-        on_delete=models.CASCADE, related_name="names")
-
-
-class Identifier(Base):
-    '''
-    A structured (additional) Identifier attribute, usable in multiple,
-    i.e. to simulate Dublin Core.  Usually from an external source.
-    '''
-
-    identifier = models.CharField(max_length=255)
-    records = models.ForeignKey('Record', 
-        on_delete=models.CASCADE, related_name="identifiers")
+#     name = models.CharField(max_length=100)
+#     records = models.ForeignKey('Record',
+#         on_delete=models.CASCADE, related_name="names")
 
 
-class Description(Base):
-    '''
-    A structured (additional) Description attribute, usable in multiple,
-    i.e. to simulate Dublin Core.  Usually from an external source.
-    '''
+# class Identifier(Base):
+#     '''
+#     A structured (additional) Identifier attribute, usable in multiple,
+#     i.e. to simulate Dublin Core.  Usually from an external source.
+#     '''
 
-    description = models.CharField(max_length=250)
-    records = models.ForeignKey('Record', 
-        on_delete=models.CASCADE, related_name="descriptions")
+#     identifier = models.CharField(max_length=255)
+#     records = models.ForeignKey('Record', 
+#         on_delete=models.CASCADE, related_name="identifiers")
+
+
+# class Description(Base):
+#     '''
+#     A structured (additional) Description attribute, usable in multiple,
+#     i.e. to simulate Dublin Core.  Usually from an external source.
+#     '''
+
+#     description = models.CharField(max_length=250)
+#     records = models.ForeignKey('Record', 
+#         on_delete=models.CASCADE, related_name="descriptions")
 
 
 # class RecordRelation(Base):

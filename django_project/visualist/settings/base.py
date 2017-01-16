@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'visualist',
+    'aggregator',
     'base',
     'cms',
     'thesaurus',
@@ -29,7 +30,6 @@ INSTALLED_APPS = [
     'catalog',
     'directory',
 
-    # 'aggregator',
     # 'archive',
     # 'crosswalk',
 ]

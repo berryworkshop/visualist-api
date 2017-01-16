@@ -20,6 +20,10 @@ class Person(Contact):
     first_name = models.CharField(max_length=100, blank=True, null=True)
     last_name = models.CharField(max_length=100)
 
+    # TODO
+    # date_birth = ApproximateDateField()
+    # date_death = ApproximateDateField()
+
     def name(self):
         return "{}, {}".format(self.last_name, self.first_name)
 
@@ -49,8 +53,17 @@ class Organization(Contact):
         blank=False,
         default="ASSOCIATION")
 
+    members = models.ManyToManyField(Contact,
+        related_name="parent_organizations", symmetrical=False)
+
     def __str__(self):
         return self.name
+
+
+class Alias(Base):
+    '''An alternate name for a place or organization'''
+    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    name = models.CharField(max_length=250)
 
 
 class ContactItem(Base):

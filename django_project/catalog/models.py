@@ -1,7 +1,8 @@
 from django.db import models
 from base.models import Base, Record
 from thesaurus.models import Term
-
+from directory.models import Contact
+from atlas.models import Venue
 
 
 class Thing(Record):
@@ -14,12 +15,15 @@ class Thing(Record):
     synopsis = models.TextField(max_length=250, blank=True, null=True)
     dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True)
 
+    location = models.ForeignKey(Venue, on_delete=models.PROTECT)
+
 
 class Work(Thing):
     '''
     Usually a piece of artwork, a Work is the primary unit used.
     '''
-    pass
+    
+    creators = models.ManyToManyField(Contact)
 
     # Medium
     # Genre

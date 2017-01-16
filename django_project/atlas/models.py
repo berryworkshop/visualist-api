@@ -1,6 +1,7 @@
 from django.db import models
 from base.models import Base, Record
 # from thesaurus.models import Term
+from directory.models import Contact
 from .countries import COUNTRIES
 from django.core.validators import MaxValueValidator, MinValueValidator
 
@@ -13,6 +14,7 @@ class Place(Base):
     '''
 
     address = models.ForeignKey('Address', on_delete=models.PROTECT)
+    room = models.CharField(max_length=250, blank=True, null=True)
 
     latitude = models.DecimalField(
         max_digits=10, decimal_places=8,
@@ -39,8 +41,12 @@ class Place(Base):
 class Venue(Record):
     '''A named venue for showing or experiencing art.'''
     
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, blank=True, null=True)
     synopsis = models.TextField(max_length=250, blank=True, null=True)
+
+    occupant = models.OneToOneField(Contact, on_delete=models.PROTECT)
+    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT)
+    appointment_only = models.BooleanField(default=False)
 
     place = models.ForeignKey('Place',
         on_delete=models.PROTECT, blank=True, null=True)
@@ -48,7 +54,10 @@ class Venue(Record):
     # capacity
 
     def __str__(self):
-        return self.name
+        if self.name:
+            return self.name
+        else:
+            return self.occupant
 
 
 class Address(Base):
@@ -71,6 +80,11 @@ class Address(Base):
         return "{}, {}, {}, {}, {}".format(street, self.city,
             self.state_province, self.postal_code, self.country)
 
+
+class HourSet(Base):
+    '''A set of operating hours'''
+
+    pass
 
 
 # class Area(Term):
