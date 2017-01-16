@@ -21,14 +21,13 @@ class Event(Record):
 
     name = models.CharField(max_length=100)
 
-    synopsis = models.TextField(max_length=250, blank=True, null=True)
+    synopsis = models.TextField(max_length=250, blank=True)
     event_type = models.CharField(max_length=20,
         choices=TYPES, default="EXHIBITION")
 
-    related_events = models.ManyToManyField('self')
-    venues = models.ManyToManyField(Venue)
-
-    creators = models.ManyToManyField(Contact)
+    related_events = models.ManyToManyField('self', blank=True)
+    venues = models.ManyToManyField(Venue, blank=True)
+    creators = models.ManyToManyField(Contact, blank=True)
 
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])

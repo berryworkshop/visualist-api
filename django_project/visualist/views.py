@@ -1,6 +1,6 @@
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
-from calendar.models import Event
+from timeline.models import Event
 
 
 class HomeView(TemplateView):

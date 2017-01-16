@@ -14,7 +14,7 @@ class Place(Base):
     '''
 
     address = models.ForeignKey('Address', on_delete=models.PROTECT)
-    room = models.CharField(max_length=250, blank=True, null=True)
+    room = models.CharField(max_length=250, blank=True)
 
     latitude = models.DecimalField(
         max_digits=10, decimal_places=8,
@@ -41,11 +41,13 @@ class Place(Base):
 class Venue(Record):
     '''A named venue for showing or experiencing art.'''
     
-    name = models.CharField(max_length=100, blank=True, null=True)
-    synopsis = models.TextField(max_length=250, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True)
+    synopsis = models.TextField(max_length=250, blank=True)
 
-    occupant = models.OneToOneField(Contact, on_delete=models.PROTECT)
-    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT)
+    occupant = models.OneToOneField(Contact, on_delete=models.PROTECT, 
+        blank=True, null=True)
+    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT,
+        blank=True, null=True)
     appointment_only = models.BooleanField(default=False)
 
     place = models.ForeignKey('Place',
@@ -66,9 +68,9 @@ class Address(Base):
     class Meta:
         verbose_name_plural = "addresses"
 
-    street = models.TextField()
-    city = models.CharField(max_length=100)
-    state_province = models.CharField(max_length=100)
+    street = models.TextField(blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    state_province = models.CharField(max_length=100, blank=True)
     postal_code = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=3,
         choices=COUNTRIES,

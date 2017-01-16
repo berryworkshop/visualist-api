@@ -5,32 +5,38 @@ from directory.models import Contact
 from atlas.models import Venue
 
 
-class Thing(Record):
+class Work(Record):
     '''
-    A physical object, without the characteristics of an artwork,
-    e.g. an ephemeron or natural structure.
-    '''
-    
-    name = models.CharField(max_length=100)
-    synopsis = models.TextField(max_length=250, blank=True, null=True)
-    dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True)
-
-    location = models.ForeignKey(Venue, on_delete=models.PROTECT)
-
-
-class Work(Thing):
-    '''
-    Usually a piece of artwork, a Work is the primary unit used.
+    A thing created by a human or humans.
     '''
     
-    creators = models.ManyToManyField(Contact)
+    name = models.CharField(max_length=100, default="Untitled")
+    synopsis = models.TextField(max_length=250, blank=True)
+    creators = models.ManyToManyField(Contact, blank=True)
+
+
+class PhysicalWork(Work):
+    '''
+    A physical work, with mass and volume.
+    '''
+
+    location = models.ForeignKey(Venue, on_delete=models.PROTECT,
+        blank=True, null=True)   
+    dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True) 
 
     # Medium
     # Genre
     # Condition
 
 
-# class Ephemeron(Thing):
+class TemporalWork(Work):
+    '''A performable, time-driven work.'''
+
+    pass
+    # duration = models.DecimalField(max_digits=, decimal_places=2)
+
+
+# class Ephemeron(Work):
 #     '''
 #     A thing associated with an Event or Work.
 #     '''
@@ -55,9 +61,18 @@ class DimensionSet(Base):
     dimension_unit = models.CharField(max_length=2,
         choices=UNITS, default='in')
 
+    def __str__(self):
+        return "{}x{}x{} {}".format(
+            self.length, self.width, self.height, self.dimension_unit)
+
 
 # class Medium(Term):
-#     '''The materials, tools or techniques used to make the work.'''
+#     '''The materials, tools or techniques of which the work consists.'''
+#     pass
+
+
+# class Format(Term):
+#     '''The materials, tools or techniques on which the work relies.'''
 #     pass
 
 
@@ -66,6 +81,7 @@ class DimensionSet(Base):
 #     A formal art historical classification.
 #     '''
 #     pass
+
 
 # class Condition(Term):
 #     '''

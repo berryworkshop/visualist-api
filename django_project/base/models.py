@@ -1,7 +1,5 @@
 from django.db import models
 from django.utils.timezone import now
-from aggregator.models import Source
-
 
 # This set of classes isn't really for direct use, but through subclasses.
 # Should not have views, for example.
@@ -27,10 +25,52 @@ class Record(Base):
     '''
     
     slug = models.CharField(max_length=100, unique=True)
-    sources = models.ManyToManyField(Source)
+    sources = models.ManyToManyField('Source', blank=True)
 
     def __str__(self):
         return self.slug
+
+
+class Source(models.Model):
+    '''
+    The object of a citation, e.g. an item of media, 
+    a location on the internet, a book, a speech, or a conversation.
+    '''
+    created = models.DateTimeField(default=now)
+    modified = models.DateTimeField(auto_now=True)
+
+    title = models.CharField(max_length=250)
+    author = models.CharField(max_length=250, blank=True)
+    publisher = models.CharField(max_length=250, blank=True)
+    date = models.CharField(max_length=250, blank=True)
+    place = models.CharField(max_length=250, blank=True)
+    URL = models.URLField(blank=True)
+    version = models.CharField(max_length=250, blank=True)
+    checked = models.DateField(blank=True, null=True)
+
+    TYPES = (
+        ('WEBSITE', 'website'),
+        ('BOOK', 'book'),
+        ('ARCHIVE', 'archive'),
+    )
+    source_type = models.CharField(max_length=250, choices=TYPES, blank=True)
+    notes = models.TextField(blank=True)
+
+    def populate_from_url(self):
+        # TODO
+        pass
+
+    def populate_from_previous(self):
+        # TODO
+        pass
+
+    def cite_mla(self):
+        # TODO
+        pass
+
+    def cite_chicago(self):
+        # TODO
+        pass
 
 
 # class Log(Base):

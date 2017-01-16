@@ -38,7 +38,7 @@
         mounted: function() {
             $.ajax({
                 context: this,
-                url: "/calendar/events.json",
+                url: "/timeline/events.json",
             }).done(function(data) {
                 this.object_list = data.results
             })

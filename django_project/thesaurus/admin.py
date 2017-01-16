@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import (
+    # Contact,
+    Vocabulary,
+    Term,
+    )
 
-# Register your models here.
+admin.site.register(Vocabulary)
+admin.site.register(Term)

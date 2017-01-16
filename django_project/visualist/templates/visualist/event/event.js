@@ -103,7 +103,7 @@ var event = new Vue({
     mounted: function() {
         $.ajax({
             context: this,
-            url: "/calendar/events/1.json",
+            url: "/timeline/events/1.json",
         }).done(function(data) {
             this.obj.title = data.name      
         })

@@ -8,7 +8,7 @@ class Contact(Record):
     The abstract superclass for People and Organizations,
     or other relevant future Record types.
     '''
-    synopsis = models.TextField(max_length=250, blank=True, null=True)
+    synopsis = models.TextField(max_length=250, blank=True)
 
 
 class Person(Contact):
@@ -17,7 +17,7 @@ class Person(Contact):
     class Meta:
         verbose_name_plural = 'people'
 
-    first_name = models.CharField(max_length=100, blank=True, null=True)
+    first_name = models.CharField(max_length=100, blank=True)
     last_name = models.CharField(max_length=100)
 
     # TODO
@@ -50,7 +50,6 @@ class Organization(Contact):
 
     organization_types = models.CharField(max_length=20,
         choices=TYPES,
-        blank=False,
         default="ASSOCIATION")
 
     members = models.ManyToManyField(Contact,

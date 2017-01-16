@@ -1,6 +1,6 @@
 from django.core.urlresolvers import reverse, resolve
 from django.test import TestCase, Client
-from calendar.models import Event
+from timeline.models import Event
 
 
 class HomeTestCase(TestCase):
