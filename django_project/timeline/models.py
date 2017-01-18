@@ -3,7 +3,7 @@ from base.models import Base, Record
 from thesaurus.models import Term
 from django.urls import reverse
 from django.utils.timezone import now
-from atlas.models import Venue
+from placefinder.models import Venue
 from directory.models import Contact
 
 
@@ -11,6 +11,7 @@ class Event(Record):
     '''
     A span on a timeline with a beginning and end.
     '''
+
     start = models.DateTimeField(blank=False, null=False, default=now)
     end = models.DateTimeField(blank=True, null=True, default=now)
 
@@ -19,15 +20,8 @@ class Event(Record):
         ("PERFORMANCE", "performance"),
     )
 
-    name = models.CharField(max_length=100)
-
-    synopsis = models.TextField(max_length=250, blank=True)
     event_type = models.CharField(max_length=20,
         choices=TYPES, default="EXHIBITION")
-
-    related_events = models.ManyToManyField('self', blank=True)
-    venues = models.ManyToManyField(Venue, blank=True)
-    creators = models.ManyToManyField(Contact, blank=True)
 
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])

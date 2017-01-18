@@ -20,18 +20,17 @@ INSTALLED_APPS = [
     'django_extensions',
 
     'visualist',
-    # 'aggregator',
     'base',
     'cms',
     'thesaurus',
 
-    'atlas',
+    'placefinder',
     'timeline',
     'catalog',
     'directory',
 
-    # 'archive',
-    # 'crosswalk',
+    'archive',
+    'crosswalk',
 ]
 
 MIDDLEWARE = [

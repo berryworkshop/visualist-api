@@ -1,8 +1,6 @@
 from django.contrib import admin
 from .models import (
-    # Contact,
-    Person,
-    Organization,
+    Contact,
     Alias,
     Account,
     Email,
@@ -11,16 +9,11 @@ from .models import (
     )
 
 
-class OrganizationAdmin(admin.ModelAdmin):
+class ContactAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
 
 
-class PersonAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("last_name", "first_name")}
-
-
-admin.site.register(Person, PersonAdmin)
-admin.site.register(Organization, OrganizationAdmin)
+admin.site.register(Contact, ContactAdmin)
 admin.site.register(Alias)
 admin.site.register(Account)
 admin.site.register(Email)

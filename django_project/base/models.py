@@ -24,53 +24,64 @@ class Record(Base):
     by the User in the interface, often via "cards".
     '''
     
-    slug = models.CharField(max_length=100, unique=True)
-    sources = models.ManyToManyField('Source', blank=True)
+    class Meta:
+        abstract = True
+
+    name = models.CharField(max_length=250)
+    slug = models.CharField(max_length=250, unique=True)
+    description = models.TextField()
+
+    # source may work implemented as a relation attribute
+    # sources = models.ManyToManyField('base.Source', blank=True)
+
+    related_events = models.ManyToManyField('timeline.Event', blank=True)
+    related_venues = models.ManyToManyField('placefinder.Venue', blank=True)
+    related_works = models.ManyToManyField('catalog.Work', blank=True)
+    related_contacts = models.ManyToManyField('directory.Contact', blank=True)
+    related_pages = models.ManyToManyField('cms.Page', blank=True)
 
     def __str__(self):
-        return self.slug
+        return self.name
 
 
-class Source(models.Model):
-    '''
-    The object of a citation, e.g. an item of media, 
-    a location on the internet, a book, a speech, or a conversation.
-    '''
-    created = models.DateTimeField(default=now)
-    modified = models.DateTimeField(auto_now=True)
+# class Source(Base):
+#     '''
+#     The object of a citation, e.g. an item of media, 
+#     a location on the internet, a book, a speech, or a conversation.
+#     '''
 
-    title = models.CharField(max_length=250)
-    author = models.CharField(max_length=250, blank=True)
-    publisher = models.CharField(max_length=250, blank=True)
-    date = models.CharField(max_length=250, blank=True)
-    place = models.CharField(max_length=250, blank=True)
-    URL = models.URLField(blank=True)
-    version = models.CharField(max_length=250, blank=True)
-    checked = models.DateField(blank=True, null=True)
+#     title = models.CharField(max_length=250)
+#     author = models.CharField(max_length=250, blank=True)
+#     publisher = models.CharField(max_length=250, blank=True)
+#     date = models.CharField(max_length=250, blank=True)
+#     place = models.CharField(max_length=250, blank=True)
+#     URL = models.URLField(blank=True)
+#     version = models.CharField(max_length=250, blank=True)
+#     checked = models.DateField(blank=True, null=True)
 
-    TYPES = (
-        ('WEBSITE', 'website'),
-        ('BOOK', 'book'),
-        ('ARCHIVE', 'archive'),
-    )
-    source_type = models.CharField(max_length=250, choices=TYPES, blank=True)
-    notes = models.TextField(blank=True)
+#     TYPES = (
+#         ('WEBSITE', 'website'),
+#         ('BOOK', 'book'),
+#         ('ARCHIVE', 'archive'),
+#     )
+#     source_type = models.CharField(max_length=250, choices=TYPES, blank=True)
+#     notes = models.TextField(blank=True)
 
-    def populate_from_url(self):
-        # TODO
-        pass
+#     def populate_from_url(self):
+#         # TODO
+#         pass
 
-    def populate_from_previous(self):
-        # TODO
-        pass
+#     def populate_from_previous(self):
+#         # TODO
+#         pass
 
-    def cite_mla(self):
-        # TODO
-        pass
+#     def cite_mla(self):
+#         # TODO
+#         pass
 
-    def cite_chicago(self):
-        # TODO
-        pass
+#     def cite_chicago(self):
+#         # TODO
+#         pass
 
 
 # class Log(Base):
@@ -115,24 +126,5 @@ class Source(models.Model):
 #     '''
 #     A connection to another local model, usually between Records
 #     and their derivatives.
-#     '''
-#     pass
-
-# Directory Contact
-# Catalog Thing
-# Calendar PointInTime
-# Atlas PointInSpace
-
-
-# class ContactThing(RecordRelation):
-#     '''
-#     Directory Contact <--> Catalog Thing
-#     '''
-#     pass
-
-
-# class ContactThing(RecordRelation):
-#     '''
-#     Directory Contact <--> Catalog Thing
 #     '''
 #     pass

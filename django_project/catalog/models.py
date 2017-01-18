@@ -2,41 +2,22 @@ from django.db import models
 from base.models import Base, Record
 from thesaurus.models import Term
 from directory.models import Contact
-from atlas.models import Venue
+from placefinder.models import Venue
 
 
 class Work(Record):
     '''
     A thing created by a human or humans.
     '''
-    
-    name = models.CharField(max_length=100, default="Untitled")
-    synopsis = models.TextField(max_length=250, blank=True)
-    creators = models.ManyToManyField(Contact, blank=True)
 
-
-class PhysicalWork(Work):
-    '''
-    A physical work, with mass and volume.
-    '''
-
-    location = models.ForeignKey(Venue, on_delete=models.PROTECT,
-        blank=True, null=True)   
+    # for physical works
     dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True) 
 
-    # Medium
-    # Genre
-    # Condition
-
-
-class TemporalWork(Work):
-    '''A performable, time-driven work.'''
-
-    pass
+    # for temporal works
     # duration = models.DecimalField(max_digits=, decimal_places=2)
 
 
-# class Ephemeron(Work):
+# class Ephemeron(Record):
 #     '''
 #     A thing associated with an Event or Work.
 #     '''
