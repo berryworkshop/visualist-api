@@ -13,6 +13,13 @@ class Work(Record):
     # for physical works
     dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True) 
 
+    events = models.ManyToManyField('timeline.Event', blank=True,
+        through='base.WorkEventJoin')
+    venues = models.ManyToManyField('placefinder.Venue', blank=True,
+        through='base.WorkVenueJoin')
+    contacts = models.ManyToManyField('directory.Contact', blank=True,
+        through='base.WorkContactJoin')
+
     # for temporal works
     # duration = models.DecimalField(max_digits=, decimal_places=2)
 
@@ -43,7 +50,7 @@ class DimensionSet(Base):
         choices=UNITS, default='in')
 
     def __str__(self):
-        return "{}x{}x{} {}".format(
+        return "{} x {} x {} {}".format(
             self.length, self.width, self.height, self.dimension_unit)
 
 

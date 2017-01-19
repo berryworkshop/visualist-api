@@ -20,22 +20,40 @@ class Contact(Record):
         ('MUSEUM', 'museum'),
         ('SCHOOL', 'school'),
     )
-
     contact_types = models.CharField(max_length=20,
         choices=TYPES,
         default="PERSON")
 
-    first_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=100, blank=True)
 
     # TODO
     # date_birth = ApproximateDateField()
     # date_death = ApproximateDateField()
 
-    org_members = models.ManyToManyField('Contact',
-        related_name="member_of")
+    contact_parents = models.ManyToManyField('self',
+        symmetrical=False,
+        blank=True,
+        through="Relationship",
+        through_fields=('parent', 'child'))
+
+    venues = models.ManyToManyField('placefinder.Venue', blank=True,
+        through='base.ContactVenueJoin')
 
     def __str__(self):
         return self.name
+
+
+class Relationship(models.Model):
+    parent = models.ForeignKey('directory.Contact', on_delete=models.CASCADE,
+        related_name="children")
+    child = models.ForeignKey('directory.Contact', on_delete=models.CASCADE,
+        related_name="parents")
+    RELATIONS = (
+        ('MEMBER','is member of'),
+        ('FRIEND','is friend of'),
+    )
+    relation_type = models.CharField(max_length=25, 
+        choices=RELATIONS, default='MEMBER')
 
 
 class Alias(Base):

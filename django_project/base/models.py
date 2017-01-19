@@ -29,19 +29,83 @@ class Record(Base):
 
     name = models.CharField(max_length=250)
     slug = models.CharField(max_length=250, unique=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
 
     # source may work implemented as a relation attribute
     # sources = models.ManyToManyField('base.Source', blank=True)
 
-    related_events = models.ManyToManyField('timeline.Event', blank=True)
-    related_venues = models.ManyToManyField('placefinder.Venue', blank=True)
-    related_works = models.ManyToManyField('catalog.Work', blank=True)
-    related_contacts = models.ManyToManyField('directory.Contact', blank=True)
-    related_pages = models.ManyToManyField('cms.Page', blank=True)
+    # related_events = models.ManyToManyField('timeline.Event', blank=True)
+    # related_venues = models.ManyToManyField('placefinder.Venue', blank=True)
+    # related_works = models.ManyToManyField('catalog.Work', blank=True)
+    # related_contacts = models.ManyToManyField('directory.Contact', blank=True)
+    # related_pages = models.ManyToManyField('cms.Page', blank=True)
 
     def __str__(self):
         return self.name
+
+
+class WorkContactJoin(models.Model):
+    work = models.ForeignKey('catalog.Work', on_delete=models.CASCADE)
+    contact = models.ForeignKey('directory.Contact', on_delete=models.CASCADE)
+    RELATIONS = (
+        ('CREATED','created by'),
+        ('PUBLISHED','published by'),
+        ('OWNED', 'owned by'),
+        ('COLLECTION', 'in the collection of'),
+    )
+    relation_type = models.CharField(max_length=25, 
+        choices=RELATIONS, default='CREATED')
+
+
+class WorkEventJoin(models.Model):
+    work = models.ForeignKey('catalog.Work', on_delete=models.CASCADE)
+    event = models.ForeignKey('timeline.Event', on_delete=models.CASCADE)
+    RELATIONS = (
+        ('SHOWN','shown during'),
+    )
+    relation_type = models.CharField(max_length=25,
+        choices=RELATIONS, default='SHOWN')
+
+
+class WorkVenueJoin(models.Model):
+    work = models.ForeignKey('catalog.Work', on_delete=models.CASCADE)
+    venue = models.ForeignKey('placefinder.Venue', on_delete=models.CASCADE)
+    RELATIONS = (
+        ('SHOWN','shown at'),
+    )
+    relation_type = models.CharField(max_length=25,
+        choices=RELATIONS, default='SHOWN')
+
+
+class EventVenueJoin(models.Model):
+    event = models.ForeignKey('timeline.Event', on_delete=models.CASCADE)
+    venue = models.ForeignKey('placefinder.Venue', on_delete=models.CASCADE)
+    RELATIONS = (
+        ('HOSTED','hosted at'),
+    )
+    relation_type = models.CharField(max_length=25,
+        choices=RELATIONS, default='SHOWN')
+
+
+class EventContactJoin(models.Model):
+    event = models.ForeignKey('timeline.Event', on_delete=models.CASCADE)
+    contact = models.ForeignKey('directory.Contact', on_delete=models.CASCADE)
+    RELATIONS = (
+        ('PRODUCED','produced by'),
+    )
+    relation_type = models.CharField(max_length=25,
+        choices=RELATIONS, default='PRODUCED')
+
+
+class ContactVenueJoin(models.Model):
+    contact = models.ForeignKey('directory.Contact', on_delete=models.CASCADE)
+    venue = models.ForeignKey('placefinder.Venue', on_delete=models.CASCADE)
+    RELATIONS = (
+        ('OCCUPIED','occupant of'),
+        ('OWNER','owner of'),
+    )
+    relation_type = models.CharField(max_length=25,
+        choices=RELATIONS, default='OCCUPIED')
 
 
 # class Source(Base):

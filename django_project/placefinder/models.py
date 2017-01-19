@@ -41,15 +41,9 @@ class Place(Base):
 class Venue(Record):
     '''A named venue for showing or experiencing art.'''
     
-    occupant = models.OneToOneField('directory.Contact',
-        on_delete=models.PROTECT, blank=True, null=True,
-        related_name="occupant_of")
     hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT,
         blank=True, null=True)
     appointment_only = models.BooleanField(default=False)
-
-    place = models.ForeignKey('Place',
-        on_delete=models.PROTECT, blank=True, null=True)
 
     # capacity
 

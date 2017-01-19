@@ -23,6 +23,11 @@ class Event(Record):
     event_type = models.CharField(max_length=20,
         choices=TYPES, default="EXHIBITION")
 
+    venues = models.ManyToManyField('placefinder.Venue', blank=True,
+        through='base.EventVenueJoin')
+    contacts = models.ManyToManyField('directory.Contact', blank=True,
+        through='base.EventContactJoin')
+
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])
 

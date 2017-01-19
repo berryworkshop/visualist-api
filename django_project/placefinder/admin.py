@@ -4,11 +4,20 @@ from .models import (
     HourSet,
     Place,
     Venue,
-    )
-
+)
+from base.admin import (
+    WorkVenueInline,
+    EventVenueInline,
+    ContactVenueInline
+)
 
 class VenueAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+    inlines = (
+        WorkVenueInline,
+        EventVenueInline,
+        ContactVenueInline,
+    )
 
 
 admin.site.register(Address)
