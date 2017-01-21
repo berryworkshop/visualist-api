@@ -1,7 +1,9 @@
+from .serializers import EventSerializer
+from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
-from timeline.models import Event
-
+from rest_framework import viewsets
+from .models.time import Event
 
 class HomeView(TemplateView):
     template_name = 'visualist/home/home.html'
@@ -29,3 +31,11 @@ class EventsView(ListView):
 # class PeopleView(ListView):
 #     model = Person
 #     template_name = 'visualist/people/people.html'
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows Events to be viewed or edited.
+    '''
+    queryset = Event.objects.all()
+    serializer_class = EventSerializer

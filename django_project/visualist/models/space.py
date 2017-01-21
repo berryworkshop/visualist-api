@@ -1,8 +1,8 @@
 from django.db import models
 from base.models import Base, Record
 # from thesaurus.models import Term
-from directory.models import Contact
-from .countries import COUNTRIES
+# from .people import Contact
+# from .countries import COUNTRIES
 from django.core.validators import MaxValueValidator, MinValueValidator
 
 class Place(Base):
@@ -65,7 +65,7 @@ class Address(Base):
     state_province = models.CharField(max_length=100, blank=True)
     postal_code = models.CharField(max_length=100, blank=True)
     country = models.CharField(max_length=3,
-        choices=COUNTRIES,
+        # choices=COUNTRIES,
         default="USA")
 
     def __str__(self):

@@ -1,8 +1,10 @@
 from django.db import models
 from base.models import Base, Record
-from thesaurus.models import Term
-from directory.models import Contact
-from placefinder.models import Venue
+# from thesaurus.models import Term
+# from .people import Contact
+# from .space import Venue
+# from .time import Event
+# from .joins import WorkEventJoin, WorkVenueJoin, WorkContactJoin
 
 
 class Work(Record):
@@ -13,12 +15,12 @@ class Work(Record):
     # for physical works
     dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True) 
 
-    events = models.ManyToManyField('timeline.Event', blank=True,
-        through='base.WorkEventJoin')
-    venues = models.ManyToManyField('placefinder.Venue', blank=True,
-        through='base.WorkVenueJoin')
-    contacts = models.ManyToManyField('directory.Contact', blank=True,
-        through='base.WorkContactJoin')
+    events = models.ManyToManyField('Event', blank=True,
+        through='WorkEventJoin')
+    venues = models.ManyToManyField('Venue', blank=True,
+        through='WorkVenueJoin')
+    contacts = models.ManyToManyField('Contact', blank=True,
+        through='WorkContactJoin')
 
     # for temporal works
     # duration = models.DecimalField(max_digits=, decimal_places=2)

@@ -1,7 +1,8 @@
 from django.db import models
 from base.models import Base, Record
 from django.core.validators import MaxValueValidator
-
+# from .joins import ContactVenueJoin
+# from .space import Venue
 
 class Contact(Record):
     '''
@@ -36,17 +37,17 @@ class Contact(Record):
         through="Relationship",
         through_fields=('parent', 'child'))
 
-    venues = models.ManyToManyField('placefinder.Venue', blank=True,
-        through='base.ContactVenueJoin')
+    venues = models.ManyToManyField('Venue', blank=True,
+        through='ContactVenueJoin')
 
     def __str__(self):
         return self.name
 
 
 class Relationship(models.Model):
-    parent = models.ForeignKey('directory.Contact', on_delete=models.CASCADE,
+    parent = models.ForeignKey('Contact', on_delete=models.CASCADE,
         related_name="children")
-    child = models.ForeignKey('directory.Contact', on_delete=models.CASCADE,
+    child = models.ForeignKey('Contact', on_delete=models.CASCADE,
         related_name="parents")
     RELATIONS = (
         ('MEMBER','is member of'),
@@ -58,7 +59,7 @@ class Relationship(models.Model):
 
 class Alias(Base):
     '''An alternate name for a place or organization'''
-    contact = models.ForeignKey(Contact, on_delete=models.CASCADE)
+    contact = models.ForeignKey('Contact', on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
 
 

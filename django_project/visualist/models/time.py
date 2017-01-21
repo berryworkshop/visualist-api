@@ -1,10 +1,11 @@
 from django.db import models
 from base.models import Base, Record
-from thesaurus.models import Term
+# from thesaurus.models import Term
 from django.urls import reverse
 from django.utils.timezone import now
-from placefinder.models import Venue
-from directory.models import Contact
+# from .space import Venue
+# from .people import Contact
+# from .joins import EventVenueJoin, ContactEventJoin
 
 
 class Event(Record):
@@ -18,15 +19,16 @@ class Event(Record):
     TYPES = (
         ("EXHIBITION", "exhibition"),
         ("PERFORMANCE", "performance"),
+        ("WORKSHOP", "workshop"),
     )
 
     event_type = models.CharField(max_length=20,
         choices=TYPES, default="EXHIBITION")
 
-    venues = models.ManyToManyField('placefinder.Venue', blank=True,
-        through='base.EventVenueJoin')
-    contacts = models.ManyToManyField('directory.Contact', blank=True,
-        through='base.EventContactJoin')
+    venues = models.ManyToManyField('Venue', blank=True,
+        through='EventVenueJoin')
+    contacts = models.ManyToManyField('Contact', blank=True,
+        through='ContactEventJoin')
 
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])

@@ -19,18 +19,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_extensions',
 
-    'visualist',
     'base',
-    'cms',
-    'thesaurus',
+    'visualist',
 
-    'placefinder',
-    'timeline',
-    'catalog',
-    'directory',
-
-    'archive',
-    'crosswalk',
+    # 'thesaurus',
+    # 'cms',
+    # 'archive',
+    # 'crosswalk',
 ]
 
 MIDDLEWARE = [
