@@ -1,30 +1,35 @@
 from django.db import models
-from base.models import Base, Record
+from .base import Base, Record
 # from thesaurus.models import Term
-# from .people import Contact
+# from .people import Body
 # from .countries import COUNTRIES
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-class Place(Base):
+
+class Place(Record):
     '''
-    An abstract unit of geographic space. 
-    This uses multi-table inheritance, so be careful with adjustments.
-    The abstract superclass for Events, or other relevant future Record types.
-    Not generally to be used directly.  Should not have a view, for example.
+    A named place, usually a venue, for showing or experiencing art.
     '''
 
-    address = models.ForeignKey('Address', on_delete=models.PROTECT)
+    address = models.ForeignKey('Address', on_delete=models.PROTECT,
+        blank=True, null=True)
     room = models.CharField(max_length=250, blank=True)
 
     latitude = models.DecimalField(
         max_digits=10, decimal_places=8,
-        validators=[MaxValueValidator(90), MinValueValidator(-90)])
+        validators=[MaxValueValidator(90), MinValueValidator(-90)],
+        null=True, blank=True)
     longitude = models.DecimalField(
         max_digits=11, decimal_places=8,
-        validators=[MaxValueValidator(180), MinValueValidator(-180)])
+        validators=[MaxValueValidator(180), MinValueValidator(-180)],
+        null=True, blank=True)
     # altitude = models.DecimalField(
     #     max_digits=11, decimal_places=4,
     #     blank=True, null=True)
+
+    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT,
+        blank=True, null=True)
+    appointment_only = models.BooleanField(default=False)
 
     def update_coordinates_from_address(self):
         # TODO
@@ -33,19 +38,6 @@ class Place(Base):
     def update_address_from_coordinates(self):
         # TODO
         pass
-
-    def __str__(self):
-        return "{}, {}".format(self.longitude, self.latitude)
-
-
-class Venue(Record):
-    '''A named venue for showing or experiencing art.'''
-    
-    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT,
-        blank=True, null=True)
-    appointment_only = models.BooleanField(default=False)
-
-    # capacity
 
     def __str__(self):
         if self.name:

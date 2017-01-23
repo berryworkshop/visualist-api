@@ -1,11 +1,16 @@
 # from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
-from .models.time import Event
+from .models import Event, Place
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, EventSerializer
+from .serializers import (
+    UserSerializer,
+    GroupSerializer,
+    EventSerializer,
+    PlaceSerializer
+)
 
 
 class HomeView(TemplateView):
@@ -14,18 +19,6 @@ class HomeView(TemplateView):
 
 class SearchView(TemplateView):
     template_name = 'visualist/search/search.html'
-
-
-# class PersonView(DetailView):
-#     model = Person
-#     template_name = 'visualist/person/person.html'
-
-
-# class PeopleView(ListView):
-#     model = Person
-#     template_name = 'visualist/people/people.html'
-
-
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -60,3 +53,21 @@ class EventViewSet(viewsets.ModelViewSet):
     '''
     queryset = Event.objects.all()
     serializer_class = EventSerializer
+
+
+# class PlaceView(DetailView):
+#     model = Place
+#     template_name = 'visualist/place/place.html'
+    
+
+# class PlacesView(ListView):
+#     model = Place
+#     template_name = 'visualist/places/places.html'
+
+
+class PlaceViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows Places to be viewed or edited.
+    '''
+    queryset = Place.objects.all()
+    serializer_class = PlaceSerializer

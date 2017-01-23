@@ -1,11 +1,11 @@
 from django.db import models
-from base.models import Base, Record
+from .base import Base, Record
 # from thesaurus.models import Term
 from django.urls import reverse
 from django.utils.timezone import now
-# from .space import Venue
-# from .people import Contact
-# from .joins import EventVenueJoin, ContactEventJoin
+# from .space import Place
+# from .people import Body
+# from .joins import EventPlaceJoin, BodyEventJoin
 
 
 class Event(Record):
@@ -25,10 +25,10 @@ class Event(Record):
     event_type = models.CharField(max_length=20,
         choices=TYPES, default="EXHIBITION")
 
-    venues = models.ManyToManyField('Venue', blank=True,
-        through='EventVenueJoin')
-    contacts = models.ManyToManyField('Contact', blank=True,
-        through='ContactEventJoin')
+    places = models.ManyToManyField('Place', blank=True,
+        through='EventPlaceJoin')
+    bodies = models.ManyToManyField('Body', blank=True,
+        through='BodyEventJoin')
 
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])
@@ -55,7 +55,7 @@ class Event(Record):
 #     date end
 #     Receptions
 #     names
-#     Venue -> org
+#     Place -> org
 #     Facebook links
 #     weblinks
 #     picture
@@ -122,24 +122,24 @@ class Event(Record):
 #         Description
 #         Is this event on-site (y/n)
 #     If not
-#         Venue
+#         Place
 #         Address
 #         City, State, Zip
 #         Phone 
 #         Email
 #         Web
 #         For internal use only
-#             Contact name
-#             Contact email
+#             Body name
+#             Body email
 
 # class Event(Base):
    # when = models.DateTimeField()
    # duration = models.IntegerField()
-   # venue = models.ForeignKey('Organization', models.SET_NULL)
+   # place = models.ForeignKey('Organization', models.SET_NULL)
   # not sure about these ones
    # on_site = models.BooleanField(default=True)
-   # contact_name = ...
-   # contact_email = ...
+   # body_name = ...
+   # body_email = ...
   # EVENT_TYPES = (
        # ('EXHIBITION', 'exhibition'),
        # ('READING', 'reading'),

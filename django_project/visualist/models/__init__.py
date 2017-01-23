@@ -1,12 +1,12 @@
 from .joins import (
-    EventVenueJoin,
-    ContactEventJoin,
-    ContactVenueJoin,
-    WorkContactJoin,
+    EventPlaceJoin,
+    BodyEventJoin,
+    BodyPlaceJoin,
+    WorkBodyJoin,
     WorkEventJoin,
-    WorkVenueJoin
+    WorkPlaceJoin
 )
-from .people import Contact
-from .space import Venue
+from .people import Body
+from .space import Place
 from .things import Work
 from .time import Event

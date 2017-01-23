@@ -1,10 +1,10 @@
 from django.db import models
-from base.models import Base, Record
+from .base import Base, Record
 from django.core.validators import MaxValueValidator
-# from .joins import ContactVenueJoin
-# from .space import Venue
+# from .joins import BodyPlaceJoin
+# from .space import Place
 
-class Contact(Record):
+class Body(Record):
     '''
     A person or organization.
     '''
@@ -21,7 +21,7 @@ class Contact(Record):
         ('MUSEUM', 'museum'),
         ('SCHOOL', 'school'),
     )
-    contact_types = models.CharField(max_length=20,
+    body_types = models.CharField(max_length=20,
         choices=TYPES,
         default="PERSON")
 
@@ -31,23 +31,23 @@ class Contact(Record):
     # date_birth = ApproximateDateField()
     # date_death = ApproximateDateField()
 
-    contact_parents = models.ManyToManyField('self',
+    body_parents = models.ManyToManyField('self',
         symmetrical=False,
         blank=True,
         through="Relationship",
         through_fields=('parent', 'child'))
 
-    venues = models.ManyToManyField('Venue', blank=True,
-        through='ContactVenueJoin')
+    places = models.ManyToManyField('Place', blank=True,
+        through='BodyPlaceJoin')
 
     def __str__(self):
         return self.name
 
 
 class Relationship(models.Model):
-    parent = models.ForeignKey('Contact', on_delete=models.CASCADE,
+    parent = models.ForeignKey('Body', on_delete=models.CASCADE,
         related_name="children")
-    child = models.ForeignKey('Contact', on_delete=models.CASCADE,
+    child = models.ForeignKey('Body', on_delete=models.CASCADE,
         related_name="parents")
     RELATIONS = (
         ('MEMBER','is member of'),
@@ -59,12 +59,12 @@ class Relationship(models.Model):
 
 class Alias(Base):
     '''An alternate name for a place or organization'''
-    contact = models.ForeignKey('Contact', on_delete=models.CASCADE)
+    body = models.ForeignKey('Body', on_delete=models.CASCADE)
     name = models.CharField(max_length=250)
 
 
 class ContactItem(Base):
-    '''A superclass for shared functionality between contact line-items.'''
+    '''A superclass for shared functionality between body line-items.'''
 
     class Meta:
         abstract = True
@@ -74,7 +74,7 @@ class ContactItem(Base):
         ('PERSONAL','personal'), 
     )
 
-    contact = models.ForeignKey('Contact',
+    body = models.ForeignKey('Body',
         on_delete=models.CASCADE,
         related_name="%(class)s_set")
     contact_item_type = models.CharField(max_length=20,

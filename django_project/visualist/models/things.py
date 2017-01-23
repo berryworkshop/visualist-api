@@ -1,10 +1,10 @@
 from django.db import models
-from base.models import Base, Record
+from .base import Base, Record
 # from thesaurus.models import Term
-# from .people import Contact
-# from .space import Venue
+# from .people import Body
+# from .space import Place
 # from .time import Event
-# from .joins import WorkEventJoin, WorkVenueJoin, WorkContactJoin
+# from .joins import WorkEventJoin, WorkPlaceJoin, WorkBodyJoin
 
 
 class Work(Record):
@@ -17,10 +17,10 @@ class Work(Record):
 
     events = models.ManyToManyField('Event', blank=True,
         through='WorkEventJoin')
-    venues = models.ManyToManyField('Venue', blank=True,
-        through='WorkVenueJoin')
-    contacts = models.ManyToManyField('Contact', blank=True,
-        through='WorkContactJoin')
+    places = models.ManyToManyField('Place', blank=True,
+        through='WorkPlaceJoin')
+    bodies = models.ManyToManyField('Body', blank=True,
+        through='WorkBodyJoin')
 
     # for temporal works
     # duration = models.DecimalField(max_digits=, decimal_places=2)

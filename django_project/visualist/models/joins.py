@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.timezone import now
-# from .people import Contact
-# from .space import Venue
+# from .people import Body
+# from .space import Place
 # from .things import Work
 # from .time import Event
 
@@ -9,9 +9,9 @@ from django.utils.timezone import now
 # Should not have views, for example.
 
 
-class EventVenueJoin(models.Model):
+class EventPlaceJoin(models.Model):
     event = models.ForeignKey('Event', on_delete=models.CASCADE)
-    venue = models.ForeignKey('Venue', on_delete=models.CASCADE)
+    place = models.ForeignKey('Place', on_delete=models.CASCADE)
     RELATIONS = (
         ('HOSTED','hosted at'),
     )
@@ -19,9 +19,9 @@ class EventVenueJoin(models.Model):
         choices=RELATIONS, default='SHOWN')
 
 
-class ContactEventJoin(models.Model):
+class BodyEventJoin(models.Model):
     event = models.ForeignKey('Event', on_delete=models.CASCADE)
-    contact = models.ForeignKey('Contact', on_delete=models.CASCADE)
+    body = models.ForeignKey('Body', on_delete=models.CASCADE)
     RELATIONS = (
         ('PRODUCED','producer of'),
         ('HOSTED','host of'),
@@ -31,9 +31,9 @@ class ContactEventJoin(models.Model):
         choices=RELATIONS, default='PRODUCED')
 
 
-class ContactVenueJoin(models.Model):
-    contact = models.ForeignKey('Contact', on_delete=models.CASCADE)
-    venue = models.ForeignKey('Venue', on_delete=models.CASCADE)
+class BodyPlaceJoin(models.Model):
+    body = models.ForeignKey('Body', on_delete=models.CASCADE)
+    place = models.ForeignKey('Place', on_delete=models.CASCADE)
     RELATIONS = (
         ('OCCUPIED','occupant of'),
         ('OWNER','owner of'),
@@ -42,9 +42,9 @@ class ContactVenueJoin(models.Model):
         choices=RELATIONS, default='OCCUPIED')
 
 
-class WorkContactJoin(models.Model):
+class WorkBodyJoin(models.Model):
     work = models.ForeignKey('Work', on_delete=models.CASCADE)
-    contact = models.ForeignKey('Contact', on_delete=models.CASCADE)
+    body = models.ForeignKey('Body', on_delete=models.CASCADE)
     RELATIONS = (
         ('CREATED','created by'),
         ('PUBLISHED','published by'),
@@ -65,9 +65,9 @@ class WorkEventJoin(models.Model):
         choices=RELATIONS, default='SHOWN')
 
 
-class WorkVenueJoin(models.Model):
+class WorkPlaceJoin(models.Model):
     work = models.ForeignKey('Work', on_delete=models.CASCADE)
-    venue = models.ForeignKey('Venue', on_delete=models.CASCADE)
+    place = models.ForeignKey('Place', on_delete=models.CASCADE)
     RELATIONS = (
         ('SHOWN','shown at'),
     )
