@@ -505,7 +505,7 @@
 	    mounted: function mounted() {
 	        $.ajax({
 	            context: this,
-	            url: "/timeline/events.json"
+	            url: "/events.json"
 	        }).done(function (data) {
 	            this.object_list = data.results;
 	        });
