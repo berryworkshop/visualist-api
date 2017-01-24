@@ -16,12 +16,14 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 record_fields = (
-    'created',
-    'modified',
+    'id',
     'name',
     'slug',
+    'created',
+    'modified',
     'description',
-    # 'get_absolute_url',
+    # 'record_type',
+    'get_absolute_url',
 )
 
 
@@ -31,8 +33,28 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
         fields = record_fields
 
 
-class PlaceSerializer(serializers.HyperlinkedModelSerializer):
+class VenueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Place
+        fields = record_fields + (
+            'hours_open',
+            'appointment_only',
+        )
+
+
+class WorkSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Work
         fields = record_fields
-        
+
+
+class PersonSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Body
+        fields = record_fields
+
+
+class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Body
+        fields = record_fields

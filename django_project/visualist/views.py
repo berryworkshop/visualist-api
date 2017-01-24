@@ -1,7 +1,7 @@
 # from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 from django.views.generic.base import TemplateView
-from .models import Event, Place
+from .models import Event, Place, Work, Body
 
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
@@ -9,7 +9,10 @@ from .serializers import (
     UserSerializer,
     GroupSerializer,
     EventSerializer,
-    PlaceSerializer
+    VenueSerializer,
+    WorkSerializer,
+    PersonSerializer,
+    OrganizationSerializer,
 )
 
 
@@ -55,19 +58,73 @@ class EventViewSet(viewsets.ModelViewSet):
     serializer_class = EventSerializer
 
 
-# class PlaceView(DetailView):
-#     model = Place
+# class VenueView(DetailView):
+#     model = Venue
 #     template_name = 'visualist/place/place.html'
     
 
-# class PlacesView(ListView):
-#     model = Place
+# class VenuesView(ListView):
+#     model = Venue
 #     template_name = 'visualist/places/places.html'
 
 
-class PlaceViewSet(viewsets.ModelViewSet):
+class VenueViewSet(viewsets.ModelViewSet):
     '''
-    API endpoint that allows Places to be viewed or edited.
+    API endpoint that allows Views to be viewed or edited.
     '''
     queryset = Place.objects.all()
-    serializer_class = PlaceSerializer
+    serializer_class = VenueSerializer
+
+
+# class WorkView(DetailView):
+#     model = Work
+#     template_name = 'visualist/work/work.html'
+    
+
+# class WorksView(ListView):
+#     model = Work
+#     template_name = 'visualist/works/works.html'
+
+
+class WorkViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows Views to be viewed or edited.
+    '''
+    queryset = Work.objects.all()
+    serializer_class = WorkSerializer
+
+
+# class PersonView(DetailView):
+#     model = Person
+#     template_name = 'visualist/person/person.html'
+    
+
+# class PeopleView(ListView):
+#     model = Person
+#     template_name = 'visualist/people/people.html'
+
+
+class PersonViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows Views to be viewed or edited.
+    '''
+    queryset = Body.objects.filter(record_type='PERSON')
+    serializer_class = PersonSerializer
+
+
+# class OrganizationView(DetailView):
+#     model = Organization
+#     template_name = 'visualist/organization/organization.html'
+    
+
+# class OrganizationsView(ListView):
+#     model = Organization
+#     template_name = 'visualist/organization/organization.html'
+
+
+class OrganizationViewSet(viewsets.ModelViewSet):
+    '''
+    API endpoint that allows Views to be viewed or edited.
+    '''
+    queryset = Body.objects.filter(record_type='ORGANIZATION')
+    serializer_class = OrganizationSerializer

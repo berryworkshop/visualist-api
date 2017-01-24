@@ -9,19 +9,15 @@ class Body(Record):
     A person or organization.
     '''
 
+    #
+    # Base fields
+    # # #
+
     TYPES = (
         ('PERSON','person'),
-        ('ARCHIVE', 'archive'),
-        ('ASSOCIATION', 'association'),
-        ('COMPANY', 'company'),
-        ('ENSEMBLE', 'ensemble'),
-        ('FOUNDATION', 'foundation'),
-        ('GALLERY', 'gallery'),
-        ('LIBRARY', 'library'),
-        ('MUSEUM', 'museum'),
-        ('SCHOOL', 'school'),
+        ('ORGANIZATION','organization')
     )
-    body_types = models.CharField(max_length=20,
+    record_type = models.CharField(max_length=20,
         choices=TYPES,
         default="PERSON")
 
@@ -42,6 +38,30 @@ class Body(Record):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        # TODO
+        return '/'
+
+
+    #
+    # Organization fields
+    # # #
+
+    ORG_TYPES = (
+        ('ARCHIVE', 'archive'),
+        ('ASSOCIATION', 'association'),
+        ('COMPANY', 'company'),
+        ('ENSEMBLE', 'ensemble'),
+        ('FOUNDATION', 'foundation'),
+        ('GALLERY', 'gallery'),
+        ('LIBRARY', 'library'),
+        ('MUSEUM', 'museum'),
+        ('SCHOOL', 'school'),
+    )
+    organization_types = models.CharField(max_length=20,
+        choices=ORG_TYPES,
+        default="GALLERY")
 
 
 class Relationship(models.Model):

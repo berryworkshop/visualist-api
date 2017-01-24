@@ -12,8 +12,17 @@ class Work(Record):
     A thing created by a human or humans.
     '''
 
-    # for physical works
-    dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True) 
+    #
+    # Base fields
+    # # #
+
+    TYPES = (
+        ('MATERIAL','material works, e.g. painting, sculpture'),
+        ('TEMPORAL','temporal works, e.g. a performance')
+    )
+    record_type = models.CharField(max_length=20,
+        choices=TYPES,
+        default="MATERIAL")
 
     events = models.ManyToManyField('Event', blank=True,
         through='WorkEventJoin')
@@ -22,7 +31,23 @@ class Work(Record):
     bodies = models.ManyToManyField('Body', blank=True,
         through='WorkBodyJoin')
 
-    # for temporal works
+    def __str__(self):
+        return name
+
+    def get_absolute_url(self):
+        # TODO
+        return '/'
+
+    # 
+    # Physical fields
+    # # #
+
+    dimension_set = models.ForeignKey('DimensionSet', blank=True, null=True) 
+
+    # 
+    # Temporal Fields
+    # # #
+
     # duration = models.DecimalField(max_digits=, decimal_places=2)
 
 

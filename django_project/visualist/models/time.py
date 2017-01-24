@@ -13,25 +13,46 @@ class Event(Record):
     A span on a timeline with a beginning and end.
     '''
 
-    start = models.DateTimeField(blank=False, null=False, default=now)
-    end = models.DateTimeField(blank=True, null=True, default=now)
+    #
+    # Base fields
+    # # #
 
     TYPES = (
         ("EXHIBITION", "exhibition"),
         ("PERFORMANCE", "performance"),
         ("WORKSHOP", "workshop"),
     )
+    record_type = models.CharField(max_length=20,
+        choices=TYPES,
+        default="EXHIBITION")
 
-    event_type = models.CharField(max_length=20,
-        choices=TYPES, default="EXHIBITION")
+    start = models.DateTimeField(blank=False, null=False, default=now)
+    end = models.DateTimeField(blank=True, null=True, default=now)
 
     places = models.ManyToManyField('Place', blank=True,
         through='EventPlaceJoin')
     bodies = models.ManyToManyField('Body', blank=True,
         through='BodyEventJoin')
 
+    def __str__(self):
+        return name
+
     def get_absolute_url(self):
         return reverse('event', args=[self.pk])
+
+    #
+    # Exhibition Fields
+    # # #
+
+    #
+    # Performance Fields
+    # # #
+
+    #
+    # Workshop Fields
+    # # #
+
+    
 
 
 # class Reminder(Record):

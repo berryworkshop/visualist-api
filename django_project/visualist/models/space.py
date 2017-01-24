@@ -11,10 +11,21 @@ class Place(Record):
     A named place, usually a venue, for showing or experiencing art.
     '''
 
+    #
+    # Base fields
+    # # #
+
+    TYPES = (
+        ('VENUE','venue'), # more later
+    )
+    record_type = models.CharField(max_length=20,
+        choices=TYPES,
+        default="VENUE")
+
     address = models.ForeignKey('Address', on_delete=models.PROTECT,
         blank=True, null=True)
     room = models.CharField(max_length=250, blank=True)
-
+    
     latitude = models.DecimalField(
         max_digits=10, decimal_places=8,
         validators=[MaxValueValidator(90), MinValueValidator(-90)],
@@ -27,9 +38,15 @@ class Place(Record):
     #     max_digits=11, decimal_places=4,
     #     blank=True, null=True)
 
-    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT,
-        blank=True, null=True)
-    appointment_only = models.BooleanField(default=False)
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return self.occupant
+
+    def get_absolute_url(self):
+        # TODO
+        return '/'
 
     def update_coordinates_from_address(self):
         # TODO
@@ -39,11 +56,14 @@ class Place(Record):
         # TODO
         pass
 
-    def __str__(self):
-        if self.name:
-            return self.name
-        else:
-            return self.occupant
+
+    #
+    # Venue fields
+    # # #
+
+    hours_open = models.OneToOneField('HourSet', on_delete=models.PROTECT,
+        blank=True, null=True)
+    appointment_only = models.BooleanField(default=False)
 
 
 class Address(Base):
