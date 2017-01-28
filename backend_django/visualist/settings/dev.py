@@ -1,7 +1,7 @@
 from .base import *
 
 # secret vars
-dotenv_path = os.path.join(BASE_DIR, '.env')
+dotenv_path = os.path.join(PROJECT_DIR, '.env')
 load_dotenv(dotenv_path)
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
