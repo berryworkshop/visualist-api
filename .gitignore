@@ -2,13 +2,19 @@
 __pycache__/
 *.py[cod]
 
-# Unit test / coverage reports
+# test / coverage reports
 .coverage
 .coverage.*
+test/unit/coverage
+test/e2e/reports
+selenium-debug.log
 
-# Django stuff:
+# Django stuff
 *.log
 settings/local.py
+
+# Vue stuff
+dist/
 
 # pyenv
 .python-version
@@ -21,9 +27,13 @@ settings/local.py
 
 # node
 node_modules/
+npm-debug.log
 
 # dev database
 *.sqlite3
 
 # secret files
 secret/
+
+
+

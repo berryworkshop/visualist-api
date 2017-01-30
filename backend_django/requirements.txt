@@ -1,6 +1,7 @@
 click==6.6
 coverage==4.2
 Django==1.10.3
+django-cors-headers==2.0.1
 django-eventtools==0.9.10
 django-extensions==1.7.5
 django-filter==1.0.0

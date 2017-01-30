@@ -1,31 +1,31 @@
 <template>
-<header id="site-header">
-    <div class="container">
+  <header id="site-header" @keyup.esc="close">
+    <div class="container"> 
       <div id="masthead">
         <div id="branding">
           <a href="">Visualist</a>
         </div>
       </div>
       <div id="primary_nav">
-        <a href="" tabindex="0"><i class="fa fa-home fa-2x" aria-hidden="true"></i></a>
-        <form id="search" action="">
+        <router-link to="/" tabindex="0"><i class="fa fa-home fa-2x" aria-hidden="true"></i></router-link>
+        <form id="search" action="/search">
           <input type="search" placeholder="Search" name="q" >
           <button type="submit">
             <i class="fa fa-search" aria-hidden="true"></i>
           </button>
         </form>
         <div id="browse">
-          <button type="button" class="browse_modal_toggle">
+          <button type="button" class="browse_modal_toggle" v-on:click="browse_modal = !browse_modal">
             <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
           </button>
         </div>
       </div>
-<!--       <div id="browse_modal" class="hide">
+      <div id="browse_modal" v-if="browse_modal">
         <ul>
-          <li><a href="">Events</a></li>
-          <li>Places</li>
-          <li>People</li>
-          <li>Artworks</li>
+          <li><router-link @click.native="close" to="/events">Events</router-link></li>
+          <li><router-link @click.native="close" to="/venues">Venues</router-link></li>
+          <li><router-link @click.native="close" to="/artists">Artists</router-link></li>
+          <li><router-link @click.native="close" to="/artworks">Artworks</router-link></li>
         </ul>
         <ul>
           <li>Cities</li>
@@ -35,7 +35,7 @@
           <li>User</li>
           <li>About Us</li>
         </ul>
-      </div> -->
+      </div>
     </div>
   </header>
 </template>
@@ -45,8 +45,13 @@ export default {
   name: 'site-header',
   data() {
     return {
-      year: 2016,
+      browse_modal: false,
     };
+  },
+  methods: {
+    close() {
+      this.browse_modal = false;
+    },
   },
 };
 </script>
@@ -137,15 +142,15 @@ header#site-header {
       }
     }
   } 
-    // #browse_modal {
-    //   position: absolute;
-    //   top: 100%;
-    //   left: 0;
-    //   right: 0;
-    //   z-index: 1;
-    //   background-color: $secondary_bg;
-    //   padding: 1rem;
-    //   box-shadow: 0 3px 3px hsla(0,0%,0%,0.5);
-    // }
+    #browse_modal {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background-color: $secondary_bg;
+      padding: 1rem;
+      box-shadow: 0 3px 3px hsla(0,0%,0%,0.5);
+    }
 }
 </style>

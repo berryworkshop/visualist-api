@@ -3,12 +3,7 @@
     <site-header></site-header>
 
     <main>
-      <div class="container">
-        <h1>Home</h1>
-        <ul>
-            <li><a>Events</a></li>
-        </ul>
-      </div>
+      <router-view></router-view>
     </main>
 
     <site-footer></site-footer>
@@ -64,6 +59,7 @@ export default {
     font-size: 16;
     flex: 1;
     background-color: $primary_bg;
+    padding: 1rem;
   }
 
   a {

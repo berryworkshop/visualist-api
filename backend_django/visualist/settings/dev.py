@@ -22,3 +22,7 @@ DATABASES = {
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 STATIC_ROOT = '%s/static/' % BASE_DIR
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8080',
+)

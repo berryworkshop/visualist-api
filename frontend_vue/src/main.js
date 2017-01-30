@@ -2,16 +2,27 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VueResource from 'vue-resource';
 import App from './App';
 
-Vue.use(VueRouter);
+import Home from './components/Home';
+import Search from './components/Search';
 
-const Foo = { template: '<div>foo</div>' };
-const Bar = { template: '<div>bar</div>' };
+import Artists from './components/Artists';
+import Artworks from './components/Artworks';
+import Events from './components/Events';
+import Venues from './components/Venues';
+
+Vue.use(VueRouter);
+Vue.use(VueResource);
 
 const routes = [
-  { path: '/foo', component: Foo },
-  { path: '/bar', component: Bar },
+  { path: '/', component: Home },
+  { path: '/search', component: Search },
+  { path: '/artists', component: Artists },
+  { path: '/artworks', component: Artworks },
+  { path: '/events', component: Events },
+  { path: '/venues', component: Venues },
 ];
 
 const router = new VueRouter({
