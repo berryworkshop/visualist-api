@@ -22,6 +22,9 @@
       </div>
       <div id="browse_modal" v-if="browse_modal">
         <ul>
+          <li><router-link @click.native="close" to="login">Login</router-link></li>
+        </ul>
+        <ul>
           <li><router-link @click.native="close" to="/events">Events</router-link></li>
           <li><router-link @click.native="close" to="/venues">Venues</router-link></li>
           <li><router-link @click.native="close" to="/artists">Artists</router-link></li>

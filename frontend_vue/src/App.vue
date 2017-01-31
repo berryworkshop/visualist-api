@@ -72,14 +72,23 @@ export default {
     cursor: default;
   }
 
-  // abstract superclass for "button-like" things, like block anchors, tabs, etc.
-  %button_base {
-    color: $button_text;
-    background-color: $button_bg;
-
+  %form_base {
+    background-color: white;
     padding: .5em .75em;
     margin: 0;
     border: 1px solid silver;
+  }
+
+  input {
+    @extend %form_base;
+  }
+
+  // abstract superclass for "button-like" things, like block anchors, tabs, etc.
+  %button_base {
+    @extend %form_base;
+    color: $button_text;
+    background-color: $button_bg;
+
     text-decoration: none;
     cursor: pointer;
 

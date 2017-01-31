@@ -2,12 +2,14 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import VueResource from 'vue-resource';
+import VueResource from 'vue-resource'; // --> https://github.com/mzabriskie/axios
 import App from './App';
 
 import Home from './components/Home';
+import Error403 from './components/Error403';
+import Error404 from './components/Error404';
+import Login from './components/Login';
 import Search from './components/Search';
-
 import Artists from './components/Artists';
 import Artworks from './components/Artworks';
 import Events from './components/Events';
@@ -18,6 +20,9 @@ Vue.use(VueResource);
 
 const routes = [
   { path: '/', component: Home },
+  { path: '/403', component: Error403 },
+  { path: '/404', component: Error404 },
+  { path: '/login', component: Login },
   { path: '/search', component: Search },
   { path: '/artists', component: Artists },
   { path: '/artworks', component: Artworks },
