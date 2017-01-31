@@ -6,15 +6,24 @@
     <p>{{ msg }}</p>
 
     <form id="login_form">
-      <label for="username">Username</label>
-      <input id="username" v-model="username" placeholder="username">
-
-      <label for="password">Password</label>
-      <input v-model="password" type="password" placeholder="password">
-
-      <button type="submit" v-on:click="warn('Form cannot be submitted yet.', $event)">
-        Login <i class="fa fa-sign-in" aria-hidden="true"></i>
-      </button>
+      <table>
+        <tr>
+          <th><label for="username">Username</label></th>
+          <td><input id="username" v-model="username" placeholder="username"></td>
+        </tr>
+        <tr>
+          <th><label for="password">Password</label></th>
+          <td><input v-model="password" type="password" placeholder="password"></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <button type="submit" v-on:click="warn('Form cannot be submitted yet.', $event)">
+              Login <i class="fa fa-sign-in" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      </table>
     </form>
   </div>
 </template>

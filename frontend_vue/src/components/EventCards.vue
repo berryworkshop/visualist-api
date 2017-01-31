@@ -28,25 +28,30 @@
 </template>
 
 <script>
+  import axios from 'axios';
+
   export default {
     name: 'event-cards',
     data() {
       return {
         object_list: [],
-        fail_response: '',
+        error: '',
       };
     },
-    http: {
-      root: '/root',
-      headers: {
-        Authorization: 'Token 7c469eb984494c2eb10bf38263704d98eeaaccd3',
-      },
-    },
     mounted() {
-      this.$http.get('http://localhost:8000/api/events.json').then((response) => {
-        this.object_list = response.body.results;
-      }, (response) => {
-        this.fail_response = response;
+      const instance = axios.create({
+        baseURL: 'http://localhost:8000/api/',
+        headers: {
+          Authorization: 'Token 7c469eb984494c2eb10bf38263704d98eeaaccd3',
+        },
+      });
+
+      instance.get('/events.json')
+      .then((response) => {
+        this.object_list = response.data.results;
+      })
+      .catch((error) => {
+        this.error = error;
       });
     },
   };
