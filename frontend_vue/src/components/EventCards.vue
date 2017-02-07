@@ -6,7 +6,7 @@
           <h4 class="event_date_icon">Jan 1 – Jan 30</h4>
         </div>
         <div class="event_info">
-          <p class="location">Chicago: Pilsen @ Storefront Gallery</p>
+          <p class="location">Chicago: Pilsen @ {{ obj.location }}</p>
           <h3 class="title">{{ obj.name }}</h3>
           <p class="synopsis">This is the synopsis.  It's limited to 255 characters.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisiut.</p>
           <p class="audience">All ages welcome</p><!-- tiered as a vocab -->
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  import Axios from 'axios';
 
   export default {
     name: 'event-cards',
@@ -39,16 +39,38 @@
       };
     },
     mounted() {
-      const instance = axios.create({
-        baseURL: 'http://localhost:8000/api/',
-        headers: {
-          Authorization: 'Token 7c469eb984494c2eb10bf38263704d98eeaaccd3',
-        },
+      // const ajax = Axios.create({
+      //   baseURL: 'http://localhost:8000/api/',
+      //   headers: {
+      //     Authorization: 'Token 7c469eb984494c2eb10bf38263704d98eeaaccd3',
+      //   },
+      // });
+
+      const ajax = Axios.create({
+        baseURL: 'http://localhost:7474/db/data/',
       });
 
-      instance.get('/events.json')
+      // ajax.get('/events.json')
+      // .then((response) => {
+      //   this.object_list = response.data.results;
+      // })
+      // .catch((error) => {
+      //   this.error = error;
+      // });
+
+      ajax.post('/cypher', {
+        query: `
+          MATCH (event:Event)
+          OPTIONAL MATCH (event)-[rel:AT]->(location)
+          RETURN event, rel, location`,
+      })
       .then((response) => {
-        this.object_list = response.data.results;
+        response.data.data.forEach((triad) => {
+          this.object_list.push({
+            name: triad[0].data.name,
+            location: (triad[2] ? triad[2].data.name : 'flurm'),
+          });
+        });
       })
       .catch((error) => {
         this.error = error;

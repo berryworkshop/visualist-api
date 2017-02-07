@@ -23,6 +23,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from rest_framework import routers
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 
 router = routers.DefaultRouter(trailing_slash=False)
@@ -61,6 +62,7 @@ urlpatterns = [
 
     url(r'^api/', include(router.urls)),
     url(r'^api-token-auth/', views.obtain_auth_token),
+    url(r'^api-token-auth-jwt/', obtain_jwt_token),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]
 
