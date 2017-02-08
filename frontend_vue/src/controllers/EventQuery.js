@@ -10,12 +10,14 @@ export default class EventQuery {
     const ajax = Axios.create({
       baseURL: process.env.API_BASE_URL,
     });
+    const query = `
+      MATCH (event:Event)
+      OPTIONAL MATCH (event)-[rel:AT]->(location)
+      RETURN event, rel, location
+    `;
     return new Promise((resolve, reject) => {
       ajax.post('/cypher', {
-        query: `
-          MATCH (event:Event)
-          OPTIONAL MATCH (event)-[rel:AT]->(location)
-          RETURN event, rel, location`,
+        query,
       })
       .then((response) => {
         response.data.data.forEach((triad) => {
