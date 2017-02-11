@@ -37,12 +37,12 @@ Artslant nouns
     School
     Artist profile
     Curator
-    Job
+    # Job
     Residency
-    Calls for work
+    # Calls for work
     Collection
     Review (submitted by users.  Cool.)
-    Comments (no thanks)
+    # Comments (no thanks)
 Organization types
     School
     Museum
@@ -247,7 +247,7 @@ name = models.CharField(max_length=250)
    created = models.DateTimeField()
    modified = models.DateTimeField()
    TODO: tags
-   
+
    def save(self):
        if not self.id:
            self.created = datetime.datetime.now()
