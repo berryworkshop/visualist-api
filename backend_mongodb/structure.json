@@ -1,355 +1,336 @@
 {
-    "documents": [
-        {
-            "_t": "site",
-            "_super": null,
-            "config": { // this stuff should be in a static json file
-                "title": "The Visualist",
-                "subtitle": null,
-                "logo": "<image_id>",
-                "general_rights_statement":
-                    "All rights reserved, unless otherwise specified.",
-                "version": null,
-                "primary_nav": {
-                    "Home": "/",
-                    "Events": "/",
-                    "Artists": "/",
-                    "Venues": "/",
-                    "Search": "/",
-                    "Help": "/",
-                },
-                "secondary_nav": {
-                    "Rights": "/",
-                    "Privacy": "/",
-                    "Sitemap": "/",
-                    "Links": "/",
-                    "Archive": "/",
-                }
-            }
-        },{
-            "_t": "base",
-            "_super": null,
-            "category": null,
-            "meta": {
-                "created": null,
-                "modified": null,
-                "created_by": "<user_id>",
-                "acls": [
-                    "<acl_id>"
-                ]
-            },
-            "notes": null,
-        },{
-            "_t": "<record>",
-            "_super": "<base>",
-            "slug": "blurm-blorp",
-            "name": "Blurm Blorp",
-            "caption": "Lorem ipsum dolor sit amet.",
-            "is_featured": true,
-            "languages": [
-                "en-us"
-            ],
-            "identifiers": [
-                {
-                    "_t": "identifier",
-                    "_super": "<base>",
-                    "value": "XXXXX",
-                    "source": "<source_id>"
-                }
-            ],
-            "subjects": [
-                "<term_id>"
-            ],
-            "descriptions": [
-                "<description_id>"
-            ],
-            "sources": [
-                "<source_id>"
-            ],
-            "accounts": [
-                {
-                    "_t": "account",
-                    "_super": "<base>",
-                    "service": "Facebook",
-                    "url": "https://www.facebook.com/allan.james.berry",
-                }
-            ],
-            "webpages": [
-                {
-                    "_t": "webpage",
-                    "_super": "<base>",
-                    "url": "http://thevisualist.org"
-                }
-            ],
-            "relations": [
-                {
-                    "_t": "relation",
-                    "_super": "<base>",
-                    "name": "located at",
-                    "value": "<record_id>",
-                    "timespan": "<approx_date_span_id>",
-                    "source": "<source_id>",
-                }
-            ],
-        },{
-            "_t": "person",
-            "_super": "<record>",
-            "name": { // overrides OK?
-                "first": "Allan",
-                "last": "Berry",
-            },
-            "birthplace": "<place_id>",
-            "lifespan": "<approx_date_span>",
-            "aliases": [
-                {
-                    "_t": "alias",
-                    "_super": "<base>",
-                    "name": "niteshade",
-                    "caption": "Old handle from high school.",
-                    "source": "<source_id>",
-                }
-            ],
-            "phones": [
-                "<phone_id>"
-            ],
-            "addresses": [
-                "<place_id>"
-            ],
-            "bio": "<description_id>",
-            "user" : "<user_id>"
-        },{
-            "_t": "organization",
-            "_super": "<record>",
-            "lifespan": "<approx_date_span>",
-            "nonprofit": true,
-            "members": [
-                {
-                    "_t": "member",
-                    "_super": "<base>",
-                    "role": "President",
-                    "value": "<body_id>",
-                    "timespan": "<approx_date_span_id>",
-                }
-            ]
-        },{
-            "_t": "venue",
-            "_super": "<record>",
-            "by_appointment": false,
-            "lifespan": "<timestamp_span_id>", // ?
-            "hours": [
-                {
-                    "_t": "hours",
-                    "_super": "<base>",
-                    "name": "Summer hours",
-                    "timespan": "<timestamp_span_id>",
-                    "value": "<hour_set>"
-                },
-            ],
-            "place": "<place_id>"
-        },{
-            "_t": "work",
-            "_super": "<record>",
-            "name": "The Visualist",
-            "edition": "1.0",
-            "extent": "456 pages",
-        },{
-            "_t": "event",
-            "_super": "<work>",
-            "name": "The works of Georges Braque",
-            "venue": "<venue_id>",
-            "timespan": "<timestamp_span_id>",
-            "prices": [
-                {
-                    "_t": "price",
-                    "_super": "<base>",
-                    "amount": "12.00",
-                    "currency": "USD",
-                }
-            ]
-        },{
-            "_t": "object",
-            "_super": "<work>",
-            "name": "Les Demoiselles d'Avignon.",
-            "medium": "oil on canvas",
-            "size": {
-                "name": "size",
-                "height": 12,
-                "width": 24,
-                "depth": null,
-                "unit": "in"
-            },
-            "mass": {
-                "value": 12.34,
-                "unit": "kg"
-            },
-            "values": [
-                {
-                    "_t": "value",
-                    "_super": "<base>",
-                    "appraised_value": 1234.00,
-                    "currency": "USD",
-                    "appraisal": "<appraisal_id>",
-                }
-            ]
-        },{
-            "_t": "ephemeron",
-            "_super": "<object>",
-            "associated_work": "<work_id>"
-        },{
-            "_t": "page",
-            "_super": "<work>",
-            "name": "About The Visualist",
-            "caption": "This page tells all about The Visualist.",
-            "body": "Lorem <span>ipsum</span>."
-        },{
-            "_t": "file",
-            "_super": "<base>",
-            "name": "A picture of a cat.",
-            "format": "PDF-A",
-            "url": "http://aws.com/picture.jpg",
-            "checksum": "asdf",
-        },{
-            "_t": "image",
-            "_super": "<file>",
-            "aspect": "recto",
-        },{
-            "_t": "place",
-            "_super": "<base>",
-            "longitude": null,
-            "latitude": null,
-            "altitude": null,
-            "street": "913 W. Cullerton St.\nApartment #1",
-            "city": "Chicago",
-            "state": "IL",
-            "zip": "60608",
-            "country": "USA",
-        },{
-            "_t": "timestamp_span",
-            "_super": "<base>",
-            "start": "2017-01-01T16:00:000-6:00",
-            "end": "2017-03-01T00:00:000-6:00",
-            "duration": "T1:23:48",
-            "all_day:": false,
-        },{
-            "_t": "approx_date_span",
-            "_super": "<base>",
-            "start": "2017-01-01",
-            "end": "~2017-03",
-            "duration": "~2 months",
-        },{
-            "_t": "approx_time_span",
-            "_super": "<base>",
-            "start": "18:00:00",
-            "end": "~26:00:00",
-            "duration": "~8 hours"
-        },{
-            "_t": "subject",
-            "_super": "<base>",
-            "value": "library",
-            "source": "<source_id>"
-        },{
-            "_t": "description",
-            "_super": "<base>",
-            "value": "Lorem ipsum dolor sit amet.",
-            "source": "<source_id>"
-        },{
-            "_t": "user",
-            "_super": "<base>",
-            "username": "allanberry",
-            "password": "XXXXXXX",
-            "groups": [
-                "<group_id"
-            ]
-        },{
-            "_t": "group",
-            "_super": "<base>",
-            "permissions": null
-        },{
-            "_t": "collection",
-            "_super": "<base>",
-            "name": "My tour of Chicago.",
-            "privacy_level": "<privacy_level>"
-        },{
-            "_t": "privacy_level",
-            "_super": "<base>",
-            "name": "public",
-            "level": 0
-        },{
-            "_t": "hour_set",
-            "_super": "<base>",
-            "set": {
-                "mon": [ "<approx_time_span>" ],
-                "tue": [ "<approx_time_span>" ],
-                "wed": [ "<approx_time_span>" ],
-                "thu": [ "<approx_time_span>" ],
-                "fri": [ "<approx_time_span>" ],
-                "sat": [ "<approx_time_span>" ],
-                "sun": [ "<approx_time_span>" ]
-            }
-        },{
-            "_t": "appraisal",
-            "_super": "<base>",
-            "appraiser": "<person_id>", // or "<organization_id>"
-            "date": "2017-01-01",
-        },{
-            "_t": "source",
-            "_super": "<base>",
-            "work": "<work_id>",
-            "citation_fields": {
-                "series":    ["<collection_id>"],
-                "publisher": ["<person_id>"], // or <organization_id>
-                "volume":    ["2"],
-                "number":    ["3"],
-                "pages":     ["4-7"],
-                // other random zotero fields; add as necessary
-            },
-            "comments": "original work",
-            "accessed": "2017-01-01T00:00:000-6:00",
-            "rights": {
-                "<rights_id>"
-            }
-        },{
-            "_t": "rights",
-            "_super": "<base>",
-            "license": "fair use",
-            "url": "http://creativecommons.org/abc",
-        },{
-            "_t": "vocabulary",
-            "_super": "<base>",
-            "name": "Getty AAT",
-            "url": "http://www.example.com/",
-        },{
-            "_t": "term",
-            "_super": "<base>",
-            "synonyms": [
-                {
-                    "_t": "synonym",
-                    "_super": "<base>",
-                    "vocabulary": "<vocabulary_id>",
-                    "term": "art moderne",
-                    "url": "http://www.example.com/"
-                }
-            ],
-            "value": "Modern Art",
-            "url": "http://example.com",
-            "subterms": [
-                "<term_id>"
-            ]
-        },{
-            "_t": "phone",
-            "_super": "<base>",
-            "country": 1,
-            "area": 312,
-            "exchange": 371,
-            "number": 8722,
-            "extension": null
-        },{
-            "_t": "space",
-            "_super": "<base>",
-            "name": "Pilsen",
-            "places": [
-                "<place_id>"
-            ]
-        }
+  "_t": "site",
+  "_super": null,
+  "config": { // this stuff should be in a static json file
+    "title": "The Visualist",
+    "subtitle": null,
+    "logo": "<image_id>",
+    "general_rights_statement":
+      "All rights reserved, unless otherwise specified.",
+    "version": null,
+    "primary_nav": {
+      "Home": "/",
+      "Events": "/",
+      "Artists": "/",
+      "Venues": "/",
+      "Search": "/",
+      "Help": "/",
+    },
+    "secondary_nav": {
+      "Rights": "/",
+      "Privacy": "/",
+      "Sitemap": "/",
+      "Links": "/",
+      "Archive": "/",
+    }
+  }
+},{
+  "_t": "base",
+  "category": null,
+  "meta": {
+    "created": null,
+    "modified": null,
+    "created_by": "<user_id>",
+    "acls": [
+      "<acl_id>"
     ]
+  },
+  "notes": null,
+},
+
+
+{
+  "records": [
+    {
+      "slug": "blurm-blorp",
+      "name": "Blurm Blorp",
+      "caption": "Lorem ipsum dolor sit amet.",
+      "is_featured": true,
+      "languages": [
+        "en-us"
+      ],
+      "subjects": [
+        "<term_id>"
+      ],
+      "identifiers": [
+        {
+          "_t": "identifier",
+          "_super": "<base>",
+          "value": "XXXXX",
+          "source": "<source_id>"
+        }
+      ],
+      "descriptions": [
+        "<description_id>"
+      ],
+      "sources": [
+        "<source_id>"
+      ],
+      "accounts": [
+        {
+          "_t": "account",
+          "_super": "<base>",
+          "service": "Facebook",
+          "url": "https://www.facebook.com/allan.james.berry",
+        }
+      ],
+      "webpages": [
+        {
+          "_t": "webpage",
+          "_super": "<base>",
+          "url": "http://thevisualist.org"
+        }
+      ],
+      "relations": [
+        {
+          "_t": "relation",
+          "_super": "<base>",
+          "name": "located at",
+          "value": "<record_id>",
+          "timespan": "<approx_date_span_id>",
+          "source": "<source_id>",
+        }
+      ],
+    },{
+      "_t": "person",
+      "name": { // overrides OK?
+        "first": "Allan",
+        "last": "Berry",
+      },
+      "birthplace": "<place_id>",
+      "lifespan": "<approx_date_span>",
+      "aliases": [
+        {
+          "_t": "alias",
+          "_super": "<base>",
+          "name": "niteshade",
+          "caption": "Old handle from high school.",
+          "source": "<source_id>",
+        }
+      ],
+      "phones": [
+        "<phone_id>"
+      ],
+      "addresses": [
+        "<place_id>"
+      ],
+      "bio": "<description_id>",
+      "user" : "<user_id>"
+    },{
+      "_t": "organization",
+      "lifespan": "<approx_date_span>",
+      "nonprofit": true,
+      "members": [
+        {
+          "_t": "member",
+          "_super": "<base>",
+          "role": "President",
+          "value": "<body_id>",
+          "timespan": "<approx_date_span_id>",
+        }
+      ]
+    },{
+      "_t": "venue",
+      "by_appointment": false,
+      "lifespan": "<timestamp_span_id>", // ?
+      "hours": [
+        {
+          "_t": "hours",
+          "_super": "<base>",
+          "name": "Summer hours",
+          "timespan": "<timestamp_span_id>",
+          "value": "<hour_set>"
+        },
+      ],
+      "place": "<place_id>"
+    },{
+      "_t": "work",
+      "name": "The Visualist",
+      "edition": "1.0",
+      "extent": "456 pages",
+    },{
+      "_t": "event",
+      "_super": "<work>",
+      "name": "The works of Georges Braque",
+      "venue": "<venue_id>",
+      "timespan": "<timestamp_span_id>",
+      "prices": [
+        {
+          "_t": "price",
+          "_super": "<base>",
+          "amount": "12.00",
+          "currency": "USD",
+        }
+      ]
+    },{
+      "_t": "thing",
+      "_super": "<work>",
+      "name": "Les Demoiselles d'Avignon.",
+      "medium": "oil on canvas",
+      "size": {
+        "name": "size",
+        "height": 12,
+        "width": 24,
+        "depth": null,
+        "unit": "in"
+      },
+      "mass": {
+        "value": 12.34,
+        "unit": "kg"
+      },
+      "values": [
+        {
+          "_t": "value",
+          "_super": "<base>",
+          "appraised_value": 1234.00,
+          "currency": "USD",
+          "appraisal": "<appraisal_id>",
+        }
+      ]
+    },{
+      "_t": "ephemeron",
+      "_super": "<thing>",
+      "associated_work": "<work_id>"
+    },{
+      "_t": "page",
+      "_super": "<work>",
+      "name": "About The Visualist",
+      "caption": "This page tells all about The Visualist.",
+      "body": "Lorem <span>ipsum</span>."
+    }
+  ],
+
+
+  "files": {
+    "name": "A picture of a cat.",
+    "format": "PDF-A",
+    "url": "http://aws.com/picture.jpg",
+    "checksum": "asdf",
+  },
+  "images": {
+    "_super": "<file>",
+    "aspect": "recto",
+  },
+
+
+  "places": {
+    "coordinates": {
+      "longitude": null,
+      "latitude": null
+    },
+    "street": "913 W. Cullerton St.\nApartment #1",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60608",
+    "country": "USA",
+  },
+  "timestamp_spans": {
+    "start": "2017-01-01T16:00:000-6:00",
+    "end": "2017-03-01T00:00:000-6:00",
+    "duration": "T1:23:48",
+    "all_day:": false,
+  },
+  "approx_date_spans": {
+    "start": "2017-01-01",
+    "end": "~2017-03",
+    "duration": "~2 months",
+  },
+  "approx_time_spans": {
+    "start": "18:00:00",
+    "end": "~26:00:00",
+    "duration": "~8 hours"
+  },
+  "subjects": {
+    "value": "library",
+    "source": "<source_id>"
+  },
+  "descriptions": {
+    "value": "Lorem ipsum dolor sit amet.",
+    "source": "<source_id>"
+  },
+  "users": {
+    "username": "allanberry",
+    "password": "XXXXXXX",
+    "groups": [
+      "<group_id"
+    ]
+  },
+  "groups": {
+    "permissions": null
+  },
+  "collections": {
+    "name": "My tour of Chicago.",
+    "privacy_level": "<privacy_level>"
+  },
+  "privacy_levels": {
+    "name": "public",
+    "level": 0
+  },
+  "hour_sets": {
+    "set": {
+      "mon": [ "<approx_time_span>" ],
+      "tue": [ "<approx_time_span>" ],
+      "wed": [ "<approx_time_span>" ],
+      "thu": [ "<approx_time_span>" ],
+      "fri": [ "<approx_time_span>" ],
+      "sat": [ "<approx_time_span>" ],
+      "sun": [ "<approx_time_span>" ]
+    }
+  },
+  "appraisals": {
+    "appraiser": "<person_id>", // or "<organization_id>"
+    "date": "2017-01-01",
+  },
+  "sources": {
+    "work": "<work_id>",
+    "citation_fields": {
+      "series":    ["<collection_id>"],
+      "publisher": ["<person_id>"], // or <organization_id>
+      "volume":    ["2"],
+      "number":    ["3"],
+      "pages":     ["4-7"],
+      // other random zotero fields; add as necessary
+    },
+    "comments": "original work",
+    "accessed": "2017-01-01T00:00:000-6:00",
+    "rights": {
+      "<rights_id>"
+    }
+  },
+  "rights": {
+    "license": "fair use",
+    "url": "http://creativecommons.org/abc",
+  },
+  "terms": {
+    "synonyms": [
+      {
+        "_t": "synonym",
+        "_super": "<base>",
+        "vocabulary": {
+          "name": "Getty AAT",
+          "url": "http://www.example.com/",
+        },
+        "term": "art moderne",
+        "url": "http://www.example.com/"
+      }
+    ],
+    "value": "Modern Art",
+    "url": "http://example.com",
+    "subterms": [
+      "<term_id>"
+    ]
+  },
+  "phones": {
+    "country": 1,
+    "area": 312,
+    "exchange": 371,
+    "number": 8722,
+    "extension": null
+  },
+  "spaces": {
+    "name": "Pilsen",
+    "places": [
+      "<place_id>"
+    ]
+  }
 }

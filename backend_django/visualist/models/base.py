@@ -7,10 +7,10 @@ class Base(models.Model):
     '''
     Base class as a foundation for most others.
     '''
-    
+
     class Meta:
         abstract = True
-    
+
     created = models.DateTimeField(default=now)
     modified = models.DateTimeField(auto_now=True)
     # created_by = User.???
@@ -21,7 +21,7 @@ class Record(Base):
     The central class for the Visualist system; the basic unit manipulated
     by the User in the interface, often via "cards".
     '''
-    
+
     class Meta:
         abstract = True
 
@@ -38,7 +38,7 @@ class Record(Base):
 
 # class Source(Base):
 #     '''
-#     The object of a citation, e.g. an item of media, 
+#     The object of a citation, e.g. an item of media,
 #     a location on the internet, a book, a speech, or a conversation.
 #     '''
 
@@ -99,7 +99,7 @@ class Record(Base):
 #     '''
 
 #     identifier = models.CharField(max_length=255)
-#     records = models.ForeignKey('Record', 
+#     records = models.ForeignKey('Record',
 #         on_delete=models.CASCADE, related_name="identifiers")
 
 
@@ -110,5 +110,5 @@ class Record(Base):
 #     '''
 
 #     description = models.CharField(max_length=250)
-#     records = models.ForeignKey('Record', 
+#     records = models.ForeignKey('Record',
 #         on_delete=models.CASCADE, related_name="descriptions")
