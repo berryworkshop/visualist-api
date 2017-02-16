@@ -16,6 +16,30 @@ import Venues from './components/Venues';
 
 Vue.use(VueRouter);
 
+const config = {
+  "title": "The Visualist",
+  "subtitle": null,
+  "logo": "<image_id>",
+  "general_rights_statement":
+    "All rights reserved, unless otherwise specified.",
+  "version": null,
+  "primary_nav": {
+    "Home": "/",
+    "Events": "/",
+    "Artists": "/",
+    "Venues": "/",
+    "Search": "/",
+    "Help": "/",
+  },
+  "secondary_nav": {
+    "Rights": "/",
+    "Privacy": "/",
+    "Sitemap": "/",
+    "Links": "/",
+    "Archive": "/",
+  }
+}
+
 const routes = [
   { path: '/', component: Home },
   { path: '/403', component: Error403 },
