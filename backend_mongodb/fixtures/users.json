@@ -1,21 +1,18 @@
 [{
     "name": "admin",
-    "synopsis": "Superuser",
+    "synopsis": "El Superuser",
     "category": "admin",
     "pass_hash": "XXXXX"
 }, {
     "name": "allan",
-    "synopsis": "Allan designed Visualist 2.0, and is the site's primary administrator.  He is a librarian and artist living in Chicago.",
     "category": "admin",
     "pass_hash": "XXXXX"
 }, {
     "name": "meg",
-    "synopsis": "Meg is a founder of Culture/Math, and is the primary co-manager of the Visualist.  She is an artist living in Chicago.",
     "category": "manager",
     "pass_hash": "XXXXX"
 }, {
     "name": "michael",
-    "synopsis": "Michael is a founder of Culture/Math, and is the primary co-manager of the Visualist.  He is an artist living in Chicago.",
     "category": "manager",
     "pass_hash": "XXXXX"
 }]

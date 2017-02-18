@@ -17,45 +17,40 @@
     "name": "Allan's personal website"
 }],
 "person_data": {
-        "name": {
-            "first": "Allan",
-            "last": "Berry"
-        },
-        "birthplace": "DETROIT",
-        "bio": "Allan is a librarian and coder living in Chicago.  He grew up in Detroit.",
-        "lifespan": {
-            "type": "string",
-            "data_relation": {
-                "resource": "approx_date_span",
-                "field": "_id"
+    "name": {
+        "first": "Allan",
+        "last": "Berry"
+    },
+    "birthplace": place,
+    "bio": "Allan is a librarian living in Chicago.",
+    "lifespan": {
+        "start": approx_date
+    },
+    "contact_info": {
+        "phones": [
+            {
+                "category": "mobile",
+                "country": 1,
+                "area": 312,
+                "exchange": 371,
+                "number": 8722
             }
-        },
-        "contact_info": {
-            "phones": [
-                {
-                    "category": "mobile",
-                    "country": 1,
-                    "area": 312,
-                    "exchange": 371,
-                    "number": 8722
-                }
-            ],
-            "emails": [
-                {
-                    "category": "personal",
-                    "email": "allan.berry@gmail.com"
-                },{
-                    "category": "work",
-                    "email": "aberry3@uic.edu"
-                },
-            ],
-            // "location": {
-            //     "type": "string",
-            //     "data_relation": {
-            //         "resource": "locations",
-            //         "field": "_id",
-            //     },
-            // }
+        ],
+        "emails": [
+            {
+                "category": "personal",
+                "email": "allan.berry@gmail.com"
+            },{
+                "category": "work",
+                "email": "aberry3@uic.edu"
+            },
+        ],
+
+        "addresses": [
+            {
+                "category": "personal",
+                "address": location
             }
-        }
+        ]
     }
+}

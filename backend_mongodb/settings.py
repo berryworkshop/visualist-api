@@ -1,4 +1,4 @@
-from schema import (
+from schemas.schema import (
     nodes_schema,
     edges_schema,
     collections_schema,
@@ -56,11 +56,11 @@ pages = {
 
 DOMAIN = {
     'nodes': nodes,
-    # 'edges': edges,
-    # 'collections': collections,
+    'edges': edges,
+    'collections': collections,
     'users': users,
-    # 'files': files,
-    # 'locations': locations,
-    # 'tags': tags,
-    # 'pages': pages,
+    'files': files,
+    'locations': locations,
+    'tags': tags,
+    'pages': pages,
 }

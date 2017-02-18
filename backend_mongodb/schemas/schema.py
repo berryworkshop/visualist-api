@@ -1,11 +1,59 @@
 from lists.currencies import CURRENCIES
 from lists.countries import COUNTRIES
+from lists.languages import LANGUAGES
+
+roles = [
+    'member',
+    'manager',
+    'admin',
+]
+
+base_schema = {
+    'name': {'type': 'string'},
+    'synopsis': {'type': 'string'},
+    'acls': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'required': True,
+            'schema': {
+                'role': {
+                    'type': 'list',
+                    'allowed': roles
+                },
+                'user': {
+                    'type': 'string',
+                    'data_relation': {
+                        'resource': 'user',
+                        'field': '_id',
+                    }
+                },
+                'permissions': {
+                    'type': 'dict',
+                    'required': True,
+                    'schema': {
+                        'read': {
+                            'type': 'boolean',
+                            'default': True
+                        },
+                        'write': {
+                            'type': 'boolean',
+                            'default': False
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
 contact_info_schema = {
     'phones': {
         'type': 'list',
         'schema': {
             'type': 'dict',
+            'unique': True,
+            'required': True,
             'schema': {
                 'category': {
                     'type': 'string',
@@ -43,9 +91,11 @@ contact_info_schema = {
         'type': 'list',
         'schema': {
             'type': 'dict',
+            'unique': True,
+            'required': True,
             'schema': {
                 'category': {
-                    'type': 'string',
+                    'type': 'list',
                     'allowed': [
                         'personal',
                         'work'
@@ -58,80 +108,89 @@ contact_info_schema = {
             }
         }
     },
-    'location': {
-        'type': 'string',
-        'data_relation': {
-            'resource': 'locations',
-            'field': '_id',
-        },
-    }
-}
-
-# rights_schema = {
-#     'copyright_owner': {
-#         'type': 'string',
-#         'default': 'the author',
-#     },
-#     'license': {
-#         'type': 'dict',
-#         'schema': {
-#             'name': {
-#                 'type': 'string',
-#                 'allowed': [
-#                     'all rights reserved',
-#                     'fair use',
-#                     'MIT',
-#                     'BSD',
-#                     'GPL',
-#                     'custom'
-#                 ],
-#             },
-#             'url': {'type': 'string'}
-#         }
-#     }
-# }
-
-base = {
-    'name': {'type': 'string'},
-    'synopsis': {'type': 'string'},
-    # 'acls': [
-    #   '<acl_id>'
-    #       "privacy_levels": {
-    #         "name": "public",
-    #         "level": 0
-    #       },
-    # ]
-}
-
-
-approx_dates = {
-    **base,
-    **{
-        'year': {
-            'type': 'number',
+    'addresses': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'unique': True,
             'required': True,
-        },
-        'month': {
-            'type': 'number',
-            'required': False,
-            'min': 1,
-            'max': 12
-        },
-        'date': {
-            'type': 'number',
-            'required': False,
-            'dependencies': 'month',
-            'min': 1,
-            'max': 31
-        }
-        'approximate': {
-            'type': 'boolean',
-            'default': False
+            'schema': {
+                'category': {
+                    'type': 'list',
+                    'allowed': [
+                        'personal',
+                        'work'
+                    ],
+                    'default': 'personal'
+                },
+                'address': {
+                    'type': 'string',
+                    'data_relation': {
+                        'resource': 'location',
+                        'field': '_id',
+                    },
+                }
+            }
         }
     }
 }
 
-approx_date_spans = {
+rights_schema = {
+    'copyright_owner': {
+        'type': 'string',
+        'default': 'the author',
+    },
+    'license': {
+        'type': 'dict',
+        'schema': {
+            'name': {
+                'type': 'string',
+                'allowed': [
+                    'all rights reserved',
+                    'fair use',
+                    'MIT',
+                    'BSD',
+                    'GPL',
+                    'custom'
+                ],
+            },
+            'url': {'type': 'string'}
+        }
+    }
+}
+
+approx_date_schema = {
+    'date': {
+        'type':'dict',
+        'required': True,
+        'unique': True,
+        'schema': {
+            'year': {
+                'type': 'number',
+                'required': True,
+            },
+            'month': {
+                'type': 'number',
+                'required': False,
+                'min': 1,
+                'max': 12
+            },
+            'date': {
+                'type': 'number',
+                'required': False,
+                'dependencies': 'month',
+                'min': 1,
+                'max': 31
+            },
+            'approximate': {
+                'type': 'boolean',
+                'default': False
+            }
+        }
+    }
+}
+
+approx_date_span_schema = {
     'start': {
         'type': 'string',
         'data_relation': {
@@ -148,39 +207,178 @@ approx_date_spans = {
     }
 }
 
-# datetime_spans = {
-#     'start': {'type': 'datetime'},
-#     'end': {'type': 'datetime'},
-#     'all_day': {
-#         'type': 'boolean',
-#         'default': False,
-#     }
-# }
+identifiers_schema = {
+    'id': {
+        'type': 'dict',
+        'required': True,
+        'unique': True,
+        'schema': {
+            'category': {
+                'type': 'string',
+                'allowed': [
+                    'slug',
+                    'doi',
+                    'isbn',
+                    'call_number',
+                    'ezid',
+                ]
+            },
+            'value': {'type': 'string'}
+        }
+    }
+}
+
+hours_schema = {
+    'start': {'type': 'datetime'},
+    'duration': {
+        'type': 'dict',
+        'schema': {
+            'hours': {
+                'type': 'number',
+                'min': 0,
+                'max': 23
+            },
+            'minutes': {
+                'type': 'number',
+                'min': 0,
+                'max': 59
+            },
+        }
+    }
+}
 
 users_schema = {
-    **base,
+    **base_schema,
     **{
         'category': {
-            'type': 'string',
+            'type': 'list',
             'required': True,
-            'allowed': [
-                'member',
-                'manager',
-                'admin',
-            ]
+            'unique': True,
+            'allowed': roles
         },
         'pass_hash': {'type': 'string'},
     }
 }
 
+locations_schema = {
+    **base_schema,
+    **{
+        'category': {
+            'type': 'string',
+            'required': True,
+            'default': 'place',
+            'allowed': [
+                'place',
+                'neighborhood',
+                'city',
+            ]
+        },
+        'coordinates': {
+            'type': 'list',
+            'schema': {
+                'type': 'dict',
+                'schema': {
+                    'longitude': {
+                        'type': 'number',
+                        'required': True,
+                    },
+                    'latitude': {
+                        'type': 'number',
+                        'required': True,
+                    },
+                    'altitude': {
+                        'type': 'number',
+                        'required': False,
+                    }
+                }
+            }
+        },
+        'street': {'type': 'string'},
+        'city': {'type': 'string'},
+        'state_province': {
+            'type': 'string',
+            'allowed': [
+                'IL',
+                'WI',
+                'IN',
+                'MI'
+            ]
+        },
+        'postal_code': {'type': 'string'},
+        'country': {
+            'type': 'string',
+            'default': 'USA',
+            'allowed': list(COUNTRIES.keys()),
+        }
+    }
+}
+
+citations_schema = {
+    'category': {
+        'type': 'string',
+        'required': True,
+        'allowed': [
+            'webpage',
+            'book',
+            'journal_article',
+            'newspaper_article',
+            'artwork',
+            'archive_item',
+        ]
+    },
+    'work': {
+        'type': 'string',
+        'required': True,
+        'data_relation': {
+            'resource': 'node',
+            'field': '_id',
+        }
+    },
+    'abstract': {'type': 'string'},
+    'version': {'type': 'string'},
+    'via': {
+        'type': 'dict',
+        'schema': {
+            'archive': {
+                'type': 'string',
+                'required': True,
+                'data_relation': {
+                    'resource': 'node',
+                    'field': '_id',
+                },
+            'accessed': {
+                'type': 'datetime',
+                'required': True,
+            },
+            'url': {'type': 'string'},
+            'remote_id': {
+                'type': 'string',
+                'required': True,
+                'data_relation': {
+                    'resource': 'identifier',
+                    'field': '_id',
+                }
+            },
+        }
+    },
+    'rights': {
+        'data_relation': {
+            'resource': 'rights',
+            'field': '_id',
+        }
+    },
+    'notes': {'type': 'string'},
+    }
+}
+
 nodes_schema = {
-    **base,
+    **base_schema,
     **{
         'owner': {
             'type': 'string',
             'required': True,
             'data_relation': {
-                'resource': 'users',
+                'resource': 'user',
                 'field': '_id',
             },
         },
@@ -207,23 +405,25 @@ nodes_schema = {
         'tags': {
             'type': 'list',
             'data_relation': {
-                'resource': 'tags',
+                'resource': 'tag',
                 'field': '_id',
             },
         },
-        'sources': {
-            'type': 'dict',
-            'schema': {
-                'name': {
-                    'type': 'string',
-                    'default': 'original work'
-                    },
-                'remote_id': {'type': 'string'},
-                'url': {'type': 'string'},
-                'accessed': {'type': 'datetime'},
-                'comments': {'type': 'string'},
+        'parent': {
+            'type': 'string',
+            'data_relation': {
+                'resource': 'node',
+                'field': '_id',
+            },
+        },
+        'identifiers': {
+            'type': 'list',
+            'data_relation': {
+                'resource': 'identifier',
+                'field': '_id'
             }
         },
+        'citations': citations_schema,
         "accounts": {
             'type': 'list',
             'schema': {
@@ -231,21 +431,21 @@ nodes_schema = {
                 'schema': {
                     'service': {
                         'type': 'string',
+                        'required': True,
                         'allowed': [
                             'Facebook',
                             'Twitter',
                             'Pinterest',
                         ],
-                        "required": True
                     },
                     'account': {
-                        'type': 'string'
+                        'type': 'string',
                         "required": True
-                    },
+                    }
                 }
             }
         },
-        "websites": {
+        "urls": {
             "type": "list",
             "schema": {
                 "type": "dict",
@@ -276,17 +476,14 @@ nodes_schema = {
                 'birthplace': {
                     'type': 'string',
                     'data_relation': {
-                        'resource': 'locations',
+                        'resource': 'location',
                         'field': '_id',
                     },
                 },
                 'bio': {'type': 'string'},
                 'lifespan': {
-                    'type': 'string',
-                    'data_relation': {
-                        'resource': 'approx_date_span',
-                        'field': '_id',
-                    },
+                    'type': 'dict',
+                    'schema': approx_date_span_schema
                 },
                 'contact_info': {
                     'type': 'dict',
@@ -298,7 +495,7 @@ nodes_schema = {
             'type': 'dict',
             'schema': {
                 'category': {
-                    'type': 'string',
+                    'type': 'list',
                     'required': True,
                     'allowed': [
                         'gallery',
@@ -310,7 +507,6 @@ nodes_schema = {
                         'company',
                         'foundation',
                         'library',
-                        'museum',
                         'school',
                     ],
                 },
@@ -327,68 +523,61 @@ nodes_schema = {
                     'type': 'dict',
                     'schema': contact_info_schema
                 },
-                'hours': {
+                'hourset': {
                     'type': 'list',
                     'schema': {
                         'type': 'dict',
                         'schema': {
                             'name': {'type': 'string'},
-                            'timespan': {
-                                'type': 'string',
-                                'data_relation': {
-                                    'resource': 'datetime_spans',
-                                    'field': '_id',
-                                }
-                            },
                             'hours': {
                                 'type': 'dict',
                                 'schema': {
                                     'monday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     },
                                     'tuesday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     },
                                     'wednesday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     },
                                     'thursday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     },
                                     'friday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     },
                                     'saturday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     },
                                     'sunday': {
                                         'type': 'string',
                                         'data_relation': {
-                                            'resource': 'datetime_spans',
+                                            'resource': 'hour_span',
                                             'field': '_id',
                                         }
                                     }
@@ -403,7 +592,7 @@ nodes_schema = {
             'type': 'dict',
             'schema': {
                 'category': {
-                    'type': 'string',
+                    'type': 'list',
                     'required': True,
                     'allowed': [
                         'exhibition',
@@ -432,23 +621,48 @@ nodes_schema = {
                     'required': True,
                     'allowed': [
                         'book',
-                        'artobject',
                         'website',
+                        'object',
+                        'article',
+                        'serial',
                         'installation',
                     ]
+                },
+                'description': {'type': 'string'},
+                'language': {
+                    'type': 'string',
+                    'allowed': list(LANGUAGES.keys()),
                 },
                 'book_data': {
                     'type': 'dict',
                     'schema': {
                         'series': {'type': 'string'},
+                        'pages': {
+                            'type': 'number',
+                            'min': 1
+                        },
+                    }
+                },
+                'website_data': {
+                    'type': 'dict',
+                    'schema': {
+                        'root_url': {'type': 'string'}
+                    }
+                },
+                'article_data': {
+                    'type': 'dict',
+                    'schema': {
+                        'volume': {'type': 'string'},
+                        'series': {'type': 'string'},
+                        'issue': {'type': 'string'},
                         'pages': {'type': 'string'},
                     }
                 },
-                'artobject_data': {
+                'object_data': {
                     'type': 'dict',
                     'schema': {
                         'category': {
-                            'type': 'string',
+                            'type': 'list',
                             'required': True,
                             'allowed': [
                                 'painting',
@@ -461,27 +675,46 @@ nodes_schema = {
                             'type': 'string',
                             'allowed': [
                                 'oil on canvas',
-                                'acrylic on canvas'
+                                'acrylic on canvas',
                                 'mixed media',
                             ]
                         },
+                        'size': {
+                            'type': 'dict',
+                            'schema': {
+                                'height': {'type': 'number'},
+                                'width': {'type': 'number'},
+                                'depth': {'type': 'number'},
+                                'unit': {
+                                    'type': 'string',
+                                    'allowed': [
+                                        'in',
+                                        'ft',
+                                        'mm',
+                                        'cm',
+                                        'm',
+                                    ]
+                                }
+                            }
+                        }
                     }
                 },
-                'size': {
+                'installation_data': {
                     'type': 'dict',
                     'schema': {
-                        'height': {'type': 'number'},
-                        'width': {'type': 'number'},
-                        'depth': {'type': 'number'},
-                        'unit': {
+                        'location': {
                             'type': 'string',
-                            'allowed': [
-                                'in',
-                                'ft',
-                                'mm',
-                                'cm',
-                                'm',
-                            ]
+                            'data_relation': {
+                                'resource': 'node',
+                                'field': '_id'
+                            }
+                        },
+                        'timespan': {
+                            'type': 'string',
+                            'data_relation': {
+                                'resource': 'timespan',
+                                'field': '_id'
+                            }
                         }
                     }
                 }
@@ -495,7 +728,7 @@ edges_schema = {
         'type': 'string',
         'required': True,
         'data_relation': {
-            'resource': 'nodes',
+            'resource': 'node',
             'field': '_id',
         },
     },
@@ -527,7 +760,10 @@ edges_schema = {
             # (person)-[*]->(work)
             'curator_of',
 
-            # (org)-[*]->(work)
+            # (org)-[*]->(work:artobject)
+            'archive_of',
+
+            # (org)-[*]->(work:event)
             'venue_for',
 
             # (work)-[*]->(work)
@@ -542,7 +778,7 @@ edges_schema = {
         'type': 'string',
         'required': True,
         'data_relation': {
-            'resource': 'nodes',
+            'resource': 'node',
             'field': '_id',
         },
     },
@@ -550,25 +786,22 @@ edges_schema = {
         'type': 'dict',
         'schema': {
             'timespan': {
-                'type': 'string',
-                'data_relation': {
-                    'resource': 'approx_date_span',
-                    'field': '_id',
-                }
+                'type': 'dict',
+                'schema': approx_date_span_schema
             }
         }
     }
 }
 
 collections_schema = {
-    **base,
+    **base_schema,
     **{
-        'nodes': {
+        'node': {
             'type': 'list',
             'schema': {
                 'type': 'string',
                 'data_relation': {
-                    'resource': 'nodes',
+                    'resource': 'node',
                     'field': '_id',
                 }
             }
@@ -577,7 +810,7 @@ collections_schema = {
 }
 
 files_schema = {
-    **base,
+    **base_schema,
     **{
         'category': {
             'type': 'string',
@@ -630,71 +863,15 @@ files_schema = {
     }
 }
 
-locations_schema = {
-    **base,
-    **{
-        'category': {
-            'type': 'string',
-            'required': True,
-            'default': 'place',
-            'allowed': [
-                'place',
-                'neighborhood',
-                'city',
-            ]
-        },
-        'coordinates': {
-            'type': 'list',
-            'schema': {
-                'type': 'dict',
-                'schema': {
-                    'longitude': {
-                        'type': 'number',
-                        'required': True,
-                    },
-                    'latitude': {
-                        'type': 'number',
-                        'required': True,
-                    },
-                    'altitude': {
-                        'type': 'number',
-                        'required': False,
-                    }
-                }
-            }
-        },
-        'address': {
-            'type': 'dict',
-            'schema': {
-                'street': {'type': 'string'},
-                'city': {'type': 'string'},
-                'state_province': {
-                    'type': 'string'
-                    'allowed': [
-                        'IL',
-                        'WI',
-                        'IN',
-                        'MI'
-                    ]
-                },
-                'postal_code': {'type': 'string'},
-                'country': {
-                    'type': 'string',
-                    'default': 'USA',
-                    'allowed': list(COUNTRIES.keys()),
-                }
-            }
-        }
-    }
-}
-
 tags_schema = {
-    **base,
+    **base_schema,
     **{
         'synonyms': {
             'type': 'list',
             'schema': {
                 'type': 'dict',
+                'required': True,
+                'unique': True,
                 'schema': {
                     'term': {'type': 'string'},
                     'vocabulary': {
@@ -707,25 +884,27 @@ tags_schema = {
                     'id': {'type': 'string'},
                     'url': {'type': 'string'},
                 }
-            },
-        },
+            }
+        }
     }
 }
 
 pages_schema = {
-    **base,
+    **base_schema,
     **{
-        'type': 'dict',
-        'schema': {
-            'category': {
-                'type': 'string',
-                'required': True,
-                'allowed': [
-                    'standard',
-                    'article',
-                ]
-            },
-            'body': {'type': 'string'}
-        }
+        'category': {
+            'type': 'string',
+            'required': True,
+            'allowed': [
+                'standard',
+                'article',
+            ]
+        },
+        'slug': {
+            'type': 'string',
+            'required': True,
+            'unique': True,
+        },
+        'body': {'type': 'string'}
     }
 }
