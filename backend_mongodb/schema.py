@@ -1,6 +1,5 @@
-currency_list = [
-    'USD'
-]
+from lists.currencies import CURRENCIES
+from lists.countries import COUNTRIES
 
 contact_info_schema = {
     'phones': {
@@ -15,20 +14,47 @@ contact_info_schema = {
                         'office',
                         'mobile',
                     ]
-                }
-                'country': {'type': 'number'},
-                'area': {'type': 'number'},
-                'exchange': {'type': 'number'},
-                'number': {'type': 'number'},
-                'extension': {'type': 'number'},
+                },
+                'country': {
+                    'type': 'number',
+                    'required': True,
+                    'default': 1
+                },
+                'area': {
+                    'type': 'number',
+                    'required': True
+                },
+                'exchange': {
+                    'type': 'number',
+                    'required': True
+                },
+                'number': {
+                    'type': 'number',
+                    'required': True
+                },
+                'extension': {
+                    'type': 'number',
+                    'required': False
+                },
             }
         }
     },
     'emails': {
         'type': 'list',
         'schema': {
-            'email': {
-                'type': 'string',
+            'type': 'dict',
+            'schema': {
+                'category': {
+                    'type': 'string',
+                    'allowed': [
+                        'personal',
+                        'work'
+                    ],
+                    'default': 'personal'
+                },
+                'email': {
+                    'type': 'string',
+                }
             }
         }
     },
@@ -41,38 +67,31 @@ contact_info_schema = {
     }
 }
 
-rights_schema = {
-    'copyright_owner': {
-        'type': 'string',
-        'default': 'the author',
-    }
-    'license': {
-        'type': 'dict',
-        'schema': {
-            'name': {
-                'type': 'string',
-                'allowed': [
-                    'all rights reserved',
-                    'fair use',
-                    'MIT',
-                    'BSD',
-                    'GPL',
-                    'custom'
-                ],
-            }
-            'url': {'type': 'string'}
-        }
-    }
-}
+# rights_schema = {
+#     'copyright_owner': {
+#         'type': 'string',
+#         'default': 'the author',
+#     },
+#     'license': {
+#         'type': 'dict',
+#         'schema': {
+#             'name': {
+#                 'type': 'string',
+#                 'allowed': [
+#                     'all rights reserved',
+#                     'fair use',
+#                     'MIT',
+#                     'BSD',
+#                     'GPL',
+#                     'custom'
+#                 ],
+#             },
+#             'url': {'type': 'string'}
+#         }
+#     }
+# }
 
 base = {
-    'owner': {
-        'type': 'string',
-        'data_relation': {
-            'resource': 'users',
-            'field': '_id',
-        },
-    },
     'name': {'type': 'string'},
     'synopsis': {'type': 'string'},
     # 'acls': [
@@ -84,32 +103,44 @@ base = {
     # ]
 }
 
+
 approx_dates = {
-    'year': {
-        'type': 'number',
-        'required': True,
-    },
-    'month': {
-        'type': 'number',
-        'required': False,
-    },
-    'date': {
-        'type': 'number',
-        'required': False,
-        'dependencies': 'month',
-    },
+    **base,
+    **{
+        'year': {
+            'type': 'number',
+            'required': True,
+        },
+        'month': {
+            'type': 'number',
+            'required': False,
+            'min': 1,
+            'max': 12
+        },
+        'date': {
+            'type': 'number',
+            'required': False,
+            'dependencies': 'month',
+            'min': 1,
+            'max': 31
+        }
+        'approximate': {
+            'type': 'boolean',
+            'default': False
+        }
+    }
 }
 
 approx_date_spans = {
     'start': {
-        'type': 'dict',
+        'type': 'string',
         'data_relation': {
             'resource': 'approx_date',
             'field': '_id',
         }
     },
     'end': {
-        'type': 'dict',
+        'type': 'string',
         'data_relation': {
             'resource': 'approx_date',
             'field': '_id',
@@ -117,18 +148,42 @@ approx_date_spans = {
     }
 }
 
-datetime_spans = {
-    'start': {'type': 'datetime'},
-    'end': {'type': 'datetime'},
-    'all_day': {
-        'type': 'boolean',
-        'default': False,
+# datetime_spans = {
+#     'start': {'type': 'datetime'},
+#     'end': {'type': 'datetime'},
+#     'all_day': {
+#         'type': 'boolean',
+#         'default': False,
+#     }
+# }
+
+users_schema = {
+    **base,
+    **{
+        'category': {
+            'type': 'string',
+            'required': True,
+            'allowed': [
+                'member',
+                'manager',
+                'admin',
+            ]
+        },
+        'pass_hash': {'type': 'string'},
     }
 }
 
-nodes = {
+nodes_schema = {
     **base,
     **{
+        'owner': {
+            'type': 'string',
+            'required': True,
+            'data_relation': {
+                'resource': 'users',
+                'field': '_id',
+            },
+        },
         'category': {
             'type': 'list',
             'required': True,
@@ -159,7 +214,10 @@ nodes = {
         'sources': {
             'type': 'dict',
             'schema': {
-                'name': {'type': 'string'},
+                'name': {
+                    'type': 'string',
+                    'default': 'original work'
+                    },
                 'remote_id': {'type': 'string'},
                 'url': {'type': 'string'},
                 'accessed': {'type': 'datetime'},
@@ -177,17 +235,26 @@ nodes = {
                             'Facebook',
                             'Twitter',
                             'Pinterest',
-                        ]
+                        ],
+                        "required": True
                     },
-                    'url': {'type': 'string'}
+                    'account': {
+                        'type': 'string'
+                        "required": True
+                    },
                 }
             }
         },
         "websites": {
-            'type': 'list',
-            'schema': {
-                'url': {
-                    'type': 'string',
+            "type": "list",
+            "schema": {
+                "type": "dict",
+                "schema": {
+                    "name": {"type": "string"},
+                    "url": {
+                        "type": "string",
+                        "required": True
+                    }
                 }
             }
         },
@@ -197,14 +264,17 @@ nodes = {
                 'name': {
                     'type': 'dict',
                     'schema': {
-                        'first': {'type': 'string'},
+                        'first': {
+                            'type': 'string'
+                        },
                         'last': {
                             'type': 'string',
+                            'required': True,
                         },
                     },
                 },
                 'birthplace': {
-                    'type': 'string'
+                    'type': 'string',
                     'data_relation': {
                         'resource': 'locations',
                         'field': '_id',
@@ -216,7 +286,7 @@ nodes = {
                     'data_relation': {
                         'resource': 'approx_date_span',
                         'field': '_id',
-                    }
+                    },
                 },
                 'contact_info': {
                     'type': 'dict',
@@ -244,7 +314,7 @@ nodes = {
                         'school',
                     ],
                 },
-                'description': {'type': 'string'}
+                'description': {'type': 'string'},
                 'nonprofit': {
                     'type': 'boolean',
                     'default': True
@@ -269,7 +339,7 @@ nodes = {
                                     'resource': 'datetime_spans',
                                     'field': '_id',
                                 }
-                            }
+                            },
                             'hours': {
                                 'type': 'dict',
                                 'schema': {
@@ -346,7 +416,10 @@ nodes = {
                     'type': 'dict',
                     'schema': {
                         'amount': {'type': 'number'},
-                        'currency': currency_list,
+                        'currency': {
+                            'type': 'string',
+                            'allowed': list(CURRENCIES.keys())
+                        },
                     }
                 }
             }
@@ -413,25 +486,11 @@ nodes = {
                     }
                 }
             }
-        },
-        'page': {
-            'type': 'dict',
-            'schema': {
-                'category': {
-                    'type': 'string',
-                    'required': True,
-                    'allowed': [
-                        'standard',
-                        'article',
-                    ]
-                },
-                'body': {'type': 'string'}
-            }
         }
     }
 }
 
-edges = {
+edges_schema = {
     'subject': {
         'type': 'string',
         'required': True,
@@ -480,7 +539,7 @@ edges = {
         ]
     },
     'object': {
-        'type': 'string'
+        'type': 'string',
         'required': True,
         'data_relation': {
             'resource': 'nodes',
@@ -501,7 +560,7 @@ edges = {
     }
 }
 
-collections = {
+collections_schema = {
     **base,
     **{
         'nodes': {
@@ -517,20 +576,7 @@ collections = {
     }
 }
 
-users = {
-    'category': {
-        'type': 'string',
-        'required': True,
-        'allowed': [
-            'member',
-            'manager',
-            'admin',
-        ]
-    },
-    'pass_hash': {'type': 'string'},
-}
-
-files = {
+files_schema = {
     **base,
     **{
         'category': {
@@ -584,12 +630,13 @@ files = {
     }
 }
 
-locations = {
+locations_schema = {
     **base,
     **{
         'category': {
             'type': 'string',
             'required': True,
+            'default': 'place',
             'allowed': [
                 'place',
                 'neighborhood',
@@ -603,12 +650,15 @@ locations = {
                 'schema': {
                     'longitude': {
                         'type': 'number',
+                        'required': True,
                     },
                     'latitude': {
                         'type': 'number',
+                        'required': True,
                     },
                     'altitude': {
                         'type': 'number',
+                        'required': False,
                     }
                 }
             }
@@ -618,23 +668,27 @@ locations = {
             'schema': {
                 'street': {'type': 'string'},
                 'city': {'type': 'string'},
-                'state_province': {'type': 'string'},
+                'state_province': {
+                    'type': 'string'
+                    'allowed': [
+                        'IL',
+                        'WI',
+                        'IN',
+                        'MI'
+                    ]
+                },
                 'postal_code': {'type': 'string'},
                 'country': {
                     'type': 'string',
-                    'default': 'United States of America',
-                    'allowed': [
-                        'United States of America',
-                        'Canada',
-                        'Mexico',
-                    ]
+                    'default': 'USA',
+                    'allowed': list(COUNTRIES.keys()),
                 }
             }
         }
     }
 }
 
-tags = {
+tags_schema = {
     **base,
     **{
         'synonyms': {
@@ -655,5 +709,23 @@ tags = {
                 }
             },
         },
+    }
+}
+
+pages_schema = {
+    **base,
+    **{
+        'type': 'dict',
+        'schema': {
+            'category': {
+                'type': 'string',
+                'required': True,
+                'allowed': [
+                    'standard',
+                    'article',
+                ]
+            },
+            'body': {'type': 'string'}
+        }
     }
 }
