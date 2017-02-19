@@ -16,6 +16,12 @@ AUTO_CREATE_LISTS = True
 # development only
 XML = False
 IF_MATCH = False
+X_DOMAINS = '*'
+headers = [
+    'Content-Type',
+]
+X_HEADERS = headers
+X_EXPOSE_HEADERS = headers
 
 DOMAIN = {
     'nodes': {

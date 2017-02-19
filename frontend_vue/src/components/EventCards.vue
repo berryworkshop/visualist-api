@@ -31,7 +31,12 @@
 </template>
 
 <script>
-  import EventQuery from '../controllers/EventQuery';
+  // import EventQuery from '../controllers/EventQuery';
+  import Axios from 'axios';
+
+  const ajax = Axios.create({
+    baseURL: process.env.API_BASE_URL,
+  });
 
   export default {
     name: 'event-cards',
@@ -42,12 +47,12 @@
       };
     },
     mounted() {
-      new EventQuery('Event').eventList()
-      .then((value) => {
-        this.objectList = value;
+      ajax.get('/nodes/')
+      .then((response) => {
+        this.objectList = response.data._items;
       })
       .catch((error) => {
-        console.log('query failed to occur', error);
+        console.log(error);
       });
     },
   };
