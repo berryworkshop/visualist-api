@@ -1,13 +1,5 @@
-from schemas.schema import (
-    nodes_schema,
-    edges_schema,
-    collections_schema,
-    users_schema,
-    files_schema,
-    locations_schema,
-    tags_schema,
-    pages_schema,
-)
+from schemas import (
+    nodes, edges, collections, users, files, locations, tags, pages)
 
 # MONGO_HOST = 'localhost'
 # MONGO_PORT = 27017
@@ -25,42 +17,33 @@ AUTO_CREATE_LISTS = True
 XML = False
 IF_MATCH = False
 
-nodes = {
-    'additional_lookup': {
-        'url': 'regex("[-\w]+")',
-        'field': 'slug'
-    },
-    'schema': nodes_schema
-}
-edges = {
-    'schema': edges_schema
-}
-collections = {
-    'schema': collections_schema
-}
-users = {
-    'schema': users_schema
-}
-files = {
-    'schema': files_schema
-}
-locations = {
-    'schema': locations_schema
-}
-tags = {
-    'schema': tags_schema
-}
-pages = {
-    'schema': pages_schema
-}
-
 DOMAIN = {
-    'nodes': nodes,
-    'edges': edges,
-    'collections': collections,
-    'users': users,
-    'files': files,
-    'locations': locations,
-    'tags': tags,
-    'pages': pages,
+    'nodes': {
+        'additional_lookup': {
+            'url': 'regex("[-\w]+")',
+            'field': 'slug'
+        },
+        'schema': {**nodes.schema}
+    },
+    'edges': {
+        'schema': {**edges.schema}
+    },
+    'collections': {
+        'schema': {**collections.schema}
+    },
+    'users': {
+        'schema': {**users.schema}
+    },
+    'files': {
+        'schema': {**files.schema}
+    },
+    'locations': {
+        'schema': {**locations.schema}
+    },
+    'tags': {
+        'schema': {**tags.schema}
+    },
+    'pages': {
+        'schema': {**pages.schema}
+    },
 }
