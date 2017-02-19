@@ -5,14 +5,14 @@ from schemas import base, approx_date, contact_info, citations
 schema = {
     **base.schema,
     **{
-        'owner': {
-            'type': 'string',
-            'required': True,
-            'data_relation': {
-                'resource': 'user',
-                'field': '_id',
-            },
-        },
+        # 'owner': {
+        #     'type': 'string',
+        #     'required': True,
+        #     'data_relation': {
+        #         'resource': 'user',
+        #         'field': '_id',
+        #     },
+        # },
         'category': {
             'type': 'list',
             'required': True,
@@ -54,7 +54,10 @@ schema = {
                 'field': '_id'
             }
         },
-        'citations': citations.schema,
+        # 'citations': {
+        #     'type': 'list',
+        #     'schema': {**citations.schema}
+        # },
         "accounts": {
             'type': 'list',
             'schema': {
@@ -112,14 +115,14 @@ schema = {
                     },
                 },
                 'bio': {'type': 'string'},
-                'lifespan': {
-                    'type': 'dict',
-                    'schema': approx_date.span_schema
-                },
-                'contact_info': {
-                    'type': 'dict',
-                    'schema': contact_info.schema
-                }
+                # 'lifespan': {
+                #     'type': 'dict',
+                #     'schema': {**approx_date.span_schema}
+                # },
+                # 'contact_info': {
+                #     'type': 'dict',
+                #     'schema': {**contact_info.schema}
+                # }
             }
         },
         'organization_data': {
@@ -150,10 +153,10 @@ schema = {
                     'type': 'boolean',
                     'default': False
                 },
-                'contact_info': {
-                    'type': 'dict',
-                    'schema': contact_info.schema
-                },
+                # 'contact_info': {
+                #     'type': 'dict',
+                #     'schema': {**contact_info.schema}
+                # },
                 'hourset': {
                     'type': 'list',
                     'schema': {

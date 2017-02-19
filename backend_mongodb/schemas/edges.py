@@ -64,7 +64,7 @@ schema = {
         'schema': {
             'timespan': {
                 'type': 'dict',
-                'schema': approx_date.span_schema
+                'schema': {**approx_date.span_schema}
             }
         }
     }
