@@ -23,6 +23,7 @@ headers = [
 X_HEADERS = headers
 X_EXPOSE_HEADERS = headers
 
+
 DOMAIN = {
     'nodes': {
         'additional_lookup': {
@@ -30,6 +31,42 @@ DOMAIN = {
             'field': 'slug'
         },
         'schema': {**nodes.schema}
+    },
+    'people': {
+        'datasource': {
+            'source': 'nodes',
+            'projection': {'slug': 1},
+            'filter': {
+                'category': {'$eq': 'person'}
+            }
+        }
+    },
+    'organizations': {
+        'datasource': {
+            'source': 'nodes',
+            'projection': {'slug': 1},
+            'filter': {
+                'category': {'$eq': 'organization'}
+            }
+        }
+    },
+    'events': {
+        'datasource': {
+            'source': 'nodes',
+            'projection': {'slug': 1},
+            'filter': {
+                'category': {'$eq': 'event'}
+            }
+        }
+    },
+    'works': {
+        'datasource': {
+            'source': 'nodes',
+            'projection': {'slug': 1},
+            'filter': {
+                'category': {'$eq': 'work'}
+            }
+        }
     },
     'edges': {
         'schema': {**edges.schema}

@@ -21,7 +21,6 @@ schema = {
                 'organization',
                 'event',
                 'work',
-                'page',
             ]
         },
         'slug': {
