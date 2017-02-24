@@ -7,6 +7,8 @@
 * vislist.org
 * visualist.us
 * vsl.ist
+* v7t.io
+* v7t.us
 
 * bcw.design
 * berry.cat
