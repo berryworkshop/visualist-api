@@ -59,7 +59,6 @@ export default {
     font-size: 16;
     flex: 1;
     background-color: $primary_bg;
-    padding: 1rem;
   }
 
   a {
