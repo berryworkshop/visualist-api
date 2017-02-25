@@ -2,10 +2,10 @@
   <div class="panel">
     <ul class="card_list">
       <li v-for="obj in objectList" class="card">
-        <div class="event_visuals">
-          <h4 class="event_date_icon">Jan 1 – Jan 30</h4>
+        <div class="node_visuals">
+          <h4 class="node_date_icon">Jan 1 – Jan 30</h4>
         </div>
-        <div class="event_info">
+        <div class="node_info">
           <p class="location">
             <span v-if="obj.city">{{ obj.city }}</span>
             <span v-if="obj.location">: {{ obj.location }}</span>
@@ -15,7 +15,7 @@
           <p class="audience">All ages welcome</p><!-- tiered as a vocab -->
           <i class="fa fa-usd" aria-hidden="true"></i>
         </div>
-        <div class="event_controls">
+        <div class="node_controls">
           <a class="button" href="#"><i class="fa fa-star" aria-hidden="true"></i></a>
           <a class="button" href="#"><i class="fa fa-flag" aria-hidden="true"></i></a>
 
@@ -31,7 +31,6 @@
 </template>
 
 <script>
-  // import EventQuery from '../controllers/EventQuery';
   import Axios from 'axios';
 
   const ajax = Axios.create({
@@ -39,7 +38,7 @@
   });
 
   export default {
-    name: 'event-cards',
+    name: 'node-cards',
     data() {
       return {
         objectList: [],
@@ -63,7 +62,7 @@
   @import "../styles/grid.scss";
   @import "../styles/utility.scss";
 
-  .event_visuals {
+  .node_visuals {
     margin-left: -1rem;
     margin-right: -1rem;
     margin-top: -1rem;
@@ -79,7 +78,7 @@
       color: white;
     }
 
-    .event_date_icon {
+    .node_date_icon {
       font-size: x-large;
       font-weight: normal;
       margin: auto;

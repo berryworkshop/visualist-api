@@ -7,7 +7,7 @@ from schemas import (
 # MONGO_PASSWORD = '<your password>'
 
 MONGO_DBNAME = 'visualist'
-# API_VERSION = 'v1'
+API_VERSION = 'v1'
 
 RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']

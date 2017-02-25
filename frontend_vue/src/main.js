@@ -9,10 +9,12 @@ import Error403 from './components/Error403';
 import Error404 from './components/Error404';
 import Login from './components/Login';
 import Search from './components/Search';
-import Artists from './components/Artists';
-import Artworks from './components/Artworks';
-import Events from './components/Events';
-import Venues from './components/Venues';
+import NodeList from './components/NodeLists/NodeList';
+import EventList from './components/NodeLists/EventList';
+// import Artists from './components/Artists';
+// import Artworks from './components/Artworks';
+// import Events from './components/Events';
+// import Venues from './components/Venues';
 
 Vue.use(VueRouter);
 
@@ -46,10 +48,11 @@ const routes = [
   { path: '/404', component: Error404 },
   { path: '/login', component: Login },
   { path: '/search', component: Search },
-  { path: '/artists', component: Artists },
-  { path: '/artworks', component: Artworks },
-  { path: '/events', component: Events },
-  { path: '/venues', component: Venues },
+  { path: '/nodes', component: NodeList },
+  { path: '/events', component: EventList }, // Events },
+  // { path: '/artists', component: NodeList }, // Artists },
+  // { path: '/artworks', component: NodeList }, // Artworks },
+  // { path: '/venues', component: NodeList }, // Venues },
 ];
 
 const router = new VueRouter({
