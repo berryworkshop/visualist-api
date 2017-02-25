@@ -16,13 +16,16 @@
       <div id="search_modal" class="dropdown_modal" v-if="search_modal">
         <form id="search" action="/search">
           <input type="search" placeholder="Search" name="q" >
-          <button type="submit">Search</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
 
       <div id="browse_modal" class="dropdown_modal" v-if="browse_modal">
         <ul>
           <li><router-link @click.native="close" to="login">Login</router-link></li>
+        </ul>
+        <ul>
+          <li><router-link @click.native="close" to="search">Search</router-link></li>
         </ul>
         <ul>
           <li><router-link @click.native="close" to="/events">Events</router-link></li>
@@ -91,7 +94,7 @@ header#site-header {
     button {
       color: #999;
       border: none;
-      background-color: $secondary_bg;
+      background-color: transparent;
       &:focus {
         z-index: 2;
       }
@@ -103,11 +106,28 @@ header#site-header {
     left: 0;
     right: 0;
     z-index: 1;
-    background-color: $secondary_bg;
+    background-color: #333;
     padding: 1rem;
     box-shadow: 0 3px 3px hsla(0,0%,0%,0.5);
   }
-  #search_modal {}
+  #search_modal {
+      form {
+        width: 100%;
+        display: flex;
+        flex: auto;
+      }
+      input {
+        flex: auto;
+        padding: .5rem 1rem;
+        border: 0;
+        background-color: #ddd;
+      }
+      button {
+        padding: .5rem 1rem;
+        margin-left: 1rem;
+        border: none;
+      }
+  }
   #browse_modal {}
 }
 </style>
