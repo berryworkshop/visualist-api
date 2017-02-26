@@ -3,7 +3,7 @@ import NodeList from './NodeList';
 
 export default {
   extends: NodeList,
-  name: 'eventlist',
+  name: 'event-list',
   data() {
     return {
       title: 'Events',

@@ -11,6 +11,9 @@
         <button type="button" class="browse_modal_toggle" v-on:click="browse_modal = !browse_modal">
           <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
         </button>
+        <button type="button" class="user_modal_toggle" v-on:click="user_modal = !user_modal">
+          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
+        </button>
       </div>
 
       <div id="search_modal" class="dropdown_modal" v-if="search_modal">
@@ -42,6 +45,13 @@
           <li>About Us</li>
         </ul>
       </div>
+
+      <div id="user_modal" class="dropdown_modal" v-if="user_modal">
+        <ul>
+          <li>login</li>
+        </ul>
+      </div>
+
     </div>
   </header>
 </template>
@@ -53,12 +63,14 @@ export default {
     return {
       browse_modal: false,
       search_modal: false,
+      user_modal: false,
     };
   },
   methods: {
     close() {
       this.browse_modal = false;
       this.search_modal = false;
+      this.user_modal = false;
     },
   },
 };
@@ -90,6 +102,8 @@ header#site-header {
       font-size: 2rem;
       font-weight: bold;
       flex: auto;
+      font-variant: small-caps;
+      letter-spacing: .25em
     }
     button {
       color: #999;
@@ -109,6 +123,8 @@ header#site-header {
     background-color: #333;
     padding: 1rem;
     box-shadow: 0 3px 3px hsla(0,0%,0%,0.5);
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
   #search_modal {
       form {

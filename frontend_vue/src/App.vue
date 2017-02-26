@@ -63,6 +63,7 @@ export default {
 
   a {
     color: $primary_anchor;
+    font-weight: bolder;
   }
 
   a.disabled {

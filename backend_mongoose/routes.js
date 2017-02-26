@@ -1,28 +1,40 @@
 const express = require('express');
-const router = express.Router();
 const Bear = require('./models').Bear;
 
+const router = express.Router();
+
 router.get('/', (req, res) => {
-  res.json({ message: 'hooray! welcome to our api!' });
+  res.json({
+    _links: {
+      child: [
+        {
+          href: 'bears',
+          title: 'bears',
+        },
+      ],
+    },
+  });
 });
 
 router.route('/bears')
-.post( (req, res) => {
+.post((req, res) => {
   const bear = new Bear();
   bear.name = req.body.name;
   bear.save((err) => {
     if (err) {
-      res.send(err)
-    };
-    res.json({ message: 'Bear created!' });
+      res.send(err);
+    } else {
+      res.json({ message: 'Bear created!' });
+    }
   });
 })
 .get((req, res) => {
   Bear.find((err, bears) => {
     if (err) {
-      res.send(err)
-    };
+      res.send(err);
+    }
     res.json(bears);
+    return bears;
   });
 });
 
@@ -33,30 +45,34 @@ router.route('/bears/:bear_id')
       res.send(err);
     }
     res.json(bear);
+    return bear;
   });
 })
 .put((req, res) => {
   Bear.findById(req.params.bear_id, (err, bear) => {
-    if (err) { res.send(err); }
-    bear.name = req.body.name; // update the bears info
-    bear.save((err) => {
-      if (err) {
+    if (err) {
+      res.send(err);
+    }
+    const newBear = Object.create(bear);
+    newBear.name = req.body.name;
+    newBear.save((err2) => {
+      if (err2) {
         res.send(err);
       }
       res.json({
-        message: 'Bear updated!'
+        message: 'Bear updated!',
       });
     });
   });
 })
 .delete((req, res) => {
   Bear.remove({
-    _id: req.params.bear_id
+    _id: req.params.bear_id,
   }, (err, bear) => {
     if (err) {
       res.send(err);
     }
-    res.json({ message: 'Successfully deleted' });
+    res.json({ message: `Bear ${bear} Successfully deleted` });
   });
 });
 

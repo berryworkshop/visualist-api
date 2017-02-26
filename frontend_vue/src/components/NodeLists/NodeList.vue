@@ -10,7 +10,7 @@
 import NodeCards from '../NodeCards';
 
 export default {
-  name: 'nodelist',
+  name: 'node-list',
   data() {
     return {
       title: 'Nodes',
