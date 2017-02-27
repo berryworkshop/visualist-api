@@ -11,9 +11,9 @@
         <button type="button" class="browse_modal_toggle" v-on:click="browse_modal = !browse_modal">
           <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
         </button>
-        <button type="button" class="user_modal_toggle" v-on:click="user_modal = !user_modal">
-          <i class="fa fa-user fa-2x" aria-hidden="true"></i>
-        </button>
+        <!-- <button type="button" class="menu_modal_toggle" v-on:click="menu_modal = !menu_modal">
+          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+        </button> -->
       </div>
 
       <div id="search_modal" class="dropdown_modal" v-if="search_modal">
@@ -28,7 +28,8 @@
           <li><router-link @click.native="close" to="login">Login</router-link></li>
         </ul>
         <ul>
-          <li><router-link @click.native="close" to="search">Search</router-link></li>
+          <li><router-link @click.native="close" to="/search">Search</router-link></li>
+          <li><router-link @click.native="close" to="/nodes">Nodes</router-link></li>
         </ul>
         <ul>
           <li><router-link @click.native="close" to="/events">Events</router-link></li>
@@ -46,11 +47,11 @@
         </ul>
       </div>
 
-      <div id="user_modal" class="dropdown_modal" v-if="user_modal">
+      <!-- <div id="menu_modal" class="dropdown_modal" v-if="menu_modal">
         <ul>
           <li>login</li>
         </ul>
-      </div>
+      </div> -->
 
     </div>
   </header>
@@ -63,14 +64,14 @@ export default {
     return {
       browse_modal: false,
       search_modal: false,
-      user_modal: false,
+      menu_modal: false,
     };
   },
   methods: {
     close() {
       this.browse_modal = false;
       this.search_modal = false;
-      this.user_modal = false;
+      this.menu_modal = false;
     },
   },
 };

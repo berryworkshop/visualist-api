@@ -1,7 +1,7 @@
 <template>
   <div id="home" class="container">
-    <h1>Home</h1>
-    <p>This is the home page.</p>
+    <h1>{{ pageTitle }}</h1>
+    <p>{{ pageSubtitle }}</p>
   </div>
 </template>
 
@@ -9,7 +9,10 @@
 export default {
   name: 'home',
   data() {
-    return {};
+    return {
+      pageTitle: 'Home',
+      pageSubtitle: 'This is the home page.',
+    };
   },
 };
 </script>

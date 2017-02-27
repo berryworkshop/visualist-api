@@ -9,8 +9,7 @@ import Error403 from './components/Error403';
 import Error404 from './components/Error404';
 import Login from './components/Login';
 import Search from './components/Search';
-import NodeList from './components/NodeLists/NodeList';
-import EventList from './components/NodeLists/EventList';
+import NodeList from './components/NodeList';
 // import Artists from './components/Artists';
 // import Artworks from './components/Artworks';
 // import Events from './components/Events';
@@ -49,7 +48,7 @@ const routes = [
   { path: '/login', component: Login },
   { path: '/search', component: Search },
   { path: '/nodes', component: NodeList },
-  { path: '/events', component: EventList }, // Events },
+  // { path: '/events', component: EventList }, // Events },
   // { path: '/artists', component: NodeList }, // Artists },
   // { path: '/artworks', component: NodeList }, // Artworks },
   // { path: '/venues', component: NodeList }, // Venues },

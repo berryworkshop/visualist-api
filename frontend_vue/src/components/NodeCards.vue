@@ -59,8 +59,59 @@
 </script>
 
 <style lang="scss">
+  @import "../styles/brand.scss";
   @import "../styles/grid.scss";
   @import "../styles/utility.scss";
+
+  // abstract superclass for panel and card
+  %block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // good for interface items like control panels and maps
+  // can be used to contain cards, or be used within cards
+  .panel {
+    @extend %block;
+    margin: 0;
+    padding: 0;
+  }
+
+  // good for information presentation like Records, lists, or other items from the database
+  // not meant to be self nested
+  .card {
+    @extend %block;
+    background-color: $card_bg;
+    padding: 1rem;
+
+    .header {}
+    .body {}
+    .footer{}
+  }
+
+  // supporting container for cards
+  ul.card_list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    li {
+      margin-bottom: 1rem;
+      @include md_up {
+        flex: 1 0 45%;
+        background-clip: padding-box;
+        &:nth-of-type(odd) {
+          margin-right: .5rem;
+        }
+        &:nth-of-type(even) {
+          margin-left: .5rem;
+        }
+      }
+    }
+  }
 
   .node_visuals {
     margin-left: -1rem;
@@ -84,5 +135,7 @@
       margin: auto;
     }
   }
+
+
 
 </style>
