@@ -20,6 +20,7 @@
   </div>
 </template>
 
+
 <script>
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
@@ -47,6 +48,7 @@ export default {
 };
 </script>
 
+
 <style lang="scss">
   @import "styles/brand.scss";
   @import "styles/grid.scss";
@@ -64,6 +66,7 @@ export default {
     display: flex;
     min-height: 100vh;
     flex-direction: column;
+    flex-wrap: wrap;
 
     .container {
       position: relative;
@@ -76,6 +79,29 @@ export default {
         margin-left: auto;
         margin-right: auto;
         max-width: $bp2;
+      }
+    }
+
+    main {
+      flex: 1 0 100%;
+      font-size: 16;
+      background-color: $primary_bg;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      #intro {
+        order: 1;
+        flex: 2 1 50%;
+      }
+      #content {
+        order: 3;
+      }
+      #controls {
+        order: 2;
+        flex: 1 0;
+        display: flex;
+        align-items: flex-end;
+        padding-bottom: 1rem;
       }
     }
 
@@ -151,28 +177,6 @@ export default {
 
     control-panel {
       border: 1px solid red;
-    }
-
-    main {
-      font-size: 16;
-      background-color: $primary_bg;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      #intro {
-        order: 1;
-        flex: 2 1 50%;
-      }
-      #content {
-        order: 3;
-      }
-      #controls {
-        order: 2;
-        flex: 1 0;
-        display: flex;
-        align-items: flex-end;
-        padding-bottom: 1rem;
-      }
     }
   }
 </style>
