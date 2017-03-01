@@ -29,15 +29,17 @@ import ControlPanel from './components/ControlPanel';
 export default {
   name: 'app',
   data() {
-    return {
-      pageTitle: 'Welcome',
-      pageSubtitle: 'Chicago visual arts calendar',
-      pageDescription: 'Here you can find all the stuff you ever wanted to know about art in Chicago.',
-    };
+    return {};
   },
-  methods: {
-    setPageTitle: (pageTitle) => {
-      this.pageTitle = pageTitle;
+  computed: {
+    pageTitle() {
+      return this.$store.state.page.title;
+    },
+    pageSubtitle() {
+      return this.$store.state.page.subtitle;
+    },
+    pageDescription() {
+      return this.$store.state.page.description;
     },
   },
   components: {
@@ -87,7 +89,7 @@ export default {
       font-size: 16;
       background-color: $primary_bg;
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
       flex-wrap: wrap;
       #intro {
         order: 1;

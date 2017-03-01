@@ -2,6 +2,7 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import Vuex from 'vuex';
 import App from './App';
 
 import Home from './components/Home';
@@ -16,30 +17,7 @@ import NodeList from './components/NodeList';
 // import Venues from './components/Venues';
 
 Vue.use(VueRouter);
-
-// const config = {
-//   title: 'The Visualist',
-//   subtitle: null,
-//   logo: '<image_id>',
-//   general_rights_statement:
-//     'All rights reserved, unless otherwise specified.',
-//   version: null,
-//   primary_nav: {
-//     Home: '/',
-//     Events: '/',
-//     Artists: '/',
-//     Venues: '/',
-//     Search: '/',
-//     Help: '/',
-//   },
-//   secondary_nav: {
-//     Rights: '/',
-//     Privacy: '/',
-//     Sitemap: '/',
-//     Links: '/',
-//     Archive: '/',
-//   },
-// };
+Vue.use(Vuex);
 
 const routes = [
   { path: '/', component: Home },
@@ -54,6 +32,36 @@ const routes = [
   // { path: '/venues', component: NodeList }, // Venues },
 ];
 
+const store = new Vuex.Store({
+  state: {
+    site: {
+      rightsStatement: 'All rights reserved, unless otherwise specified.',
+      logo: '<image_id>',
+      version: 0.1,
+      primaryNav: {
+        home: '/',
+        events: '/',
+        artists: '/',
+        venues: '/',
+        search: '/',
+        help: '/',
+      },
+      secondaryNav: {
+        rights: '/',
+        privacy: '/',
+        sitemap: '/',
+        links: '/',
+        archive: '/',
+      },
+    },
+    page: {
+      title: 'The Visualist',
+      subtitle: 'This is the subtitle.',
+      description: 'Aute eu deserunt sit aliquip veniam Lorem duis anim excepteur. Velit incididunt officia irure dolor voluptate quis elit et consectetur. Nostrud occaecat aliqua exercitation elit id duis mollit do ad ipsum irure esse velit consectetur.',
+    },
+  },
+});
+
 const router = new VueRouter({
   routes, // short for routes: routes
   mode: 'history',
@@ -65,4 +73,5 @@ new Vue({
   el: '#app',
   template: '<App/>',
   components: { App },
+  store,
 });
