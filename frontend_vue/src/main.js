@@ -32,33 +32,47 @@ const routes = [
   // { path: '/venues', component: NodeList }, // Venues },
 ];
 
+const siteDefaults = {
+  rightsStatement: 'All rights reserved, unless otherwise specified.',
+  logo: '<image_id>',
+  version: 0.1,
+  primaryNav: {
+    home: '/',
+    events: '/',
+    artists: '/',
+    venues: '/',
+    search: '/',
+    help: '/',
+  },
+  secondaryNav: {
+    rights: '/',
+    privacy: '/',
+    sitemap: '/',
+    links: '/',
+    archive: '/',
+  },
+};
+
+const pageDefaults = {
+  title: 'Welcome to the Visualist',
+  subtitle: 'This is the subtitle.',
+  description: 'Aute eu deserunt sit aliquip veniam Lorem duis anim excepteur. Velit incididunt officia irure dolor voluptate quis elit et consectetur. Nostrud occaecat aliqua exercitation elit id duis mollit do ad ipsum irure esse velit consectetur.',
+};
+
 const store = new Vuex.Store({
   state: {
-    site: {
-      rightsStatement: 'All rights reserved, unless otherwise specified.',
-      logo: '<image_id>',
-      version: 0.1,
-      primaryNav: {
-        home: '/',
-        events: '/',
-        artists: '/',
-        venues: '/',
-        search: '/',
-        help: '/',
-      },
-      secondaryNav: {
-        rights: '/',
-        privacy: '/',
-        sitemap: '/',
-        links: '/',
-        archive: '/',
-      },
+    site: siteDefaults,
+    page: pageDefaults,
+  },
+  mutations: {
+  /* eslint-disable no-param-reassign */
+    resetPageData(state) {
+      state.page = pageDefaults;
     },
-    page: {
-      title: 'The Visualist',
-      subtitle: 'This is the subtitle.',
-      description: 'Aute eu deserunt sit aliquip veniam Lorem duis anim excepteur. Velit incididunt officia irure dolor voluptate quis elit et consectetur. Nostrud occaecat aliqua exercitation elit id duis mollit do ad ipsum irure esse velit consectetur.',
+    setPageData(state, payload) {
+      state.page = payload;
     },
+  /* eslint-enable no-param-reassign */
   },
 });
 
@@ -67,8 +81,7 @@ const router = new VueRouter({
   mode: 'history',
 });
 
-/* eslint-disable no-new */
-new Vue({
+module.exports = new Vue({
   router,
   el: '#app',
   template: '<App/>',

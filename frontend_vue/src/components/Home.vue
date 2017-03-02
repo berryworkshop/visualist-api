@@ -1,7 +1,6 @@
 <template>
-  <div id="home" class="container">
-    <h1>flurm</h1>
-    <p>blork</p>
+  <div class="panel" id="home">
+    <p>Here's home page stuff.</p>
   </div>
 </template>
 
@@ -10,6 +9,9 @@ export default {
   name: 'home',
   data() {
     return {};
+  },
+  mounted() {
+    this.$store.commit('resetPageData');
   },
 };
 </script>

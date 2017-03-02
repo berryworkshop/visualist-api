@@ -1,5 +1,5 @@
 <template>
-  <div id="search" class="container">
+  <div class="panel" id="search">
     <h1>Search</h1>
     <p>These are search results.</p>
   </div>

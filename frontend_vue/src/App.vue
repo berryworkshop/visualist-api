@@ -5,14 +5,14 @@
     <main class="container">
       <div id="intro">
         <h1>{{ pageTitle }}</h1>
-        <h2>{{ pageSubtitle }}</h2>
-        <p>{{ pageDescription }}</p>
+        <h2 v-if="pageSubtitle">{{ pageSubtitle }}</h2>
+        <p v-if="pageDescription">{{ pageDescription }}</p>
       </div>
       <div id="content">
         <router-view></router-view>
       </div>
       <aside id="controls">
-        <control-panel :send-message="setPageTitle"></control-panel>
+        <control-panel></control-panel>
       </aside>
     </main>
 
@@ -22,31 +22,27 @@
 
 
 <script>
+import { mapState } from 'vuex';
 import SiteHeader from './components/SiteHeader';
-import SiteFooter from './components/SiteFooter';
 import ControlPanel from './components/ControlPanel';
+import SiteFooter from './components/SiteFooter';
 
 export default {
   name: 'app',
   data() {
     return {};
   },
-  computed: {
-    pageTitle() {
-      return this.$store.state.page.title;
-    },
-    pageSubtitle() {
-      return this.$store.state.page.subtitle;
-    },
-    pageDescription() {
-      return this.$store.state.page.description;
-    },
-  },
   components: {
     SiteHeader,
-    SiteFooter,
     ControlPanel,
+    SiteFooter,
   },
+  props: [],
+  computed: mapState({
+    pageTitle: state => state.page.title,
+    pageSubtitle: state => state.page.subtitle,
+    pageDescription: state => state.page.description,
+  }),
 };
 </script>
 

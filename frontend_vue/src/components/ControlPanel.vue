@@ -18,13 +18,6 @@ export default {
       response: '',
     };
   },
-  props: [
-    {
-      name: 'set-page-title',
-      type: Function,
-      required: true,
-    },
-  ],
 };
 </script>
 

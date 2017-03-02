@@ -1,5 +1,5 @@
 <template>
-  <div id="login" class="container">
+  <div class="panel" id="login">
     <h1>Login</h1>
     <p>Login to the Visualist.</p>
 
