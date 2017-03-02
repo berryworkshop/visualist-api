@@ -16,6 +16,8 @@
       </aside>
     </main>
 
+    <modal v-if="modal"></modal>
+
     <site-footer></site-footer>
   </div>
 </template>
@@ -25,16 +27,20 @@
 import { mapState } from 'vuex';
 import SiteHeader from './components/SiteHeader';
 import ControlPanel from './components/ControlPanel';
+import Modal from './components/Modal';
 import SiteFooter from './components/SiteFooter';
 
 export default {
   name: 'app',
   data() {
-    return {};
+    return {
+      modal: false,
+    };
   },
   components: {
     SiteHeader,
     ControlPanel,
+    Modal,
     SiteFooter,
   },
   props: [],
