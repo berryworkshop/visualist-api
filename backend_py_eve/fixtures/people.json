@@ -1,0 +1,56 @@
+{
+"owner": "58a7c269b6bc65407029c68d",
+"category": "person",
+"slug": "berry-allan",
+"tags": ["artist", "programmer"],
+"accounts": [
+    {
+        "service": "Facebook",
+        "account": "allan.james.berry"
+    },{
+        "service": "Twitter",
+        "account": "allanberry"
+    }
+],
+"websites": [{
+    "url": "http://allanberry.com/",
+    "name": "Allan's personal website"
+}],
+"person_data": {
+    "name": {
+        "first": "Allan",
+        "last": "Berry"
+    },
+    "birthplace": place,
+    "bio": "Allan is a librarian living in Chicago.",
+    "lifespan": {
+        "start": approx_date
+    },
+    "contact_info": {
+        "phones": [
+            {
+                "category": "mobile",
+                "country": 1,
+                "area": 312,
+                "exchange": 371,
+                "number": 8722
+            }
+        ],
+        "emails": [
+            {
+                "category": "personal",
+                "email": "allan.berry@gmail.com"
+            },{
+                "category": "work",
+                "email": "aberry3@uic.edu"
+            },
+        ],
+
+        "addresses": [
+            {
+                "category": "personal",
+                "address": location
+            }
+        ]
+    }
+}

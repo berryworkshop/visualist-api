@@ -1,0 +1,72 @@
+{
+    "name": "Art Institute of Chicago",
+    "category": "place",
+    "street": "111 S Michigan Avenue",
+    "city": "Chicago",
+    "state_province": "IL",
+    "country": "USA"
+},{
+    "name": "Detroit Institute of Arts",
+    "category": "place",
+    "street": "5200 Woodward Avenue",
+    "city": "Detroit",
+    "state_province": "IL",
+    "country": "USA"
+},{
+    "name": "Milwaukee Art Museum",
+    "category": "place",
+    "street": "700 N Art Museum Drive",
+    "city": "Milwaukee",
+    "state_province": "WI",
+    "postal_code": "53202",
+    "country": "USA"
+},{
+    "name": "Chicago, IL",
+    "category": "city",
+    "coordinates": [
+        {
+            "latitude": 41.8781,
+            "longitude": 87.6298,
+        }
+    ],
+    "city": "Chicago",
+    "state_province": "IL",
+    "country": "USA"
+},{
+    "name": "Detroit, MI",
+    "category": "city",
+    "coordinates": [
+        {
+            "latitude": 42.3314,
+            "longitude": 83.0458,
+        }
+    ],
+    "city": "Detroit",
+    "state_province": "MI",
+    "country": "USA"
+},{
+    "name": "Allan's apartment",
+    "category": "place",
+    "street": "913 W Cullerton\nApartment #1",
+    "city": "Chicago",
+    "state_province": "IL",
+    "postal_code": "60608",
+    "country": "USA"
+},{
+    "name": "Allan's childhood home",
+    "category": "place",
+    "street": "15105 Piedmont",
+    "city": "Detroit",
+    "state_province": "MI",
+    "postal_code": "48223",
+    "country": "USA"
+},{
+    "name": "Grant Park",
+    "synopsis": "part of Chicago's emerald necklace",
+    "category": "place",
+    "street": "337 E Randolph Street",
+    "city": "Chicago",
+    "state_province": "IL",
+    "postal_code": "60601",
+    "country": "USA"
+}

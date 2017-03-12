@@ -1,0 +1,5 @@
+ROLES = [
+    'member',
+    'manager',
+    'admin',
+]

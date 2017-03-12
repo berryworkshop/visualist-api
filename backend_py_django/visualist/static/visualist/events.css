@@ -1,0 +1,20 @@
+#events_controls {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  margin: 0; }
+  #events_controls .controls {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    margin-left: auto;
+    -ms-flex-align: start;
+        align-items: flex-start; }
+    #events_controls .controls button {
+      border-right-width: 0; }
+      #events_controls .controls button:last-child {
+        border-right-width: 1px; }
+
+/*# sourceMappingURL=events.css.map*/

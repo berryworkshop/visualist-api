@@ -1,0 +1,19 @@
+{% extends 'visualist/base.html' %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="/static/visualist/search.js"></script>
+{% endblock js %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/visualist/search.css">
+{% endblock styles %}
+
+{% block main %}
+<main><div class="container">
+    <h1>Search</h1>
+
+    <p>Here will be search results.</p>
+</div></main>
+{% endblock main %}

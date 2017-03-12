@@ -1,0 +1,13 @@
+main {
+  background-color: #ddd;
+  padding: 1rem; }
+  main .primary_visual {
+    width: 100%;
+    height: 10rem;
+    background-color: #ddd; }
+  main .secondary_visual {
+    width: 100px;
+    height: 100px;
+    background-color: #ddd; }
+
+/*# sourceMappingURL=event.css.map*/
