@@ -52,9 +52,9 @@
         subtitle: '',
         description: '',
       });
-      ajax.get('/nodes/')
+      ajax.get('/events')
       .then((response) => {
-        this.objectList = response.data._items;
+        this.objectList = response.data.events;
       })
       .catch((error) => {
         console.log(error);

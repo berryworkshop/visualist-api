@@ -243,6 +243,13 @@ schema = {
                             'allowed': list(CURRENCIES.keys())
                         },
                     }
+                },
+                'timespan': {
+                    'type': 'string',
+                    'data_relation': {
+                        'resource': 'timespan',
+                        'field': '_id'
+                    }
                 }
             }
         },

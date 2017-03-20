@@ -22,8 +22,10 @@ schema = {
             'colleague_of',
             'child_of',
 
-            # (person|org)-[*]->(org)
+            # (org)-[*]->(org)
             'department_of',
+
+            # (person|org)-[*]->(org)
             'member_of',
 
             # (person|org)-[*]->(work)
@@ -41,14 +43,12 @@ schema = {
             'archive_of',
 
             # (org)-[*]->(work:event)
-            'venue_for',
+            'venue_of',
 
             # (work)-[*]->(work)
-            'source_for',
+            'source_of',
             'part_of',
 
-            # (org)-[*]->(work)
-            'department_of',
         ]
     },
     'object': {
