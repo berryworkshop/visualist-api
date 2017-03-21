@@ -115,55 +115,78 @@ export default {
     }
 
     a.disabled {
-      color: $button_text_disabled;
+      color: $primary_text_disabled;
       pointer-events: none;
       cursor: default;
     }
 
     %form_base {
       background-color: white;
-      padding: .5em .75em;
-      margin: 0;
       border: 1px solid silver;
-    }
-
-    // input base is used for "incised" elements, like text inputs
-    input {
-      @extend %form_base;
     }
 
     // abstract superclass for "button-like" things, like block anchors, tabs, etc.
     %button_base {
       @extend %form_base;
-      color: $button_text;
-      background-color: $button_bg;
+
+      padding: .5em .75em;
+
+      color: $primary_text;
+      background-color: #eee;
+      border-top-color: #fff;
+      border-bottom-color: #999;
 
       text-decoration: none;
       cursor: pointer;
 
       &:hover {
-        background-color: $button_bg_hover;
+        background-color: #fff;
       }
       &:active {
-        background-color: $button_bg_active;
+        background-color: #ccc;
+      }
+    }
+
+    // input base is used for "incised" elements, like text inputs
+    %inset_base {
+      @extend %form_base;
+
+      color: $primary_text;
+      background-color: #eee;
+      border-top-color: #999;
+      border-bottom-color: #fff;
+
+      &:hover {
+        background-color: #fff;
+      }
+      &:active {
+        background-color: #fff;
       }
     }
 
     // button base is used for "raised" elements, like buttons and selects
     button {
       @extend %button_base;
-      color: $button_text;
     }
 
     select {
-      @extend %button_base;
-      appearance: none;
-      border-radius: 0px;
-      padding-right: 2rem;
-      background-image: url(/static/fontawesome/black/angle-down.svg);
-      background-size: 1.5em;
-      background-repeat: no-repeat;
-      background-position: right .25rem center;
+      &:not([multiple]) {
+        @extend %button_base;
+        appearance: none;
+        border-radius: 0px;
+        padding-right: 2rem;
+        background-image: url(/static/fontawesome/black/angle-down.svg);
+        background-size: 1.5em;
+        background-repeat: no-repeat;
+        background-position: right .25rem center;
+      }
+      &[multiple] {
+        @extend %inset_base;
+        vertical-align: bottom;
+        option {
+          padding: .5em .75em;
+        }
+      }
     }
 
     // tab group, consisting of linked anchors

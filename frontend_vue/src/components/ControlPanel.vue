@@ -8,7 +8,7 @@
       <option value="all">All</option>
     </select>
 
-    <select>
+    <select multiple>
       <option value="list">List</option>
       <option value="map">Map</option>
     </select>

@@ -5,6 +5,7 @@
 // used for main content
 $primary_bg: #ddd;
 $primary_text: #222;
+$primary_text_disabled: #999 !important;
 $primary_anchor: #33c;
 
 // used for header and footer
@@ -14,12 +15,3 @@ $secondary_anchor: #a60;
 
 // layout elements
 $card_bg: #eee;
-
-// styles for buttons and other "raised" widgets (e.g. button, select)
-// not for "inset" inputs (e.g. input, textarea)
-$button_bg: #eee;
-$button_bg_hover: #fff;
-$button_bg_active: #ccc;
-
-$button_text: $primary_anchor;
-$button_text_disabled: #999 !important;
