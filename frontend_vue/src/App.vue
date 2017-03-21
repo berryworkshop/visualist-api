@@ -127,6 +127,7 @@ export default {
       border: 1px solid silver;
     }
 
+    // input base is used for "incised" elements, like text inputs
     input {
       @extend %form_base;
     }
@@ -148,6 +149,7 @@ export default {
       }
     }
 
+    // button base is used for "raised" elements, like buttons and selects
     button {
       @extend %button_base;
       color: $button_text;

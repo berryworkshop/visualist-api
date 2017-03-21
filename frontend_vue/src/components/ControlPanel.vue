@@ -8,6 +8,11 @@
       <option value="all">All</option>
     </select>
 
+    <select>
+      <option value="list">List</option>
+      <option value="map">Map</option>
+    </select>
+
     <button name="new">New</button>
   </aside>
 </template>
