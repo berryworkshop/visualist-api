@@ -7,6 +7,8 @@
       <option value="works">Artworks</option>
       <option value="all">All</option>
     </select>
+
+    <button name="new">New</button>
   </aside>
 </template>
 

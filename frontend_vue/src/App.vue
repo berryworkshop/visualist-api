@@ -131,10 +131,6 @@ export default {
       @extend %form_base;
     }
 
-    select {
-      @extend %form_base;
-    }
-
     // abstract superclass for "button-like" things, like block anchors, tabs, etc.
     %button_base {
       @extend %form_base;
@@ -155,6 +151,17 @@ export default {
     button {
       @extend %button_base;
       color: $button_text;
+    }
+
+    select {
+      @extend %button_base;
+      appearance: none;
+      border-radius: 0px;
+      padding-right: 2rem;
+      background-image: url(/static/fontawesome/black/angle-down.svg);
+      background-size: 1.5em;
+      background-repeat: no-repeat;
+      background-position: right .25rem center;
     }
 
     // tab group, consisting of linked anchors
