@@ -1,9 +1,9 @@
 <template>
   <aside id="control-panel">
-
     <fieldset>
       <legend>Format</legend>
-      <input type="radio" name="format" checked> Gallery
+      <p>Choose relevant presentatoin scheme. Default: Card gallery.</p>
+      <input type="radio" name="format" checked> Card gallery
       <input type="radio" name="format"> Bento
       <input type="radio" name="format"> Table
       <input type="radio" name="format"> Map
@@ -12,65 +12,136 @@
     </fieldset>
 
     <fieldset>
-      <legend>Filters</legend>
-      <button name="reset">Reset</button>
+    <legend>Facets</legend>
+    <button name="reset">Reset</button>
 
       <fieldset>
-        <legend>Keyword</legend>
-        <input type="text" placeholder="Terms">
+        <legend>Selectors</legend>
+        <p>Negative selectors; default to all.  Amazon style?</p>
+        <fieldset>
+          <legend>Content Types</legend>
+          <p>Record categories/labels.</p>
+          <input type="checkbox" name="datatype" checked> Events
+          <input type="checkbox" name="datatype" checked> Organizations
+          <input type="checkbox" name="datatype" checked> People
+          <input type="checkbox" name="datatype" checked> Artworks
+        </fieldset>
+
+        <fieldset>
+          <legend>Properties</legend>
+          <p>Record properties/attributes.</p>
+
+          <fieldset>
+            <legend>Shared</legend>
+            <input type="checkbox" name="shared_attr" checked> 4 stars and up
+          </fieldset>
+
+          <fieldset>
+            <legend>Events</legend>
+            <input type="checkbox" name="event_attr" checked> All Ages
+            <input type="checkbox" name="event_attr" checked> Organizations
+            <input type="checkbox" name="event_attr" checked> People
+          </fieldset>
+
+          <fieldset>
+            <legend>Organization</legend>
+            <input type="checkbox" name="org_attr" checked> Is a Venue
+            <input type="checkbox" name="org_attr" checked> Nonprofit
+          </fieldset>
+
+          <fieldset>
+            <legend>Person</legend>
+            <input type="checkbox" name="person_attr" checked> Artist
+            <input type="checkbox" name="person_attr" checked> Smells OK
+          </fieldset>
+
+          <fieldset>
+            <legend>Artwork</legend>
+            <input type="checkbox" name="work_attr" checked> Doesn't Suck
+          </fieldset>
+        </fieldset>
       </fieldset>
 
       <fieldset>
-        <legend>Tag</legend>
-        <select>
-          <option>Aardvarks</option>
-          <option>Meerkats</option>
-          <option>Zebras</option>
-        </select>
-      </fieldset>
+        <legend>Limiters</legend>
+        <p>Positive limiters; default to none.  CCC style.</p>
 
-      <fieldset>
-        <legend>Content Type</legend>
-
-        <input type="checkbox" name="datatype" checked> Events
         <fieldset>
-          <input type="checkbox" name="event_attr" checked> All Ages
-          <input type="checkbox" name="event_attr" checked> Organizations
-          <input type="checkbox" name="event_attr" checked> People
+          <legend>Keywords</legend>
+          <p>Arbitrary record text.</p>
+          <input type="text" placeholder="Terms">
         </fieldset>
 
-        <input type="checkbox" name="datatype" checked> Organizations
         <fieldset>
-          <input type="checkbox" name="org_attr" checked> Is a Venue
-          <input type="checkbox" name="org_attr" checked> Nonprofit
+          <legend>Facets</legend>
+          <p>External, hierarchical, controlled vocabularies.</p>
+
+          <fieldset>
+            <legend>Events</legend>
+            <select multiple>
+              <option>Aardvarks</option>
+              <option>Meerkats</option>
+              <option>Zebras</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Organizations</legend>
+            <select multiple>
+              <option>Aardvarks</option>
+              <option>Meerkats</option>
+              <option>Zebras</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>People</legend>
+            <select multiple>
+              <option>Aardvarks</option>
+              <option>Meerkats</option>
+              <option>Zebras</option>
+            </select>
+          </fieldset>
+
+          <fieldset>
+            <legend>Artworks</legend>
+            <select multiple>
+              <option>Aardvarks</option>
+              <option>Meerkats</option>
+              <option>Zebras</option>
+            </select>
+          </fieldset>
         </fieldset>
 
-        <input type="checkbox" name="datatype" checked> People
         <fieldset>
-          <input type="checkbox" name="person_attr" checked> Artist
-          <input type="checkbox" name="person_attr" checked> Smells OK
+          <legend>Tags</legend>
+          <p>Unstructured, user-submitted tags.</p>
+
+          <select multiple>
+            <option>Aardvarks</option>
+            <option>Meerkats</option>
+            <option>Zebras</option>
+          </select>
         </fieldset>
 
-        <input type="checkbox" name="datatype" checked> Artworks
         <fieldset>
-          <input type="checkbox" name="work_attr" checked> Doesn't Suck
+          <legend>Date</legend>
+          <p>Time span.</p>
+          <input type="checkbox" name="date"> Yesterday
+          <input type="checkbox" name="date"> Today
+          <input type="checkbox" name="date"> Tomorrow
+          <input type="checkbox" name="date"> This Week
+          <input type="checkbox" name="date"> This Month
         </fieldset>
-      </fieldset>
 
-      <fieldset>
-        <legend>Time</legend>
-        <input type="checkbox" name="time" checked> Yesterday
-        <input type="checkbox" name="time" checked> Today
-        <input type="checkbox" name="time" checked> Tomorrow
-      </fieldset>
-
-      <fieldset>
-        <legend>Location</legend>
-        <input type="checkbox" name="location" checked> Nearby
-        <input type="checkbox" name="location" checked> Far Away
+        <fieldset>
+          <legend>Location</legend>
+          <p>Geographic area.</p>
+          <input type="checkbox" name="location"> Country
+          <input type="checkbox" name="location"> Far Away
+        </fieldset>
       </fieldset>
     </fieldset>
-
   </aside>
 </template>
 

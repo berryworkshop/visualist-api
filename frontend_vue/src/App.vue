@@ -182,7 +182,11 @@ export default {
       &[multiple] {
         @extend %inset_base;
         vertical-align: bottom;
-        option {}
+        padding: 0;
+        option {
+          @extend %form_base;
+          border: none;
+        }
       }
     }
 
