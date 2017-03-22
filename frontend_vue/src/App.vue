@@ -93,6 +93,7 @@ export default {
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
+
       #intro {
         order: 1;
         flex: 2 1 50%;
@@ -123,13 +124,12 @@ export default {
     %form_base {
       background-color: white;
       border: 1px solid silver;
+      padding: .5em .75em;
     }
 
-    // abstract superclass for "button-like" things, like block anchors, tabs, etc.
+    // button base is used for "raised" elements, like buttons and selects
     %button_base {
       @extend %form_base;
-
-      padding: .5em .75em;
 
       color: $primary_text;
       background-color: #eee;
@@ -140,31 +140,30 @@ export default {
       cursor: pointer;
 
       &:hover {
-        background-color: #fff;
+        background-color: #f8f8f8;
       }
       &:active {
-        background-color: #ccc;
+        background-color: #ddd;
+        border-bottom-color: #fff;
+        border-top-color: #999;
       }
     }
 
-    // input base is used for "incised" elements, like text inputs
+    // input base is used for "incised" elements, like text inputs and textarea
     %inset_base {
       @extend %form_base;
 
       color: $primary_text;
-      background-color: #eee;
+      background-color: #efefef;
       border-top-color: #999;
       border-bottom-color: #fff;
 
       &:hover {
-        background-color: #fff;
       }
       &:active {
-        background-color: #fff;
       }
     }
 
-    // button base is used for "raised" elements, like buttons and selects
     button {
       @extend %button_base;
     }
@@ -183,10 +182,12 @@ export default {
       &[multiple] {
         @extend %inset_base;
         vertical-align: bottom;
-        option {
-          padding: .5em .75em;
-        }
+        option {}
       }
+    }
+
+    input[type=text] {
+      @extend %inset_base;
     }
 
     // tab group, consisting of linked anchors

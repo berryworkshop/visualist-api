@@ -1,6 +1,16 @@
 <template>
   <div class="panel" id="nodeList">
-    <p>Here is NodeList stuff</p>
+    <p>Events, Organizations, People, and Artworks</p>
+
+    <fieldset>
+      <legend>Sort</legend>
+      <select>
+        <option>Name</option>
+        <option>Date</option>
+        <option>Distance</option>
+      </select>
+    </fieldset>
+
     <ul class="cardList">
       <li v-for="obj in objectList" class="card">
         <div class="nodeVisuals">
@@ -12,7 +22,7 @@
             <span v-if="obj.location">: {{ obj.location }}</span>
           </p>
           <h3 class="title">{{ obj.name }}</h3>
-          <p class="synopsis">This is the synopsis.  It's limited to 255 characters.  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisiut.</p>
+          <p class="synopsis">{{ obj.description }}</p>
           <p class="audience">All ages welcome</p><!-- tiered as a vocab -->
           <i class="fa fa-usd" aria-hidden="true"></i>
         </div>
@@ -48,7 +58,7 @@
     },
     mounted() {
       this.$store.commit('setPageData', {
-        title: 'Nodes',
+        title: 'Search Results',
         subtitle: '',
         description: '',
       });
