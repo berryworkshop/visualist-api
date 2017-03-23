@@ -2,12 +2,12 @@
   <aside id="control-panel">
     <fieldset>
       <legend>Format</legend>
-      <p>Choose relevant presentatoin scheme. Default: Card gallery.</p>
-      <input type="radio" name="format" checked> Card gallery
-      <input type="radio" name="format"> Bento
-      <input type="radio" name="format"> Table
+      <p>Choose relevant presentation scheme. Default: Cards.</p>
+      <input type="radio" name="format" checked> Cards
+      <!--<input type="radio" name="format"> Bento-->
+      <!--<input type="radio" name="format"> Table-->
       <input type="radio" name="format"> Map
-      <input type="radio" name="format"> Timeline
+      <!--<input type="radio" name="format"> Timeline-->
       <input type="radio" name="format"> Calendar
     </fieldset>
 
@@ -27,7 +27,7 @@
           <input type="checkbox" name="datatype" checked> Artworks
         </fieldset>
 
-        <fieldset>
+        <!--<fieldset>
           <legend>Properties</legend>
           <p>Record properties/attributes.</p>
 
@@ -59,7 +59,7 @@
             <legend>Artwork</legend>
             <input type="checkbox" name="work_attr" checked> Doesn't Suck
           </fieldset>
-        </fieldset>
+        </fieldset>-->
       </fieldset>
 
       <fieldset>
@@ -72,7 +72,7 @@
           <input type="text" placeholder="Terms">
         </fieldset>
 
-        <fieldset>
+        <!--<fieldset>
           <legend>Facets</legend>
           <p>External, hierarchical, controlled vocabularies.</p>
 
@@ -111,7 +111,7 @@
               <option>Zebras</option>
             </select>
           </fieldset>
-        </fieldset>
+        </fieldset>-->
 
         <fieldset>
           <legend>Tags</legend>
@@ -140,6 +140,29 @@
           <input type="checkbox" name="location"> Country
           <input type="checkbox" name="location"> Far Away
         </fieldset>
+
+        <!--<fieldset>
+          <legend>Image</legend>
+          <p>Image analysis.</p>
+
+          <select multiple>
+            <option>green</option>
+            <option>blue</option>
+            <option>red</option>
+            <option>people in image</option>
+          </select>
+        </fieldset>-->
+
+        <!--<fieldset>
+          <legend>NLP</legend>
+          <p>Natural language matching.</p>
+
+          <select multiple>
+            <option>reading level</option>
+            <option>hrm</option>
+          </select>
+        </fieldset>-->
+
       </fieldset>
     </fieldset>
   </aside>
