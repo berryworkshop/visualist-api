@@ -3,6 +3,21 @@
     <p>Events, Organizations, People, and Artworks</p>
 
     <fieldset>
+      <legend>Crud</legend>
+      <button>New</button>
+      <span class="inline_input_group">
+        <div class="add_on">
+          <input type="checkbox">
+        </div>
+        <select>
+          <option>Edit</option>
+          <option>Delete</option>
+        </select>
+        <button>Go</button>
+      </span>
+    </fieldset>
+
+    <fieldset>
       <legend>Sort</legend>
       <select>
         <option>Name</option>
@@ -76,8 +91,29 @@
 
 <style lang="scss">
   @import "../styles/brand.scss";
+  @import "../styles/forms.scss";
   @import "../styles/grid.scss";
   @import "../styles/utility.scss";
+
+
+  .inline_input_group {
+    display: inline-flex;
+    vertical-align: top;
+    div.add_on {
+      border: 1px solid silver;
+      border-right: none;
+      padding: .25em .5em;
+      display: flex;
+      input {
+        align-self: center;
+        // bottom: .0625em;
+      }
+    }
+    select {
+      border-right: none;
+    }
+    button {}
+  }
 
   // abstract superclass for panel and card
   %block {

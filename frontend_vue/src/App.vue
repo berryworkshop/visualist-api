@@ -55,6 +55,7 @@ export default {
 
 <style lang="scss">
   @import "styles/brand.scss";
+  @import "styles/forms.scss";
   @import "styles/grid.scss";
   @import "styles/utility.scss";
 
@@ -71,153 +72,77 @@ export default {
     min-height: 100vh;
     flex-direction: column;
     flex-wrap: wrap;
+  }
 
-    .container {
-      position: relative;
-      margin: 0;
-      padding-right: 1rem;
-      padding-left: 1rem;
+  .container {
+    position: relative;
+    margin: 0;
+    padding-right: 1rem;
+    padding-left: 1rem;
 
-      @include lg_up {
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: $bp2;
-      }
-    }
-
-    main {
-      flex: 1 0 100%;
-      font-size: 16;
-      background-color: $primary_bg;
-      display: flex;
-      flex-direction: column;
-      flex-wrap: wrap;
-
-      #intro {
-        order: 1;
-        flex: 2 1 50%;
-      }
-      #content {
-        order: 3;
-      }
-      #controls {
-        order: 2;
-        flex: 1 0;
-        display: flex;
-        align-items: flex-end;
-        padding-bottom: 1rem;
-      }
-    }
-
-    a {
-      color: $primary_anchor;
-      font-weight: bolder;
-    }
-
-    a.disabled {
-      color: $primary_text_disabled;
-      pointer-events: none;
-      cursor: default;
-    }
-
-    %form_base {
-      background-color: white;
-      border: 1px solid silver;
-      padding: .5em .75em;
-    }
-
-    // button base is used for "raised" elements, like buttons and selects
-    %button_base {
-      @extend %form_base;
-
-      color: $primary_text;
-      background-color: #eee;
-      border-top-color: #fff;
-      border-bottom-color: #999;
-
-      text-decoration: none;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #f8f8f8;
-      }
-      &:active {
-        background-color: #ddd;
-        border-bottom-color: #fff;
-        border-top-color: #999;
-      }
-    }
-
-    // input base is used for "incised" elements, like text inputs and textarea
-    %inset_base {
-      @extend %form_base;
-
-      color: $primary_text;
-      background-color: #efefef;
-      border-top-color: #999;
-      border-bottom-color: #fff;
-
-      &:hover {
-      }
-      &:active {
-      }
-    }
-
-    button {
-      @extend %button_base;
-    }
-
-    select {
-      &:not([multiple]) {
-        @extend %button_base;
-        appearance: none;
-        border-radius: 0px;
-        padding-right: 2rem;
-        background-image: url(/static/fontawesome/black/angle-down.svg);
-        background-size: 1.5em;
-        background-repeat: no-repeat;
-        background-position: right .25rem center;
-      }
-      &[multiple] {
-        @extend %inset_base;
-        vertical-align: bottom;
-        padding: 0;
-        option {
-          @extend %form_base;
-          border: none;
-        }
-      }
-    }
-
-    input[type=text] {
-      @extend %inset_base;
-    }
-
-    // tab group, consisting of linked anchors
-    ul.tab_list {
-      display: flex;
-      margin: 0;
-      padding: 0;
-      list-style-type: none;
-
-      li {
-        margin-right: .25rem;
-        &:last-child {
-          margin-right: 0;
-        }
-        a {
-          @extend %button_base;
-          font-size: 20px;
-          display: block;
-          padding: 1em 1em 1rem 1em;
-          border-bottom-width: 0;
-        }
-      }
-    }
-
-    control-panel {
-      border: 1px solid red;
+    @include lg_up {
+      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      max-width: $bp2;
     }
   }
+
+  main {
+    flex: 1 0 100%;
+    font-size: 16;
+    background-color: $primary_bg;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+
+    #intro {
+      order: 1;
+      flex: 2 1 50%;
+    }
+    #content {
+      order: 3;
+    }
+    #controls {
+      order: 2;
+      flex: 1 0;
+      display: flex;
+      align-items: flex-end;
+      padding-bottom: 1rem;
+    }
+  }
+
+  a {
+    color: $primary_anchor;
+    font-weight: bolder;
+  }
+
+  a.disabled {
+    color: $primary_text_disabled;
+    pointer-events: none;
+    cursor: default;
+  }
+
+  // tab group, consisting of linked anchors
+  ul.tab_list {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    li {
+      margin-right: .25rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        @extend %button_base;
+        font-size: 20px;
+        display: block;
+        padding: 1em 1em 1rem 1em;
+        border-bottom-width: 0;
+      }
+    }
+  }
+
 </style>

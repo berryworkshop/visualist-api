@@ -1,0 +1,91 @@
+%form_base {
+  background-color: white;
+  border: 1px solid silver;
+  padding: .5em .75em;
+}
+
+// button base is used for "raised" elements, like buttons and selects
+%button_base {
+  @extend %form_base;
+
+  color: $primary_text;
+  background-color: #eee;
+  border-top-color: #fff;
+  border-bottom-color: #999;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+  &:active {
+    background-color: #ddd;
+    border-bottom-color: #fff;
+    border-top-color: #999;
+  }
+}
+
+// input base is used for "incised" elements, like text inputs and textarea
+%inset_base {
+  @extend %form_base;
+
+  color: $primary_text;
+  background-color: #efefef;
+  border-top-color: #999;
+  border-bottom-color: #fff;
+
+  &:hover {
+  }
+  &:active {
+  }
+}
+
+button {
+  @extend %button_base;
+}
+
+input[type=text] {
+  @extend %inset_base;
+}
+
+input[type=checkbox] {
+  @extend %inset_base;
+  appearance: none;
+  padding: 0;
+  width: 1.25em;
+  height: 1.25em;
+  position: relative;
+
+  &:active {}
+
+  &:checked {
+    &:after {
+      content: '\2716';
+      position: absolute;
+      left: .175em;
+    }
+  }
+}
+
+select {
+  &:not([multiple]) {
+    @extend %button_base;
+    appearance: none;
+    border-radius: 0px;
+    padding-right: 2rem;
+    background-image: url(/static/fontawesome/black/angle-down.svg);
+    background-size: 1.5em;
+    background-repeat: no-repeat;
+    background-position: right .25rem center;
+  }
+  &[multiple] {
+    @extend %inset_base;
+    vertical-align: bottom;
+    padding: 0;
+    option {
+      @extend %form_base;
+      border: none;
+    }
+  }
+}
