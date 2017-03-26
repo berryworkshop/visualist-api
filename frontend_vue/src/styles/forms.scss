@@ -1,4 +1,7 @@
+@import "_global";
+
 %form_base {
+  @extend %global;
   background-color: white;
   border: 1px solid silver;
   padding: .5em .75em;
@@ -46,6 +49,10 @@ button {
 }
 
 input[type=text] {
+  @extend %inset_base;
+}
+
+textarea {
   @extend %inset_base;
 }
 

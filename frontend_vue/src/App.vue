@@ -11,9 +11,6 @@
       <div id="content">
         <router-view></router-view>
       </div>
-      <aside id="controls">
-        <control-panel></control-panel>
-      </aside>
     </main>
 
     <modal v-if="modal"></modal>
@@ -54,18 +51,15 @@ export default {
 
 
 <style lang="scss">
+  @import "styles/normalize/_normalize.scss";
+  @import "styles/_global";
   @import "styles/brand.scss";
   @import "styles/forms.scss";
   @import "styles/grid.scss";
   @import "styles/utility.scss";
 
-  * { box-sizing: border-box }
-
   #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-
+    @extend %global;
     background-color: $primary_bg;
     color: $primary_text;
     display: flex;
@@ -96,20 +90,8 @@ export default {
     flex-direction: column;
     flex-wrap: wrap;
 
-    #intro {
-      order: 1;
-      flex: 2 1 50%;
-    }
-    #content {
-      order: 3;
-    }
-    #controls {
-      order: 2;
-      flex: 1 0;
-      display: flex;
-      align-items: flex-end;
-      padding-bottom: 1rem;
-    }
+    #intro {}
+    #content {}
   }
 
   a {
