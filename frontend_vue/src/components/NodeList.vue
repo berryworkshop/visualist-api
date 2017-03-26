@@ -82,6 +82,7 @@
         this.objectList = response.data.events;
       })
       .catch((error) => {
+        this.error = error;
         console.log(error);
       });
     },
