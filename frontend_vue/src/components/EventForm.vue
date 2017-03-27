@@ -66,7 +66,7 @@
         ajax.post('/events', this.event)
         .then((response) => {
           if (response.status === 200) {
-            this.$router.go('/nodes');
+            this.$router.push({ name: 'nodes' });
           } else {
             console.log(response);
           }
