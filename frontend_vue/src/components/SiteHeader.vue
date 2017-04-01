@@ -29,7 +29,6 @@
         </ul>
         <ul>
           <li><router-link @click.native="close" to="/search">Search</router-link></li>
-          <li><router-link @click.native="close" to="/nodes">Nodes</router-link></li>
         </ul>
         <ul>
           <li><router-link @click.native="close" to="/events">Events</router-link></li>

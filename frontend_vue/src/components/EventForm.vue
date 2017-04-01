@@ -1,5 +1,5 @@
 <template>
-  <div class="panel" id="eventForm">
+  <div class="panel" id="node-form-event">
     <form method="post" v-on:submit.prevent="onSubmit">
         <fieldset>
             <div class="row">
@@ -66,7 +66,7 @@
         ajax.post('/events', this.event)
         .then((response) => {
           if (response.status === 200) {
-            this.$router.push({ name: 'nodes' });
+            this.$router.push({ name: 'events' });
           } else {
             console.log(response);
           }

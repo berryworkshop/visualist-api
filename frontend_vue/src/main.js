@@ -5,63 +5,39 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import App from './App';
 
-import Home from './components/Home';
-import Error403 from './components/Error403';
-import Error404 from './components/Error404';
-import Login from './components/Login';
-import Search from './components/Search';
-import NodeList from './components/NodeList';
-import Event from './components/Event';
-import EventForm from './components/EventForm';
-// import Artists from './components/Artists';
-// import Artworks from './components/Artworks';
-// import Events from './components/Events';
-// import Venues from './components/Venues';
+import Atlas from './pages/Atlas';
+import Calendar from './pages/Calendar';
+import Error403 from './pages/Error403';
+import Error404 from './pages/Error404';
+import Event from './pages/Event';
+import Home from './pages/Home';
+import List from './pages/List';
+import Login from './pages/Login';
+import Organization from './pages/Organization';
+import Search from './pages/Search';
 
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
 const routes = [
-  { name: 'home', path: '/', component: Home },
+  { name: 'atlas', path: '/atlas', component: Atlas },
+  { name: 'calendar', path: '/calendar', component: Calendar },
   { name: '403', path: '/403', component: Error403 },
   { name: '404', path: '/404', component: Error404 },
+  { name: 'home', path: '/', component: Home },
+  { name: 'list', path: '/list', component: List },
   { name: 'login', path: '/login', component: Login },
   { name: 'search', path: '/search', component: Search },
-  { name: 'nodes', path: '/nodes', component: NodeList },
+
+  { name: 'event-list', path: '/events', component: List },
   { name: 'event', path: '/events/:event_id', component: Event },
-  { name: 'new_event', path: '/events/new', component: EventForm },
-  // { path: '/events', component: EventList }, // Events },
-  // { path: '/artists', component: NodeList }, // Artists },
-  // { path: '/artworks', component: NodeList }, // Artworks },
-  // { path: '/venues', component: NodeList }, // Venues },
+
+  { name: 'organization-list', path: '/orgs', component: List },
+  { name: 'organization', path: '/orgs/:organization_id', component: Organization },
 ];
 
-const siteDefaults = {
-  rightsStatement: 'All rights reserved, unless otherwise specified.',
-  logo: '<image_id>',
-  version: 0.1,
-  primaryNav: {
-    home: '/',
-    events: '/',
-    artists: '/',
-    venues: '/',
-    search: '/',
-    help: '/',
-  },
-  secondaryNav: {
-    rights: '/',
-    privacy: '/',
-    sitemap: '/',
-    links: '/',
-    archive: '/',
-  },
-};
-
-const pageDefaults = {
-  title: 'Welcome to the Visualist',
-  subtitle: 'This is the subtitle.',
-  description: 'Aute eu deserunt sit aliquip veniam Lorem duis anim excepteur. Velit incididunt officia irure dolor voluptate quis elit et consectetur. Nostrud occaecat aliqua exercitation elit id duis mollit do ad ipsum irure esse velit consectetur.',
-};
+const siteDefaults = {};
+const pageDefaults = {};
 
 const store = new Vuex.Store({
   state: {

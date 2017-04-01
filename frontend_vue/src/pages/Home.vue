@@ -1,6 +1,6 @@
 <template>
   <div class="panel" id="home">
-    <p>Here's home page stuff.</p>
+    <p>Home Page.</p>
   </div>
 </template>
 
@@ -9,9 +9,6 @@ export default {
   name: 'home',
   data() {
     return {};
-  },
-  mounted() {
-    this.$store.commit('resetPageData');
   },
 };
 </script>
