@@ -1,149 +1,56 @@
 <template>
-  <header id="site-header" @keyup.esc="close">
-    <div class="container">
-      <div id="masthead">
-        <div id="branding">
-          <router-link to="/" tabindex="0">Visualist</router-link>
-        </div>
-        <button type="button" class="search_modal_toggle" v-on:click="search_modal = !search_modal">
-          <i class="fa fa-search fa-2x" aria-hidden="true"></i>
-        </button>
-        <button type="button" class="browse_modal_toggle" v-on:click="browse_modal = !browse_modal">
-          <i class="fa fa-hand-o-up fa-2x" aria-hidden="true"></i>
-        </button>
-        <!-- <button type="button" class="menu_modal_toggle" v-on:click="menu_modal = !menu_modal">
-          <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-        </button> -->
+  <header id="site-header">
+    <div class="uk-navbar-container">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar-nav" uk-navbar>
+          <div class="uk-navbar-left">
+            <a class="uk-navbar-item uk-logo" href="/">Visualist</a>
+            <ul class="uk-navbar-nav">
+              <li>
+                <a>Pages</a>
+                <div class="uk-navbar-dropdown uk-navbar-dropdown-width-2">
+                  <div class="uk-navbar-dropdown-grid uk-child-width-1-2" uk-grid>
+                    <div>
+                      <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/events">Events</a></li>
+                        <li><a href="/orgs">Organizations</a></li>
+                      </ul>
+                    </div>
+                    <div>
+                      <ul class="uk-nav uk-navbar-dropdown-nav">
+                        <li><a href="/search">Search</a></li>
+                        <li><a href="#">About</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="uk-navbar-right">
+            <div class="uk-navbar-item">
+              <form action="javascript:void(0)">
+                <input class="uk-input uk-form-width-small" type="text" placeholder="Search">
+                <button class="uk-button uk-button-default"><span uk-icon="icon: search"></span></button>
+              </form>
+            </div>
+          </div>
+        </nav>
       </div>
-
-      <div id="search_modal" class="dropdown_modal" v-if="search_modal">
-        <form id="search" action="/search">
-          <input type="search" placeholder="Search" name="q" >
-          <button type="submit">Submit</button>
-        </form>
-      </div>
-
-      <div id="browse_modal" class="dropdown_modal" v-if="browse_modal">
-        <ul>
-          <li><router-link @click.native="close" to="login">Login</router-link></li>
-        </ul>
-        <ul>
-          <li><router-link @click.native="close" to="/search">Search</router-link></li>
-        </ul>
-        <ul>
-          <li><router-link @click.native="close" to="/events">Events</router-link></li>
-          <li><router-link @click.native="close" to="/venues">Venues</router-link></li>
-          <li><router-link @click.native="close" to="/artists">Artists</router-link></li>
-          <li><router-link @click.native="close" to="/artworks">Artworks</router-link></li>
-        </ul>
-        <ul>
-          <li>Cities</li>
-          <li>Neighborhoods/Communities</li>
-        </ul>
-        <ul>
-          <li>User</li>
-          <li>About Us</li>
-        </ul>
-      </div>
-
-      <!-- <div id="menu_modal" class="dropdown_modal" v-if="menu_modal">
-        <ul>
-          <li>login</li>
-        </ul>
-      </div> -->
-
     </div>
   </header>
 </template>
+
 
 <script>
 export default {
   name: 'site-header',
   data() {
-    return {
-      browse_modal: false,
-      search_modal: false,
-      menu_modal: false,
-    };
-  },
-  methods: {
-    close() {
-      this.browse_modal = false;
-      this.search_modal = false;
-      this.menu_modal = false;
-    },
+    return {};
   },
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/brand.scss";
-
-header#site-header {
-  position: relative;
-  background-color: $secondary_bg;
-  color: $secondary_text;
-  display: flex;
-  flex-direction: column;
-  a {
-    text-decoration: none;
-    color: $secondary_anchor;
-  }
-  #masthead {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 1rem 0;
-    a, i {
-      color: white;
-    }
-    #branding {
-      font-size: 2rem;
-      font-weight: bold;
-      flex: auto;
-      font-variant: small-caps;
-      letter-spacing: .25em
-    }
-    button {
-      color: #999;
-      border: none;
-      background-color: transparent;
-      &:focus {
-        z-index: 2;
-      }
-    }
-  }
-  .dropdown_modal {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    background-color: #333;
-    padding: 1rem;
-    box-shadow: 0 3px 3px hsla(0,0%,0%,0.5);
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-  #search_modal {
-      form {
-        width: 100%;
-        display: flex;
-        flex: auto;
-      }
-      input {
-        flex: auto;
-        padding: .5rem 1rem;
-        border: 0;
-        background-color: #ddd;
-      }
-      button {
-        padding: .5rem 1rem;
-        margin-left: 1rem;
-        border: none;
-      }
-  }
-  #browse_modal {}
-}
 </style>

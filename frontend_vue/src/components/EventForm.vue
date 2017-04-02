@@ -81,35 +81,4 @@
 </script>
 
 <style lang="scss" scoped>
-    form {
-        fieldset {
-            padding: 1rem;
-            margin-bottom: 1rem;
-            .row {
-                display: flex;
-                padding-bottom: 1rem;
-                label {
-                    flex-basis: 6rem;
-                    flex-shrink: 0;
-                    margin-right: 1rem;
-                    text-align: right;
-                    padding-top: .5rem;
-                    // border: 1px solid red;
-                }
-                .input {
-                    flex: 2 1 20rem;
-                    // border: 1px solid green;
-                }
-                .feedback {
-                    flex-basis: 1rem;
-                    margin-left: 1rem;
-                    // border: 1px solid blue;
-                }
-            }
-            .submit_row {
-                text-align: right;
-                margin-right: 2rem;
-            }
-        }
-    }
 </style>

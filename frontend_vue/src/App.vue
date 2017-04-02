@@ -1,130 +1,55 @@
 <template>
   <div id="app">
+
     <site-header></site-header>
 
-    <main class="container">
-      <div id="intro">
-        <h1>{{ pageTitle }}</h1>
-        <h2 v-if="pageSubtitle">{{ pageSubtitle }}</h2>
-        <p v-if="pageDescription">{{ pageDescription }}</p>
-      </div>
-      <div id="content">
-        <router-view></router-view>
-      </div>
-    </main>
-
-    <modal v-if="modal"></modal>
+    <div class="uk-section uk-section-default">
+      <main class="uk-container uk-container-small">
+        <div id="intro">
+          <h1>Page Title</h1>
+          <h2>Page Subtitle</h2>
+          <p>Page Description.</p>
+        </div>
+        <div id="content">
+          <router-view></router-view>
+        </div>
+      </main>
+    </div>
 
     <site-footer></site-footer>
+
   </div>
 </template>
 
 
 <script>
-import { mapState } from 'vuex';
 import SiteHeader from './components/SiteHeader';
-import ControlPanel from './components/ControlPanel';
-import Modal from './components/Modal';
 import SiteFooter from './components/SiteFooter';
 
 export default {
   name: 'app',
   data() {
-    return {
-      modal: false,
-    };
+    return {};
   },
   components: {
     SiteHeader,
-    ControlPanel,
-    Modal,
     SiteFooter,
   },
-  props: [],
-  computed: mapState({
-    pageTitle: state => state.page.title,
-    pageSubtitle: state => state.page.subtitle,
-    pageDescription: state => state.page.description,
-  }),
 };
 </script>
 
 
 <style lang="scss">
-  @import "styles/normalize/_normalize.scss";
-  @import "styles/_global";
-  @import "styles/brand.scss";
-  @import "styles/forms.scss";
-  @import "styles/grid.scss";
-  @import "styles/utility.scss";
+// 1. Your custom variables and variable overwrites.
+// $global-link-color: #DA7D02;
 
-  #app {
-    @extend %global;
-    background-color: $primary_bg;
-    color: $primary_text;
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
+// 2. Import default variables and available mixins.
+@import "../node_modules/uikit/src/scss/variables-theme.scss";
+@import "../node_modules/uikit/src/scss/mixins-theme.scss";
 
-  .container {
-    position: relative;
-    margin: 0;
-    padding-right: 1rem;
-    padding-left: 1rem;
+// 3. Your custom mixin overwrites.
+// @mixin hook-card() { color: #000; }
 
-    @include lg_up {
-      width: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      max-width: $bp2;
-    }
-  }
-
-  main {
-    flex: 1 0 100%;
-    font-size: 16;
-    background-color: $primary_bg;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-
-    #intro {}
-    #content {}
-  }
-
-  a {
-    color: $primary_anchor;
-    font-weight: bolder;
-  }
-
-  a.disabled {
-    color: $primary_text_disabled;
-    pointer-events: none;
-    cursor: default;
-  }
-
-  // tab group, consisting of linked anchors
-  ul.tab_list {
-    display: flex;
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-
-    li {
-      margin-right: .25rem;
-      &:last-child {
-        margin-right: 0;
-      }
-      a {
-        @extend %button_base;
-        font-size: 20px;
-        display: block;
-        padding: 1em 1em 1rem 1em;
-        border-bottom-width: 0;
-      }
-    }
-  }
-
+// 4. Import UIkit.
+@import "../node_modules/uikit/src/scss/uikit-theme.scss";
 </style>

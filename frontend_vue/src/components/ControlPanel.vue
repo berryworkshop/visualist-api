@@ -156,11 +156,4 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "../styles/brand.scss";
-@import "../styles/forms.scss";
-
-#control-panel {
-  fieldset {}
-}
-
 </style>
