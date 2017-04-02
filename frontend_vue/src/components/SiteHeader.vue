@@ -12,14 +12,14 @@
                   <div class="uk-navbar-dropdown-grid uk-child-width-1-2" uk-grid>
                     <div>
                       <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/events">Events</a></li>
-                        <li><a href="/orgs">Organizations</a></li>
+                        <li><router-link :to="{ name: 'home' }">Home</router-link></li>
+                        <li><router-link :to="{ name: 'events' }">Events</router-link></li>
+                        <li><router-link :to="{ name: 'organizations' }">Organizations</router-link></li>
                       </ul>
                     </div>
                     <div>
                       <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li><a href="/search">Search</a></li>
+                        <li><router-link :to="{ name: 'search' }">Search</router-link></li>
                         <li><a href="#">About</a></li>
                       </ul>
                     </div>

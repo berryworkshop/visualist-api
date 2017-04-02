@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "jquery": "^3.2.1",
     "spectre.css": "^0.2.11",
     "uikit": "^3.0.0-beta.19",
     "vue": "^2.1.0",

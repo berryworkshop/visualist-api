@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
+import jQuery from 'jquery';
 import App from './App';
 
 import Atlas from './pages/Atlas';
@@ -22,6 +23,11 @@ Vue.use(VueRouter);
 Vue.use(Vuex);
 UIkit.use(Icons);
 
+/* eslint-disable */
+window.jQuery = jQuery;
+window.UIkit = UIkit;
+/* eslint-enable */
+
 const routes = [
   { name: 'atlas', path: '/atlas', component: Atlas },
   { name: 'calendar', path: '/calendar', component: Calendar },
@@ -32,10 +38,10 @@ const routes = [
   { name: 'login', path: '/login', component: Login },
   { name: 'search', path: '/search', component: Search },
 
-  { name: 'event-list', path: '/events', component: List },
+  { name: 'events', path: '/events', component: List },
   { name: 'event', path: '/events/:event_id', component: Event },
 
-  { name: 'organization-list', path: '/orgs', component: List },
+  { name: 'organizations', path: '/orgs', component: List },
   { name: 'organization', path: '/orgs/:organization_id', component: Organization },
 ];
 
