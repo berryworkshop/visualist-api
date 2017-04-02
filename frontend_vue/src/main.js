@@ -5,7 +5,6 @@ import VueRouter from 'vue-router';
 import Vuex from 'vuex';
 import UIkit from 'uikit';
 import Icons from 'uikit/dist/js/uikit-icons';
-import jQuery from 'jquery';
 import App from './App';
 
 import Atlas from './pages/Atlas';
@@ -22,11 +21,6 @@ import Search from './pages/Search';
 Vue.use(VueRouter);
 Vue.use(Vuex);
 UIkit.use(Icons);
-
-/* eslint-disable */
-window.jQuery = jQuery;
-window.UIkit = UIkit;
-/* eslint-enable */
 
 const routes = [
   { name: 'atlas', path: '/atlas', component: Atlas },
