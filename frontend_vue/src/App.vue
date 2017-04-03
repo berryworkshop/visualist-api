@@ -5,11 +5,13 @@
 
     <div class="uk-section uk-section-default">
       <main class="uk-container uk-container-small">
-        <div id="intro">
-          <h1>Page Title</h1>
-          <h2>Page Subtitle</h2>
-          <p>Page Description.</p>
-        </div>
+
+        <ul class="uk-breadcrumb">
+            <li><router-link :to="{ name: 'home'}">Home</router-link></li>
+            <li class="uk-disabled"><a href="#">Disabled</a></li>
+            <li><span href="#">Active</span></li>
+        </ul>
+
         <div id="content">
           <router-view></router-view>
         </div>

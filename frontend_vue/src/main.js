@@ -25,8 +25,6 @@ UIkit.use(Icons);
 const routes = [
   { name: 'atlas', path: '/atlas', component: Atlas },
   { name: 'calendar', path: '/calendar', component: Calendar },
-  { name: '403', path: '/403', component: Error403 },
-  { name: '404', path: '/404', component: Error404 },
   { name: 'home', path: '/', component: Home },
   { name: 'list', path: '/list', component: List },
   { name: 'login', path: '/login', component: Login },
@@ -37,6 +35,9 @@ const routes = [
 
   { name: 'organizations', path: '/orgs', component: List },
   { name: 'organization', path: '/orgs/:organization_id', component: Organization },
+
+  { name: '403', path: '/403', component: Error403 },
+  { name: '404', path: '*', component: Error404 },
 ];
 
 const siteDefaults = {};

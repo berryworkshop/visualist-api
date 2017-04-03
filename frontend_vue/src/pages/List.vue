@@ -1,13 +1,13 @@
 <template>
   <div class="panel" id="list">
-    <p>Here's a list of stuff.</p>
 
-    <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Open</a>
+    <!-- New Event modal -->
+    <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>New Event</a>
     <div id="modal-sections" uk-modal="center: true">
         <div class="uk-modal-dialog">
             <button class="uk-modal-close-default" type="button" uk-close></button>
             <div class="uk-modal-header">
-                <h2 class="uk-modal-title">Modal Title</h2>
+                <h2 class="uk-modal-title">New Event</h2>
             </div>
             <div class="uk-modal-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -19,36 +19,57 @@
         </div>
     </div>
 
-    <ul uk-accordion>
-        <li class="uk-open">
-            <h3 class="uk-accordion-title">Item 1</h3>
-            <div class="uk-accordion-content">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <!-- Event list -->
+    <template v-for="event in events">
+      <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+        <div class="uk-card-media-left uk-cover-container">
+            <img src="http://placehold.it/600x400" alt="" uk-cover>
+            <canvas width="600" height="400"></canvas>
+        </div>
+        <div>
+            <div class="uk-card-body">
+                <h3 class="uk-card-title"><router-link :to="{ name: 'event', params: { event_id: event.id }}">
+                  {{ event.name }}
+                </router-link></h3>
+                <p>{{ event.description }}</p>
+                <p>{{ event.category }}</p>
             </div>
-        </li>
-        <li>
-            <h3 class="uk-accordion-title">Item 2</h3>
-            <div class="uk-accordion-content">
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
-            </div>
-        </li>
-        <li>
-            <h3 class="uk-accordion-title">Item 3</h3>
-            <div class="uk-accordion-content">
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
-            </div>
-        </li>
-    </ul>
+        </div>
+      </div>
+    </template>
+
+
 </div>
 </template>
 
 <script>
-export default {
-  name: 'list',
-  data() {
-    return {};
-  },
-};
+  import Axios from 'axios';
+
+  const ajax = Axios.create({
+    baseURL: process.env.API_BASE_URL,
+  });
+
+  export default {
+    name: 'list',
+    data() {
+      return {
+        events: [],
+      };
+    },
+    created() {
+      ajax.get('/events')
+      .then((response) => {
+        this.events = response.data.events;
+      })
+      .catch((error) => {
+        this.error = error;
+        if (error.response.status === 404) {
+          this.$router.push({ name: '404' });
+        }
+        console.log(error);
+      });
+    },
+  };
 </script>
 
 <style lang="scss" scoped>
