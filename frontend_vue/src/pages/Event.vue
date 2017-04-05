@@ -5,6 +5,8 @@
     <p>Description: {{ event.description }}</p>
     <p>Category: {{ event.category }}</p>
 
+    <button class="uk-button uk-button-default" disabled>Delete</button>
+
     <!-- Edit Event modal -->
     <a class="uk-button uk-button-default" href="#modal-sections" uk-toggle>Edit Event</a>
     <div id="modal-sections" uk-modal="center: true">
