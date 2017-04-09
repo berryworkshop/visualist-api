@@ -1,8 +1,8 @@
 <template>
-  <div class="panel" id="error404">
+  <main id="error404">
     <h1>404: Not Found</h1>
     <p>Sorry, but that resource does not exist.</p>
-  </div>
+  </main>
 </template>
 
 <script>

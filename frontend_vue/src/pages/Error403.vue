@@ -1,8 +1,8 @@
 <template>
-  <div class="panel" id="error403">
+  <main id="error403">
     <h1>403: Forbidden</h1>
     <p>Sorry, but that resource is not available for you to access.</p>
-  </div>
+  </main>
 </template>
 
 <script>

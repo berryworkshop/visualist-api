@@ -1,5 +1,5 @@
 <template>
-  <div class="panel" id="list">
+  <main id="list" class="container">
     <!-- Event list -->
     <template v-for="event in events">
         <h3><router-link :to="{ name: 'event', params: { event_id: event.id }}">
@@ -8,7 +8,7 @@
         <p>{{ event.description }}</p>
         <p>{{ event.category }}</p>
     </template>
-</div>
+  </main>
 </template>
 
 <script>

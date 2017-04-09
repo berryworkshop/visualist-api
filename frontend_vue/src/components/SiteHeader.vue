@@ -1,6 +1,16 @@
 <template>
-  <header id="site-header">
-    <p>Visualist</p>
+  <header id="header">
+    <div id="branding">
+        <span>Visualist</span>
+    </div>
+    <nav>
+        <span>
+            Browse
+        </span>
+        <span>
+            Search
+        </span>
+    </nav>
   </header>
 </template>
 

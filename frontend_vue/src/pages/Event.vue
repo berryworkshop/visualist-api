@@ -1,10 +1,10 @@
 <template>
-  <div class="panel" id="event">
+  <main id="event">
     <h1>{{ event.name }}</h1>
     <p>Event ID: {{ $route.params.event_id }}</p>
     <p>Description: {{ event.description }}</p>
     <p>Category: {{ event.category }}</p>
-  </div>
+  </main>
 </template>
 
 <script>

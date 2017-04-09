@@ -1,7 +1,8 @@
 <template>
-  <div class="panel" id="home">
-    <p>Home Page.</p>
-  </div>
+  <main id="home">
+      <h1>Welcome to the Visualist</h1>
+      <h2>Where art and Chicago meet.</h2>
+  </main>
 </template>
 
 <script>

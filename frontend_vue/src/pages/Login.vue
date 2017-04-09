@@ -1,5 +1,5 @@
 <template>
-  <div class="panel" id="login">
+  <main id="login">
     <h1>Login</h1>
     <p>Login to the Visualist.</p>
 
@@ -25,7 +25,7 @@
         </tr>
       </table>
     </form>
-  </div>
+  </main>
 </template>
 
 <script>

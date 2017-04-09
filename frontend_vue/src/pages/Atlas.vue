@@ -1,7 +1,7 @@
 <template>
-  <div class="panel" id="atlas">
+  <main id="atlas">
     <p>Here's an atlas.</p>
-  </div>
+  </main>
 </template>
 
 <script>

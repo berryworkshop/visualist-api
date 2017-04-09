@@ -1,5 +1,5 @@
 <template>
-  <div class="panel" id="card-list">
+  <div id="card-list">
     <p>Events, Organizations, People, and Artworks</p>
 
     <fieldset>

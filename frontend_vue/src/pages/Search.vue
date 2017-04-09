@@ -1,7 +1,7 @@
 <template>
-  <div class="panel" id="search-results">
+  <main id="search-results">
     <p>Search results.</p>
-  </div>
+  </main>
 </template>
 
 <script>

@@ -1,12 +1,12 @@
 <template>
-  <main id="organization">
-    <p>Here's an organization.</p>
+  <main id="main">
+    <router-view></router-view>
   </main>
 </template>
 
 <script>
 export default {
-  name: 'organization',
+  name: 'site-main',
   data() {
     return {};
   },

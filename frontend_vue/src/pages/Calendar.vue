@@ -1,7 +1,7 @@
 <template>
-  <div class="panel" id="calendar">
+  <main id="calendar">
     <p>Here's a calendar.</p>
-  </div>
+  </main>
 </template>
 
 <script>

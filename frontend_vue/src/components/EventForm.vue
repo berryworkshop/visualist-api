@@ -1,36 +1,7 @@
 <template>
-  <div class="panel" id="node-form-event">
-    <form method="post" v-on:submit.prevent="onSubmit">
-        <fieldset>
-            <div class="row">
-                <label for="name">Name</label>
-                <input class="input" id="name" type="text" placeholder="Event Name" v-model="event.name">
-                <span class="feedback">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                </span>
-            </div>
-            <div class="row">
-                <label for="description">Description</label>
-                <textarea class="input" id="description" type="textarea" placeholder="Event Description" v-model="event.description" rows="5"></textarea>
-                <span class="feedback">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                </span>
-            </div>
-            <div class="row">
-                <label for="category">Category</label>
-                <select class="input" id="category" v-model="event.category">
-                    <option value="reception">Reception</option>
-                    <option value="exhibition">Exhibition</option>
-                </select>
-                <span class="feedback">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                </span>
-            </div>
-            <div class="submit_row">
-                <a href="">Cancel</a>
-                <button type="submit">Submit</button>
-            </div>
-        </fieldset>
+  <div id="node-form-event">
+    <form>
+      <p>Form</p>
     </form>
   </div>
 </template>
