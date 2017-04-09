@@ -84,14 +84,14 @@ module.exports = {
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
       },
-      {
-        test: require.resolve('jquery'),
-        loader: 'expose-loader?jQuery!expose-loader?$'
-      },
-      {
-        test: require.resolve('uikit'),
-        loader: 'expose-loader?UIkit'
-      }
+      // {
+      //   test: require.resolve('jquery'),
+      //   loader: 'expose-loader?jQuery!expose-loader?$'
+      // },
+      // {
+      //   test: require.resolve('uikit'),
+      //   loader: 'expose-loader?UIkit'
+      // }
     ]
   },
   eslint: {

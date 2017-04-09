@@ -1,25 +1,10 @@
 <template>
   <div id="app">
-
     <site-header></site-header>
-
-    <div class="uk-section uk-section-default">
-      <main class="uk-container uk-container-small">
-
-        <ul class="uk-breadcrumb">
-            <li><router-link :to="{ name: 'home'}">Home</router-link></li>
-            <li class="uk-disabled"><a href="#">Disabled</a></li>
-            <li><span href="#">Active</span></li>
-        </ul>
-
-        <div id="content">
-          <router-view></router-view>
-        </div>
-      </main>
-    </div>
-
+    <main>
+      <router-view></router-view>
+    </main>
     <site-footer></site-footer>
-
   </div>
 </template>
 
@@ -42,16 +27,21 @@ export default {
 
 
 <style lang="scss">
-// 1. Your custom variables and variable overwrites.
-// $global-link-color: #DA7D02;
+  // Import Bulma's initial variables
+  @import "../node_modules/bulma/sass/utilities/_all.sass";
+  // Override initial variables here
+  // You can add new ones or update existing ones:
 
-// 2. Import default variables and available mixins.
-@import "../node_modules/uikit/src/scss/variables.scss";
-@import "../node_modules/uikit/src/scss/mixins.scss";
+  $blue: #72d0eb; // Update blue
+  $pink: #ffb3b3; // Add pink
+  $family-serif: "Georgia", serif; // Add a serif family
 
-// 3. Your custom mixin overwrites.
-// @mixin hook-card() { color: #000; }
+  // Override generated variables here
+  // For example, by default, the $danger color is $red and the font is sans-serif
+  // You can change these values:
 
-// 4. Import UIkit.
-@import "../node_modules/uikit/src/scss/uikit.scss";
+  $danger: $orange; // Use the existing orange
+  $family-primary: $family-serif; // Use the new serif family
+
+  @import "../node_modules/bulma/bulma";
 </style>

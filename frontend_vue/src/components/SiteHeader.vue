@@ -1,44 +1,6 @@
 <template>
   <header id="site-header">
-    <div class="uk-navbar-container">
-      <div class="uk-container uk-container-expand">
-        <nav class="uk-navbar-nav" uk-navbar>
-          <div class="uk-navbar-left">
-            <a class="uk-navbar-item uk-logo" href="/">Visualist</a>
-            <ul class="uk-navbar-nav">
-              <li>
-                <a>Pages</a>
-                <div class="uk-navbar-dropdown uk-navbar-dropdown-width-2">
-                  <div class="uk-navbar-dropdown-grid uk-child-width-1-2" uk-grid>
-                    <div>
-                      <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li><router-link :to="{ name: 'home' }">Home</router-link></li>
-                        <li><router-link :to="{ name: 'events' }">Events</router-link></li>
-                        <li><router-link :to="{ name: 'organizations' }">Organizations</router-link></li>
-                      </ul>
-                    </div>
-                    <div>
-                      <ul class="uk-nav uk-navbar-dropdown-nav">
-                        <li><router-link :to="{ name: 'search' }">Search</router-link></li>
-                        <li><a href="#">About</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </div>
-          <div class="uk-navbar-right">
-            <div class="uk-navbar-item">
-              <form action="javascript:void(0)">
-                <input class="uk-input uk-form-width-small" type="text" placeholder="Search">
-                <button class="uk-button uk-button-default"><span uk-icon="icon: search"></span></button>
-              </form>
-            </div>
-          </div>
-        </nav>
-      </div>
-    </div>
+    <p>Visualist</p>
   </header>
 </template>
 
