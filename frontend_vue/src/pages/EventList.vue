@@ -59,6 +59,12 @@
       events_update() {
         ajax.get('/events')
         .then((response) => {
+          // check if events have a selected prop; if not, then oblige
+          for (const e of response.data.events) {
+            if (!Object.prototype.hasOwnProperty.call(e, 'selected')) {
+              e.selected = false;
+            }
+          }
           this.events = response.data.events;
         })
         .catch((error) => {
