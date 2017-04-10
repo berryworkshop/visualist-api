@@ -1,5 +1,5 @@
 <template>
-  <div id="node-form-event">
+  <div id="event-new">
     <form>
       <p>Form</p>
     </form>

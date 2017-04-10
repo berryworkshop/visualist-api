@@ -11,9 +11,9 @@ import Error403 from './pages/Error403';
 import Error404 from './pages/Error404';
 import Event from './pages/Event';
 import Home from './pages/Home';
-import List from './pages/List';
+import EventList from './pages/EventList';
 import Login from './pages/Login';
-import Organization from './pages/Organization';
+// import Organization from './pages/Organization';
 import Search from './pages/Search';
 
 Vue.use(VueRouter);
@@ -23,15 +23,15 @@ const routes = [
   { name: 'atlas', path: '/atlas', component: Atlas },
   { name: 'calendar', path: '/calendar', component: Calendar },
   { name: 'home', path: '/', component: Home },
-  { name: 'list', path: '/list', component: List },
+  // { name: 'list', path: '/list', component: List },
   { name: 'login', path: '/login', component: Login },
   { name: 'search', path: '/search', component: Search },
 
-  { name: 'events', path: '/events', component: List },
+  { name: 'events', path: '/events', component: EventList },
   { name: 'event', path: '/events/:event_id', component: Event },
 
-  { name: 'organizations', path: '/orgs', component: List },
-  { name: 'organization', path: '/orgs/:organization_id', component: Organization },
+  // { name: 'organizations', path: '/orgs', component: List },
+  // { name: 'organization', path: '/orgs/:organization_id', component: Organization },
 
   { name: '403', path: '/403', component: Error403 },
   { name: '404', path: '*', component: Error404 },

@@ -1,9 +1,9 @@
 <template>
-  <header id="header">
+  <header id="header" class="wrapper">
     <div id="branding">
         <span>Visualist</span>
     </div>
-    <nav>
+    <nav id="primary_nav">
         <span>
             Browse
         </span>
@@ -25,4 +25,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  header {
+    display: flex;
+
+    #branding {}
+    #primary_nav {
+      text-align: right;
+    }
+  }
 </style>

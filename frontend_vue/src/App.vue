@@ -26,4 +26,42 @@ export default {
 
 
 <style lang="scss">
+  @import "~normalize.css";
+
+  // box-sizing: https://css-tricks.com/box-sizing/
+  html {
+    box-sizing: border-box;
+  }
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  .wrapper {
+    max-width: 1000px;
+    background-color: silver;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  }
+
+  .content {
+    /* mobile */
+
+    /* desktop */
+    @media (min-width: 500px) {
+    }
+  }
+
+  .controls {
+    /* mobile */
+
+    /* desktop */
+    @media (min-width: 500px) {
+    }
+  }
+
 </style>
