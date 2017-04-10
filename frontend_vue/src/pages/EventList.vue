@@ -5,7 +5,7 @@
     </div>
 
     <div class="content">
-      <form action="post" v-on:submit.prevent="submit_form($event)">
+      <form action="post" v-on:submit.prevent="form_submit">
         <input v-model="event.name" placeholder="Name">
         <textarea v-model="event.description" placeholder="Description"></textarea>
         <select v-model="event.category" placeholder="exhibition">
@@ -16,11 +16,15 @@
       </form>
 
       <template v-for="event in events">
+        <input type="checkbox" v-model="event.selected">
+        <button v-on:click="event_delete(event.id)">Delete</button>
         <h3><router-link :to="{ name: 'event', params: { event_id: event.id }}">
           {{ event.name }}
         </router-link></h3>
+        <p>{{ event.id }}</p>
         <p>{{ event.description }}</p>
         <p>{{ event.category }}</p>
+        <p>{{ event.selected }}</p>
       </template>
     </div>
 
@@ -47,11 +51,12 @@
       };
     },
     created() {
-      this.reset_form();
-      this.update_events();
+      this.form_reset();
+      this.events_update();
+      this.events_selected_clear();
     },
     methods: {
-      update_events() {
+      events_update() {
         ajax.get('/events')
         .then((response) => {
           this.events = response.data.events;
@@ -64,14 +69,13 @@
           console.log(error);
         });
       },
-      submit_form(e) {
+      form_submit() {
         ajax.post('/events', this.event)
         .then((response) => {
           if (response.status === 200) {
             console.log(response);
-            console.log(e);
-            this.update_events();
-            this.reset_form();
+            this.events_update();
+            this.form_reset();
           } else {
             console.log(response);
           }
@@ -80,15 +84,37 @@
           this.error = error;
           console.log(error);
         });
-        this.update_events();
+        this.events_update();
         // window.UIkit.offcanvas('#modal-sections').toggle();
       },
-      reset_form() {
+      form_reset() {
         this.event = {
+          id: '',
           name: '',
           description: '',
           category: 'exhibition',
         };
+      },
+      events_selected_clear() {
+        for (const event of this.events) {
+          event.selected = false;
+        }
+      },
+      event_delete(eventId) {
+        console.log(`event #${eventId} deleted`);
+        ajax.delete(`/events/${eventId}`)
+        .then((response) => {
+          if (response.status === 200) {
+            console.log(response);
+            this.events_update();
+          } else {
+            console.log(response);
+          }
+        })
+        .catch((error) => {
+          this.error = error;
+          console.log(error);
+        });
       },
     },
   };

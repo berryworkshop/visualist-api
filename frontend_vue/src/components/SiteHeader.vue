@@ -3,13 +3,13 @@
     <div id="branding">
         <span>Visualist</span>
     </div>
-    <nav id="primary_nav">
-        <span>
-            Browse
-        </span>
-        <span>
-            Search
-        </span>
+    <nav id="site_nav">
+      <span class="header">Menu</span>
+      <ul>
+        <li><router-link :to="{ name: 'home'}">Home</router-link></li>
+        <li><router-link :to="{ name: 'events'}">Events</router-link></li>
+        <li>Search</li>
+      </ul>
     </nav>
   </header>
 </template>
@@ -29,8 +29,6 @@ export default {
     display: flex;
 
     #branding {}
-    #primary_nav {
-      text-align: right;
-    }
+    #site_nav {}
   }
 </style>
