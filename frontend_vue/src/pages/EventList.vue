@@ -6,9 +6,9 @@
 
     <div class="content">
       <form action="post" v-on:submit.prevent="form_submit">
-        <input v-model="event.name" placeholder="Name">
+        <input v-model="event.name" placeholder="Name" type="text">
         <textarea v-model="event.description" placeholder="Description"></textarea>
-        <select v-model="event.category" placeholder="exhibition">
+        <select v-model="event.category" placeholder="exhibition" type="text">
           <option value="exhibition">Exhibition</option>
           <option value="reception">Reception</option>
         </select>
@@ -126,7 +126,4 @@
 </script>
 
 <style lang="scss" scoped>
-  form > * {
-    display: block;
-  }
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div class="card-event">
     <input type="checkbox" v-model="selected">
-    <button v-on:click="delete_event">Delete</button>
     <h3><router-link :to="{ name: 'event', params: { event_id: id }}">
       {{ name }}
     </router-link></h3>
@@ -9,6 +8,7 @@
     <p>{{ description }}</p>
     <p>{{ category }}</p>
     <p>{{ selected }}</p>
+    <button v-on:click="delete_event">Delete</button>
   </div>
 </template>
 
@@ -59,6 +59,6 @@
 
 <style lang="scss" scoped>
   .card-event {
-    border: 1px solid black;
+    border: 1px solid silver;
   }
 </style>
