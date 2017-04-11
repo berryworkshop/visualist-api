@@ -1,5 +1,5 @@
 <template>
-  <header id="header" class="wrapper">
+  <header class="site-header wrapper">
     <div id="branding">
         <span>Visualist</span>
     </div>

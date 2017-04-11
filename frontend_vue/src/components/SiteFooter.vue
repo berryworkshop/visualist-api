@@ -1,5 +1,5 @@
 <template>
-  <footer id="footer" class="wrapper">
+  <footer class="site-footer wrapper">
     <p>Copyright © 2017, <a>Culture/Math</a>. All rights reserved.</p>
     <p>Website by <a href="http://berryworkshop.com">Berry Catalog Workshop</a>.</p>
     <ul>

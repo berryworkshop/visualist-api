@@ -1,5 +1,5 @@
 <template>
-  <div id="card-list">
+  <div class="card-list">
     <p>Events, Organizations, People, and Artworks</p>
 
     <fieldset>
@@ -26,7 +26,7 @@
       </select>
     </fieldset>
 
-    <ul class="cardList">
+    <ul>
       <p>Cards</p>
     </ul>
   </div>

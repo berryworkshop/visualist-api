@@ -7,13 +7,18 @@ graph = Graph()
 
 
 def get_highest_event_id():
-    return graph.run('''
+    highest_id = graph.run('''
         MATCH (e:Event)
         WHERE exists(e.id)
         RETURN e.id
         ORDER BY e.id DESC
         LIMIT 1
         ''').evaluate()
+
+    if highest_id:
+        return highest_id
+    else:
+        return 0
 
 class EventResource(Resource):
     def __init__(self):

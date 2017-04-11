@@ -15,17 +15,13 @@
         <button type="submit">Submit</button>
       </form>
 
-      <template v-for="event in events">
-        <input type="checkbox" v-model="event.selected">
-        <button v-on:click="event_delete(event.id)">Delete</button>
-        <h3><router-link :to="{ name: 'event', params: { event_id: event.id }}">
-          {{ event.name }}
-        </router-link></h3>
-        <p>{{ event.id }}</p>
-        <p>{{ event.description }}</p>
-        <p>{{ event.category }}</p>
-        <p>{{ event.selected }}</p>
-      </template>
+      <card-event
+        v-for="(event, index) in events"
+        :event="event"
+        :index="index"
+        :key="event.id"
+        v-on:remove="events.splice(index, 1)"
+      ></card-event>
     </div>
 
     <div class="sidebar">
@@ -36,6 +32,7 @@
 
 <script>
   import Axios from 'axios';
+  import CardEvent from '../components/CardEvent';
 
   const ajax = Axios.create({
     baseURL: process.env.API_BASE_URL,
@@ -53,16 +50,19 @@
     created() {
       this.form_reset();
       this.events_update();
-      this.events_selected_clear();
+      // this.events_selected_clear();
+    },
+    components: {
+      CardEvent,
     },
     methods: {
       events_update() {
         ajax.get('/events')
         .then((response) => {
           // check if events have a selected prop; if not, then oblige
-          for (const e of response.data.events) {
-            if (!Object.prototype.hasOwnProperty.call(e, 'selected')) {
-              e.selected = false;
+          for (const evt of response.data.events) {
+            if (!Object.prototype.hasOwnProperty.call(evt, 'selected')) {
+              evt.selected = false;
             }
           }
           this.events = response.data.events;
@@ -91,7 +91,6 @@
           console.log(error);
         });
         this.events_update();
-        // window.UIkit.offcanvas('#modal-sections').toggle();
       },
       form_reset() {
         this.event = {
@@ -101,27 +100,27 @@
           category: 'exhibition',
         };
       },
-      events_selected_clear() {
-        for (const event of this.events) {
-          event.selected = false;
-        }
-      },
-      event_delete(eventId) {
-        console.log(`event #${eventId} deleted`);
-        ajax.delete(`/events/${eventId}`)
-        .then((response) => {
-          if (response.status === 200) {
-            console.log(response);
-            this.events_update();
-          } else {
-            console.log(response);
-          }
-        })
-        .catch((error) => {
-          this.error = error;
-          console.log(error);
-        });
-      },
+      // events_selected_clear() {
+      //   for (const event of this.events) {
+      //     event.selected = false;
+      //   }
+      // },
+      // event_delete(eventId) {
+      //   console.log(`event #${eventId} deleted`);
+      //   ajax.delete(`/events/${eventId}`)
+      //   .then((response) => {
+      //     if (response.status === 200) {
+      //       console.log(response);
+      //       this.events_update();
+      //     } else {
+      //       console.log(response);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     this.error = error;
+      //     console.log(error);
+      //   });
+      // },
     },
   };
 </script>

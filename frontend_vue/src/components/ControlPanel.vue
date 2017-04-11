@@ -1,5 +1,5 @@
 <template>
-  <aside id="control-panel">
+  <aside class="control-panel">
     <!-- <fieldset>
       <legend>Format</legend>
       <p>Choose relevant presentation scheme. Default: Cards.</p>

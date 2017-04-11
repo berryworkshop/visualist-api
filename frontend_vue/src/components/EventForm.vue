@@ -1,5 +1,5 @@
 <template>
-  <div id="event-new">
+  <div class="event-form">
     <form>
       <p>Form</p>
     </form>
