@@ -29,20 +29,10 @@ export default {
   @import "../main.scss";
 
   header.site-header {
-    display: flex;
-    color: white;
-    background-color: $color-secondary;
-    padding: 1rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 
     #branding {}
     #site_nav {}
-
-    a:focus, a:hover {
-      color: material-color('cyan', '200')
-    }
-
-    a:focus {
-      color: material-color('cyan', '700')
-    }
   }
 </style>
