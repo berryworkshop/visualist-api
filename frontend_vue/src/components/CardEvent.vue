@@ -60,5 +60,9 @@
 <style lang="scss" scoped>
   .card-event {
     border: 1px solid silver;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-bottom: .5rem;
+
   }
 </style>

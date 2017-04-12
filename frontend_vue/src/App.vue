@@ -27,9 +27,7 @@ export default {
 
 <style lang="scss">
   @import "~normalize.css";
-  @import "~milligram";
-
-  body {}
+  @import "main.scss";
 
   .content {
     /* mobile */

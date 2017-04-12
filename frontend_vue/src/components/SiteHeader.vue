@@ -1,10 +1,9 @@
 <template>
-  <header class="site-header container">
-    <div class="row">
-      <div id="branding" class="column">
+  <header class="site-header">
+      <div id="branding">
           <span>Visualist</span>
       </div>
-      <nav id="site_nav" class="column">
+      <nav id="site_nav">
         <span class="header">Menu</span>
         <ul>
           <li><router-link :to="{ name: 'home'}">Home</router-link></li>
@@ -27,10 +26,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  header {
+  @import "../main.scss";
+
+  header.site-header {
     display: flex;
+    color: white;
+    background-color: $color-secondary;
+    padding: 1rem;
 
     #branding {}
     #site_nav {}
+
+    a:focus, a:hover {
+      color: material-color('cyan', '200')
+    }
+
+    a:focus {
+      color: material-color('cyan', '700')
+    }
   }
 </style>

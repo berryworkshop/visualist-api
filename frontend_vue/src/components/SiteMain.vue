@@ -1,5 +1,5 @@
 <template>
-  <main class="site-main container">
+  <main class="site-main">
     <router-view></router-view>
   </main>
 </template>

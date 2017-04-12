@@ -1,29 +1,29 @@
 <template>
   <main id="event-list">
-    <div>
-      <h1>List of Events</h1>
-    </div>
-
+    <h1>List of Events</h1>
     <div class="content">
       <form action="post" v-on:submit.prevent="form_submit">
-        <input v-model="event.name" placeholder="Name" type="text">
-        <textarea v-model="event.description" placeholder="Description"></textarea>
-        <select v-model="event.category" placeholder="exhibition" type="text">
-          <option value="exhibition">Exhibition</option>
-          <option value="reception">Reception</option>
-        </select>
-        <button type="submit">Submit</button>
+        <fieldset>
+          <legend>New Event</legend>
+            <input v-model="event.name" placeholder="Name" type="text">
+            <textarea v-model="event.description" placeholder="Description"></textarea>
+            <select v-model="event.category" placeholder="exhibition" type="text">
+              <option value="exhibition">Exhibition</option>
+              <option value="reception">Reception</option>
+            </select>
+            <button type="submit">Submit</button>
+        </fieldset>
       </form>
-
-      <card-event
-        v-for="(event, index) in events"
-        :event="event"
-        :index="index"
-        :key="event.id"
-        v-on:remove="events.splice(index, 1)"
-      ></card-event>
+      <div class="grid">
+        <card-event
+          v-for="(event, index) in events"
+          :event="event"
+          :index="index"
+          :key="event.id"
+          v-on:remove="events.splice(index, 1)"
+        ></card-event>
+      </div>
     </div>
-
     <div class="sidebar">
       <p>sidebar</p>
     </div>
@@ -126,4 +126,13 @@
 </script>
 
 <style lang="scss" scoped>
+
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+
+    & > div {
+      flex: 0 1 50%;
+    }
+  }
 </style>
