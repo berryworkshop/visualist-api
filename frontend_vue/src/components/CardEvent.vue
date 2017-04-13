@@ -1,7 +1,7 @@
 <template>
   <div class="card-event">
     <header class="card-header">
-      <input type="checkbox" v-model="selected">
+      <input type="checkbox" :id="checkboxId()"><label :for="checkboxId()"></label>
     </header>
     <div class="card-main">
       <h3>
@@ -60,16 +60,26 @@
           console.error(error);
         });
       },
+      checkboxId() {
+        return `checkbox_${this.id}`;
+      },
     },
   };
 </script>
 
 <style lang="scss" scoped>
   .card-event {
-    border: 1px solid silver;
-    margin-bottom: .5rem;
+
+    border: .5rem solid transparent;
+
+    header.card-header,
+    div.card-main,
+    footer.card-footer {
+      border: 1px solid silver;
+    }
 
     header.card-header {
+      border: none;
       padding: 1rem;
       background: url("http://loremflickr.com/g/600/800/chicago") no-repeat center center;
       background-size: cover;
@@ -77,9 +87,12 @@
     }
     div.card-main {
       padding: 1rem;
+      border-top: none;
+      border-bottom: none;
     }
     footer.card-footer {
       text-align: right;
+      border-top: none;
     }
   }
 </style>
