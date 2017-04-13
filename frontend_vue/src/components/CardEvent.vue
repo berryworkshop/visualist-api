@@ -68,6 +68,8 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../main.scss";
+
   .card-event {
 
     border: .5rem solid transparent;

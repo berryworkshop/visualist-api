@@ -105,6 +105,7 @@
 </script>
 
 <style lang="scss" scoped>
+  @import "../main.scss";
 
   .grid {
     display: flex;

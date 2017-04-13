@@ -20,6 +20,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  @import "../main.scss";
+
   footer.site-footer {
     padding-top: 3rem;
     padding-bottom: 5rem;

@@ -4,8 +4,12 @@
  */
 @import "~sass-material-colors";
 
-$color-primary: material-color('cyan', '400');
+$color-primary-light: material-color('deep-orange', '300');
+$color-primary: material-color('deep-orange', '500');
+$color-primary-dark: material-color('deep-orange', '700');
+
 $color-secondary: #333;
+
 $color-light-gray: #f4f5f6;
 $border-radius: .2rem;
 
@@ -39,11 +43,28 @@ blockquote *:last-child {
 button,
 input[type='button'],
 input[type='reset'],
+input[type='submit'],
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+textarea,
+select {
+  padding: .75em;
+  min-height: 2rem;
+}
+
+.button,
+button,
+input[type='button'],
+input[type='reset'],
 input[type='submit'] {
   background-color: $color-primary;
   border: 0.1rem solid $color-primary;
   border-radius: $border-radius;
-  padding: .75rem 1rem;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -205,8 +226,6 @@ select {
   border-radius: $border-radius;
   box-shadow: none;
   box-sizing: inherit;
-  height: 3.8rem;
-  padding: 1rem;
   width: 100%;
 }
 
@@ -268,7 +287,7 @@ input[type="checkbox"]:checked + label {
     content: "\2714";
     font-size: 1.5em;
     font-family: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
-    color: black;
+    color: $color-primary;
   }
 }
 

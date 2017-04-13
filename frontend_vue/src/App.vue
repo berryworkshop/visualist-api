@@ -67,10 +67,10 @@ export default {
       color: white;
       background-color: $color-secondary;
       a:focus, a:hover {
-        color: material-color('cyan', '200')
+        color: $color-primary-light;
       }
       a:focus {
-        color: material-color('cyan', '700')
+        color: $color-primary-dark;
       }
     }
   }
