@@ -100,27 +100,6 @@
           category: 'exhibition',
         };
       },
-      // events_selected_clear() {
-      //   for (const event of this.events) {
-      //     event.selected = false;
-      //   }
-      // },
-      // event_delete(eventId) {
-      //   console.log(`event #${eventId} deleted`);
-      //   ajax.delete(`/events/${eventId}`)
-      //   .then((response) => {
-      //     if (response.status === 200) {
-      //       console.log(response);
-      //       this.events_update();
-      //     } else {
-      //       console.log(response);
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     this.error = error;
-      //     console.log(error);
-      //   });
-      // },
     },
   };
 </script>
