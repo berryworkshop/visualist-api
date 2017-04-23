@@ -1,0 +1,417 @@
+Site
+  schema: http://schema.org/WebSite
+  fields:
+    - name
+    - description
+    - copyright_holder
+    - copyright_year
+    - license
+    - version
+  custom:
+    - base_url
+    - logo
+    - tagline
+  relations:
+    - created_at (Place)
+    - created_by (Person/Organization)
+    - has_citation (Work)
+    - has_image (Image)
+    - has_source (Work)
+    - has_tag (Tag)
+    - published_by (Person/Organization)
+    - published_on (Date)
+
+Event
+  schema: http://schema.org/Event
+  fields:
+    - slug
+    - name
+    - description
+    - event_status
+      - cancelled
+    - same_as
+  custom:
+    - is_public
+    - categories
+      - course
+      - exhibition
+      - performance
+      - reception
+      - residency
+      - workshop
+    - license
+  relations:
+    - authored_by (User)
+    - curated_by (Person/Organization)
+    - ended_on (Date)
+    - has_citation (Work)
+    - has_image (Image)
+    - has_parent_event (Event)
+    - has_source (Work)
+    - has_tag (Tag)
+    - located_at_venue (Place)
+    - organized_by (Person/Organization)
+    - started_on (Date)
+  calculated:
+    - url
+    - duration
+
+Work
+  schema: http://schema.org/CreativeWork
+  fields:
+    - slug
+    - name
+    - description
+    - genre
+    - license
+    - same_as
+    - version
+  custom:
+    - is_public
+    - categories
+      - article
+      - book
+      - installation
+      - photograph
+      - sculpture
+      - visual artwork
+      - website
+    - colophon
+  relations:
+    - authored_by (User)
+    - created_at (Place)
+    - created_by (Person/Organization)
+    - contributed_by (Person/Organization)
+    - created_on (Date)
+    - has_citation (Work)
+    - has_image (Image)
+    - has_source (Work)
+    - has_tag (Tag)
+    - is_part_of_work (Work)
+    - modified_on (Date)
+    - located_at (Place)
+    - owned_by (Person/Organization)
+    - produced_by (Person/Organization)
+    - published_on (Date)
+  calculated:
+    - date
+    - url
+
+Person
+  schema: http://schema.org/Person
+  fields:
+    - slug
+    - name_last
+    - name_first
+    - same_as
+  custom:
+    - is_public
+    - birth_approx
+    - death_approx
+    - categories
+      - artist
+      - curator
+      - gallerist
+      - professor
+      - etc.
+    - license
+  calculated:
+    - age
+    - dates
+    - name
+    - url
+  relations:
+    - authored_by (User)
+    - born_at (Date)
+    - born_on (Date)
+    - child_of (Person)
+    - died_at (Place)
+    - died_on (Date)
+    - employed_by (Organization)
+    - friend_of (Person)
+    - has_address (Place)
+    - has_affiliation (Organization)
+    - has_citation (Work)
+    - has_email (Email)
+    - has_image (Image)
+    - has_phone (Phone)
+    - has_social_account (SocialAccount)
+    - has_source (Work)
+    - has_tag (Tag)
+    - represented_by (Organization)
+    - member_of (Organization)
+
+Organization
+  schema: http://schema.org/Organization
+  fields:
+    - slug
+    - name
+    - description
+    - same_as
+  custom:
+    - is_public
+    - is_nonprofit
+    - appointment_only
+    - categories
+      - archive
+      - association
+      - company
+      - consortium
+      - foundation
+      - library
+      - museum
+      - school
+    - license
+  relations:
+    - authored_by (User)
+    - dissolved_on (Date)
+    - founded_at (Place)
+    - founded_by (Person)
+    - founded_on (Date)
+    - has_address (Place)
+    - has_citation (Work)
+    - has_email (Email)
+    - has_image (Image)
+    - has_logo (Image)
+    - has_parent_organization (Organization)
+    - has_phone (Phone)
+    - has_social_account (SocialAccount)
+    - has_source (Work)
+    - has_tag (Tag)
+    - member_of (Organization)
+  calculated:
+    - url
+
+Page
+  schema: http://schema.org/WebPage
+  fields:
+    - slug
+    - name
+    - description
+    - license
+    - text
+  custom:
+    - is_public
+  relations:
+    - authored_by (User)
+    - created_on (Date)
+    - has_parent_page (Page)
+    - has_tag (Tag)
+    - is_part_of_site (Site)
+    - modified_on (Date)
+  calculated:
+    - url
+
+Collection
+  schema: http://schema.org/CollectionPage
+  fields:
+    - slug
+    - name
+    - description
+    - license
+    - text
+  custom:
+    - is_public
+  relations:
+    - authored_by (User)
+    - created_on (Date)
+    - has_event (Event)
+    - has_organization (Organization)
+    - has_parent_page (Page)
+    - has_person (Person)
+    - has_tag (Tag)
+    - has_work (Work)
+    - is_part_of_site (Site)
+    - modified_on (Date)
+  calculated:
+    - url
+
+Image
+  schema: http://schema.org/ImageObject
+  fields:
+    - slug
+    - name
+    - caption
+    - version
+  custom:
+    - is_public
+    - aspect
+      - main
+      - detail
+      - recto
+      - verso
+      - signature
+    - pixels_x
+    - pixels_y
+    - file_format
+      - jpg
+      - jp2
+      - png
+      - tiff
+      - svg
+    - compression
+      - tif
+      - lzw
+      - jpg
+    - checksum
+    - license
+  relations:
+    - created_by (User)
+    - created_on (Date)
+    - has_source (Work)
+  calculated:
+    - url
+
+Place
+  schema: http://schema.org/Place
+  fields:
+    - slug
+    - name
+    - description
+    - same_as
+  custom:
+    - is_public
+    - categories
+      - area
+      - neighborhood
+      - city
+      - state
+      - country
+    - geo_elevation
+    - geo_latitude
+    - geo_longitude
+    - geo_line
+    - geo_polygon
+    - address_street
+    - address_locality
+    - address_region
+      - IL
+      - IN
+      - MI
+      - WI
+      - etc.
+    - address_postal_code
+    - address_country
+      - USA
+      - CAN
+      - MEX
+      - etc.
+  relations:
+    - has_image (Image)
+    - is_eponymous_for (Person/Organization)
+    - contained_in (Place)
+  calculated:
+    - address
+    - geo
+    - url
+
+User
+  schema: http://schema.org/Person
+  fields:
+    - slug
+    - description
+    - name_family
+    - name_given
+    - same_as
+    - is_admin
+  custom:
+    - is_public
+    - username
+  relations:
+    - has_role (Role)
+    - has_email (Email)
+    - has_avatar (Image)
+    - has_image (Image)
+    - has_social_account (SocialAccount)
+    - has_affiliation (Organization)
+    - created_on (Date)
+  calculated:
+    - url
+    - name
+
+Email
+  schema: (none)
+  fields:
+    - email
+
+Phone
+  schema: (none)
+  fields:
+    - country
+    - area_code
+    - exchange_code
+    - number
+    - extension
+  calculated:
+    - phone
+
+SocialAccount
+  schema: (none)
+  fields:
+    - service
+      - Facebook
+      - Instagram
+      - LinkedIn
+      - Pinterest
+      - Tumblr
+      - Twitter
+      - etc.
+    - account
+
+Tag
+  schema: (none)
+  fields:
+    - slug
+    - text
+    - description
+    - same_as
+    - license
+  relations:
+    - has_icon (Image)
+    - has_source (Work)
+  calculated:
+    - url
+
+Role
+  schema: (none)
+  fields:
+    - slug
+    - name
+      - Admin
+      - Manager
+      - Contributor
+      - Anonymous
+    - description
+  relations:
+    - has_permission (Permission)
+  calculated:
+    - url
+
+# Permission
+#   schema: (none)
+#   fields:
+#     - model
+#       - Event
+#       - Work
+#       - Person
+#       - Organization
+#       - Site
+#       - Page
+#       - Collection
+#       - Image
+#       - Place
+#       - User
+#     - perm
+#       - create
+#       - read
+#       - read_others
+#       - read_others_private
+#       - update
+#       - update_others
+#       - update_others_private
+#       - destroy
+#       - destroy_others
+#       - destroy_others_private
+#   calculated:
+#     - description
+#     - url

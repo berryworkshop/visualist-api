@@ -1,0 +1,18 @@
+visualist todo
+    revisit, trim, reorient planning docs
+    research
+        web design trends 2015-2017
+    plan meeting with meg/mike
+        delineate page narratives
+        basic wireframe, for paper prototyping
+        other
+            user feedback
+            potential monetizing?
+                api charge
+                apparel
+                art catalog using api
+    clean up repo
+    auth
+    deploy
+    iiif server
+    move events to vuex
