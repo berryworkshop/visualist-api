@@ -1,0 +1,264 @@
+all:
+- 301 to login/logout
+- print stylesheet
+- responsive (mobile-first)
+- accessible
+
+  header:
+  - branding/link to splash
+  - login/logout
+  - link to User
+  - link to manage
+  - search
+  - eyebrow
+    - breadcrumb
+    - browse nav
+      - pages
+      - canned searches?
+        - upcoming events
+        - events nearby
+      - categories
+      - tags
+  - donate
+  - help
+  - submit event
+
+  main:
+  - export
+  - create new
+    - explicit rights cession
+    - pull/parse from URL
+      - Facebook
+      - etc.
+  - edit/delete in place
+  - print
+  - cite
+
+  footer:
+  - ankle
+    - feedback
+  - share
+  - follow
+  - subscribe (rss)
+  - legal
+    - rights
+  - contact us
+
+splash/home:
+  (idea 1):
+    - list of latest events, descending
+  (idea 2):
+    - hero with dynamic content
+    - links to popular searches
+      - upcoming events
+      - popular galleries
+      - hot artists
+    - featured/upcoming
+    - this day in history
+    - statistics
+  (idea 3):
+    - user page, showing own content
+  (all):
+    - prominent search
+    - prominent links
+      - to FAQ
+      - to About
+      - to interesting, canned searches
+    - news/updates
+    - create event
+
+search/browse:
+- pager/infinite scroll (?)
+- sort/filters in URL
+- add new
+- current (default is first) record
+  - joystick, up/down/left/right
+- sort (auto-filter when necessary)
+  - name
+  - date created
+  - date start/opening
+  - date end/closing
+  - most favorited
+  - distance
+- each record (tile)
+  - title
+  - body (truncated)
+  - primary image
+  - tags
+  - make favorite
+  - make featured
+  - date/time
+  - place/address
+  - distance from current location
+  - hours
+- multiple select
+  - export
+  - update
+  - delete
+  - add to collection
+- main display panel
+  - prominent display selector
+  - list/grid (default?)
+    - drag/drop reorder
+  - network graph
+  - map
+    - auto-filter Records with Places
+    - crime rate heatmap
+    - public transit
+    - landmarks
+  - timeline/calendar
+    - auto-filter Records with Dates
+    - last/next year/month/day
+    - today/this week/month/year
+- preview panel
+  - top of filter panel?
+  - shows current record (close up)
+- filters (integrate into main panel when possible)
+  - shift depending on display
+  - horizontal in mobile?
+  - content type
+  - mini-map (?)
+  - mini-calendar (?)
+  - mini-timeline (?)
+  - closing soon
+  - venues
+  - related to
+    - Organization
+    - Person
+    - Event
+    - Work
+  - list
+    - places
+    - categories
+    - tags
+  - prices (auto-filter Events)
+  - metadata
+    - is featured
+    - has images
+    - has visited
+    - etc.
+  - within distance from...
+    - transit station
+    - map point
+    - current location
+
+collection:
+- same interface as search/browse?
+
+record:
+- show related records in search/browse
+- previous/next (if applicable)
+  - joystick, up/down/left/right
+- image browser
+- edit
+- delete
+- create another
+  - import
+- mark private
+- mark favorite
+- mark featured
+- add to collection
+- metadata (title, text, etc.)
+- cite (MLA, APA, Chicago, etc.)
+- link to source
+- link to same_as
+- record links (cards)
+  - nearby
+  - related
+  - similar (determined by algorithm)
+- export (modal)
+- tags
+  - list
+  - add/remove
+  - link to manager
+  - custom (own?) tags marked with asterisk?
+- type specific:
+    - event:
+    - work:
+      - visit in person
+    - person:
+      - contact
+    - organization:
+      - contact
+
+user:
+- 301 to login/logout
+- manage account
+- own Records
+- own Collections
+- own Pages
+- favorites
+- visit history
+
+pages:
+- all pages support custom javascript
+- FAQ
+  - Submission instructions
+  - searching/browsing
+- About
+  - Visualist
+    - Acknowledgements
+  - Culture/Math
+  - BCW
+  - Chicago art scene
+  - Sources
+- Rights
+  - Copyright
+    - Submissions should explicitly give the Visualist rights to preserve and disseminate content on the open web
+  - DMCA
+  - Licensing
+- Help
+- API access?
+  - EULA?
+- Donations
+- Colophon
+- Links
+- Contact
+  - Require an account?
+  - Contact type tags
+    - Complaint
+    - Suggestion
+    - Complement (default)
+- 404
+- 500
+- Sitemap
+
+manage:
+- table format
+- manual/batch import from external resources
+- tags
+- categories
+- records waiting for approval
+- import/export
+  - automatic scheduled?
+    - Should require permission from sites if we use any subjective information
+    - Dates, times, titles, exhibition lists OK
+  - all:
+    - json
+    - pdf
+    - Google Drive/Photos
+  - event:
+    - Google Calendar
+    - iCal
+    - Facebook Events
+  - person/organization:
+    - vCard
+    - Google Contacts
+    - Facebook
+  - place:
+    - Yelp
+    - Google Maps
+
+login/logout:
+- form
+
+inspirations:
+- search bar:
+  https://www.idealist.org/
+- calendar widget:
+  http://www.imamuseum.org/calendar
+  http://www.villagevoice.com/calendar
+  NYPost
+- category nav:
+  Amazon's departments
+  http://scalar.usc.edu/works/guide2

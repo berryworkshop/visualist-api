@@ -14,10 +14,6 @@ Site
   relations:
     - created_at (Place)
     - created_by (Person/Organization)
-    - has_citation (Work)
-    - has_image (Image)
-    - has_source (Work)
-    - has_tag (Tag)
     - published_by (Person/Organization)
     - published_on (Date)
 
@@ -31,7 +27,12 @@ Event
       - cancelled
     - same_as
   custom:
-    - is_public
+    - is_web_public
+    - is_group_friendly
+    - is_featured
+    - is_approved
+    - price_min
+    - price_max
     - categories
       - course
       - exhibition
@@ -41,6 +42,8 @@ Event
       - workshop
     - license
   relations:
+    - favorited_by (User)
+    - in_collection (Collection)
     - authored_by (User)
     - curated_by (Person/Organization)
     - ended_on (Date)
@@ -50,11 +53,15 @@ Event
     - has_source (Work)
     - has_tag (Tag)
     - located_at_venue (Place)
+    - visited_by (User)
     - organized_by (Person/Organization)
     - started_on (Date)
   calculated:
     - url
+    - date
     - duration
+    - distance
+    - citation
 
 Work
   schema: http://schema.org/CreativeWork
@@ -67,7 +74,9 @@ Work
     - same_as
     - version
   custom:
-    - is_public
+    - is_web_public
+    - is_featured
+    - is_approved
     - categories
       - article
       - book
@@ -78,6 +87,8 @@ Work
       - website
     - colophon
   relations:
+    - favorited_by (User)
+    - in_collection (Collection)
     - authored_by (User)
     - created_at (Place)
     - created_by (Person/Organization)
@@ -93,9 +104,12 @@ Work
     - owned_by (Person/Organization)
     - produced_by (Person/Organization)
     - published_on (Date)
+    - visited_by (User)
   calculated:
     - date
     - url
+    - distance
+    - citation
 
 Person
   schema: http://schema.org/Person
@@ -105,7 +119,9 @@ Person
     - name_first
     - same_as
   custom:
-    - is_public
+    - is_web_public
+    - is_featured
+    - is_approved
     - birth_approx
     - death_approx
     - categories
@@ -115,12 +131,9 @@ Person
       - professor
       - etc.
     - license
-  calculated:
-    - age
-    - dates
-    - name
-    - url
   relations:
+    - favorited_by (User)
+    - in_collection (Collection)
     - authored_by (User)
     - born_at (Date)
     - born_on (Date)
@@ -140,6 +153,12 @@ Person
     - has_tag (Tag)
     - represented_by (Organization)
     - member_of (Organization)
+  calculated:
+    - age
+    - dates
+    - name
+    - url
+    - citation
 
 Organization
   schema: http://schema.org/Organization
@@ -149,9 +168,12 @@ Organization
     - description
     - same_as
   custom:
-    - is_public
+    - is_web_public
+    - is_featured
     - is_nonprofit
+    - is_approved
     - appointment_only
+    - hours
     - categories
       - archive
       - association
@@ -163,6 +185,8 @@ Organization
       - school
     - license
   relations:
+    - favorited_by (User)
+    - in_collection (Collection)
     - authored_by (User)
     - dissolved_on (Date)
     - founded_at (Place)
@@ -179,8 +203,11 @@ Organization
     - has_source (Work)
     - has_tag (Tag)
     - member_of (Organization)
+    - visited_by (User)
   calculated:
     - url
+    - distance
+    - citation
 
 Page
   schema: http://schema.org/WebPage
@@ -191,8 +218,14 @@ Page
     - license
     - text
   custom:
-    - is_public
+    - is_web_public
+    - is_featured
+    - is_approved
+    - categories
+      - '?'
   relations:
+    - favorited_by (User)
+    - in_collection (Collection)
     - authored_by (User)
     - created_on (Date)
     - has_parent_page (Page)
@@ -201,6 +234,7 @@ Page
     - modified_on (Date)
   calculated:
     - url
+    - citation
 
 Collection
   schema: http://schema.org/CollectionPage
@@ -211,8 +245,14 @@ Collection
     - license
     - text
   custom:
-    - is_public
+    - is_web_public
+    - is_featured
+    - is_approved
+    - categories
+      - '?'
   relations:
+    - favorited_by (User)
+    - in_collection (Collection)
     - authored_by (User)
     - created_on (Date)
     - has_event (Event)
@@ -225,6 +265,7 @@ Collection
     - modified_on (Date)
   calculated:
     - url
+    - citation
 
 Image
   schema: http://schema.org/ImageObject
@@ -234,7 +275,7 @@ Image
     - caption
     - version
   custom:
-    - is_public
+    - is_web_public
     - aspect
       - main
       - detail
@@ -261,6 +302,7 @@ Image
     - has_source (Work)
   calculated:
     - url
+    - citation
 
 Place
   schema: http://schema.org/Place
@@ -270,8 +312,9 @@ Place
     - description
     - same_as
   custom:
-    - is_public
+    - is_web_public
     - categories
+      - spot
       - area
       - neighborhood
       - city
@@ -289,13 +332,13 @@ Place
       - IN
       - MI
       - WI
-      - etc.
+      - etc. (ISO 3166-2:US)
     - address_postal_code
     - address_country
-      - USA
-      - CAN
-      - MEX
-      - etc.
+      - US
+      - CA
+      - MX
+      - etc. (ISO 3166-2)
   relations:
     - has_image (Image)
     - is_eponymous_for (Person/Organization)
@@ -304,6 +347,7 @@ Place
     - address
     - geo
     - url
+    - distance
 
 User
   schema: http://schema.org/Person
@@ -315,19 +359,21 @@ User
     - same_as
     - is_admin
   custom:
-    - is_public
+    - is_web_public
     - username
   relations:
     - has_role (Role)
     - has_email (Email)
     - has_avatar (Image)
     - has_image (Image)
+    - has_permission (Permission)
     - has_social_account (SocialAccount)
     - has_affiliation (Organization)
     - created_on (Date)
   calculated:
     - url
     - name
+    - distance (?)
 
 Email
   schema: (none)
@@ -349,13 +395,24 @@ SocialAccount
   schema: (none)
   fields:
     - service
+      - Ask.fm
       - Facebook
+      - Flickr
+      - Foursquare
+      - GitHub
+      - Google+
       - Instagram
       - LinkedIn
+      - Meetup
       - Pinterest
+      - Reddit
+      - SnapChat
       - Tumblr
       - Twitter
-      - etc.
+      - Vine
+      - WhatsApp
+      - Yelp
+      - YouTube
     - account
 
 Tag
@@ -387,31 +444,27 @@ Role
   calculated:
     - url
 
-# Permission
-#   schema: (none)
-#   fields:
-#     - model
-#       - Event
-#       - Work
-#       - Person
-#       - Organization
-#       - Site
-#       - Page
-#       - Collection
-#       - Image
-#       - Place
-#       - User
-#     - perm
-#       - create
-#       - read
-#       - read_others
-#       - read_others_private
-#       - update
-#       - update_others
-#       - update_others_private
-#       - destroy
-#       - destroy_others
-#       - destroy_others_private
-#   calculated:
-#     - description
-#     - url
+Permission
+  schema: (none)
+  fields:
+    - model
+      - Event
+      - Work
+      - Person
+      - Organization
+      - Site
+      - Page
+      - Collection
+      - Image
+      - Place
+      - User
+    - CRUD perms
+      - own
+      - others
+      - others private
+    - mark private
+    - mark favorite
+    - mark featured
+  calculated:
+    - description
+    - url
