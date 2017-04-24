@@ -3,38 +3,54 @@ Site
   fields:
     - name
     - description
-    - copyright_holder
-    - copyright_year
     - license
     - version
     - base_url
     - logo
     - tagline
+    - date_published
+    - date_modified
+    - date_copyrighted
   relations:
-    - at (Place)
-      - created_at
-    - by (Person/Organization)
-      - created_by
-      - published_by
-    - on (Date)
-      - published_on
-      - modified_on
+    - created_at (Place)
+    - created_by (Person/Organization)
+    - published_at (Place)
+    - published_by (Person/Organization)
+    - copyrighted_by (Person/Organization)
 
-Event
-  schema: http://schema.org/Event
+Base
   fields:
     - slug
-    - name
     - description
-    - event_status
-      - cancelled
+  relations:
+    - authored_by (User)
+      - timestamp
+    - modified_by (User)
+      - timestamp
+  calculated:
+    - date
+    - url
+
+Record
+  fields:
+    - name
     - same_as
-    - is_web_public
-    - is_group_friendly
-    - is_featured
-    - is_approved
-    - price_min
-    - price_max
+    - license
+    - featured
+    - approved
+    - web_public
+    - categories
+  relations:
+    - has_citation (Work)
+    - has_source (Work)
+    - has_tag (Tag)
+  calculated:
+    - citation
+    - date
+
+Event (Record)
+  schema: http://schema.org/Event
+  fields:
     - categories
       - course
       - exhibition
@@ -42,37 +58,28 @@ Event
       - reception
       - residency
       - workshop
-    - license
+    - price_min
+    - price_max
+    - date_start
+    - date_end
+    - status
+      - cancelled
+    - group_friendly
   relations:
-    - by (Person/Organization)
-      - organized_by
-      - curated_by
-      - produced_by
-      - contributed_to_by
-    - on (Date)
-      - started_on
-      - ended_on
-    - is_part_of (Event)
+    - has_venue (Place)
+    - organized_by (Person/Organization)
+    - curated_by (Person/Organization)
+    - produced_by (Person/Organization)
+    - contributed_to_by (Person/Organization)
+    - part_of (Event)
   calculated:
-    - url
     - date
     - duration
     - distance
-    - citation
 
-Work
+Work (Record)
   schema: http://schema.org/CreativeWork
   fields:
-    - slug
-    - name
-    - description
-    - genre
-    - license
-    - same_as
-    - version
-    - is_web_public
-    - is_featured
-    - is_approved
     - categories
       - article
       - book
@@ -81,94 +88,52 @@ Work
       - sculpture
       - visual artwork
       - website
-    - colophon
+    - date_created
+    - date_modified
+    - date_published
+    - version
   relations:
-    - at (Place)
-      - created_at
-      - located_at
-        - from
-        - until
-    - by (Person/Organization)
-      - owned_by
-        - from
-        - until
-      - produced_by
-      - created_by
-      - contributed_to_by
-    - on (Date)
-      - modified_on
-      - published_on
-      - created_on
-    - is_part_of (Work)
-    - is_cited_by (Record)
-    - is_source_for (Record)
+    - created_at (Place)
+    - located_at (Place)
+    - created_by (Person/Organization)
+    - part_of (Work)
   calculated:
     - date
-    - url
     - distance
-    - citation
 
-Person
+Person (Record)
   schema: http://schema.org/Person
   fields:
-    - slug
-    - name_last
-    - name_first
-    - same_as
-    - is_web_public
-    - is_featured
-        - from
-        - until
-    - is_approved
-    - birth_approx
-    - death_approx
     - categories
       - artist
       - curator
       - gallerist
       - professor
       - etc.
-    - license
+    - date_born
+    - date_died
+    - name_last
+    - name_first
   relations:
-    - at (Place)
-      - born_at
-      - has_address_at (Place)
-      - died_at
-    - by (Person/Organization)
-      - represented_by
-      - employed_by
-    - on (Date)
-      - born_on
-      - died_on
+    - has_address (Place)
     - has_email (Email)
     - has_phone (Phone)
     - has_social_account (SocialAccount)
-    - is_member_of (Organization)
-      - rank
-      - from
-      - until
-    - is_friend_of (Person)
-    - is_child_of (Person)
+    - born_at (Place)
+    - died_at (Place)
+    - represented_by (Person/Organization)
+    - employed_by (Person/Organization)
+    - member_of (Organization)
+    - friend_of (Person)
+    - child_of (Person)
   calculated:
     - age
-    - dates
+    - date
     - name
-    - url
-    - citation
 
-Organization
+Organization (Record)
   schema: http://schema.org/Organization
   fields:
-    - slug
-    - name
-    - description
-    - same_as
-    - is_web_public
-    - is_featured
-    - is_nonprofit
-    - is_approved
-    - appointment_only
-    - hours
     - categories
       - archive
       - association
@@ -178,73 +143,122 @@ Organization
       - library
       - museum
       - school
-    - license
+    - date_founded
+    - date_dissolved
+    - nonprofit
+    - appointment_only
+    - hours
   relations:
-    - at (Place)
-      - founded_at
-      - has_address_at
-    - by (Person)
-      - founded_by
-    - on (Date)
-      - dissolved_on
-      - founded_on
+    - has_address (Place)
     - has_email (Email)
     - has_logo (Image)
     - has_phone (Phone)
     - has_social_account (SocialAccount)
-    - is_member_of (Organization)
-    - is_part_of (Organization)
+    - founded_at (Place)
+    - founded_by (Person)
+    - member_of (Organization)
+    - part_of (Organization)
   calculated:
-    - url
     - distance
-    - citation
+    - date
 
-Page
+Page (Record)
   schema: http://schema.org/WebPage
   fields:
-    - slug
-    - name
-    - description
-    - license
     - text
-    - is_web_public
-    - is_featured
-    - is_approved
     - categories
-      - '?'
+      - 'standard'
+      - 'article'
+      - 'review'
   relations:
-    - is_child_of (Page/Collection)
+    - child_of (Page/Collection)
   calculated:
-    - url
-    - citation
+    - date
+    - same_as
 
-Collection
+Collection (Record)
   schema: http://schema.org/CollectionPage
   fields:
-    - slug
-    - name
-    - description
-    - license
     - text
-    - is_web_public
-    - is_featured
-    - is_approved
     - categories
-      - '?'
+      - 'standard'
+      - 'tour'
   relations:
     - has_record (Record)
-    - is_child_of (Page/Collection)
+    - child_of (Page/Collection)
   calculated:
-    - url
-    - citation
-Place
+    - date
+    - same_as
+
+Tag (Record)
+  schema: (none)
+  fields:
+    - categories
+      - genre
+      - period
+  relations:
+    - vocabulary (Work)
+    - has_icon (Image)
+
+User (Base)
+  schema: http://schema.org/Person
+  fields:
+    - name_family
+    - name_given
+    - admin
+    - username
+    - date_created
+  relations:
+    - has_role (Role)
+    - has_email (Email)
+    - has_avatar (Image)
+    - has_permission (Permission)
+    - has_social_account (SocialAccount)
+    - has_favorite (Record)
+    - has_plans_to_visit (Record)
+      - status
+    - member_of (Organization)
+  calculated:
+    - name
+
+Image (Base)
+  schema: http://schema.org/ImageObject
+  fields:
+    - caption
+    - version
+    - pixels_x
+    - pixels_y
+    - file_format
+      - jpg
+      - jp2
+      - png
+      - tiff
+      - svg
+    - compression
+      - tif
+      - lzw
+      - jpg
+    - checksum
+    - license
+    - date_created
+  relations:
+    - of (Record)
+      - aspect
+        - main
+        - detail
+        - recto
+        - verso
+        - signature
+  calculated:
+    - date
+    - same_as
+
+Place (Base)
   schema: http://schema.org/Place
   fields:
     - slug
     - name
     - description
-    - same_as
-    - is_web_public
     - categories
       - spot
       - area
@@ -271,93 +285,20 @@ Place
       - CA
       - MX
       - etc. (ISO 3166-2)
+    - same_as
   relations:
-    - is_eponymous_for (Person/Organization)
-    - is_venue_for (Event)
-    - is_part_of (Place)
+    - part_of (Place)
   calculated:
     - address
     - geo
-    - url
     - distance
 
-Image
-  schema: http://schema.org/ImageObject
-  fields:
-    - slug
-    - name
-    - caption
-    - version
-    - is_web_public
-    - aspect
-      - main
-      - detail
-      - recto
-      - verso
-      - signature
-    - pixels_x
-    - pixels_y
-    - file_format
-      - jpg
-      - jp2
-      - png
-      - tiff
-      - svg
-    - compression
-      - tif
-      - lzw
-      - jpg
-    - checksum
-    - license
-  relations:
-    - on (Date)
-      - created_on
-    - of (Record)
-      - is_of
-  calculated:
-    - url
-    - citation
-
-User
-  schema: http://schema.org/Person
-  fields:
-    - slug
-    - description
-    - name_family
-    - name_given
-    - same_as
-    - is_admin
-    - is_web_public
-    - username
-  relations:
-    - has_role (Role)
-    - has_email (Email)
-    - has_avatar (Image)
-    - has_permission (Permission)
-    - has_social_account (SocialAccount)
-    - has_favorite (Record)
-    - has_plans_to_visit (Record)
-      - status
-    - on (Date)
-    - record_created (Record)
-      - timestamp
-    - record_modified (Record)
-      - timestamp
-    - is_member_of (Organization)
-      - rank
-      - from
-      - until
-  calculated:
-    - url
-    - name
-    - distance (?)
-
-Email
+Email (Base)
   schema: (none)
   fields:
     - email
 
-Phone
+Phone (Base)
   schema: (none)
   fields:
     - country
@@ -368,7 +309,7 @@ Phone
   calculated:
     - phone
 
-SocialAccount
+SocialAccount (Base)
   schema: (none)
   fields:
     - service
@@ -392,36 +333,18 @@ SocialAccount
       - YouTube
     - account
 
-Tag
+Role (Base)
   schema: (none)
   fields:
-    - slug
-    - text
-    - description
-    - same_as
-    - license
-  relations:
-    - has_icon (Image)
-    - is_tag_for (Record)
-  calculated:
-    - url
-
-Role
-  schema: (none)
-  fields:
-    - slug
     - name
       - Admin
       - Manager
       - Contributor
       - Anonymous
-    - description
   relations:
     - has_permission (Permission)
-  calculated:
-    - url
 
-Permission
+Permission (Base)
   schema: (none)
   fields:
     - model
@@ -444,4 +367,3 @@ Permission
     - mark featured
   calculated:
     - description
-    - url
