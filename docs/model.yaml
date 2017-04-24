@@ -7,15 +7,18 @@ Site
     - copyright_year
     - license
     - version
-  custom:
     - base_url
     - logo
     - tagline
   relations:
-    - created_at (Place)
-    - created_by (Person/Organization)
-    - published_by (Person/Organization)
-    - published_on (Date)
+    - at (Place)
+      - created_at
+    - by (Person/Organization)
+      - created_by
+      - published_by
+    - on (Date)
+      - published_on
+      - modified_on
 
 Event
   schema: http://schema.org/Event
@@ -26,7 +29,6 @@ Event
     - event_status
       - cancelled
     - same_as
-  custom:
     - is_web_public
     - is_group_friendly
     - is_featured
@@ -42,20 +44,15 @@ Event
       - workshop
     - license
   relations:
-    - favorited_by (User)
-    - in_collection (Collection)
-    - authored_by (User)
-    - curated_by (Person/Organization)
-    - ended_on (Date)
-    - has_citation (Work)
-    - has_image (Image)
-    - has_parent_event (Event)
-    - has_source (Work)
-    - has_tag (Tag)
-    - located_at_venue (Place)
-    - visited_by (User)
-    - organized_by (Person/Organization)
-    - started_on (Date)
+    - by (Person/Organization)
+      - organized_by
+      - curated_by
+      - produced_by
+      - contributed_to_by
+    - on (Date)
+      - started_on
+      - ended_on
+    - is_part_of (Event)
   calculated:
     - url
     - date
@@ -73,7 +70,6 @@ Work
     - license
     - same_as
     - version
-  custom:
     - is_web_public
     - is_featured
     - is_approved
@@ -87,24 +83,25 @@ Work
       - website
     - colophon
   relations:
-    - favorited_by (User)
-    - in_collection (Collection)
-    - authored_by (User)
-    - created_at (Place)
-    - created_by (Person/Organization)
-    - contributed_by (Person/Organization)
-    - created_on (Date)
-    - has_citation (Work)
-    - has_image (Image)
-    - has_source (Work)
-    - has_tag (Tag)
-    - is_part_of_work (Work)
-    - modified_on (Date)
-    - located_at (Place)
-    - owned_by (Person/Organization)
-    - produced_by (Person/Organization)
-    - published_on (Date)
-    - visited_by (User)
+    - at (Place)
+      - created_at
+      - located_at
+        - from
+        - until
+    - by (Person/Organization)
+      - owned_by
+        - from
+        - until
+      - produced_by
+      - created_by
+      - contributed_to_by
+    - on (Date)
+      - modified_on
+      - published_on
+      - created_on
+    - is_part_of (Work)
+    - is_cited_by (Record)
+    - is_source_for (Record)
   calculated:
     - date
     - url
@@ -118,9 +115,10 @@ Person
     - name_last
     - name_first
     - same_as
-  custom:
     - is_web_public
     - is_featured
+        - from
+        - until
     - is_approved
     - birth_approx
     - death_approx
@@ -132,27 +130,25 @@ Person
       - etc.
     - license
   relations:
-    - favorited_by (User)
-    - in_collection (Collection)
-    - authored_by (User)
-    - born_at (Date)
-    - born_on (Date)
-    - child_of (Person)
-    - died_at (Place)
-    - died_on (Date)
-    - employed_by (Organization)
-    - friend_of (Person)
-    - has_address (Place)
-    - has_affiliation (Organization)
-    - has_citation (Work)
+    - at (Place)
+      - born_at
+      - has_address_at (Place)
+      - died_at
+    - by (Person/Organization)
+      - represented_by
+      - employed_by
+    - on (Date)
+      - born_on
+      - died_on
     - has_email (Email)
-    - has_image (Image)
     - has_phone (Phone)
     - has_social_account (SocialAccount)
-    - has_source (Work)
-    - has_tag (Tag)
-    - represented_by (Organization)
-    - member_of (Organization)
+    - is_member_of (Organization)
+      - rank
+      - from
+      - until
+    - is_friend_of (Person)
+    - is_child_of (Person)
   calculated:
     - age
     - dates
@@ -167,7 +163,6 @@ Organization
     - name
     - description
     - same_as
-  custom:
     - is_web_public
     - is_featured
     - is_nonprofit
@@ -185,25 +180,20 @@ Organization
       - school
     - license
   relations:
-    - favorited_by (User)
-    - in_collection (Collection)
-    - authored_by (User)
-    - dissolved_on (Date)
-    - founded_at (Place)
-    - founded_by (Person)
-    - founded_on (Date)
-    - has_address (Place)
-    - has_citation (Work)
+    - at (Place)
+      - founded_at
+      - has_address_at
+    - by (Person)
+      - founded_by
+    - on (Date)
+      - dissolved_on
+      - founded_on
     - has_email (Email)
-    - has_image (Image)
     - has_logo (Image)
-    - has_parent_organization (Organization)
     - has_phone (Phone)
     - has_social_account (SocialAccount)
-    - has_source (Work)
-    - has_tag (Tag)
-    - member_of (Organization)
-    - visited_by (User)
+    - is_member_of (Organization)
+    - is_part_of (Organization)
   calculated:
     - url
     - distance
@@ -217,21 +207,13 @@ Page
     - description
     - license
     - text
-  custom:
     - is_web_public
     - is_featured
     - is_approved
     - categories
       - '?'
   relations:
-    - favorited_by (User)
-    - in_collection (Collection)
-    - authored_by (User)
-    - created_on (Date)
-    - has_parent_page (Page)
-    - has_tag (Tag)
-    - is_part_of_site (Site)
-    - modified_on (Date)
+    - is_child_of (Page/Collection)
   calculated:
     - url
     - citation
@@ -244,66 +226,17 @@ Collection
     - description
     - license
     - text
-  custom:
     - is_web_public
     - is_featured
     - is_approved
     - categories
       - '?'
   relations:
-    - favorited_by (User)
-    - in_collection (Collection)
-    - authored_by (User)
-    - created_on (Date)
-    - has_event (Event)
-    - has_organization (Organization)
-    - has_parent_page (Page)
-    - has_person (Person)
-    - has_tag (Tag)
-    - has_work (Work)
-    - is_part_of_site (Site)
-    - modified_on (Date)
+    - has_record (Record)
+    - is_child_of (Page/Collection)
   calculated:
     - url
     - citation
-
-Image
-  schema: http://schema.org/ImageObject
-  fields:
-    - slug
-    - name
-    - caption
-    - version
-  custom:
-    - is_web_public
-    - aspect
-      - main
-      - detail
-      - recto
-      - verso
-      - signature
-    - pixels_x
-    - pixels_y
-    - file_format
-      - jpg
-      - jp2
-      - png
-      - tiff
-      - svg
-    - compression
-      - tif
-      - lzw
-      - jpg
-    - checksum
-    - license
-  relations:
-    - created_by (User)
-    - created_on (Date)
-    - has_source (Work)
-  calculated:
-    - url
-    - citation
-
 Place
   schema: http://schema.org/Place
   fields:
@@ -311,7 +244,6 @@ Place
     - name
     - description
     - same_as
-  custom:
     - is_web_public
     - categories
       - spot
@@ -340,14 +272,51 @@ Place
       - MX
       - etc. (ISO 3166-2)
   relations:
-    - has_image (Image)
     - is_eponymous_for (Person/Organization)
-    - contained_in (Place)
+    - is_venue_for (Event)
+    - is_part_of (Place)
   calculated:
     - address
     - geo
     - url
     - distance
+
+Image
+  schema: http://schema.org/ImageObject
+  fields:
+    - slug
+    - name
+    - caption
+    - version
+    - is_web_public
+    - aspect
+      - main
+      - detail
+      - recto
+      - verso
+      - signature
+    - pixels_x
+    - pixels_y
+    - file_format
+      - jpg
+      - jp2
+      - png
+      - tiff
+      - svg
+    - compression
+      - tif
+      - lzw
+      - jpg
+    - checksum
+    - license
+  relations:
+    - on (Date)
+      - created_on
+    - of (Record)
+      - is_of
+  calculated:
+    - url
+    - citation
 
 User
   schema: http://schema.org/Person
@@ -358,18 +327,26 @@ User
     - name_given
     - same_as
     - is_admin
-  custom:
     - is_web_public
     - username
   relations:
     - has_role (Role)
     - has_email (Email)
     - has_avatar (Image)
-    - has_image (Image)
     - has_permission (Permission)
     - has_social_account (SocialAccount)
-    - has_affiliation (Organization)
-    - created_on (Date)
+    - has_favorite (Record)
+    - has_plans_to_visit (Record)
+      - status
+    - on (Date)
+    - record_created (Record)
+      - timestamp
+    - record_modified (Record)
+      - timestamp
+    - is_member_of (Organization)
+      - rank
+      - from
+      - until
   calculated:
     - url
     - name
@@ -425,7 +402,7 @@ Tag
     - license
   relations:
     - has_icon (Image)
-    - has_source (Work)
+    - is_tag_for (Record)
   calculated:
     - url
 

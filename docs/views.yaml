@@ -67,20 +67,13 @@ splash/home:
     - news/updates
     - create event
 
-search/browse:
+browse:
 - pager/infinite scroll (?)
 - sort/filters in URL
 - add new
 - current (default is first) record
   - joystick, up/down/left/right
-- sort (auto-filter when necessary)
-  - name
-  - date created
-  - date start/opening
-  - date end/closing
-  - most favorited
-  - distance
-- each record (tile)
+- each record (card)
   - title
   - body (truncated)
   - primary image
@@ -98,22 +91,51 @@ search/browse:
   - add to collection
 - main display panel
   - prominent display selector
-  - list/grid (default?)
-    - drag/drop reorder
-  - network graph
-  - map
-    - auto-filter Records with Places
-    - crime rate heatmap
-    - public transit
-    - landmarks
-  - timeline/calendar
-    - auto-filter Records with Dates
-    - last/next year/month/day
-    - today/this week/month/year
+  - sort (auto-filter when necessary)
+    - name
+    - date created/authored
+    - date start/opening
+    - date end/closing
+    - most favorited
+    - distance
+  - modes
+    - list/grid (default)
+      - drag/drop reorder
+      - all record types (no filter)
+        - Organization
+        - Person
+        - Work
+        - Event
+        - Page
+        - Collection
+    - timeline/calendar
+      - auto-filter Records with Dates
+      - last/next year/month/day
+      - today/this week/month/year
+      - record type filter
+        - Event
+        - Person
+        - Organization
+    - map
+      - auto-filter Records with Places
+      - crime rate heatmap
+      - public transit
+      - landmarks
+      - record type filter
+        - Event
+        - Organization
+    - network graph
+      - 2 degrees of separation
+      - record type filter
+        - Organization
+        - Person
+        - Work
+        - Event
 - preview panel
   - top of filter panel?
   - shows current record (close up)
-- filters (integrate into main panel when possible)
+- filters panel (integrate into main panel when possible)
+  - collapsible/hideable
   - shift depending on display
   - horizontal in mobile?
   - content type
@@ -123,6 +145,8 @@ search/browse:
   - closing soon
   - venues
   - related to
+    - Page
+    - Collection
     - Organization
     - Person
     - Event
