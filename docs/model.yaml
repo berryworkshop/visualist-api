@@ -22,16 +22,12 @@ Base
   fields:
     - slug
     - description
-  relations:
-    - authored_by (User)
-      - timestamp
-    - modified_by (User)
-      - timestamp
   calculated:
     - date
     - url
 
 Record
+  schema: http://schema.org/Thing
   fields:
     - name
     - same_as
@@ -44,6 +40,7 @@ Record
     - has_citation (Work)
     - has_source (Work)
     - has_tag (Tag)
+    - is_next_iteration_of (Record)
   calculated:
     - citation
     - date
@@ -218,6 +215,10 @@ User (Base)
     - has_plans_to_visit (Record)
       - status
     - member_of (Organization)
+    - authored (Record)
+      - timestamp
+    - modified (Record)
+      - timestamp
   calculated:
     - name
 
