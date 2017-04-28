@@ -1,3 +1,9 @@
+- arrangement
+- ingest
+- vis
+
+
+
 all:
 - 301 to login/logout
 - print stylesheet

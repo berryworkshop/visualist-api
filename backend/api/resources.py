@@ -1,8 +1,10 @@
 from flask import abort, request, jsonify
 from flask_restful import Resource, reqparse#, fields, marshal
 from py2neo import Graph, Node
+from marshmallow import Schema, fields, pprint
 
-from .models import Event
+
+from .models import EventSchema
 graph = Graph()
 
 
@@ -21,38 +23,25 @@ def get_highest_event_id():
         return 0
 
 class EventResource(Resource):
+
     def __init__(self):
-        self.parser = reqparse.RequestParser()
-        self.parser.add_argument('name',
-            type = str,
-            location = 'json',
-            )
-        self.parser.add_argument('description',
-            type = str,
-            location = 'json',
-            )
-        super().__init__()
-        pass
+        self.schema = EventSchema()
 
     def get(self, id):
         event = graph.find_one('Event', 'id', id)
         if not event:
             abort(404)
-        return {'event': dict(event)}
-        # return { 'event': marshal(event, event_fields) }
+        return dict(event)
 
     def put(self, id):
         event = graph.find_one('Event', 'id', id)
         if not event:
             abort(404)
-        # event = [e for e in events if e['id'] == id][0]
-        args = self.parser.parse_args()
         for k, v in args.items():
             if v != None:
                 event[k] = v
         graph.push(event)
-        return {'event': dict(event)}
-        # return { 'event': marshal(event, event_fields) }
+        return dict(event)
 
     def delete(self, id):
         event = graph.find_one('Event', 'id', id)
@@ -62,37 +51,22 @@ class EventResource(Resource):
         return jsonify({ 'result': True })
 
 class EventListResource(Resource):
+
     def __init__(self):
-        self.parser = reqparse.RequestParser()
-        self.parser.add_argument('name',
-            type = str,
-            required = True,
-            help = 'No event name provided',
-            location = 'json',
-            )
-        self.parser.add_argument('description',
-            type = str,
-            default = "",
-            location = 'json',
-            )
-        super().__init__()
+        self.schema = EventSchema()
 
     def get(self):
         events = graph.find('Event')
         if not events:
             abort(404)
-        return {'events': [dict(e) for e in events] }
-        # return { 'events': [marshal(event, event_fields) for event in events] }
+        return {'objects': [dict(e) for e in events] }
 
     def post(self):
-        args = self.parser.parse_args()
-        properties = {
-            'id': get_highest_event_id() + 1,
-            'name': request.json['name'],
-            'category': request.json.get('category', ""),
-            'description': request.json.get('description', ""),
-        }
-        event = Node("Event", **properties)
-        graph.create(event)
-        return {'event': dict(event)}
-        # return { 'event': marshal(event, event_fields) }
+        event, errors = self.schema.load(request.json)
+        if errors:
+            abort(400, 'The submitted content does not pass validation.  Please check for spelling errors or missing fields.')
+
+        data, errors = self.schema.dump(event)
+        event_node = Node("Event", **data)
+        graph.create(event_node)
+        return {'event': dict(event_node)}

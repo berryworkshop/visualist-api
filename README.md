@@ -39,11 +39,11 @@ On a development machine, run either the Django development server:
 The Heroku server will have niceties like debugging turned off, to show whether things are correctly running for production.
 
 # Start/stop database
-* `postgres -D /usr/local/var/postgres`
+* `neo4j start`
 
-or for a daemon:
 
-* `pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start` or `stop`
+# Start backend API
+* `python backend/run.py`
 
 
 # Running tests
