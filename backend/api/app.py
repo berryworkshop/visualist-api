@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_restful import Api
-from .resources import EventResource, EventListResource
+
+from .resources import BookResource
+
 
 app = Flask(__name__)
 # app.config['APPLICATION_ROOT'] = "/api/v1.0/"
@@ -8,8 +10,7 @@ app.config['ERROR_404_HELP'] = False
 
 api = Api(app)
 
-api.add_resource(EventListResource, '/v1/events',          endpoint = 'events')
-api.add_resource(EventResource,     '/v1/events/<int:id>', endpoint = 'event')
+BookResource.add_url_rules(app, rule_prefix='/api/books/')
 
 @app.after_request
 def after_request(response):

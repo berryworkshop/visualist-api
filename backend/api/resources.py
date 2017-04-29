@@ -1,66 +1,55 @@
 from flask import abort, request, jsonify
-from flask_restful import Resource
-from py2neo import Graph, Node
-from marshmallow import Schema
+
+# posts/api.py
+from restless.fl import FlaskResource
+from restless.preparers import FieldsPreparer
+
+# from .models import Post, Book
+from .schemas import Book
 
 
-from .schemas import EventSchema
-graph = Graph()
+class BookResource(FlaskResource):
+    preparer = FieldsPreparer(fields={
+        'uid': 'uid',
+        'title': 'title',
+        'body': 'content',
+    })
 
+    def is_authenticated(self):
+        # Open everything wide!
+        # DANGEROUS, DO NOT DO IN PRODUCTION.
+        return True
 
-class EventResource(Resource):
-    def __init__(self):
-        self.schema = EventSchema()
+    # GET /api/books/ (but not hooked up yet)
+    def list(self):
+        return Book.nodes.all()
 
-    def get(self, id):
-        event = graph.find_one('Event', 'id', id)
-        if not event:
-            abort(404)
-        return dict(event)
+    # GET /api/books/<pk>/ (but not hooked up yet)
+    def detail(self, pk):
+        return Book.nodes.get(uid=pk)
 
-    def put(self, id):
-        errors = self.schema.validate(request.json)
-        if errors:
-            abort(400, {'validation errors': errors })
-        event = graph.find_one('Event', 'id', id)
-        if not event:
-            abort(404)
-        for k, v in request.json.items():
-            if v != None:
-                event[k] = v
-        graph.push(event)
-        return dict(event)
+    # POST /api/books/
+    def create(self):
+        book = Book(
+            # uid=self.data['uid'],
+            title=self.data['title'],
+            content=self.data['body'],
+        ).save()
+        return book
 
-    def delete(self, id):
-        event = graph.find_one('Event', 'id', id)
-        if not event:
-            abort(404)
-        graph.delete(event)
-        return 'event {} permanently deleted'.format(id)
+    # PUT /api/books/<pk>/
+    def update(self, pk):
+        try:
+            book = Book.nodes.get(uid=pk)
+        except Book.DoesNotExist:
+            book = Book()
 
-class EventListResource(Resource):
-    def __init__(self):
-        self.schema = EventSchema()
+        book.title = self.data['title']
+        book.content = self.data['body']
+        book.uid = pk
+        book.save()
+        return book
 
-    def get(self):
-        events = graph.find('Event')
-        if not events:
-            abort(404)
-        return {'objects': [dict(e) for e in events] }
-
-    def post(self):
-        event, errors = self.schema.load(request.json)
-        if errors:
-            abort(400, {'validation errors': errors })
-        event = Node("Event", **request.json)
-        graph.create(event)
-        return dict(event)
-
-    def delete(self):
-        abort(404) # this is a dangerous method for sure
-        events = graph.find('Event')
-        if not events:
-            abort(404)
-        for event in events:
-            graph.delete(event)
-        return 'all events permanently deleted'
+    # DELETE /api/books/<pk>/
+    def delete(self, pk):
+        Book.nodes.get(uid=pk).delete()
