@@ -9,7 +9,7 @@ class EventListView(MethodView):
 
     def get(self):
         events = [e.__properties__ for e in Event.nodes.all()]
-        return jsonify({'events': events})
+        return jsonify({'objects': events})
 
     def post(self):
         return 'post event'

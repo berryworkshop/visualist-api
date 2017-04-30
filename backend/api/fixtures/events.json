@@ -1,0 +1,22 @@
+{
+  "objects": [
+    {
+      "description": "Blurg!",
+      "id": 1,
+      "name": "Flaggleblab",
+      "slug": "blurg"
+    },
+    {
+      "description": "Flarm.",
+      "id": 2,
+      "name": "What an amazing steaming pile.",
+      "slug": "flarm"
+    },
+    {
+      "description": "Dorp Dorp",
+      "id": 3,
+      "name": "I have underestimated him once again.",
+      "slug": "dorp-dorp"
+    }
+  ]
+}
