@@ -38,6 +38,7 @@ On a development machine, run either the Django development server:
 
 The Heroku server will have niceties like debugging turned off, to show whether things are correctly running for production.
 
+
 # Start/stop database
 * `neo4j start`
 
@@ -48,6 +49,4 @@ The Heroku server will have niceties like debugging turned off, to show whether 
 
 # Running tests
 
-* from https://docs.djangoproject.com/en/1.10/topics/testing/advanced/#integration-with-coverage-py
-* `coverage run --source='.' manage.py test`
-* `coverage report`
+* python -m unittest backend.api.tests
