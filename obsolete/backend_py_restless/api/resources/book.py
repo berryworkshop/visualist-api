@@ -1,30 +1,28 @@
-from flask import abort, request, jsonify
-
-# posts/api.py
 from restless.fl import FlaskResource
 from restless.preparers import FieldsPreparer
 
-# from .models import Post, Book
-from .schemas import Book
+from ..schemas import Book
 
 
 class BookResource(FlaskResource):
-    preparer = FieldsPreparer(fields={
-        'uid': 'uid',
-        'title': 'title',
-        'body': 'content',
-    })
+    preparer = FieldsPreparer(
+        fields = {
+            'uid': 'uid',
+            'title': 'title',
+            'body': 'content',
+        }
+    )
 
     def is_authenticated(self):
         # Open everything wide!
         # DANGEROUS, DO NOT DO IN PRODUCTION.
         return True
 
-    # GET /api/books/ (but not hooked up yet)
+    # GET /api/books/
     def list(self):
         return Book.nodes.all()
 
-    # GET /api/books/<pk>/ (but not hooked up yet)
+    # GET /api/books/<pk>/
     def detail(self, pk):
         return Book.nodes.get(uid=pk)
 
