@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask_restful import Api
 from werkzeug.serving import run_simple
 from werkzeug.wsgi import DispatcherMiddleware
+from neomodel import config
 
 from .views import EventListView, EventView
 
@@ -11,6 +12,9 @@ api = Api(app)
 
 prefix = '/v1'
 app.wsgi_app = DispatcherMiddleware(run_simple, {prefix: app.wsgi_app})
+
+config.DATABASE_URL = 'bolt://neo4j:neo4j@localhost:7687'  # default
+
 
 @app.route('/')
 def index():
