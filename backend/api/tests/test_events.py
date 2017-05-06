@@ -23,17 +23,11 @@ class EventTestCase(TestCase):
         pass
 
     def test_events_url_loads(self):
-        # r = requests.get(self.events_url)
-        # self.assertEqual(r.status_code, 200)
-        pass
+        r = requests.get(self.events_url)
+        self.assertEqual(r.status_code, 200)
 
     def test_events_url_contains_objects(self):
-        # r = requests.get(self.events_url)
-        # self.assertTrue('objects' in r.json())
-        pass
+        r = requests.get(self.events_url)
+        self.assertTrue('objects' in r.json())
 
-    def test_events_url_contains_all_objects(self):
-        '''
-        checking to make sure I have added links to all views
-        '''
-        pass
+

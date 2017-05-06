@@ -18,13 +18,21 @@ class BaseTestCase(TestCase):
         self.database_url = 'http://localhost:7687/'
         self.api_base_url = 'http://localhost:5000/v1/'
 
+        self.sub_views = [
+            'events',
+        ]
+
+        # Maybe someday I'll get docker running through Python
+        # https://docs.docker.com/engine/reference/commandline/run/
         # client = docker.from_env()
+        # docker run --rm -p 7474:7474 -p 7687:7687  -e 'NEO4J_AUTH=none' -v $HOME/neo4j/data:/data neo4j:3.1
         # self.container = client.containers.run("neo4j",
         #     detach=True,
+        #     environment={'NEO4J_AUTH':'none'},
         #     ports={7474:7474, 7687:7687},
-        #     volumes=['/Users/aljabear/neo4j/data:/data']
+        #     volumes={'/Users/aljabear/neo4j/data': {'bind': '/data', 'mode': 'rw'}}
         # )
-        # self.container.start()`
+        # self.container.start()
 
     def tearDown(self):
         # self.container.stop()
@@ -47,14 +55,13 @@ class BaseTestCase(TestCase):
         r = requests.get(self.api_base_url)
         self.assertTrue('events' in r.json().get('links'))
 
-    def test_links_contains_all_views(self):
-        '''
-        checking to make sure I have added links to all views
-        '''
+    def test_link_list_contains_all_views(self):
         r = requests.get(self.api_base_url)
         link_list = r.json().get('links')
-        sub_views = [
-            'events',
-        ]
-        for v in sub_views:
+        for v in self.sub_views:
             self.assertTrue(v in link_list)
+
+    def test_link_list_contains_same_number_of_views_as_sub_views(self):
+        r = requests.get(self.api_base_url)
+        link_list = r.json().get('links')
+        self.assertEqual(len(self.sub_views), len(link_list))

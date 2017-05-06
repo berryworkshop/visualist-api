@@ -51,9 +51,11 @@ The Heroku server will have niceties like debugging turned off, to show whether 
 
 # Start/stop database
 
+For an existing (and a little bit dirty) database:
+
     neo4j start
 
-or
+...or, for a new, raw, blank Docker-driven database (good for testing):
 
     docker run --rm -p 7474:7474 -p 7687:7687 -e 'NEO4J_AUTH=none' -v $HOME/neo4j/data:/data neo4j:3.1
 
