@@ -1,7 +1,7 @@
 import docker
 import requests
 from unittest import TestCase
-from ..app import app, config
+from ..app import app
 
 
 class BaseTestCase(TestCase):
@@ -15,8 +15,8 @@ class BaseTestCase(TestCase):
     '''
 
     def setUp(self):
-        self.database_url = 'http://localhost:7687/'
-        self.api_base_url = 'http://localhost:5000/v1/'
+        self.database_url = 'http://0.0.0.0:7687/'
+        self.api_base_url = 'http://localhost:5000/'
 
         self.sub_views = [
             'events',

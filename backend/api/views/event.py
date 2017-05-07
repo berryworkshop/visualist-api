@@ -1,6 +1,5 @@
 from flask.views import MethodView
 from flask import jsonify
-from ..models import Event
 
 class EventListView(MethodView):
     '''
@@ -8,7 +7,6 @@ class EventListView(MethodView):
     '''
 
     def get(self):
-        # events = Event.nodes.all()
         return jsonify({'objects': ''})
 
     def post(self):

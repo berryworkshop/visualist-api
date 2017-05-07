@@ -1,22 +1,31 @@
 {
   "objects": [
     {
-      "description": "Blurg!",
-      "id": 1,
-      "name": "Flaggleblab",
-      "slug": "blurg"
+      "label": "Event",
+      "properties": {
+        "description": "Blurg!",
+        "id": 1,
+        "name": "Flaggleblab",
+        "slug": "blurg"
+      }
     },
     {
-      "description": "Flarm.",
-      "id": 2,
-      "name": "What an amazing steaming pile.",
-      "slug": "flarm"
+      "label": "Event",
+      "properties": {
+        "description": "Flarm.",
+        "id": 2,
+        "name": "What an amazing steaming pile.",
+        "slug": "flarm"
+      }
     },
     {
-      "description": "Dorp Dorp",
-      "id": 3,
-      "name": "I have underestimated him once again.",
-      "slug": "dorp-dorp"
+      "label": "Event",
+      "properties": {
+        "description": "Dorp Dorp",
+        "id": 3,
+        "name": "I have underestimated him once again.",
+        "slug": "dorp-dorp"
+      }
     }
   ]
 }

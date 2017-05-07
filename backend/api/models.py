@@ -48,8 +48,6 @@ class Record(Base):
 
 
 class Event(Record):
-    __label__ = 'Record:Event'
-
     CATEGORIES = (
       ('course', 'course'),
       ('exhibition', 'exhibition'),
