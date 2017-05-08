@@ -13,7 +13,6 @@ class ImportExportTestCase(TestCase):
         with open('{}/fixtures/events.json'.format(app.root_path)) as fixture:
             self.json = json.load(fixture)
 
-
     def test_fixture_loaded(self):
         self.assertTrue(self.json)
 
@@ -23,4 +22,6 @@ class ImportExportTestCase(TestCase):
     def test_database_is_empty(self):
         query = "MATCH (a) RETURN a"
         cursor = self.graph.run(query)
-        self.assertFalse(cursor.forward())
+        self.assertFalse(cursor.data())
+
+
