@@ -5,6 +5,27 @@ from ..app import app
 
 
 class BaseTestCase(TestCase):
+
+    @classmethod
+    def setUpClass(cls):
+        # Maybe someday I'll get docker running through Python
+        # https://docs.docker.com/engine/reference/commandline/run/
+        client = docker.from_env()
+        # docker run --rm -p 7474:7474 -p 7687:7687  -e 'NEO4J_AUTH=none' -v $HOME/neo4j/data:/data neo4j:3.1
+        cls.container = client.containers.run("neo4j:3.1",
+            detach=True,
+            environment=["NEO4J_AUTH=none"],
+            ports={7474: ('0.0.0.0', 7474)},
+        )
+
+        # cls.container.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.container.stop()
+        # pass
+
+
     '''
     base url should look like this:
     {
@@ -15,7 +36,7 @@ class BaseTestCase(TestCase):
     '''
 
     def setUp(self):
-        self.database_url = 'http://0.0.0.0:7687/'
+        self.database_url = 'http://0.0.0.0:7474/db/data/'
         self.api_base_url = 'http://localhost:5000/'
 
         self.sub_views = [
@@ -35,7 +56,6 @@ class BaseTestCase(TestCase):
         # self.container.start()
 
     def tearDown(self):
-        # self.container.stop()
         pass
 
     def test_base_url_loads(self):
@@ -43,9 +63,9 @@ class BaseTestCase(TestCase):
         self.assertEqual(r.status_code, 200)
         # pass
 
-    def test_database_loads(self):
-        r = requests.get(self.database_url)
-        self.assertEqual(r.status_code, 400)
+    # def test_database_loads(self):
+    #     r = requests.get(self.database_url)
+    #     self.assertEqual(r.status_code, 200)
 
     def test_base_url_contains_links(self):
         r = requests.get(self.api_base_url)
