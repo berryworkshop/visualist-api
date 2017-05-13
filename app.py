@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
-
-from .views import EventListView, EventView
+from api.views import EventListView, EventView
 
 app = Flask(__name__)
 
