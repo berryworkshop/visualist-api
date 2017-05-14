@@ -36,3 +36,26 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 For more information, contact Allan Berry at allan.berry@gmail.com.  Thanks.
 
 ---
+
+Install Docker.
+
+Install Python and dependencies.
+
+Set environment variables:
+
+    SECRET_KEY='asdf1234'               # 50 random chars
+    FLASK_CONFIGURATION='development'   # 'development', 'testing', or 'production' (default)
+    FLASK_APP='app.py'                  # shouldn't change
+    DB_PASS='test_pass'                 # or whatever
+
+To start database:
+
+    docker run --rm -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/$DB_PASS neo4j
+
+Run application:
+
+    python -m flask run                 # development only; insecure server with auto-reload
+
+Or, to test as in production:
+
+    gunicorn app:app                    # will not auto-reload

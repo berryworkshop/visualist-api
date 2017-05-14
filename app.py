@@ -2,6 +2,8 @@ from flask import Flask, jsonify
 import os
 from api.views import EventListView, EventView
 from settings import DevelopmentConfig, TestingConfig, ProductionConfig
+from py2neo import Graph
+
 
 def configure_app(app):
     config = {
@@ -12,6 +14,12 @@ def configure_app(app):
     config_name = os.getenv('FLASK_CONFIGURATION', 'default')
     app.config.from_object(config[config_name])
 
+def init_db():
+    '''
+    This is for connection; database should already be running externally.
+    '''
+    db = Graph()
+
 app = Flask(__name__)
 configure_app(app)
 
@@ -19,7 +27,6 @@ configure_app(app)
 def index():
     return jsonify(
         {
-            'config': app.config['DEBUG'],
             'links': {
                 'events': '/events/'
             }
