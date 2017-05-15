@@ -2,7 +2,7 @@ from flask import Flask, jsonify
 import os
 from api.views import EventListView, EventView
 from settings import DevelopmentConfig, TestingConfig, ProductionConfig
-from py2neo import Graph
+from py2neo import authenticate, Graph
 
 
 def configure_app(app):
@@ -18,7 +18,9 @@ def init_db():
     '''
     This is for connection; database should already be running externally.
     '''
-    db = Graph()
+    # authenticate("localhost:7474", "neo4j", "test_pass")
+    db = Graph("http://0.0.0.0:7474/db/data/")
+
 
 app = Flask(__name__)
 configure_app(app)

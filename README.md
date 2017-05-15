@@ -43,19 +43,23 @@ Install Python and dependencies.
 
 Set environment variables:
 
-    SECRET_KEY='asdf1234'               # 50 random chars
-    FLASK_CONFIGURATION='development'   # 'development', 'testing', or 'production' (default)
-    FLASK_APP='app.py'                  # shouldn't change
-    DB_PASS='test_pass'                 # or whatever
+    SECRET_KEY='asdf1234'                   # 50 random chars
+    FLASK_CONFIGURATION='development'       # 'development', 'testing', or 'production' (default)
+    FLASK_APP='app.py'                      # shouldn't change
+    PROJ_PATH="$HOME/Projects/visualist"    # or wherever your root directory is for this
 
-To start database:
+To start local database:
 
-    docker run --rm -p 7474:7474 -p 7687:7687 -e NEO4J_AUTH=neo4j/$DB_PASS neo4j
+    mkdir -p $PROJ_PATH/neo4j/data/ $PROJ_PATH/neo4j/logs
+    docker run -p 7474:7474 -p 7687:7687 \
+        -v $PROJ_PATH/neo4j/data:/data -v $PROJ_PATH/neo4j/logs:/logs \
+        -e NEO4J_AUTH=none \
+        neo4j:3.2
 
 Run application:
 
-    python -m flask run                 # development only; insecure server with auto-reload
+    python -m flask run                     # development only; insecure server with auto-reload
 
 Or, to test as in production:
 
-    gunicorn app:app                    # will not auto-reload
+    gunicorn app:app                        # will not auto-reload
