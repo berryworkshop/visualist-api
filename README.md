@@ -17,11 +17,9 @@
       Y88P   888  88888P'  "Y88888 "Y888888 888 888  88888P'  "Y888
 
 
-This program has been divided into three parts, each with a git installation.
+This program has been divided into four parts.
 
 * "api" is for Python (Flask) files and supporting libraries.
 * "web" is for a static (Vue) frontend.
 * "db" is for all database-related (Neo4J) files.
 * Docs is for general documentation concerning these items.
-
-No further stuff should be in this root folder, as it would be out of version control.  Thanks.

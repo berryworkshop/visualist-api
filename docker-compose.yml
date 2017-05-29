@@ -1,0 +1,26 @@
+version: '3'
+services:
+  api:
+    build: ./api
+    volumes:
+      - ./api:/app
+    links:
+      - db
+    ports:
+     - "5000:5000"
+  db:
+    build: ./db
+    volumes:
+      - ./db/data:/data
+    ports:
+     - "7474:7474"
+     - "7687:7687"
+  web:
+    build: ./web
+    volumes:
+      - ./web/dist:/static
+    links:
+      - api
+      - db
+    ports:
+     - "80:80"
