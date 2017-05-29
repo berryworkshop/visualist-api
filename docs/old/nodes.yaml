@@ -1,0 +1,292 @@
+site
+  - name
+  - tagline
+  - logo
+  - start_date
+  - rights_statement
+  - version
+  - foreword
+  - addenda
+
+timespan
+  - name
+  - category
+    -
+  - start
+  - end
+  - approximate
+    - start
+    - end
+
+contact
+  - category
+    - work
+    - personal
+
+phone (contact)
+  - category
+    - mobile
+  - country
+  - area_code
+  - exchange
+  - number
+  - extension
+
+email (contact)
+  - email
+
+address (contact)
+  - address
+
+account (contact)
+  - service
+    - Facebook
+    - Twitter
+    - Pinterest
+    - Tumblr
+    - Instagram
+    - LinkedIn
+    - etc.
+  - account
+
+identifier
+  - identifier
+  - category
+    - web
+    - slug
+    - doi
+    - isbn
+    - call_number
+    - ezid
+
+citation
+  - category
+    - webpage
+    - book
+    - journal_article
+    - newspaper_article
+    - artwork
+    - archive_item
+  - abstract
+  - version
+  - copyright
+  - note
+  - archive
+  - accessed
+  - url
+  - remote_id
+
+collection
+  - name
+  - description
+
+file
+  - name
+  - description
+  - url
+  - format
+  - checksum
+
+image (file)
+  - aspect
+    - main
+    - detail
+    - recto
+    - verso
+    - signature
+  - format
+    - .tif
+    - .gif
+    - .png
+    - .jpg
+    - .pdf
+
+document (file)
+  - format
+    - .pdf
+    - .doc
+
+place
+  - name
+  - category
+    - place
+    - neighborhood
+    - district
+    - city
+    - state
+    - country
+  - description
+  - street
+  - city
+  - state_province
+    - Illinois
+    - Indiana
+    - Michigan
+    - Wisconsin
+    - etc.
+  - postal_code
+  - country
+    - United States of America
+    - Canada
+    - Mexico
+    - etc.
+
+location
+  - longitude
+  - latitude
+  - altitude
+
+tag
+  - name
+  - description
+
+synonym
+  - term
+  - vocabulary
+    - Getty Art & Architecture Thesaurus
+    - Library of Congress Subject Headings
+    - etc.
+  - id
+  - url
+
+record
+  - slug
+  - is_featured
+  - parent
+  - note
+
+person (record)
+  - name_first
+  - name_last
+  - categories
+    - artist
+    - curator
+    - gallerist
+    - professor
+  - birthplace
+  - bio
+  - lifespan
+  - contacts: []
+
+organization (record)
+  - name
+  - categories
+    - museum
+    - school
+    - consortium
+    - archive
+    - association
+    - company
+    - foundation
+    - library
+    - school
+  - description
+  - is_nonprofit
+  - appointment_only
+
+event (record)
+  - name
+  - categories
+    - exhibition
+    - performance
+    - reception
+    - course
+    - workshop
+    - residency
+  - description
+
+work (record)
+  - name
+  - genre
+  - description
+  - language
+    - English
+    - Spanish
+    - Mandarin
+    - French
+    - etc.
+  - colophon
+  - category: []
+    - image
+    - sculpture
+    - book
+    - website
+    - object
+    - article
+    - serial
+    - installation
+  - media: []
+  - book_refs: []
+  - website_refs: []
+  - article_refs: []
+  - contributors: []
+
+  book (work)
+    - series
+    - pages
+
+  website (work)
+    - root_url
+
+  article (work)
+    - volume
+    - series
+    - issue
+    - pages
+
+  object (work)
+    - subcategory
+      - painting
+      - drawing
+      - sculpture
+      - installation
+    - medium
+      - oil on canvas
+      - acrylic on canvas
+      - mixed media
+      - etc.
+    - size_height
+    - size_width
+    - size_depth
+    - size_unit
+      - in
+      - ft
+      - mm
+      - cm
+      - m
+    - condition
+    - values: []
+
+  installation (work)
+    - place
+    - timespan
+
+page
+  - category
+    - standard page
+    - article
+    - interview
+  - slug
+  - body
+
+copyright
+  - owner
+  - license
+    - custom
+    - all rights reserved
+    - fair use
+    - MIT
+    - BSD
+    - GPL
+  - license url
+  - rights: []
+    - to reproduce
+    - to distribute
+    - to display
+    - to prepare derivative works
+    - to stream
+  - date
+
+user
+  - name
+  - description
