@@ -1,0 +1,18 @@
+[{
+    "name": "admin",
+    "synopsis": "El Superuser",
+    "category": "admin",
+    "pass_hash": "XXXXX"
+}, {
+    "name": "allan",
+    "category": "admin",
+    "pass_hash": "XXXXX"
+}, {
+    "name": "meg",
+    "category": "manager",
+    "pass_hash": "XXXXX"
+}, {
+    "name": "michael",
+    "category": "manager",
+    "pass_hash": "XXXXX"
+}]

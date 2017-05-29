@@ -1,0 +1,22 @@
+@import "../_brand.scss";
+
+ #events_controls {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    
+    .controls {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+        align-items:flex-start;
+
+        button {
+            border-right-width: 0;
+
+            &:last-child {
+                border-right-width: 1px;
+            }
+        }
+    }
+}

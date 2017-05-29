@@ -1,0 +1,35 @@
+{% extends 'visualist/base.html' %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="/static/visualist/events.js"></script>
+{% endblock js %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="/static/visualist/events.css">
+{% endblock styles %}
+
+{% block main %}
+<main><div class="container">
+    <h1>Events</h1>
+
+    <div class="panel" id="events_controls">
+        <ul class="tab_list">
+            <li><a class="tab" href="#list"
+                v-on:click.prevent="showPanel('list')">List</a></li>
+            <li><a class="tab" href="#map"
+                v-on:click.prevent="showPanel('map')">Map</a></li>
+        </ul>
+        <div class="controls">
+            <button type="button">Sort</button>
+            <button type="button">Filter</button>
+        </div>
+    </div>
+
+    <event-cards id="list"
+        :class="{hide: panelHidden('list')}"></event-cards>
+    <event-map id="map" ref="map_component"
+        :class="{hide: panelHidden('map')}"></event-map>
+</div></main>
+{% endblock main %}
