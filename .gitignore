@@ -15,7 +15,6 @@ db/data
 db/logs
 
 # vue
-dist/
 
 # flask
 .webassets-cache
