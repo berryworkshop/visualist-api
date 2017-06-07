@@ -1,26 +1,36 @@
 version: '3'
+
 services:
+  nginx:
+    restart: always
+    build: ./nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - api
+
   api:
+    restart: always
     build: ./api
     volumes:
-      - ./api:/app
-    links:
-      - db
+      - ./api:/usr/src/app:ro
     ports:
-     - "5000:5000"
-  db:
-    build: ./db
+      - "8000"
+    environment:
+      - SETTINGS_MODE
+      - NEO4J_USER
+      - NEO4J_PASSWORD
+    command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn.py -w 2 -b :8000 wsgi
+    depends_on:
+      - neo4j
+
+  neo4j:
+    restart: always
+    build: ./neo4j
     volumes:
-      - ./db/data:/data
+       - ./neo4j/data:/data
+       - ./neo4j/logs:/logs
     ports:
-     - "7474:7474"
-     - "7687:7687"
-  web:
-    build: ./web
-    volumes:
-      - ./web/dist:/static
-    links:
-      - api
-      - db
-    ports:
-     - "80:80"
+      - "7474:7474"
+      - "7687:7687"

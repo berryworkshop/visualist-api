@@ -16,6 +16,26 @@
      Y8bd8P  888      X88 Y88b 888 888  888 888 888      X88 Y88b.
       Y88P   888  88888P'  "Y88888 "Y888888 888 888  88888P'  "Y888
 
+The visualist: people and their art.
+Copyright (C) 2016  Allan J. Berry
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+For more information, contact Allan Berry at allan.berry@gmail.com.  Thanks.
+
+---
+
 
 This program has been divided into four parts.
 
@@ -23,3 +43,37 @@ This program has been divided into four parts.
 * "web" is for a static (Vue) frontend.
 * "db" is for all database-related (Neo4J) files.
 * Docs is for general documentation concerning these items.
+
+# To run
+Install Python and dependencies.
+Set environment variables:
+
+    SECRET_KEY='asdf1234...'                # 50 random chars
+    FLASK_CONFIGURATION='development'       # 'development', 'testing', or 'production' (default)
+    FLASK_APP='api/project/app.py'                      # shouldn't change
+    PROJ_PATH="$HOME/Projects/visualist"    # or wherever your root directory is for this
+
+To start local database with Docker:
+
+    mkdir -p $PROJ_PATH/neo4j/data/ $PROJ_PATH/neo4j/logs
+    docker run -p 7474:7474 -p 7687:7687 \
+        -v $PROJ_PATH/neo4j/data:/data -v $PROJ_PATH/neo4j/logs:/logs \
+        -e NEO4J_AUTH=none \
+        neo4j:3.2
+
+Run application:
+
+    python -m flask run                     # development only; insecure server with auto-reload
+
+Or, to test as in production:
+
+    gunicorn app:app                        # will not auto-reload
+
+
+# Credits
+
+a lot of the Docker setup was detailed here (thanks):
+* http://www.patricksoftwareblog.com/how-to-use-docker-and-docker-compose-to-create-a-flask-application/
+* http://matthewminer.com/2015/01/25/docker-dev-environment-for-web-app.html
+* a lot of this detailed here:
+http://www.patricksoftwareblog.com/how-to-configure-nginx-for-a-flask-web-application/

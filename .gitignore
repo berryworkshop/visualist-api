@@ -1,6 +1,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
 # test / coverage reports
 .coverage
@@ -9,20 +10,23 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 
-# Django stuff
-*.log
-settings/local.py
+# neo4j
+db/data
+db/logs
 
-# Vue stuff
+# vue
 dist/
+
+# flask
+.webassets-cache
 
 # pyenv
 .python-version
 
-# dotenv
+# environment
 .env
 
-# Mac OS
+# mac
 .DS_Store
 
 # node

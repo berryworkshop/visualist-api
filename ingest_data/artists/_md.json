@@ -1,0 +1,116 @@
+[
+    {
+        "file": "artists1.json",
+        "source": {
+            "date": "2017-06-06"
+        }
+    },
+    {
+        "file": "artists_cpl_a-b.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-s-a-b/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_c-d.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-c-d/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_e-f.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-e-f/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_g-h.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-g-h/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_i-k.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-i-k/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_l-mi.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-l-mi/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_ml-n.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-ml-n/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_o-q.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-o-q/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_r-sc.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-r-sc/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_se-sz.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-se-sz/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_t-v.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-t-v/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+    {
+        "file": "artists_cpl_w-z.json",
+        "source": {
+            "url": "https://www.chipublib.org/fa-chicago-artists-archive-w-z/",
+            "name": "Chicago Public Library Artist Files",
+            "archive_url": "https://www.chipublib.org/fa-chicago-artists-archive/",
+            "date": "2017-06-06"
+        },
+    },
+]
