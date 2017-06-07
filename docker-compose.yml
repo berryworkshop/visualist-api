@@ -21,7 +21,7 @@ services:
       - SETTINGS_MODE
       - NEO4J_USER
       - NEO4J_PASSWORD
-    command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn.py -w 2 -b :8000 wsgi
+    command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn.py -w 1 -b :8000 wsgi
     depends_on:
       - neo4j
 
