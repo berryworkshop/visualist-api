@@ -16,7 +16,7 @@ def hello_world():
 @app.route('/db')
 def hello_db():
     db = Graph(
-        host='db',
+        host='neo4j',
         user=app.config['NEO4J_USER'],
         password=app.config['NEO4J_PASSWORD']
     )
