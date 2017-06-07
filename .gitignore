@@ -11,8 +11,8 @@ test/e2e/reports
 selenium-debug.log
 
 # neo4j
-db/data
-db/logs
+neo4j/data
+neo4j/logs
 
 # vue
 
