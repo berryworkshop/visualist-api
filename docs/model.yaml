@@ -3,7 +3,6 @@ Site
   fields:
     - name
     - description
-    - license
     - version
     - base_url
     - logo
@@ -12,34 +11,56 @@ Site
     - date_modified
     - date_copyrighted
   relations:
+    - has_license (License)
     - created_at (Place)
     - created_by (Person/Organization)
     - published_at (Place)
     - published_by (Person/Organization)
     - copyrighted_by (Person/Organization)
 
+License (Base)
+  schema: (none)
+  fields:
+    - name
+    - text
+    - url
+
+Snippet
+  schema: (none)
+  fields:
+    - text
+  relations:
+    - has_source (Work)
+    - has_license (License)
+
 Base
   fields:
     - slug
-    - description
+  relations:
+    - has_description (Snippet)
   calculated:
     - date
     - url
 
-Record
+Record (Base)
   schema: http://schema.org/Thing
   fields:
     - name
     - same_as
-    - license
     - featured
     - approved
     - web_public
     - categories
   relations:
-    - has_citation (Work)
     - has_source (Work)
     - has_tag (Tag)
+    - has_image (Image)
+      - aspect
+        - main
+        - detail
+        - recto
+        - verso
+        - signature
     - is_next_iteration_of (Record)
   calculated:
     - citation
@@ -55,8 +76,6 @@ Event (Record)
       - reception
       - residency
       - workshop
-    - price_min
-    - price_max
     - date_start
     - date_end
     - status
@@ -68,6 +87,7 @@ Event (Record)
     - curated_by (Person/Organization)
     - produced_by (Person/Organization)
     - contributed_to_by (Person/Organization)
+    - exhibited_at_by (Person/Organization)
     - part_of (Event)
   calculated:
     - date
@@ -90,6 +110,7 @@ Work (Record)
     - date_published
     - version
   relations:
+    - has_license (License)
     - created_at (Place)
     - located_at (Place)
     - created_by (Person/Organization)
@@ -240,16 +261,10 @@ Image (Base)
       - lzw
       - jpg
     - checksum
-    - license
     - date_created
   relations:
-    - of (Record)
-      - aspect
-        - main
-        - detail
-        - recto
-        - verso
-        - signature
+    - has_source (Work)
+    - has_license (License)
   calculated:
     - date
     - same_as
