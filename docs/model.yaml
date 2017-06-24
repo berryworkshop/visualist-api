@@ -132,6 +132,13 @@ Person (Record)
     - date_died
     - name_last
     - name_first
+    - gender
+      - male
+      - female
+      - other
+    - nationalities
+      - American
+      - Mexican
   relations:
     - has_address (Place)
     - has_email (Email)

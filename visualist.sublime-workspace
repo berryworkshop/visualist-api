@@ -1,0 +1,773 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"lorem",
+				"lorem\tDjango template lorem template text"
+			],
+			[
+				"input",
+				"input_files"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "sort",
+		"selected_items":
+		[
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"set syn json",
+				"Set Syntax: JSON (Javascript Next)"
+			],
+			[
+				"json",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"lorem",
+				"Plugin Development: Convert Syntax to .sublime-syntax"
+			],
+			[
+				"prett",
+				"JsPrettier: Format JavaScript"
+			],
+			[
+				"prettier",
+				"Preferences: JsPrettier Settings - Default"
+			],
+			[
+				"beau",
+				"HTMLBeautify"
+			],
+			[
+				"js pretty",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"javascript",
+				"Javascript Beautify"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"esli",
+				"ESLint"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"jso",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"beauti",
+				"Javascript Beautify"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"rem",
+				"Package Control: Remove Package"
+			],
+			[
+				"upcas",
+				"Convert Case: Upper Case"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Local Dependency"
+			],
+			[
+				"add repo",
+				"Package Control: Add Repository"
+			],
+			[
+				"lower",
+				"Convert Case: Lower Case"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"indent",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"s",
+				"Sort Lines"
+			],
+			[
+				"lo",
+				"Convert Case: Lower Case"
+			],
+			[
+				"pretty",
+				"Pretty YAML: Reformat (Pretty Print) YAML"
+			],
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"so",
+				"Sort Lines"
+			],
+			[
+				"rem pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"install packa",
+				"Package Control: Install Package"
+			],
+			[
+				"install pack",
+				"Package Control: Install Package"
+			],
+			[
+				"remove pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal pack",
+				"Package Control: Install Package"
+			],
+			[
+				"perm",
+				"Permute Lines: Unique"
+			],
+			[
+				"case",
+				"Convert Case: Lower Case"
+			],
+			[
+				"tit",
+				"Convert Case: Title Case"
+			],
+			[
+				"up",
+				"Convert Case: Upper Case"
+			],
+			[
+				"case low",
+				"Convert Case: Lower Case"
+			],
+			[
+				"ssmd",
+				"Set Syntax: MultiMarkdown"
+			],
+			[
+				"upca",
+				"Convert Case: Upper Case"
+			],
+			[
+				"CASE U",
+				"Convert Case: Upper Case"
+			],
+			[
+				"permut",
+				"Permute Lines: Unique"
+			],
+			[
+				"permu",
+				"Permute Lines: Unique"
+			],
+			[
+				"title",
+				"Convert Case: Title Case"
+			],
+			[
+				"permute",
+				"Permute Lines: Unique"
+			],
+			[
+				"titls",
+				"Convert Case: Title Case"
+			],
+			[
+				"unique",
+				"Permute Lines: Unique"
+			],
+			[
+				"print",
+				"Print Entire File"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"validate",
+				"Pretty JSON: Validate"
+			],
+			[
+				"insert",
+				"InsertDate: Default"
+			],
+			[
+				"readme",
+				"InsertDate: Open README"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"git",
+				"GitHub Flavored Markdown: Preview"
+			],
+			[
+				"github",
+				"GitHub Flavored Markdown: Preview"
+			],
+			[
+				"upcase",
+				"Convert Case: Upper Case"
+			],
+			[
+				"beaut",
+				"HTMLBeautify"
+			],
+			[
+				"beautify",
+				"HTMLBeautify"
+			]
+		],
+		"width": 430.0
+	},
+	"console":
+	{
+		"height": 170.0,
+		"history":
+		[
+			"clear"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/aljabear/Projects/visualist",
+		"/Users/aljabear/Projects/visualist/frontend/dist",
+		"/Users/aljabear/Projects/visualist/old/api"
+	],
+	"file_history":
+	[
+		"/Users/aljabear/Projects/visualist/api/project/app.py",
+		"/Users/aljabear/Projects/visualist/api/requirements.txt",
+		"/Users/aljabear/Projects/visualist/api/settings.py",
+		"/Users/aljabear/Projects/visualist/api/project/app_bkp.py",
+		"/Users/aljabear/Projects/visualist/visualist.sublime-project",
+		"/Users/aljabear/Projects/visualist/backend/api/tests/test_base.py",
+		"/Users/aljabear/Projects/visualist/backend/api/views/index.py",
+		"/Users/aljabear/Projects/visualist/README.md",
+		"/Users/aljabear/Projects/visualist/backend/api/app.py",
+		"/Users/aljabear/Projects/visualist/backend/api/views/event.py",
+		"/Users/aljabear/Projects/visualist/backend/api/fixtures/events.json",
+		"/Users/aljabear/Projects/visualist/backend/api/models.py",
+		"/Users/aljabear/Projects/visualist/backend/api/views/_base.py",
+		"/Users/aljabear/Projects/visualist/backend/api/__init__.py",
+		"/Users/aljabear/Projects/visualist/obsolete/backend_py_restless/run.py",
+		"/Users/aljabear/Projects/visualist/backend/run.py",
+		"/Users/aljabear/Projects/visualist/backend/test.py",
+		"/Users/aljabear/Projects/visualist/backend/tests/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend/views/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend/views/event.py",
+		"/Users/aljabear/Projects/visualist/backend/app.py",
+		"/Users/aljabear/Projects/visualist/backend/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend/app/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend/api/resources/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend/api/resources/user.py",
+		"/Users/aljabear/Projects/visualist/backend/api/resources/book.py",
+		"/Users/aljabear/Projects/visualist/backend/api/resources/_base.py",
+		"/Users/aljabear/Projects/visualist/backend/api/schemas.py",
+		"/Users/aljabear/Projects/sketchbook/rails_neo4j_test/test_app/Gemfile",
+		"/Users/aljabear/Projects/sketchbook/sinatra_neo4j_test/config.ru",
+		"/Users/aljabear/Projects/sketchbook/sinatra_neo4j_test/app.rb",
+		"/Users/aljabear/Projects/visualist/backend/api/resources.py",
+		"/Users/aljabear/Projects/sketchbook/go_test/app.go",
+		"/Users/aljabear/.profile",
+		"/Users/aljabear/Projects/allanberry.github.io/about.md",
+		"/Users/aljabear/Projects/allanberry.github.io/_posts/2017-04-04-install-ruby-jekyll-github-pages.md",
+		"/Users/aljabear/Projects/allanberry.github.io/_posts/2016-09-24-intro-web-dev.md",
+		"/Users/aljabear/Projects/allanberry.github.io/_includes/icon-github.svg",
+		"/Users/aljabear/Projects/allanberry.github.io/_includes/icon-github.html",
+		"/Users/aljabear/Projects/allanberry.github.io/_sass/minima.scss",
+		"/Users/aljabear/Projects/allanberry.github.io/_config.yml",
+		"/Users/aljabear/Projects/allanberry.github.io/Gemfile",
+		"/Users/aljabear/Projects/allanberry.github.io/_posts/2017-04-25-lets-play-with-themes.md",
+		"/Users/aljabear/Projects/visualist/docs/model.yaml",
+		"/Users/aljabear/Projects/visualist/docs/todo.txt",
+		"/Users/aljabear/Projects/visualist/docs/views.yaml",
+		"/Users/aljabear/Projects/visualist/obsolete/backend_py_eve/schemas/edges.py",
+		"/Users/aljabear/Projects/visualist/docs/old/nodes.yaml",
+		"/Users/aljabear/Projects/visualist/docs/old/urls.yaml",
+		"/Users/aljabear/Projects/visualist/docs/edges.yaml",
+		"/Users/aljabear/Projects/visualist/docs/nodes.yaml",
+		"/Users/aljabear/Projects/visualist/obsolete/backend_py_eve/schemas/locations.py",
+		"/Users/aljabear/Projects/visualist/docs/old/models.yaml",
+		"/Users/aljabear/Projects/visualist/docs/vocabularies.md",
+		"/Users/aljabear/Projects/visualist/obsolete/backend_py_eve/schemas/approx_date.py",
+		"/Users/aljabear/Projects/spacegame/proj/space_structure.js",
+		"/etc/hosts",
+		"/Users/aljabear/.bashrc",
+		"/Users/aljabear/.bash_profile",
+		"/Users/aljabear/Projects/visualist/docs/page_descriptions/home.md",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/app.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/models.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/routes.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/resources.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/run.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/resources/event.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api/views.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/app.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/resources/event.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/models.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/models/event.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/models/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/resources/__init__.py",
+		"/Users/aljabear/Projects/visualist/backend_py_eve/schemas/locations.py",
+		"/Users/aljabear/Projects/visualist/backend_py_eve/schemas/approx_date.py",
+		"/Users/aljabear/Projects/visualist/backend_py_eve/schemas/pages.py",
+		"/Users/aljabear/Projects/visualist/backend_py_eve/schemas/edges.py",
+		"/Users/aljabear/Projects/visualist/backend_py_eve/schemas/nodes.py",
+		"/Users/aljabear/Projects/visualist/backend_py_eve/schemas/identifiers.py",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_postmeta.csv",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_term_taxonomy.csv",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_options.csv",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_usermeta.csv",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_terms.csv",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_posts.csv",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/api.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/approx_date.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/base.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/citations.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/acls.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/date_span.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/views.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/edges.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/files.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/hours.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/identifiers.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/locations.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/nodes.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/pages.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/rights.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/tags.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/users.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/collections.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/schemas/contact_info.py",
+		"/Users/aljabear/Projects/visualist/v1_exports/README.txt",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_postmeta.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_vsf_stats_url_params.json",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/connect.py",
+		"/Users/aljabear/Projects/visualist/backend_py_neo4j/db_interface.py",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_commentmeta.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_comments.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_links.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_options.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_term_relationships.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_usermeta.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_users.json",
+		"/Users/aljabear/Projects/visualist/v1_exports/wp_vsf_stats.json",
+		"/Users/aljabear/pw/sites.txt",
+		"/Users/aljabear/pw/webfaction.txt",
+		"/Users/aljabear/Projects/uic/uic-library/templates/components/bento/bento_config.js",
+		"/Users/aljabear/Projects/visualist/frontend_vue/src/components/NodeList.vue",
+		"/Users/aljabear/Projects/visualist/frontend_vue/src/App.vue",
+		"/Users/aljabear/Projects/visualist/frontend_vue/src/main.js",
+		"/Users/aljabear/Projects/visualist/frontend_vue/src/components/Home.vue",
+		"/Users/aljabear/Projects/visualist/frontend_vue/src/components/NodeCards.vue",
+		"/Users/aljabear/Projects/visualist/frontend_vue/src/components/SiteHeader.vue"
+	],
+	"find":
+	{
+		"height": 37.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/aljabear/Projects/visualist/api",
+			"/Users/aljabear/Projects/visualist",
+			"/Users/aljabear/Projects/visualist/frontend_vue/src",
+			"/Users/aljabear/Projects/visualist/frontend_vue",
+			"/Users/aljabear/Projects/uic/uic-library",
+			"/Users/aljabear/Projects/visualist/frontend_vue/src",
+			"/Users/aljabear/Projects/visualist/frontend_vue/src/components",
+			"/Users/aljabear/Projects/visualist/frontend_vue/src",
+			"/Users/aljabear/Projects/visualist/backend_mongodb",
+			"/Users/aljabear/Projects/visualist/backend_mongodb/schemas",
+			"/Users/aljabear/Projects/uic/uic-library/src/Outpost",
+			"/Users/aljabear/Projects/uic/uic-library/templates/components/bento",
+			"/Users/aljabear/Projects/uic/uic-library",
+			"/Users/aljabear/Projects/uic/uic-library/src",
+			"/Users/aljabear/Projects/uic",
+			"/Users/aljabear/Projects/visualist/frontend_vue",
+			"/Users/aljabear/Projects/visualist/frontend_vue -node_modules",
+			"/Users/aljabear/Projects/visualist/frontend_vue",
+			"/Users/aljabear/Projects/visualist",
+			"/Users/aljabear/Projects/visualist/django_project/visualist/settings",
+			"/Users/aljabear/Projects/visualist/django_project",
+			"/Users/aljabear/Projects/visualist/django_project/placefinder",
+			"<Project>",
+			"/Users/aljabear/Projects/visualist/django_project",
+			"/Users/aljabear/Projects/visualist/django_project/timeline",
+			"/Users/aljabear/Projects/visualist/django_project",
+			"<project>",
+			"/Users/aljabear/Projects/visualist/django_project/visualist/templates",
+			"/Users/aljabear/Projects/visualist/django_project/visualist",
+			"<project>",
+			"/Users/aljabear/Projects/visualist/django_project/visualist",
+			"/Users/aljabear/Projects/visualist/django_project/visualist/templates/visualist",
+			"<project>",
+			"/Users/aljabear/Projects/visualist",
+			"<project>",
+			"/Users/aljabear/Projects/artcase/artcase_proj/core/templates",
+			"/Users/aljabear/Projects/artcase",
+			"/Users/aljabear/Projects/artcase/artcase_proj",
+			"<project>",
+			"/Users/aljabear/Projects/me/static",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj",
+			"/Users/aljabear/Projects/vannevar",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj/collection",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj/cms",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj",
+			"/Users/aljabear/Projects/vannevar",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj/directory/migrations",
+			"/Users/aljabear/Projects/uic-library/docs",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj",
+			"/Users/aljabear/Projects/uic-library/docs",
+			"/Users/aljabear/Projects/vannevar/docs",
+			"/Users/aljabear/Projects/vannevar/vannevar_proj",
+			"/Users/aljabear/Projects/cars",
+			"/Users/aljabear/Projects/cars/templates",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/arcfire/templates/arcfire",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/arcfire",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/arcfire/templates/arcfire",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/arcfire/templates",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/core",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire",
+			"/Users/aljabear/Projects/arcfire",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/arcfire",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj",
+			"/Users/aljabear/Projects/arcfire/arcfire_proj/arcfire/arcfire"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"tag",
+			"place",
+			"- ",
+			".ext",
+			"ogm",
+			"SECRET_KEY",
+			"return",
+			"print",
+			"passhash",
+			"content",
+			"title",
+			"password_hash",
+			"book",
+			"books",
+			"user",
+			"Book",
+			"jsonify",
+			"request",
+			"abort",
+			"id",
+			"'id'",
+			"id",
+			"Event",
+			"event",
+			"Event",
+			"event",
+			"password_hash",
+			"jsonify",
+			"schema",
+			"Schema",
+			"Node",
+			"reqparse",
+			"fields",
+			"pprint",
+			"jsonify",
+			"get_highest_event_id",
+			"args",
+			"event_node",
+			"validation_errors",
+			"name",
+			"'event'",
+			"'events'",
+			"admin",
+			"permiss",
+			"post",
+			"posts",
+			"user",
+			"StructuredNode",
+			"conatent",
+			"contenttypes",
+			"static",
+			"auth",
+			"User",
+			"user",
+			"User",
+			"user",
+			"User",
+			"user",
+			"User",
+			"user",
+			"User",
+			"support",
+			"tomdelonge",
+			"content_type",
+			"$ ",
+			"schema",
+			"\n      - from\n      - until",
+			"\n      - rank\n      - from\n      - until",
+			"has_",
+			"_for",
+			"has_",
+			"source",
+			"author",
+			"tag",
+			"vocabular",
+			"genre",
+			"has_",
+			"is_",
+			"location",
+			"tag",
+			"url",
+			"is_feature",
+			"is_web",
+			"url",
+			"license",
+			"same_as",
+			"date",
+			"aspect",
+			"is_admin",
+			"date",
+			"from",
+			"User",
+			"created_on",
+			"notes",
+			"\n        - notes",
+			"until",
+			"as_of",
+			"until",
+			"- to",
+			"from",
+			"located_",
+			"located_at",
+			"start_date",
+			"member",
+			"author",
+			"description",
+			"- modified_on",
+			"created_at",
+			"- on (",
+			"- by (",
+			"- at (Place)",
+			"- at",
+			"- has_affiliation (Organization)",
+			"has_child",
+			"- has_source (Work)",
+			"Tag",
+			"- has_tag (Tag)",
+			"- has_citation (Work)",
+			"author_of",
+			"- of (Record)",
+			")\n",
+			"custom:",
+			"Date",
+			"- is_child_of (Page/Collection)",
+			"- is_part_of (Site)",
+			"- visited_by (User)",
+			"Organization",
+			"- member_of (Organization)"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 114.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "visualist.sublime-project",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"django_project/visualist/templates/visualist/event_list/event_list.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 208.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
