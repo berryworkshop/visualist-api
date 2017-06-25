@@ -51,6 +51,13 @@ Record (Base)
     - approved
     - web_public
     - categories
+    - identifiers
+      - vocabulary
+        - AAT
+        - ULAN
+        - LCCN
+        - VIAF
+      - value
   relations:
     - has_source (Work)
     - has_tag (Tag)
@@ -109,6 +116,7 @@ Work (Record)
     - date_modified
     - date_published
     - version
+    - url
   relations:
     - has_license (License)
     - created_at (Place)
@@ -118,6 +126,7 @@ Work (Record)
   calculated:
     - date
     - distance
+
 
 Person (Record)
   schema: http://schema.org/Person

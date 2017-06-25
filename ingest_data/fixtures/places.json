@@ -1,0 +1,39 @@
+{
+  "slug": "pilsen",
+  "name": "Pilsen",
+  "categories": [
+    "neighborhood"
+  ],
+  "address_locality": "Chicago",
+  "address_region": "IL",
+  "address_country": "US",
+},
+{
+  "slug": "chicago",
+  "name": "Chicago",
+  "categories": [
+    "city"
+  ],
+  "address_locality": "Chicago",
+  "address_region": "IL",
+  "address_country": "US",
+},
+{
+  "slug": "austin",
+  "name": "Austin",
+  "categories": [
+    "city"
+  ],
+  "address_locality": "Austin",
+  "address_region": "TX",
+  "address_country": "US",
+},
+{
+  "slug": "paris",
+  "name": "Paris",
+  "categories": [
+    "city"
+  ],
+  "address_locality": "Paris",
+  "address_country": "FR",
+},
