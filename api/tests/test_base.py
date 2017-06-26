@@ -17,7 +17,6 @@ class BaseTestCase(TestCase):
         self.graph = Graph(
             self.database_url, password='test_database_password')
 
-
     def tearDown(self):
         pass
 

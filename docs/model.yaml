@@ -45,7 +45,6 @@ Base
 Record (Base)
   schema: http://schema.org/Thing
   fields:
-    - name
     - same_as
     - featured
     - approved
@@ -76,6 +75,7 @@ Record (Base)
 Event (Record)
   schema: http://schema.org/Event
   fields:
+    - name
     - categories
       - course
       - exhibition
@@ -104,6 +104,7 @@ Event (Record)
 Work (Record)
   schema: http://schema.org/CreativeWork
   fields:
+    - name
     - categories
       - article
       - book
@@ -133,6 +134,9 @@ Person (Record)
   fields:
     - categories
       - artist
+      - writer
+      - architect
+      - filmmaker
       - curator
       - gallerist
       - professor
@@ -168,6 +172,7 @@ Person (Record)
 Organization (Record)
   schema: http://schema.org/Organization
   fields:
+    - name
     - categories
       - archive
       - association
@@ -199,6 +204,7 @@ Organization (Record)
 Page (Record)
   schema: http://schema.org/WebPage
   fields:
+    - name
     - text
     - categories
       - 'standard'
@@ -213,6 +219,7 @@ Page (Record)
 Collection (Record)
   schema: http://schema.org/CollectionPage
   fields:
+    - name
     - text
     - categories
       - 'standard'
@@ -227,6 +234,7 @@ Collection (Record)
 Tag (Record)
   schema: (none)
   fields:
+    - name
     - categories
       - genre
       - period
@@ -294,8 +302,11 @@ Place (Base)
     - categories
       - spot
       - area
+      - island
       - neighborhood
       - city
+      - county
+      - region
       - state
       - country
     - geo_elevation

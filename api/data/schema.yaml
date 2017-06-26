@@ -1,0 +1,30 @@
+BaseSchema: &Base
+    slug:
+        type: string
+        regex: '^[-\w]+$'
+        # unique: true
+
+RecordSchema: &Record
+    <<: *Base
+    featured:
+        type: boolean
+        default: false
+    approved:
+        type: boolean
+        default: false
+    web_public:
+        type: boolean
+        default: true
+    # same_as:
+    # categories:
+
+PersonSchema:
+    <<: *Record
+    last_name:
+        type: string
+        required: true
+        # unique': false
+    first_name:
+        type: string
+        required: false
+        # unique: false
