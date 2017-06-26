@@ -1,7 +1,7 @@
 BaseSchema: &Base
     slug:
         type: string
-        regex: '^[-\w]+$'
+        regex: '^[a-z0-9-]+$'
         # unique: true
 
 RecordSchema: &Record

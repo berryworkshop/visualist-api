@@ -1,0 +1,6 @@
+- slug: slug_with_underscores
+  last_name: Slug
+  first_name: Bad
+- slug: slug with spaces
+  last_name: Slug
+  first_name: Bad

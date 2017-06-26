@@ -8,15 +8,22 @@ from unittest import TestCase
 class DataTestCase(TestCase):
 
     def setUp(self):
-        dir = os.path.dirname(__file__)
-        schema_path  = '{}/../data/schema.yaml'.format(dir)
-        artists_path = '{}/../data/formatted/artists.yaml'.format(dir)
+        data_dir = '{}/../data/'.format(os.path.dirname(__file__))
+
+        schema_path  = '{}/schema.yaml'.format(data_dir)
         with open(schema_path, 'r') as schema:
             self.schema_raw=schema.read()
+        self.schema = yaml.load(self.schema_raw)
+
+        artists_path = '{}/formatted/artists.yaml'.format(data_dir)
         with open(artists_path, 'r') as artists:
             self.artists_raw=artists.read()
-        self.schema = yaml.load(self.schema_raw)
         self.artists = yaml.load(self.artists_raw)
+
+        artists_bad_path = '{}/formatted/artists_bad.yaml'.format(data_dir)
+        with open(artists_bad_path, 'r') as artists:
+            self.artists_bad_raw=artists.read()
+        self.artists_bad = yaml.load(self.artists_bad_raw)
 
     def tearDown(self):
         pass
@@ -63,3 +70,9 @@ class DataTestCase(TestCase):
         validator = cerberus.Validator(schema)
         for artist in self.artists:
             self.assertTrue(validator.validate(artist))
+
+    def test_bad_artists_dont_validate(self):
+        schema = self.schema['PersonSchema']
+        validator = cerberus.Validator(schema)
+        for artist in self.artists_bad:
+            self.assertFalse(validator.validate(artist))
