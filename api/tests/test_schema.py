@@ -5,7 +5,7 @@ import cerberus
 from unittest import TestCase
 
 
-class DataTestCase(TestCase):
+class SchemaTestCase(TestCase):
 
     def setUp(self):
         data_dir = '{}/../data/'.format(os.path.dirname(__file__))
@@ -76,3 +76,13 @@ class DataTestCase(TestCase):
         validator = cerberus.Validator(schema)
         for artist in self.artists_bad:
             self.assertFalse(validator.validate(artist))
+
+    def test_bad_slugs_dont_validate(self):
+        schema = self.schema['PersonSchema']
+        validator = cerberus.Validator(schema)
+        for artist in self.artists_bad:
+            validator.validate(artist)
+            if artist['slug'] == 'slug with spaces':
+                self.assertTrue('slug' in validator.errors)
+            if artist['slug'] == 'slug_with_underscores':
+                self.assertTrue('slug' in validator.errors)
