@@ -7,6 +7,12 @@ app = Flask(__name__)
 app.config['NEO4J_USER']     = os.getenv('NEO4J_USER', 'neo4j')
 app.config['NEO4J_PASSWORD'] = os.getenv('NEO4J_PASSWORD')
 
+graph = Graph(
+    host='neo4j',
+    user=app.config['NEO4J_USER'],
+    password=app.config['NEO4J_PASSWORD']
+)
+
 @app.route('/')
 def hello_world():
     return jsonify({
@@ -15,12 +21,7 @@ def hello_world():
 
 @app.route('/db')
 def hello_db():
-    db = Graph(
-        host='neo4j',
-        user=app.config['NEO4J_USER'],
-        password=app.config['NEO4J_PASSWORD']
-    )
-    return jsonify(db.data("MATCH (a) RETURN a"))
+    return jsonify(graph.data("MATCH (a) RETURN a"))
 
 @app.errorhandler(404)
 def page_not_found(e):

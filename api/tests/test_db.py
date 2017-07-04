@@ -12,9 +12,9 @@ class DBTestCase(TestCase):
             'events',
         ]
         self.graph = Graph(
-            self.database_url, password='test_database_password')
+            self.database_url, password='test_database_pa55word')
 
-        # Ensure database empty, otherwise clear in tearDown!
+        # Ensure database empty, otherwise would be cleared in tearDown!
         r = self.graph.data("MATCH (a) RETURN a")
         try:
             self.assertFalse(r)
@@ -23,7 +23,7 @@ class DBTestCase(TestCase):
             self.fail()
 
     def tearDown(self):
-        # Clear database!
+        # Clear database
         self.graph.data('MATCH (n) DETACH DELETE n')
 
     def test_database_loads_no_auth(self):
@@ -32,7 +32,9 @@ class DBTestCase(TestCase):
 
     def test_database_loads_with_auth(self):
         r = requests.get(self.database_url, auth=(
-            'neo4j','test_database_password'))
+            'neo4j','test_database_pa55word'))
         self.assertEqual(r.status_code, 200)
 
-
+    def test_person_uniqueness_constraints(self):
+        constraints = self.graph.schema.get_uniqueness_constraints('Person')
+        self.assertTrue('slug' in constraints)
