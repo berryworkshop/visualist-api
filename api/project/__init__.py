@@ -19,4 +19,3 @@ app = Eve(settings=global_settings)
 
 if __name__ == '__main__':
     app.run()
-
