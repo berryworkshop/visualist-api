@@ -19,18 +19,8 @@ services:
       - "8000"
     environment:
       - SETTINGS_MODE
-      - NEO4J_USER
-      - NEO4J_PASSWORD
+      - MONGO_PORT
+      - MONGO_USERNAME
+      - MONGO_PASSWORD
+      - MONGO_DBNAME
     command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn.py -w 1 -b :8000 wsgi
-    depends_on:
-      - neo4j
-
-  neo4j:
-    restart: always
-    build: ./neo4j
-    volumes:
-       - ./neo4j/data:/data
-       - ./neo4j/logs:/logs
-    ports:
-      - "7474:7474"
-      - "7687:7687"
