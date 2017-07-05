@@ -19,8 +19,9 @@ services:
       - "8000"
     environment:
       - SETTINGS_MODE
-      - MONGO_PORT
       - MONGO_USERNAME
       - MONGO_PASSWORD
+      - MONGO_SERVER
+      - MONGO_PORT
       - MONGO_DBNAME
     command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn.py -w 1 -b :8000 wsgi
