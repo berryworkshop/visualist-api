@@ -1,4 +1,3 @@
-# gunicorn.py
 import os
 
 if os.environ.get('SETTINGS_MODE') == 'development':
