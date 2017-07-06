@@ -24,4 +24,4 @@ services:
       - MONGO_SERVER
       - MONGO_PORT
       - MONGO_DBNAME
-    command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn.py -w 1 -b :8000 wsgi
+    command: /usr/local/bin/gunicorn -c /usr/src/app/gunicorn_config.py -w 1 -b :8000 wsgi
