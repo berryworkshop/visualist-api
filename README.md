@@ -36,39 +36,29 @@ For more information, contact Allan Berry at allan.berry@gmail.com.  Thanks.
 
 ---
 
+The Visualist
+===
 
-This program has been divided into four parts.
+It's alive!
 
-* "api" is for Python (Flask) files and supporting libraries.
-* "web" is for a static (Vue) frontend.
-* "db" is for all database-related (Neo4J) files.
-* Docs is for general documentation concerning these items.
+Deploy
+---
 
-# To run
-Install Python and dependencies.
-Set environment variables:
+General deployment for the API and NGINX happens via Git and Docker.
 
-    SECRET_KEY='asdf1234...'                # 50 random chars
-    FLASK_CONFIGURATION='development'       # 'development', 'testing', or 'production' (default)
-    FLASK_APP='api/project/app.py'                      # shouldn't change
-    PROJ_PATH="$HOME/Projects/visualist"    # or wherever your root directory is for this
+    git push origin master
+    ssh visualist_digitalocean
+    cd /srv/visualist
+    git pull origin master
+    docker-compose stop
+    docker-compose up --build -d
+    exit
 
-To start local database with Docker:
+Environment variables for the Digital Ocean VM are located at `/etc/environment`.
 
-    mkdir -p $PROJ_PATH/neo4j/data/ $PROJ_PATH/neo4j/logs
-    docker run -p 7474:7474 -p 7687:7687 \
-        -v $PROJ_PATH/neo4j/data:/data -v $PROJ_PATH/neo4j/logs:/logs \
-        -e NEO4J_AUTH=none \
-        neo4j:3.2
+Deployment for the Frontend is detailed in that directory's README.
 
-Run application:
-
-    python -m flask run                     # development only; insecure server with auto-reload
-
-Or, to test as in production:
-
-    gunicorn app:app                        # will not auto-reload
-
+Running the API's development server (and alternative deployment for the API to Heroku) is detailed in that directory's README.
 
 # Credits
 
