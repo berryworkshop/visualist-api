@@ -18,6 +18,7 @@ services:
       - "8000"
     environment:
       - SETTINGS_MODE
+      - FLASK_APP
       - MONGO_USERNAME
       - MONGO_PASSWORD
       - MONGO_SERVER
