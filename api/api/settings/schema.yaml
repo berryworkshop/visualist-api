@@ -22,9 +22,11 @@ PersonSchema:
     <<: *Record
     last_name:
         type: string
+        minlength: 1
         required: true
         # unique': false
     first_name:
         type: string
+        minlength: 1
         required: false
         # unique: false
