@@ -48,3 +48,6 @@ secret/
 *.ntvs*
 *.njsproj
 *.sln
+
+# temporary files
+tmp/
