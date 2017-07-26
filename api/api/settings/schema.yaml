@@ -1,32 +1,514 @@
+SiteSchema:
+    name:
+        type: string
+    description:
+        type: string
+    tagline:
+        type: string
+    version:
+        type: string
+    host:
+        type: string
+    date_copyrighted:
+        type: datetime
+    logo:
+        type: string
+# relations:
+#   has_license (License)
+#   created_at (Place)
+#   created_by (Person/Organization)
+#   published_at (Place)
+#   published_by (Person/Organization)
+#   copyrighted_by (Person/Organization)
+
+SnippetSchema:
+    text:
+        type: string
+
+# relations:
+#   - has_source (Work)
+#   - has_license (License)
+
 BaseSchema: &Base
     slug:
         type: string
-        regex: '^[a-z0-9-]+$'
-        unique: true
+# relations:
+#   - has_description (Snippet)
+# calculated:
+# - date
+# - url
+
+LicenseSchema:
+    <<: *Base
+    name:
+        type: string
+    text:
+        type: string
+    url:
+        type: string
 
 RecordSchema: &Record
     <<: *Base
     featured:
         type: boolean
-        default: false
     approved:
         type: boolean
-        default: false
-    web_public:
+    private:
         type: boolean
-        default: true
-    # same_as:
-    # categories:
+    categories:
+        type: list
+        schema:
+            type: string
+    same_as:
+        type: string
+    identifiers:
+        type: dict
+        schema:
+            vocabulary:
+                type: string
+                allowed:
+                    - AAT
+                    - ULAN
+                    - LCCN
+                    - VIAF
+            value:
+                type: string
+# relations
+# - has_source (Work)
+# - has_tag (Tag)
+# - has_image (Image)
+#   - aspect
+#     - main
+#     - detail
+#     - recto
+#     - verso
+#     - signature
+# - is_next_iteration_of (Record)
+# calculated:
+# - citation
+# - date
+
+EventSchema:
+    <<: *Record
+    name:
+        type: string
+    categories:
+        allowed:
+          - course
+          - exhibition
+          - performance
+          - reception
+          - residency
+          - workshop
+    date_start:
+        type: datetime
+    date_end:
+        type: datetime
+    status:
+        allowed:
+          - cancelled
+    group_friendly:
+        type: boolean
+# relations:
+#   - has_venue (Place)
+#   - organized_by (Person/Organization)
+#   - curated_by (Person/Organization)
+#   - produced_by (Person/Organization)
+#   - contributed_to_by (Person/Organization)
+#   - exhibited_at_by (Person/Organization)
+#   - part_of (Event)
+# calculated:
+#   - date
+#   - duration
+#   - distance
+
+WorkSchema:
+    <<: *Record
+    name:
+        type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - article
+              - book
+              - installation
+              - photograph
+              - sculpture
+              - visual artwork
+              - website
+    work_date_created:
+        type: datetime
+    work_date_modified:
+        type: datetime
+    work_date_published:
+        type: datetime
+    work_version:
+        type: string
+    url:
+        type: string
+# relations:
+# - has_license (License)
+# - created_at (Place)
+# - located_at (Place)
+# - created_by (Person/Organization)
+# - part_of (Work)
+# calculated:
+# - date
+# - distance
 
 PersonSchema:
     <<: *Record
-    last_name:
+    name_last:
         type: string
-        minlength: 1
-        required: true
-        # unique': false
-    first_name:
+    name_first:
         type: string
-        minlength: 1
-        required: false
-        # unique: false
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+                - artist
+                - writer
+                - architect
+                - filmmaker
+                - curator
+                - gallerist
+                - professor
+    date_born:
+        type: datetime
+    date_died:
+        type: datetime
+    gender:
+        type: string
+        allowed:
+            - male
+            - female
+            - other
+    nationalities:
+        type: string
+            # - American
+            # - Canadian
+            # - Mexican
+# relations:
+#   - has_address (Place)
+#   - has_email (Email)
+#   - has_phone (Phone)
+#   - has_social_account (SocialAccount)
+#   - born_at (Place)
+#   - died_at (Place)
+#   - represented_by (Person/Organization)
+#   - employed_by (Person/Organization)
+#   - member_of (Organization)
+#   - friend_of (Person)
+#   - child_of (Person)
+
+OrganizationSchema:
+    <<: *Record
+    name:
+        type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - archive
+              - association
+              - company
+              - consortium
+              - foundation
+              - library
+              - museum
+              - school
+    date_founded:
+        type: datetime
+    date_dissolved:
+        type: datetime
+    nonprofit:
+        type: boolean
+    appointment_only:
+        type: boolean
+    hours:
+        type: string
+# relations:
+#   - has_address (Place)
+#   - has_email (Email)
+#   - has_logo (Image)
+#   - has_phone (Phone)
+#   - has_social_account (SocialAccount)
+#   - founded_at (Place)
+#   - founded_by (Person)
+#   - member_of (Organization)
+#   - part_of (Organization)
+# calculated:
+#   - distance
+#   - date
+
+PageSchema:
+    <<: *Record
+    name:
+        type: string
+    text:
+        type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - standard
+              - article
+              - review
+# relations:
+#   - child_of (Page/Collection)
+# calculated:
+#   - date
+#   - same_as
+
+CollectionSchema:
+    <<: *Record
+    name:
+        type: string
+    text:
+        type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - standard
+              - tour
+# relations:
+#   - has_record (Record)
+#   - child_of (Page/Collection)
+# calculated:
+#   - date
+#   - same_as
+
+TagSchema:
+    <<: *Record
+    name:
+        type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - genre
+              - period
+# relations:
+#   - vocabulary (Work)
+#   - has_icon (Image)
+
+UserSchema:
+    <<: *Base
+    username:
+        type: string
+    password_hash:
+        type: string
+# relations:
+#   - has_role (Role)
+#   - has_email (Email)
+#   - same_as (Person)
+#   - has_avatar (Image)
+#   - has_permission (Permission)
+#   - has_social_account (SocialAccount)
+#   - has_favorite (Record)
+#   - has_plans_to_visit (Record)
+#     - status
+#   - member_of (Organization)
+#   - authored (Record)
+#     - timestamp
+#   - modified (Record)
+#     - timestamp
+# calculated:
+#   - name
+
+ImageSchema:
+    <<: *Base
+    caption:
+        type: string
+    version:
+        type: string
+    pixels_x:
+        type: integer
+    pixels_y:
+        type: integer
+    file_format:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - jpg
+              - jp2
+              - png
+              - tiff
+              - svg
+    compression:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - tif
+              - lzw
+              - jpg
+    checksum:
+        type: string
+    image_date_created:
+        type: datetime
+  # relations:
+  #   - has_source (Work)
+  #   - has_license (License)
+  # calculated:
+  #   - date
+  #   - same_as
+
+PlaceSchema:
+    <<: *Base
+    slug:
+        type: string
+    name:
+        type: string
+    description:
+        type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+                - spot
+                - area
+                - island
+                - neighborhood
+                - city
+                - county
+                - region
+                - state
+                - country
+    elevation:
+        type: float
+    location:
+        type: point
+    polygons:
+        type: multipolygon
+    address_street:
+        type: string
+    address_locality:
+        type: string
+    address_region:
+        type: string
+        # allowed:
+        #     - IL
+        #     - IN
+        #     - MI
+        #     - WI
+        #     - etc. (ISO 3166-2:US)
+    address_postal_code:
+        type: string
+    address_country:
+        type: string
+        # allowed:
+        #     - US
+        #     - CA
+        #     - MX
+        #     - etc. (ISO 3166-2)
+    same_as:
+        type: string
+# relations:
+#   - part_of (Place)
+# calculated:
+#   - address
+#   - geo
+#   - distance
+
+Email:
+    <<: *Base
+    email:
+        type: string
+
+Phone:
+    <<: *Base
+    country:
+        type: integer
+    area_code:
+        type: integer
+    exchange_code:
+        type: integer
+    number:
+        type: integer
+    extension:
+        type: integer
+  # calculated:
+  #   - phone
+
+SocialAccount:
+    <<: *Base
+    service:
+        type: string
+        allowed:
+            Ask.fm
+            Facebook
+            Flickr
+            Foursquare
+            GitHub
+            Google+
+            Instagram
+            LinkedIn
+            Meetup
+            Pinterest
+            Reddit
+            SnapChat
+            Tumblr
+            Twitter
+            Vine
+            WhatsApp
+            Yelp
+            YouTube
+    account:
+        type: string
+
+Role:
+    <<: *Base
+    name:
+        type: string
+            # Admin
+            # Manager
+            # Contributor
+            # Anonymous
+# relations:
+#   - has_permission (Permission)
+
+Permission:
+    <<: *Base
+    model:
+        type: string
+        allowed:
+            - Collection
+            - Event
+            - Image
+            - Organization
+            - Page
+            - Person
+            - Place
+            - Site
+            - User
+            - Work
+    permissions:
+        type: list
+        allowed:
+            - read
+            - write
+            - update
+            - destroy
+            - mark private
+            - mark favorite
+            - mark featured
+    owner:
+        type: list
+        allowed:
+            - own
+            - own private
+            - others
+            - others private
+  # calculated:
+  #   - description
