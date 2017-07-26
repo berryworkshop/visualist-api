@@ -14,7 +14,15 @@ selenium-debug.log
 neo4j/data
 neo4j/logs
 
-# vue
+# node/vue
+.DS_Store
+node_modules/
+dist/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+test/e2e/reports
+selenium-debug.log
 
 # flask
 .webassets-cache
@@ -28,15 +36,15 @@ neo4j/logs
 # mac
 .DS_Store
 
-# node
-node_modules/
-npm-debug.log
-
 # dev database
 *.sqlite3
 
 # secret files
 secret/
 
-
-
+# Editor directories and files
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
