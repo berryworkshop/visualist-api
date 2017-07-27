@@ -1,28 +1,3 @@
-SiteSchema:
-    name:
-        type: string
-        required: true
-    description:
-        type: string
-    tagline:
-        type: string
-    version:
-        type: string
-        required: true
-        default: 1.0.0
-    date_copyrighted:
-        type: datetime
-#        required: {{current_date}}
-    logo:
-        type: string
-# relations:
-#   has_license (License)
-#   created_at (Place)
-#   created_by (Person/Organization)
-#   published_at (Place)
-#   published_by (Person/Organization)
-#   copyrighted_by (Person/Organization)
-
 SnippetSchema:
     text:
         type: string
@@ -112,43 +87,6 @@ RecordSchema: &Record
 # - citation
 # - date
 
-EventSchema:
-    <<: *Record
-    categories:
-        allowed:
-          - course
-          - exhibition
-          - performance
-          - reception
-          - residency
-          - workshop
-    date_start:
-        type: datetime
-    date_end:
-        type: datetime
-    status:
-        default: OK
-        required: true
-        allowed:
-            - OK
-            - cancelled
-    group_friendly:
-        type: boolean
-        required: true
-        default: true
-# relations:
-#   - has_venue (Place)
-#   - organized_by (Person/Organization)
-#   - curated_by (Person/Organization)
-#   - produced_by (Person/Organization)
-#   - contributed_to_by (Person/Organization)
-#   - exhibited_at_by (Person/Organization)
-#   - part_of (Event)
-# calculated:
-#   - date
-#   - duration
-#   - distance
-
 WorkSchema:
     <<: *Record
     categories:
@@ -182,104 +120,6 @@ WorkSchema:
 # calculated:
 # - date
 # - distance
-
-PersonSchema:
-    <<: *Record
-    name:
-        type: dict
-        required: true
-        schema:
-            last:
-                type: string
-                required: true
-            first:
-                type: string
-    categories:
-        type: list
-        schema:
-            type: string
-            allowed:
-                - artist
-                - writer
-                - architect
-                - filmmaker
-                - curator
-                - gallerist
-                - professor
-    date_born:
-        type: datetime
-    date_died:
-        type: datetime
-    gender:
-        type: string
-        allowed:
-            - male
-            - female
-            - other
-    nationalities:
-        type: list
-            schema:
-                type: string
-                default: American
-                allowed:
-                    # - American
-                    # - Canadian
-                    # - Mexican
-# relations:
-#   - has_address (Place)
-#   - has_email (Email)
-#   - has_phone (Phone)
-#   - has_social_account (SocialAccount)
-#   - born_at (Place)
-#   - died_at (Place)
-#   - represented_by (Person/Organization)
-#   - employed_by (Person/Organization)
-#   - member_of (Organization)
-#   - friend_of (Person)
-#   - child_of (Person)
-
-OrganizationSchema:
-    <<: *Record
-    categories:
-        type: list
-        schema:
-            type: string
-            allowed:
-              - archive
-              - association
-              - company
-              - consortium
-              - foundation
-              - library
-              - museum
-              - school
-    date_founded:
-        type: datetime
-    date_dissolved:
-        type: datetime
-    nonprofit:
-        type: boolean
-        default: true
-        required: true
-    appointment_only:
-        type: boolean
-        default: false
-        required: true
-    hours:
-        type: string
-# relations:
-#   - has_address (Place)
-#   - has_email (Email)
-#   - has_logo (Image)
-#   - has_phone (Phone)
-#   - has_social_account (SocialAccount)
-#   - founded_at (Place)
-#   - founded_by (Person)
-#   - member_of (Organization)
-#   - part_of (Organization)
-# calculated:
-#   - distance
-#   - date
 
 PageSchema:
     <<: *Record
@@ -331,8 +171,209 @@ TagSchema:
 #   - has_icon (Image)
 
 
-PlaceSchema:
+
+EntitySchema: &Entity
     <<: *Record
+    emails:
+        type: list
+        schema:
+            type: dict
+            schema:
+                label:
+                    type: string
+                    default: primary
+                address:
+                    required: true
+                    unique: true
+                    type: string
+    phones:
+        type: list
+        schema:
+            type: dict
+            schema:
+                country:
+                    type: integer
+                    required: true
+                    default: 1
+                area_code:
+                    type: integer
+                    required: true
+                exchange_code:
+                    type: integer
+                    required: true
+                number:
+                    type: integer
+                    required: true
+                extension:
+                    type: integer
+    social:
+        type: list
+        schema:
+            type: dict
+            schema:
+                service:
+                    required: true
+                    type: string
+                    allowed:
+                        Ask.fm
+                        Facebook
+                        Flickr
+                        Foursquare
+                        GitHub
+                        Google+
+                        Instagram
+                        LinkedIn
+                        Meetup
+                        Pinterest
+                        Reddit
+                        SnapChat
+                        Tumblr
+                        Twitter
+                        Vine
+                        WhatsApp
+                        Yelp
+                        YouTube
+                account:
+                    required: true
+                    type: string
+
+EventSchema:
+    <<: *Entity
+    categories:
+        allowed:
+          - course
+          - exhibition
+          - performance
+          - reception
+          - residency
+          - workshop
+    date_start:
+        type: datetime
+    date_end:
+        type: datetime
+    status:
+        default: OK
+        required: true
+        allowed:
+            - OK
+            - cancelled
+    group_friendly:
+        type: boolean
+        required: true
+        default: true
+# relations:
+#   - has_venue (Place)
+#   - organized_by (Person/Organization)
+#   - curated_by (Person/Organization)
+#   - produced_by (Person/Organization)
+#   - contributed_to_by (Person/Organization)
+#   - exhibited_at_by (Person/Organization)
+#   - part_of (Event)
+# calculated:
+#   - date
+#   - duration
+#   - distance
+
+PersonSchema:
+    <<: *Entity
+    name:
+        type: dict
+        required: true
+        schema:
+            last:
+                type: string
+                required: true
+            first:
+                type: string
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+                - artist
+                - writer
+                - architect
+                - filmmaker
+                - curator
+                - gallerist
+                - professor
+    date_born:
+        type: datetime
+    date_died:
+        type: datetime
+    gender:
+        type: string
+        allowed:
+            - male
+            - female
+            - other
+    nationalities:
+        type: list
+        schema:
+            type: string
+            default: American
+            # allowed:
+                # - American
+                # - Canadian
+                # - Mexican
+# relations:
+#   - has_address (Place)
+#   - has_email (Email)
+#   - has_phone (Phone)
+#   - has_social_account (SocialAccount)
+#   - born_at (Place)
+#   - died_at (Place)
+#   - represented_by (Person/Organization)
+#   - employed_by (Person/Organization)
+#   - member_of (Organization)
+#   - friend_of (Person)
+#   - child_of (Person)
+
+OrganizationSchema:
+    <<: *Entity
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+              - archive
+              - association
+              - company
+              - consortium
+              - foundation
+              - library
+              - museum
+              - school
+    date_founded:
+        type: datetime
+    date_dissolved:
+        type: datetime
+    nonprofit:
+        type: boolean
+        default: true
+        required: true
+    appointment_only:
+        type: boolean
+        default: false
+        required: true
+    hours:
+        type: string
+# relations:
+#   - has_address (Place)
+#   - has_email (Email)
+#   - has_logo (Image)
+#   - has_phone (Phone)
+#   - has_social_account (SocialAccount)
+#   - founded_at (Place)
+#   - founded_by (Person)
+#   - member_of (Organization)
+#   - part_of (Organization)
+# calculated:
+#   - distance
+#   - date
+
+PlaceSchema:
+    <<: *Entity
     categories:
         type: list
         schema:
@@ -386,6 +427,7 @@ PlaceSchema:
 #   - address
 #   - geo
 #   - distance
+
 
 
 UserSchema:
@@ -447,63 +489,8 @@ ImageSchema:
   #   - date
   #   - same_as
 
-Email:
-    <<: *Base
-    address:
-        required: true
-        unique: true
-        type: string
 
-Phone:
-    <<: *Base
-    country:
-        type: integer
-        required: true
-        default: 1
-    area_code:
-        type: integer
-        required: true
-    exchange_code:
-        type: integer
-        required: true
-    number:
-        type: integer
-        required: true
-    extension:
-        type: integer
-  # calculated:
-  #   - phone
-
-
-SocialAccount:
-    <<: *Base
-    service:
-        required: true
-        type: string
-        allowed:
-            Ask.fm
-            Facebook
-            Flickr
-            Foursquare
-            GitHub
-            Google+
-            Instagram
-            LinkedIn
-            Meetup
-            Pinterest
-            Reddit
-            SnapChat
-            Tumblr
-            Twitter
-            Vine
-            WhatsApp
-            Yelp
-            YouTube
-    account:
-        required: true
-        type: string
-
-Role:
+RoleSchema:
     <<: *Base
     name:
         required: true
@@ -518,7 +505,7 @@ Role:
 #   - has_permission (Permission)
 
 
-Permission:
+PermissionSchema:
     <<: *Base
     model:
         required: true
