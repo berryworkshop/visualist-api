@@ -1,16 +1,18 @@
 SiteSchema:
     name:
         type: string
+        required: true
     description:
         type: string
     tagline:
         type: string
     version:
         type: string
-    host:
-        type: string
+        required: true
+        default: 1.0.0
     date_copyrighted:
         type: datetime
+#        required: {{current_date}}
     logo:
         type: string
 # relations:
@@ -24,6 +26,7 @@ SiteSchema:
 SnippetSchema:
     text:
         type: string
+        required: true
 
 # relations:
 #   - has_source (Work)
@@ -31,7 +34,9 @@ SnippetSchema:
 
 BaseSchema: &Base
     slug:
+        unique: true
         type: string
+        required: true
 # relations:
 #   - has_description (Snippet)
 # calculated:
@@ -41,31 +46,49 @@ BaseSchema: &Base
 LicenseSchema:
     <<: *Base
     name:
+        unique: true
         type: string
     text:
         type: string
     url:
+        unique: true
         type: string
+        required: true
 
 RecordSchema: &Record
     <<: *Base
+    name:
+        type: string
+        required: true
+    description:
+        type: string
     featured:
         type: boolean
+        required: true
+        default: false
     approved:
         type: boolean
-    private:
+        required: true
+        default: false
+    public:
         type: boolean
+        required: true
+        default: false
     categories:
         type: list
         schema:
             type: string
     same_as:
         type: string
+        unique: true
     identifiers:
         type: dict
+        unique: true
         schema:
             vocabulary:
                 type: string
+                required: true
+                default: AAT
                 allowed:
                     - AAT
                     - ULAN
@@ -73,6 +96,7 @@ RecordSchema: &Record
                     - VIAF
             value:
                 type: string
+                required: true
 # relations
 # - has_source (Work)
 # - has_tag (Tag)
@@ -90,8 +114,6 @@ RecordSchema: &Record
 
 EventSchema:
     <<: *Record
-    name:
-        type: string
     categories:
         allowed:
           - course
@@ -105,10 +127,15 @@ EventSchema:
     date_end:
         type: datetime
     status:
+        default: OK
+        required: true
         allowed:
-          - cancelled
+            - OK
+            - cancelled
     group_friendly:
         type: boolean
+        required: true
+        default: true
 # relations:
 #   - has_venue (Place)
 #   - organized_by (Person/Organization)
@@ -124,8 +151,6 @@ EventSchema:
 
 WorkSchema:
     <<: *Record
-    name:
-        type: string
     categories:
         type: list
         schema:
@@ -160,10 +185,15 @@ WorkSchema:
 
 PersonSchema:
     <<: *Record
-    name_last:
-        type: string
-    name_first:
-        type: string
+    name:
+        type: dict
+        required: true
+        schema:
+            last:
+                type: string
+                required: true
+            first:
+                type: string
     categories:
         type: list
         schema:
@@ -187,10 +217,14 @@ PersonSchema:
             - female
             - other
     nationalities:
-        type: string
-            # - American
-            # - Canadian
-            # - Mexican
+        type: list
+            schema:
+                type: string
+                default: American
+                allowed:
+                    # - American
+                    # - Canadian
+                    # - Mexican
 # relations:
 #   - has_address (Place)
 #   - has_email (Email)
@@ -206,8 +240,6 @@ PersonSchema:
 
 OrganizationSchema:
     <<: *Record
-    name:
-        type: string
     categories:
         type: list
         schema:
@@ -227,8 +259,12 @@ OrganizationSchema:
         type: datetime
     nonprofit:
         type: boolean
+        default: true
+        required: true
     appointment_only:
         type: boolean
+        default: false
+        required: true
     hours:
         type: string
 # relations:
@@ -247,8 +283,6 @@ OrganizationSchema:
 
 PageSchema:
     <<: *Record
-    name:
-        type: string
     text:
         type: string
     categories:
@@ -267,10 +301,6 @@ PageSchema:
 
 CollectionSchema:
     <<: *Record
-    name:
-        type: string
-    text:
-        type: string
     categories:
         type: list
         schema:
@@ -287,25 +317,86 @@ CollectionSchema:
 
 TagSchema:
     <<: *Record
-    name:
-        type: string
     categories:
         type: list
         schema:
             type: string
             allowed:
               - genre
+              - medium
               - period
+              - technique
 # relations:
 #   - vocabulary (Work)
 #   - has_icon (Image)
+
+
+PlaceSchema:
+    <<: *Record
+    categories:
+        type: list
+        schema:
+            type: string
+            allowed:
+                - spot
+                - area
+                - island
+                - neighborhood
+                - city
+                - county
+                - region
+                - state
+                - country
+    location:
+        type: point
+        unique: true
+    polygons:
+        type: multipolygon
+    address:
+        unique: true
+        type: dict
+        schema:
+            street:
+                type: string
+            locality:
+                type: string
+                default: Chicago
+            region:
+                type: string
+                default: IL
+                # allowed:
+                #     - IL
+                #     - IN
+                #     - MI
+                #     - WI
+                #     - etc. (ISO 3166-2:US)
+            postal_code:
+                type: string
+            country:
+                type: string
+                default: US
+                # allowed:
+                #     - US
+                #     - CA
+                #     - MX
+                #     - etc. (ISO 3166-2)
+# relations:
+#   - part_of (Place)
+# calculated:
+#   - address
+#   - geo
+#   - distance
+
 
 UserSchema:
     <<: *Base
     username:
         type: string
+        unique: true
+        required: true
     password_hash:
         type: string
+        required: true
 # relations:
 #   - has_role (Role)
 #   - has_email (Email)
@@ -324,38 +415,31 @@ UserSchema:
 # calculated:
 #   - name
 
+
 ImageSchema:
     <<: *Base
     caption:
         type: string
-    version:
-        type: string
     pixels_x:
         type: integer
+        required: true
     pixels_y:
         type: integer
+        required: true
     file_format:
         type: list
+        required: true
         schema:
             type: string
+            default: jpg
             allowed:
               - jpg
               - jp2
               - png
               - tiff
               - svg
-    compression:
-        type: list
-        schema:
-            type: string
-            allowed:
-              - tif
-              - lzw
-              - jpg
     checksum:
         type: string
-    image_date_created:
-        type: datetime
   # relations:
   #   - has_source (Work)
   #   - has_license (License)
@@ -363,87 +447,38 @@ ImageSchema:
   #   - date
   #   - same_as
 
-PlaceSchema:
-    <<: *Base
-    slug:
-        type: string
-    name:
-        type: string
-    description:
-        type: string
-    categories:
-        type: list
-        schema:
-            type: string
-            allowed:
-                - spot
-                - area
-                - island
-                - neighborhood
-                - city
-                - county
-                - region
-                - state
-                - country
-    elevation:
-        type: float
-    location:
-        type: point
-    polygons:
-        type: multipolygon
-    address_street:
-        type: string
-    address_locality:
-        type: string
-    address_region:
-        type: string
-        # allowed:
-        #     - IL
-        #     - IN
-        #     - MI
-        #     - WI
-        #     - etc. (ISO 3166-2:US)
-    address_postal_code:
-        type: string
-    address_country:
-        type: string
-        # allowed:
-        #     - US
-        #     - CA
-        #     - MX
-        #     - etc. (ISO 3166-2)
-    same_as:
-        type: string
-# relations:
-#   - part_of (Place)
-# calculated:
-#   - address
-#   - geo
-#   - distance
-
 Email:
     <<: *Base
-    email:
+    address:
+        required: true
+        unique: true
         type: string
 
 Phone:
     <<: *Base
     country:
         type: integer
+        required: true
+        default: 1
     area_code:
         type: integer
+        required: true
     exchange_code:
         type: integer
+        required: true
     number:
         type: integer
+        required: true
     extension:
         type: integer
   # calculated:
   #   - phone
 
+
 SocialAccount:
     <<: *Base
     service:
+        required: true
         type: string
         allowed:
             Ask.fm
@@ -465,36 +500,45 @@ SocialAccount:
             Yelp
             YouTube
     account:
+        required: true
         type: string
 
 Role:
     <<: *Base
     name:
+        required: true
+        unique: true
         type: string
             # Admin
             # Manager
             # Contributor
+            # Member
             # Anonymous
 # relations:
 #   - has_permission (Permission)
 
+
 Permission:
     <<: *Base
     model:
+        required: true
         type: string
+        default: event
         allowed:
-            - Collection
-            - Event
-            - Image
-            - Organization
-            - Page
-            - Person
-            - Place
-            - Site
-            - User
-            - Work
+            - collection
+            - event
+            - image
+            - organization
+            - page
+            - person
+            - place
+            - site
+            - user
+            - work
     permissions:
+        required: true
         type: list
+        default: read
         allowed:
             - read
             - write
@@ -504,10 +548,11 @@ Permission:
             - mark favorite
             - mark featured
     owner:
+        required: true
+        default: own
         type: list
         allowed:
             - own
-            - own private
             - others
             - others private
   # calculated:
