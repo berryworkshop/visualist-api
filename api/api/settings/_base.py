@@ -38,10 +38,6 @@ places = {
     'resource_methods': ['GET', 'POST'],
     'schema': schema['PlaceSchema'],
 }
-roles = {
-    'resource_methods': ['GET', 'POST'],
-    'schema': schema['RoleSchema'],
-}
 tags = {
     'resource_methods': ['GET', 'POST'],
     'schema': schema['OrganizationSchema'],
@@ -64,11 +60,13 @@ settings = {
         'organizations': organizations,
         'pages': pages,
         'places': places,
-        'roles': roles,
         'tags': tags,
         'users': users,
         'works': works,
     },
+    'URL_PREFIX': 'api',
+    'API_VERSION': 'v1',
+    'DATE_FORMAT': '%Y-%m-%dT%H:%M:%S',
     'XML': False,
     'MONGO_URI': f'mongodb://{db_user}:{db_pass}@{db_server}:{db_port}/{db_name}',
     'RESOURCE_METHODS': ['GET', 'POST', 'DELETE'],

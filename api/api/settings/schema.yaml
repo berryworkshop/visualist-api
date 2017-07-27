@@ -458,30 +458,30 @@ UserSchema:
 #   - name
 
 
-ImageSchema:
-    <<: *Base
-    caption:
-        type: string
-    pixels_x:
-        type: integer
-        required: true
-    pixels_y:
-        type: integer
-        required: true
-    file_format:
-        type: list
-        required: true
-        schema:
-            type: string
-            default: jpg
-            allowed:
-              - jpg
-              - jp2
-              - png
-              - tiff
-              - svg
-    checksum:
-        type: string
+# ImageSchema:
+#     <<: *Base
+#     caption:
+#         type: string
+#     pixels_x:
+#         type: integer
+#         required: true
+#     pixels_y:
+#         type: integer
+#         required: true
+#     file_format:
+#         type: list
+#         required: true
+#         schema:
+#             type: string
+#             default: jpg
+#             allowed:
+#               - jpg
+#               - jp2
+#               - png
+#               - tiff
+#               - svg
+#     checksum:
+#         type: string
   # relations:
   #   - has_source (Work)
   #   - has_license (License)
@@ -490,12 +490,12 @@ ImageSchema:
   #   - same_as
 
 
-RoleSchema:
-    <<: *Base
-    name:
-        required: true
-        unique: true
-        type: string
+# RoleSchema:
+#     <<: *Base
+#     name:
+#         required: true
+#         unique: true
+#         type: string
             # Admin
             # Manager
             # Contributor
@@ -505,42 +505,42 @@ RoleSchema:
 #   - has_permission (Permission)
 
 
-PermissionSchema:
-    <<: *Base
-    model:
-        required: true
-        type: string
-        default: event
-        allowed:
-            - collection
-            - event
-            - image
-            - organization
-            - page
-            - person
-            - place
-            - site
-            - user
-            - work
-    permissions:
-        required: true
-        type: list
-        default: read
-        allowed:
-            - read
-            - write
-            - update
-            - destroy
-            - mark private
-            - mark favorite
-            - mark featured
-    owner:
-        required: true
-        default: own
-        type: list
-        allowed:
-            - own
-            - others
-            - others private
+# PermissionSchema:
+#     <<: *Base
+#     model:
+#         required: true
+#         type: string
+#         default: event
+#         allowed:
+#             - collection
+#             - event
+#             - image
+#             - organization
+#             - page
+#             - person
+#             - place
+#             - site
+#             - user
+#             - work
+#     permissions:
+#         required: true
+#         type: list
+#         default: read
+#         allowed:
+#             - read
+#             - write
+#             - update
+#             - destroy
+#             - mark private
+#             - mark favorite
+#             - mark featured
+#     owner:
+#         required: true
+#         default: own
+#         type: list
+#         allowed:
+#             - own
+#             - others
+#             - others private
   # calculated:
   #   - description
