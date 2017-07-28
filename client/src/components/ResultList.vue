@@ -1,7 +1,7 @@
 <template>
-  <div class="login">
+  <div class="resultList">
     <vis-header></vis-header>
-    <h1>Login</h1>
+    <h1>Result List</h1>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 import VisHeader from './_VisHeader';
 
 export default {
-  name: 'login',
+  name: 'result-list',
   components: {
     VisHeader,
   },
