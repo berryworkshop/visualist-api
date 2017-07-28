@@ -1,15 +1,13 @@
 <template>
   <div class="vis-header">
-    <ul>
-        <nav-primary></nav-primary>
-        <nav-secondary></nav-secondary>
-    </ul>
+      <nav-primary></nav-primary>
+      <nav-secondary></nav-secondary>
   </div>
 </template>
 
 <script>
-import NavPrimary from './_NavPrimary';
-import NavSecondary from './_NavSecondary';
+import NavPrimary from './_NavPrimary.vue';
+import NavSecondary from './_NavSecondary.vue';
 
 export default {
   name: 'vis-header',

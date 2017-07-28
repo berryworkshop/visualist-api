@@ -1,14 +1,14 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Calendar from '@/components/Calendar';
-import Directory from '@/components/Directory';
-import Home from '@/components/Home';
-import Login from '@/components/Login';
-import Map_ from '@/components/Map';
-import Profile from '@/components/Profile';
-// import Record from '@/components/Record';
-import ResultList from '@/components/ResultList';
-import SiteMap from '@/components/Sitemap';
+import Calendar from '../components/Calendar.vue';
+import Directory from '../components/Directory.vue';
+import Home from '../components/Home.vue';
+import Login from '../components/Login.vue';
+import Map_ from '../components/Map.vue';
+import Profile from '../components/Profile.vue';
+// import Record from '../components/Record.vue';
+import ResultList from '../components/ResultList.vue';
+import SiteMap from '../components/Sitemap.vue';
 
 
 Vue.use(Router);

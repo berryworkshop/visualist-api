@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import VisHeader from './_VisHeader';
+import VisHeader from './_VisHeader.vue';
 
 export default {
   name: 'home',
