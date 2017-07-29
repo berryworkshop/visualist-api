@@ -1,3 +1,5 @@
+"""Initialize the API."""
+
 import os
 import pymongo
 from eve import Eve
@@ -11,3 +13,4 @@ else:
 
 if __name__ == '__main__':
     app.run()
+    
