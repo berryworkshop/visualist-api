@@ -1,3 +1,5 @@
+"""Schema for Eve"""
+
 SnippetSchema = {
   'text': {
     'type': 'string',

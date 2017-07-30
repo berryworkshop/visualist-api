@@ -77,4 +77,6 @@ settings = {
     'MONGO_URI': f'mongodb://{db_user}:{db_pass}@{db_server}:{db_port}/{db_name}',
     'RESOURCE_METHODS': ['GET', 'POST', 'DELETE'],
     'ITEM_METHODS': ['GET', 'PATCH', 'PUT', 'DELETE'],
+    'X_DOMAINS': '*',
+    'X_HEADERS': ['Content-Type'],
 }
