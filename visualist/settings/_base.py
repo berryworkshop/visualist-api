@@ -47,7 +47,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'visualist.wsgi.application'
+WSGI_APPLICATION = 'visualist.wsgi.app'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

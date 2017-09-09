@@ -15,6 +15,8 @@ MIDDLEWARE_CLASSES += (
     'whitenoise.middleware.WhiteNoiseMiddleware',
 )
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
