@@ -5,6 +5,8 @@ DEBUG = False
 ALLOWED_HOSTS = [
     'thevisualist.org',
     'visl.ist',
+    'bcw-visualist-master.herokuapp.com',
+    'bcw-visualist-staging.herokuapp.com',
 ]
 
 INSTALLED_APPS += ()
