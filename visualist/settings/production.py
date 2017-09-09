@@ -7,7 +7,13 @@ ALLOWED_HOSTS = [
     'visl.ist',
 ]
 
-INSTALLED_APPS += []
+INSTALLED_APPS += ()
+
+MIDDLEWARE_CLASSES += (
+    # Simplified static file serving.
+    # https://warehouse.python.org/project/whitenoise/
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+)
 
 DATABASES = {
     'default': {

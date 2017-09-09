@@ -36,6 +36,9 @@ selenium-debug.log
 # mac
 .DS_Store
 
+# static
+static/
+
 # dev database
 *.sqlite3
 
