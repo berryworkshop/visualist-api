@@ -326,27 +326,22 @@ class Event(Record):
     organizers = models.ManyToManyField('Entity',
         related_name='organizer_of',
         blank=True,
-        null=True,
     )
     curators = models.ManyToManyField('Entity',
         related_name='curator_of',
         blank=True,
-        null=True,
     )
     producers = models.ManyToManyField('Entity',
         related_name='producer_of',
         blank=True,
-        null=True,
     )
     exhibitors = models.ManyToManyField('Entity',
         related_name='exhibitor_at',
         blank=True,
-        null=True,
     )
     contributors = models.ManyToManyField('Entity',
         related_name='contributor_to',
         blank=True,
-        null=True,
     )
 
     def __str__(self):
@@ -428,16 +423,13 @@ class Person(Entity):
     )
     nationalities = models.ManyToManyField('Nationality',
         blank=True,
-        null=True,
     )
     parents = models.ManyToManyField('self',
         related_name='children',
         blank=True,
-        null=True,
     )
     friends = models.ManyToManyField('self',
         blank=True,
-        null=True,
     )
 
     def __str__(self):
@@ -472,7 +464,6 @@ class Organization(Entity):
     members = models.ManyToManyField('Entity',
         related_name='member_of',
         blank=True,
-        null=True,
     )
     parent = models.ForeignKey('self',
         related_name='children',
@@ -482,17 +473,14 @@ class Organization(Entity):
     members = models.ManyToManyField('Entity',
         related_name='member_of',
         blank=True,
-        null=True,
     )
     artists = models.ManyToManyField('Entity',
         related_name='represented_by',
         blank=True,
-        null=True,
     )
     employees = models.ManyToManyField('Person',
         related_name='employed_by',
         blank=True,
-        null=True,
     )
 
     def __str__(self):

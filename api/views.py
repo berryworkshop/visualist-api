@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from django.views.generic.base import TemplateView
+from django.http import JsonResponse
 
-# Create your views here.
+def base_view(req):
+    return JsonResponse({'foo': 'bar'})
