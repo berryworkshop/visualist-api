@@ -3,10 +3,10 @@ from ._base import *
 DEBUG = False
 
 ALLOWED_HOSTS = [
-    'thevisualist.org',
-    'visl.ist',
-    'bcw-visualist-master.herokuapp.com',
-    'bcw-visualist-staging.herokuapp.com',
+    '.thevisualist.org',
+    '.visl.ist',
+    '.bcw-visualist-master.herokuapp.com',
+    '.bcw-visualist-staging.herokuapp.com',
 ]
 
 INSTALLED_APPS += ()
