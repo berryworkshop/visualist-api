@@ -3,7 +3,7 @@ from ._base import *
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'localhost',
+    '.localhost',
 ]
 
 INSTALLED_APPS += []
