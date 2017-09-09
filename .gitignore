@@ -15,9 +15,7 @@ neo4j/data
 neo4j/logs
 
 # node/vue
-.DS_Store
 node_modules/
-dist/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
@@ -35,9 +33,6 @@ selenium-debug.log
 
 # mac
 .DS_Store
-
-# static
-static/
 
 # dev database
 *.sqlite3
