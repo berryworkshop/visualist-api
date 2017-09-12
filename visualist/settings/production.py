@@ -1,4 +1,5 @@
 from ._base import *
+import dj_database_url
 
 DEBUG = False
 
@@ -11,13 +12,5 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS += ()
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
+## database connections handled by Heroku, via DATABASE_URL env var
+DATABASES['default'] =  dj_database_url.config()
