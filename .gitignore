@@ -38,7 +38,7 @@ selenium-debug.log
 *.sqlite3
 
 # secret files
-secret/
+.secret
 
 # Editor directories and files
 .idea

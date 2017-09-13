@@ -1,52 +1,82 @@
 from django.db import models
 
-
-class Resource(models.Model):
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    modified = models.DateTimeField(
-        auto_now=True,
-    )
-    name = models.TextField()
-    description = models.TextField()
-    url = models.URLField()
-
-    def __str__(self):
-        return self.name
-
-
-class License(models.Model):
-    created = models.DateTimeField(
-        auto_now_add=True,
-    )
-    modified = models.DateTimeField(
-        auto_now=True,
-    )
-    name = models.TextField()
-    url = models.URLField(
-        blank=True,
-    )
-
-    def __str__(self):
-        return self.name
+# todo:
+    # PyDoc for classes
+    # help_text for fields
 
 
 class Base(models.Model):
     class Meta:
         abstract = True
+
     created = models.DateTimeField(
         auto_now_add=True,
     )
     modified = models.DateTimeField(
         auto_now=True,
     )
+
+
+class Resource(Base):
+
+    name = models.CharField(
+        max_length=250
+    )
+    description = models.TextField()
+    url = models.URLField(
+        blank=True,
+        unique=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class License(Base):
+
+    name = models.CharField(
+        unique=True,
+        max_length=250,
+    )
+    url = models.URLField(
+        blank=True,
+        unique=True
+    )
+
+    def __str__(self):
+        return self.name
+
+
+class Nationality(Base):
+    class Meta:
+        verbose_name_plural = 'nationalities'
+        ordering = ['value']
+
+    ISO_3166_1 = (
+      ('US', 'United States of America'),
+      ('CA', 'Canada'),
+      ('MX', 'Mexico'),
+    )
+    value = models.CharField(
+        max_length=2,
+        choices=ISO_3166_1,
+        unique=True,
+    )
+
+    def __str__(self):
+        return self.value
+
+class Sourced(Base):
+    class Meta:
+        abstract = True
+
     source = models.ForeignKey('Resource')
-    license = models.ForeignKey('License')
 
 
-class Image(Base):
+class Image(Sourced):
+
     schema = 'http://schema.org/ImageObject'
+    license = models.ForeignKey('License')
     ASPECTS = (
         ('main', 'Main'),
         ('recto', 'Recto'),
@@ -54,38 +84,53 @@ class Image(Base):
         ('detail', 'detail'),
         ('signature', 'signature'),
     )
-    title = models.TextField()
-    aspect = models.TextField(
+    title = models.CharField(
+        max_length=250,
+    )
+    aspect = models.CharField(
+        max_length=25,
         choices=ASPECTS,
         default='main',
     )
-    checksum = models.TextField()
+    checksum = models.CharField(
+        max_length=250,
+        unique=True
+    )
 
     def __str__(self):
         return self.title
 
 
-class ContactItem(Base):
+class ContactItem(Sourced):
     class Meta:
         abstract = True
+        ordering = ['-created',]
 
 
 class Address(ContactItem):
+    class Meta:
+        verbose_name_plural = 'addresses'
+        unique_together = (
+            ("address_street", "address_locality", "address_region"),
+        )
+
     ISO_3166_2 = (
       ('IL', 'Illinois'),
       ('IN', 'Indiana'),
       ('MI', 'Michigan'),
       ('WI', 'Wisconsin'),
     )
-    address_for = models.ForeignKey('Record',
-        related_name='addresses',
-    )
     address_street = models.TextField()
-    address_locality = models.TextField()
-    address_region = models.TextField(
+    address_locality = models.CharField(
+        max_length=250,
+    )
+    address_region = models.CharField(
+        max_length=2,
         choices=ISO_3166_2,
     )
-    address_postal_code = models.TextField()
+    address_postal_code = models.CharField(
+        max_length=250,
+    )
     address_country = models.ForeignKey('Nationality')
     # latitude = models.DecimalField()
     # longitude = models.DecimalField()
@@ -97,6 +142,10 @@ class Address(ContactItem):
 
 
 class Phone(ContactItem):
+    class Meta:
+        unique_together = (
+            ("phone_for", "country", "area", "exchange", "number"),)
+
     phone_for = models.ForeignKey('Record')
     country = models.PositiveIntegerField()
     area = models.PositiveIntegerField()
@@ -106,19 +155,31 @@ class Phone(ContactItem):
 
     def __str__(self):
         return '{} ({}) {}-{} x{}'.format(
-            self.country, self.area, self.exchange,
-            self.number, self.extension)
+            self.country,
+            self.area,
+            self.exchange,
+            self.number,
+            self.extension
+        )
 
 
 class Email(ContactItem):
+
     email_for = models.ForeignKey('Record')
-    value = models.TextField()
+    value = models.EmailField(
+        unique=True
+    )
 
     def __str__(self):
         return self.value
 
 
 class SocialAccount(Base):
+    class Meta:
+        unique_together = (
+            ("service", "value"),
+        )
+
     account_for = models.ForeignKey(
         'Record',
         related_name='accounts',
@@ -143,24 +204,38 @@ class SocialAccount(Base):
       ('yelp', 'Yelp'),
       ('youtube', 'YouTube'),
     )
-    service = models.TextField(
+    service = models.CharField(
+        max_length=25,
         choices=SERVICES,
     )
-    value = models.TextField()
+    value = models.CharField(
+        max_length=250,
+    )
 
     def __str__(self):
         return '{}: {}'.format(self.service, self.value)
 
 
-class Snippet(Base):
+class Snippet(Sourced):
+
     value = models.TextField()
+    license = models.ForeignKey('License')
 
     def __str__(self):
         return self.value
 
 
 class Category(Base):
-    value = models.TextField()
+    class Meta:
+        verbose_name_plural = 'categories'
+        ordering = ['value']
+        unique_together = (
+            ("value", "parent"),
+        )
+
+    value = models.CharField(
+        max_length=250,
+    )
     parent = models.ForeignKey('self',
         related_name='children',
         blank=True,
@@ -172,31 +247,29 @@ class Category(Base):
 
 
 class Tag(Base):
-    value = models.SlugField()
+    class Meta:
+        ordering = ['value']
+
+    value = models.SlugField(
+        unique=True
+    )
 
     def __str__(self):
         return self.value
 
 
 class Identifier(Base):
-    value = models.TextField()
+    class Meta:
+        ordering = ['-created']
+
+    value = models.CharField(
+        max_length=250,
+    )
+    record = models.ForeignKey('Record')
 
     def __str__(self):
         return self.value
 
-
-class Nationality(Base):
-    ISO_3166_1 = (
-      ('US', 'United States of America'),
-      ('CA', 'Canada'),
-      ('MX', 'Mexico'),
-    )
-    value = models.TextField(
-        choices=ISO_3166_1,
-    )
-
-    def __str__(self):
-        return self.value
 
 
 CATEGORIES = {
@@ -246,10 +319,14 @@ CATEGORIES = {
 }
 
 
-class Record(Base):
-    schema = 'http://schema.org/Thing'
+class Record(Sourced):
 
-    slug = models.SlugField()
+    schema = 'http://schema.org/Thing'
+    license = models.ForeignKey('License')
+
+    slug = models.SlugField(
+        unique=True
+    )
     categories = models.ManyToManyField('Category')
     description = models.ForeignKey('Snippet')
     featured = models.BooleanField(
@@ -267,15 +344,15 @@ class Record(Base):
     tags = models.ManyToManyField('Tag',
         blank=True,
     )
-    identifiers = models.ManyToManyField('Identifier',
+    images = models.ManyToManyField('Image',
         blank=True,
     )
-    images = models.ManyToManyField('Image',
+    addresses = models.ManyToManyField('Address',
         blank=True,
     )
 
     def __str__(self):
-        return self.slug
+        return '{}'.format(self.slug)
 
     def name():
         pass
@@ -300,18 +377,24 @@ class Record(Base):
 
 
 class Event(Record):
+    class Meta:
+        ordering = ['-date_start', '-date_end', 'name']
+
     schema = 'http://schema.org/Event'
 
     STATUSES = (
         ('active', 'active'),
         ('cancelled', 'cancelled'),
     )
-    name = models.TextField()
+    name = models.CharField(
+        max_length=250,
+    )
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(
         blank=True,
     )
-    status = models.TextField(
+    status = models.CharField(
+        max_length=25,
         choices=STATUSES,
         default='active',
     )
@@ -345,23 +428,29 @@ class Event(Record):
     )
 
     def __str__(self):
-        return self.name
+        return 'event: {}'.format(self.name)
 
     def duration():
         pass
 
 
 class Work(Record):
+    class Meta:
+        ordering = ['name', '-created']
+
     schema = 'http://schema.org/CreativeWork'
 
-    name = models.TextField()
+    name = models.CharField(
+        max_length=250,
+    )
     completed = models.DateTimeField(
         blank=True,
     )
     published = models.DateTimeField(
         blank=True,
     )
-    version = models.TextField(
+    version = models.CharField(
+        max_length=250,
         blank=True,
     )
     url = models.URLField(
@@ -377,10 +466,11 @@ class Work(Record):
     )
 
     def __str__(self):
-        return self.name
+        return 'work: {}'.format(self.name)
 
 
 class Entity(Record):
+
     works = models.ManyToManyField('Work',
         related_name='creator',
         blank=True,
@@ -388,6 +478,10 @@ class Entity(Record):
 
 
 class Person(Entity):
+    class Meta:
+        verbose_name_plural = 'people'
+        ordering = ['name_last', 'name_first', '-created']
+
     schema = 'http://schema.org/Person'
 
     GENDERS = (
@@ -395,10 +489,13 @@ class Person(Entity):
         ('f', 'female'),
         ('x', 'x'),
     )
-    name_first = models.TextField(
+    name_first = models.CharField(
+        max_length=250,
         blank=True,
     )
-    name_last = models.TextField()
+    name_last = models.CharField(
+        max_length=250,
+    )
     born = models.DateTimeField(
         blank=True,
         null=True,
@@ -407,7 +504,8 @@ class Person(Entity):
         blank=True,
         null=True,
     )
-    gender = models.TextField(
+    gender = models.CharField(
+        max_length=1,
         choices=GENDERS,
         blank=True,
     )
@@ -433,13 +531,18 @@ class Person(Entity):
     )
 
     def __str__(self):
-        return '{}, {}'.format(self.name_last, self.name_first)
+        return 'person: {}, {}'.format(self.name_last, self.name_first)
 
 
 class Organization(Entity):
+    class Meta:
+        ordering = ['name', '-created']
+
     schema = 'http://schema.org/Organization'
 
-    name = models.TextField()
+    name = models.CharField(
+        max_length=250,
+    )
     founded = models.DateTimeField(
         blank=True,
     )
@@ -484,13 +587,18 @@ class Organization(Entity):
     )
 
     def __str__(self):
-        return self.name
+        return 'org: {}'.format(self.name)
 
 
 class Place(Record):
+    class Meta:
+        ordering = ['name', '-created']
+
     schema = 'http://schema.org/Place'
 
-    name = models.TextField()
+    name = models.CharField(
+        max_length=250,
+    )
     body = models.ForeignKey('Snippet',
         blank=True,
         null=True,
@@ -501,11 +609,16 @@ class Place(Record):
     )
 
     def __str__(self):
-        return self.name
+        return 'place: {}'.format(self.name)
 
 
 class Post(Record):
-    name = models.TextField()
+    class Meta:
+        ordering = ['name', '-created']
+
+    name = models.CharField(
+        max_length=250,
+    )
     parent = models.ForeignKey('self',
         related_name='children',
         blank=True,
@@ -513,16 +626,27 @@ class Post(Record):
     )
 
     def __str__(self):
-        return self.name
+        return 'post: {}'.format(self.name)
 
 
 class Page(Post):
-    schema = 'http://schema.org/WebPage'
+    class Meta:
+        ordering = ['-created']
 
+    schema = 'http://schema.org/WebPage'
     body = models.ForeignKey('Snippet')
+
+    def __str__(self):
+        return 'page: {}'.format(self.name)
 
 
 class Collection(Post):
+    class Meta:
+        ordering = ['-created']
+
     schema = 'http://schema.org/CollectionPage'
     records = models.ManyToManyField('Record')
+
+    def __str__(self):
+        return 'coll: {}'.format(self.name)
 
