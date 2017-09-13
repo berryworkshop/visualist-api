@@ -7,5 +7,5 @@ from .views import AppView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls)),
-    url(r'^', AppView.as_view(), name='app'),
+    url(r'^$', AppView.as_view(), name='app'),
 ]
