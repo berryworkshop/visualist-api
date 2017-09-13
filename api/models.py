@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.postgres import fields as pg
+# from django.contrib.postgres import fields as pg
 
 # todo:
     # PyDoc for classes
@@ -29,6 +29,25 @@ class Resource(Base):
         blank=True,
     )
 
+    def __str__(self):
+        return self.title
+
+
+class License(Base):
+    title = models.CharField(
+        max_length=250,
+    )
+    description = models.TextField(
+        blank=True,
+    )
+    url = models.URLField(
+        blank=True,
+    )
+
+    def __str__(self):
+        return self.title
+
+
 
 class Sourced(models.Model):
     class Meta:
@@ -50,25 +69,24 @@ class Hierarchical(models.Model):
     )
 
 
-class Name(Base, Sourced):
+# class Name(Base, Sourced):
 
-    record = models.ForeignKey('Record')
-    primary = models.CharField(
-        max_length = 250,
-    )
-    secondary = models.CharField(
-        max_length = 250,
-        blank=False,
-    )
+#     record = models.ForeignKey('Record')
+#     primary = models.CharField(
+#         max_length = 250,
+#     )
+#     secondary = models.CharField(
+#         max_length = 250,
+#         blank=False,
+#     )
 
-    def __str__(self):
-        return self.value
+#     def __str__(self):
+#         return self.value
 
 
 class Image(Base, Sourced):
-
     schema = 'http://schema.org/ImageObject'
-    name = models.CharField(
+    title = models.CharField(
         max_length=250,
     )
     ASPECTS = (
@@ -151,7 +169,6 @@ class Phone(Base, Sourced):
 
 
 class Email(Base, Sourced):
-
     value = models.EmailField(
         unique=True
     )
@@ -215,7 +232,6 @@ class Term(Base, Hierarchical):
 
 
 class Tag(Base):
-
     value = models.SlugField(
         unique=True
     )
@@ -225,7 +241,6 @@ class Tag(Base):
 
 
 class Identifier(Base):
-
     value = models.CharField(
         max_length=250,
     )
@@ -236,7 +251,6 @@ class Identifier(Base):
 
 
 class Relation(models.Model):
-
     PREDICATES = (
         (('has_category'), ('has category')),
         (('has_contributor'), ('has contributor')),
@@ -252,6 +266,7 @@ class Relation(models.Model):
         (('has_place'), ('has place')),
         (('has_producer'), ('has producer')),
         (('has_publisher'), ('has publisher')),
+        (('has_spouse'), ('has spouse')),
     )
     subject = models.ForeignKey('Record',
         related_name='relation_subject',
@@ -265,7 +280,10 @@ class Relation(models.Model):
         related_name='relation_direct_object',
         on_delete=models.PROTECT,
     )
-    properties = pg.JSONField()
+    # properties = pg.JSONField()
+
+    def __str__(self):
+        return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
 
 
 class Record(Base, Sourced):
@@ -341,15 +359,18 @@ class Record(Base, Sourced):
     )
 
     # classification
+    title = models.CharField(
+        max_length=250,
+    )
     slug = models.SlugField(
         unique=True,
     )
-    body = models.TextField(
-        blank=True,
-    )
-    url = models.URLField(
-        blank=True,
-    )
+    # body = models.TextField(
+    #     blank=True,
+    # )
+    # url = models.URLField(
+    #     blank=True,
+    # )
     # categories = models.ManyToManyField('self',
     #     through='Relation', through_fields=('subject', 'dobject'),
     # )
@@ -363,22 +384,22 @@ class Record(Base, Sourced):
     images = models.ManyToManyField('Image',
         blank=True,
     )
-    license = models.ForeignKey('Resource',
+    license = models.ForeignKey('License',
         related_name='records_licensed',
     )
 
     # common
-    lifespan = pg.DateRangeField()
-    duration = pg.DateTimeRangeField()
+    # lifespan = pg.DateRangeField()
+    # duration = pg.DateTimeRangeField()
 
     # meta
-    version = models.CharField(
-        max_length=250,
-        blank=True,
-    )
-    is_active = models.NullBooleanField(
-        blank=True,
-        default=None,
+    # version = models.CharField(
+    #     max_length=250,
+    #     blank=True,
+    #     default="1.0"
+    # )
+    is_active = models.BooleanField(
+        default=True,
     )
     is_featured = models.BooleanField(
         default=False,
@@ -391,54 +412,54 @@ class Record(Base, Sourced):
     )
 
     # contact info
-    addresses = models.ManyToManyField('Address',
-        blank=True,
-    )
-    phones = models.ManyToManyField('Phone',
-        blank=True,
-    )
-    emails = models.ManyToManyField('Email',
-        blank=True,
-    )
-    social_accounts = models.ManyToManyField('SocialAccount',
-        blank=True,
-    )
+    # addresses = models.ManyToManyField('Address',
+    #     blank=True,
+    # )
+    # phones = models.ManyToManyField('Phone',
+    #     blank=True,
+    # )
+    # emails = models.ManyToManyField('Email',
+    #     blank=True,
+    # )
+    # social_accounts = models.ManyToManyField('SocialAccount',
+    #     blank=True,
+    # )
 
     # event fields
-    is_group_friendly = models.NullBooleanField(
-        blank=True,
-    )
+    # is_group_friendly = models.NullBooleanField(
+    #     blank=True,
+    # )
 
     # work fields
-    published_on = models.DateField(
-        blank=True,
-    )
+    # published_on = models.DateField(
+    #     blank=True,
+    # )
 
     # person fields
-    GENDERS = (
-        ('m', 'male'),
-        ('f', 'female'),
-        ('x', 'x'),
-    )
-    gender = models.CharField(
-        max_length=1,
-        choices=GENDERS,
-        blank=True,
-    )
+    # GENDERS = (
+    #     ('m', 'male'),
+    #     ('f', 'female'),
+    #     ('x', 'x'),
+    # )
+    # gender = models.CharField(
+    #     max_length=1,
+    #     choices=GENDERS,
+    #     blank=True,
+    # )
 
     # organization fields
-    is_nonprofit = models.NullBooleanField(
-        blank=True,
-        default=None,
-    )
-    by_appointment_only = models.NullBooleanField(
-        blank=True,
-        default=None,
-    )
+    # is_nonprofit = models.NullBooleanField(
+    #     blank=True,
+    #     default=None,
+    # )
+    # by_appointment_only = models.NullBooleanField(
+    #     blank=True,
+    #     default=None,
+    # )
 
     # methods
     def __str__(self):
-        return '{}'.format(self.name)
+        return '{}'.format(self.slug)
 
     def name():
         pass
