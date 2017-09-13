@@ -18,5 +18,9 @@ export default new Router({
       name: 'directory',
       component: Directory,
     },
+    {
+      path: "*",
+      component: PageNotFound
+    }
   ],
 });

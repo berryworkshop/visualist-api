@@ -55,6 +55,7 @@ class Sourced(models.Model):
 
     source = models.ForeignKey('Resource',
         blank=True,
+        null=True,
     )
 
 
