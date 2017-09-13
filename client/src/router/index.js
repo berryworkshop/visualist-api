@@ -1,15 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hello from '@/components/Hello';
+import Home from '@/components/Home';
+import Directory from '@/components/Directory';
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello,
+      name: 'home',
+      component: Home,
+    },
+    {
+      path: '/directory',
+      name: 'directory',
+      component: Directory,
     },
   ],
 });

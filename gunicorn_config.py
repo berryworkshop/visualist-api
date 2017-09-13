@@ -1,6 +1,6 @@
 import os
 
-env = os.environ.get('NODE_ENV', 'production')
+env = os.environ.get('MODE', 'production')
 
 class bcolors:
     HEADER = '\033[95m'

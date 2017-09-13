@@ -1,6 +1,6 @@
 import os
 
-env = os.environ.get('NODE_ENV', 'production')
+env = os.environ.get('MODE', 'production')
 
 if env == 'development':
     from .development import *
