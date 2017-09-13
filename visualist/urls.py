@@ -7,5 +7,6 @@ from .views import HomePageView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls)),
+    url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^$', HomePageView.as_view(), name='home'),
 ]

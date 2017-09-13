@@ -14,6 +14,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'api',
 ]
 
@@ -77,3 +78,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'client/dist/static'),
 ]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+REST_FRAMEWORK = {
+
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

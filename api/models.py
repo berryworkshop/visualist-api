@@ -17,75 +17,38 @@ class Base(models.Model):
     )
 
 
-class Resource(Base):
-
-    name = models.CharField(
-        max_length=250
-    )
-    description = models.TextField()
-    url = models.URLField(
-        blank=True,
-        unique=True
-    )
-
-    def __str__(self):
-        return self.name
-
-
-class License(Base):
-
-    name = models.CharField(
-        unique=True,
-        max_length=250,
-    )
-    url = models.URLField(
-        blank=True,
-        unique=True
-    )
-
-    def __str__(self):
-        return self.name
-
-
-class Nationality(Base):
-    class Meta:
-        verbose_name_plural = 'nationalities'
-        ordering = ['value']
-
-    ISO_3166_1 = (
-      ('US', 'United States of America'),
-      ('CA', 'Canada'),
-      ('MX', 'Mexico'),
-    )
-    value = models.CharField(
-        max_length=2,
-        choices=ISO_3166_1,
-        unique=True,
-    )
-
-    def __str__(self):
-        return self.value
-
-class Sourced(Base):
+class Sourced(models.Model):
     class Meta:
         abstract = True
 
-    source = models.ForeignKey('Resource')
+    source = models.ForeignKey('Work',
+        blank=True,
+    )
 
 
-class Image(Sourced):
+class Hierarchical(models.Model):
+    class Meta:
+        abstract = True
+
+    parent = models.ForeignKey('self',
+        related_name='children',
+        blank=True,
+        null=True,
+    )
+
+
+class Image(Base, Sourced):
 
     schema = 'http://schema.org/ImageObject'
-    license = models.ForeignKey('License')
+    name = models.CharField(
+        max_length=250,
+    )
     ASPECTS = (
         ('main', 'Main'),
         ('recto', 'Recto'),
         ('verso', 'Verso'),
         ('detail', 'detail'),
         ('signature', 'signature'),
-    )
-    title = models.CharField(
-        max_length=250,
     )
     aspect = models.CharField(
         max_length=25,
@@ -98,16 +61,10 @@ class Image(Sourced):
     )
 
     def __str__(self):
-        return self.title
+        return self.name
 
 
-class ContactItem(Sourced):
-    class Meta:
-        abstract = True
-        ordering = ['-created',]
-
-
-class Address(ContactItem):
+class Address(Base, Sourced):
     class Meta:
         verbose_name_plural = 'addresses'
         unique_together = (
@@ -131,7 +88,7 @@ class Address(ContactItem):
     address_postal_code = models.CharField(
         max_length=250,
     )
-    address_country = models.ForeignKey('Nationality')
+    address_country = models.ForeignKey('Term')
     # latitude = models.DecimalField()
     # longitude = models.DecimalField()
 
@@ -141,13 +98,15 @@ class Address(ContactItem):
             self.address_postal_code)
 
 
-class Phone(ContactItem):
+class Phone(Base, Sourced):
     class Meta:
         unique_together = (
-            ("phone_for", "country", "area", "exchange", "number"),)
+            ("area", "exchange", "number"),
+        )
 
-    phone_for = models.ForeignKey('Record')
-    country = models.PositiveIntegerField()
+    country = models.PositiveIntegerField(
+        default=1,
+    )
     area = models.PositiveIntegerField()
     exchange = models.PositiveIntegerField()
     number = models.PositiveIntegerField()
@@ -163,9 +122,8 @@ class Phone(ContactItem):
         )
 
 
-class Email(ContactItem):
+class Email(Base, Sourced):
 
-    email_for = models.ForeignKey('Record')
     value = models.EmailField(
         unique=True
     )
@@ -174,16 +132,12 @@ class Email(ContactItem):
         return self.value
 
 
-class SocialAccount(Base):
+class SocialAccount(Base, Sourced):
     class Meta:
         unique_together = (
             ("service", "value"),
         )
 
-    account_for = models.ForeignKey(
-        'Record',
-        related_name='accounts',
-    )
     SERVICES = (
       ('ask', 'Ask.fm'),
       ('facebook', 'Facebook'),
@@ -216,30 +170,28 @@ class SocialAccount(Base):
         return '{}: {}'.format(self.service, self.value)
 
 
-class Snippet(Sourced):
+class Snippet(Base, Sourced):
 
     value = models.TextField()
-    license = models.ForeignKey('License')
+    license = models.ForeignKey('Work',
+        related_name='licensed_snippets'
+    )
 
     def __str__(self):
         return self.value
 
 
-class Category(Base):
+class Term(Base, Hierarchical):
     class Meta:
-        verbose_name_plural = 'categories'
         ordering = ['value']
         unique_together = (
+            ("value", "vocabulary"),
             ("value", "parent"),
         )
 
+    vocabulary = models.ForeignKey('Work')
     value = models.CharField(
         max_length=250,
-    )
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
     )
 
     def __str__(self):
@@ -289,6 +241,8 @@ CATEGORIES = {
         'sculpture',
         'visual artwork',
         'website',
+        'vocabulary',
+        'license',
     ],
     'person': [
         'artist',
@@ -319,15 +273,16 @@ CATEGORIES = {
 }
 
 
-class Record(Sourced):
+class Record(Base, Sourced):
 
     schema = 'http://schema.org/Thing'
-    license = models.ForeignKey('License')
+    license = models.ForeignKey('Work',
+        related_name='licensed_records'
+    )
 
     slug = models.SlugField(
         unique=True
     )
-    categories = models.ManyToManyField('Category')
     description = models.ForeignKey('Snippet')
     featured = models.BooleanField(
         default=False,
@@ -347,7 +302,17 @@ class Record(Sourced):
     images = models.ManyToManyField('Image',
         blank=True,
     )
+
     addresses = models.ManyToManyField('Address',
+        blank=True,
+    )
+    phones = models.ManyToManyField('Phone',
+        blank=True,
+    )
+    emails = models.ManyToManyField('Email',
+        blank=True,
+    )
+    social_accounts = models.ManyToManyField('SocialAccount',
         blank=True,
     )
 
@@ -376,18 +341,20 @@ class Record(Sourced):
         pass
 
 
-class Event(Record):
+class Event(Record, Hierarchical):
     class Meta:
         ordering = ['-date_start', '-date_end', 'name']
 
     schema = 'http://schema.org/Event'
-
+    name = models.CharField(
+        max_length=250,
+    )
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['event']
+    )
     STATUSES = (
         ('active', 'active'),
         ('cancelled', 'cancelled'),
-    )
-    name = models.CharField(
-        max_length=250,
     )
     date_start = models.DateTimeField()
     date_end = models.DateTimeField(
@@ -400,11 +367,6 @@ class Event(Record):
     )
     group_friendly = models.NullBooleanField(
         blank=True,
-    )
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
     )
     organizers = models.ManyToManyField('Entity',
         related_name='organizer_of',
@@ -439,9 +401,11 @@ class Work(Record):
         ordering = ['name', '-created']
 
     schema = 'http://schema.org/CreativeWork'
-
     name = models.CharField(
         max_length=250,
+    )
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['work']
     )
     completed = models.DateTimeField(
         blank=True,
@@ -484,6 +448,9 @@ class Person(Entity):
 
     schema = 'http://schema.org/Person'
 
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['person']
+    )
     GENDERS = (
         ('m', 'male'),
         ('f', 'female'),
@@ -519,8 +486,9 @@ class Person(Entity):
         blank=True,
         null=True,
     )
-    nationalities = models.ManyToManyField('Nationality',
+    nationalities = models.ManyToManyField('Term',
         blank=True,
+        related_name='people_of_nationality'
     )
     parents = models.ManyToManyField('self',
         related_name='children',
@@ -534,14 +502,16 @@ class Person(Entity):
         return 'person: {}, {}'.format(self.name_last, self.name_first)
 
 
-class Organization(Entity):
+class Organization(Entity, Hierarchical):
     class Meta:
         ordering = ['name', '-created']
 
     schema = 'http://schema.org/Organization'
-
     name = models.CharField(
         max_length=250,
+    )
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['organization']
     )
     founded = models.DateTimeField(
         blank=True,
@@ -568,11 +538,6 @@ class Organization(Entity):
         related_name='member_of',
         blank=True,
     )
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
-    )
     members = models.ManyToManyField('Entity',
         related_name='member_of',
         blank=True,
@@ -595,9 +560,11 @@ class Place(Record):
         ordering = ['name', '-created']
 
     schema = 'http://schema.org/Place'
-
     name = models.CharField(
         max_length=250,
+    )
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['place']
     )
     body = models.ForeignKey('Snippet',
         blank=True,
@@ -612,19 +579,12 @@ class Place(Record):
         return 'place: {}'.format(self.name)
 
 
-class Post(Record):
+class Post(Record, Hierarchical):
     class Meta:
         ordering = ['name', '-created']
-
     name = models.CharField(
         max_length=250,
     )
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
-    )
-
     def __str__(self):
         return 'post: {}'.format(self.name)
 
@@ -633,6 +593,9 @@ class Page(Post):
     class Meta:
         ordering = ['-created']
 
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['page']
+    )
     schema = 'http://schema.org/WebPage'
     body = models.ForeignKey('Snippet')
 
@@ -644,6 +607,9 @@ class Collection(Post):
     class Meta:
         ordering = ['-created']
 
+    categories = models.ManyToManyField('Term',
+        # choices=CATEGORIES['collection']
+    )
     schema = 'http://schema.org/CollectionPage'
     records = models.ManyToManyField('Record')
 
