@@ -273,17 +273,78 @@ CATEGORIES = {
 }
 
 
+
+class Label(models.Model):
+    pass
+
+
+
+class Relation(models.Model):
+    PREDICATES = (
+        (('parent'), ('parent of')),
+        (('category'), ('category for')),
+        (('member'), ('member of')),
+
+        # general
+        (('creator'), ('creator of')),
+        (('contributor'), ('contributor to')),
+
+        # event
+        (('organizer'), ('organizer of')),
+        (('curator'), ('curator of')),
+        (('exhibitor'), ('exhibitor of')),
+        (('producer'), ('producer of')),
+
+        # work
+        (('publisher'), ('publisher of')),
+    )
+    subject = models.ForeignKey(Record, on_delete=models.PROTECT)
+    predicate = models.CharField(
+        options=PREDICATES,
+    )
+    dobject = models.ForeignKey(Record, on_delete=models.PROTECT)
+
+
+
 class Record(Base, Sourced):
 
-    schema = 'http://schema.org/Thing'
-    license = models.ForeignKey('Work',
-        related_name='licensed_records'
-    )
+    # schema = 'http://schema.org/Thing'
 
+    # basic
+    name = models.CharField(
+        max_length=250,
+    )
     slug = models.SlugField(
         unique=True
     )
     description = models.ForeignKey('Snippet')
+    same_as = models.URLField(
+        blank=True,
+    )
+    start = models.DateTimeField()
+    end = models.DateTimeField(
+        blank=True,
+    )
+
+    # properties
+    # categories = models.ManyToManyField('self',
+    #     through='Relation', through_fields=('subject', 'dobject'),
+    # )
+    labels = models.ManyToManyField('Label')
+    tags = models.ManyToManyField('Tag',
+        blank=True,
+    )
+    images = models.ManyToManyField('Image',
+        blank=True,
+    )
+
+    # meta
+    license = models.ForeignKey('self',
+        related_name='licensed_records'
+    )
+    status = models.NullBooleanField(
+        blank=True,
+    )
     featured = models.BooleanField(
         default=False,
     )
@@ -293,16 +354,8 @@ class Record(Base, Sourced):
     web_public = models.BooleanField(
         default=True,
     )
-    same_as = models.URLField(
-        blank=True,
-    )
-    tags = models.ManyToManyField('Tag',
-        blank=True,
-    )
-    images = models.ManyToManyField('Image',
-        blank=True,
-    )
 
+    # contact info
     addresses = models.ManyToManyField('Address',
         blank=True,
     )
@@ -316,6 +369,29 @@ class Record(Base, Sourced):
         blank=True,
     )
 
+    # event fields
+    organizers = models.ManyToManyField('self',
+        through='Relation', through_fields=('subject', 'dobject'),
+        blank=True
+    )
+    curators = models.ManyToManyField('self',
+        through='Relation', through_fields=('subject', 'dobject'),
+        blank=True
+    )
+    producers = models.ManyToManyField('self',
+        through='Relation', through_fields=('subject', 'dobject'),
+        blank=True
+    )
+    exhibitors = models.ManyToManyField('self',
+        through='Relation', through_fields=('subject', 'dobject'),
+        blank=True
+    )
+    contributors = models.ManyToManyField('self',
+        through='Relation', through_fields=('subject', 'dobject'),
+        blank=True
+    )
+
+    # methods
     def __str__(self):
         return '{}'.format(self.slug)
 
@@ -340,279 +416,4 @@ class Record(Base, Sourced):
     def distance():
         pass
 
-
-class Event(Record, Hierarchical):
-    class Meta:
-        ordering = ['-date_start', '-date_end', 'name']
-
-    schema = 'http://schema.org/Event'
-    name = models.CharField(
-        max_length=250,
-    )
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['event']
-    )
-    STATUSES = (
-        ('active', 'active'),
-        ('cancelled', 'cancelled'),
-    )
-    date_start = models.DateTimeField()
-    date_end = models.DateTimeField(
-        blank=True,
-    )
-    status = models.CharField(
-        max_length=25,
-        choices=STATUSES,
-        default='active',
-    )
-    group_friendly = models.NullBooleanField(
-        blank=True,
-    )
-    organizers = models.ManyToManyField('Entity',
-        related_name='organizer_of',
-        blank=True,
-    )
-    curators = models.ManyToManyField('Entity',
-        related_name='curator_of',
-        blank=True,
-    )
-    producers = models.ManyToManyField('Entity',
-        related_name='producer_of',
-        blank=True,
-    )
-    exhibitors = models.ManyToManyField('Entity',
-        related_name='exhibitor_at',
-        blank=True,
-    )
-    contributors = models.ManyToManyField('Entity',
-        related_name='contributor_to',
-        blank=True,
-    )
-
-    def __str__(self):
-        return 'event: {}'.format(self.name)
-
-    def duration():
-        pass
-
-
-class Work(Record):
-    class Meta:
-        ordering = ['name', '-created']
-
-    schema = 'http://schema.org/CreativeWork'
-    name = models.CharField(
-        max_length=250,
-    )
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['work']
-    )
-    completed = models.DateTimeField(
-        blank=True,
-    )
-    published = models.DateTimeField(
-        blank=True,
-    )
-    version = models.CharField(
-        max_length=250,
-        blank=True,
-    )
-    url = models.URLField(
-        blank=True,
-    )
-    created_at = models.ManyToManyField('Place',
-        related_name='works_created_here',
-        blank=True,
-    )
-    location = models.ManyToManyField('Place',
-        related_name='works_here',
-        blank=True,
-    )
-
-    def __str__(self):
-        return 'work: {}'.format(self.name)
-
-
-class Entity(Record):
-
-    works = models.ManyToManyField('Work',
-        related_name='creator',
-        blank=True,
-    )
-
-
-class Person(Entity):
-    class Meta:
-        verbose_name_plural = 'people'
-        ordering = ['name_last', 'name_first', '-created']
-
-    schema = 'http://schema.org/Person'
-
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['person']
-    )
-    GENDERS = (
-        ('m', 'male'),
-        ('f', 'female'),
-        ('x', 'x'),
-    )
-    name_first = models.CharField(
-        max_length=250,
-        blank=True,
-    )
-    name_last = models.CharField(
-        max_length=250,
-    )
-    born = models.DateTimeField(
-        blank=True,
-        null=True,
-    )
-    died = models.DateTimeField(
-        blank=True,
-        null=True,
-    )
-    gender = models.CharField(
-        max_length=1,
-        choices=GENDERS,
-        blank=True,
-    )
-    born_at = models.ForeignKey('Place',
-        related_name='birthplace_of',
-        blank=True,
-        null=True,
-    )
-    died_at = models.ForeignKey('Place',
-        related_name='deathplace_of',
-        blank=True,
-        null=True,
-    )
-    nationalities = models.ManyToManyField('Term',
-        blank=True,
-        related_name='people_of_nationality'
-    )
-    parents = models.ManyToManyField('self',
-        related_name='children',
-        blank=True,
-    )
-    friends = models.ManyToManyField('self',
-        blank=True,
-    )
-
-    def __str__(self):
-        return 'person: {}, {}'.format(self.name_last, self.name_first)
-
-
-class Organization(Entity, Hierarchical):
-    class Meta:
-        ordering = ['name', '-created']
-
-    schema = 'http://schema.org/Organization'
-    name = models.CharField(
-        max_length=250,
-    )
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['organization']
-    )
-    founded = models.DateTimeField(
-        blank=True,
-    )
-    founded_at = models.ForeignKey('Place',
-        blank=True,
-        null=True,
-    )
-    dissolved = models.DateTimeField(
-        blank=True,
-    )
-    nonprofit = models.NullBooleanField()
-    appointment_only = models.BooleanField(
-        default=False,
-    )
-    hours = models.TextField(
-        blank=True,
-    )
-    logo = models.ForeignKey('Image',
-        blank=True,
-        null=True,
-    )
-    members = models.ManyToManyField('Entity',
-        related_name='member_of',
-        blank=True,
-    )
-    members = models.ManyToManyField('Entity',
-        related_name='member_of',
-        blank=True,
-    )
-    artists = models.ManyToManyField('Entity',
-        related_name='represented_by',
-        blank=True,
-    )
-    employees = models.ManyToManyField('Person',
-        related_name='employed_by',
-        blank=True,
-    )
-
-    def __str__(self):
-        return 'org: {}'.format(self.name)
-
-
-class Place(Record):
-    class Meta:
-        ordering = ['name', '-created']
-
-    schema = 'http://schema.org/Place'
-    name = models.CharField(
-        max_length=250,
-    )
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['place']
-    )
-    body = models.ForeignKey('Snippet',
-        blank=True,
-        null=True,
-    )
-    events = models.ManyToManyField('Event',
-        related_name='has_venue',
-        blank=True,
-    )
-
-    def __str__(self):
-        return 'place: {}'.format(self.name)
-
-
-class Post(Record, Hierarchical):
-    class Meta:
-        ordering = ['name', '-created']
-    name = models.CharField(
-        max_length=250,
-    )
-    def __str__(self):
-        return 'post: {}'.format(self.name)
-
-
-class Page(Post):
-    class Meta:
-        ordering = ['-created']
-
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['page']
-    )
-    schema = 'http://schema.org/WebPage'
-    body = models.ForeignKey('Snippet')
-
-    def __str__(self):
-        return 'page: {}'.format(self.name)
-
-
-class Collection(Post):
-    class Meta:
-        ordering = ['-created']
-
-    categories = models.ManyToManyField('Term',
-        # choices=CATEGORIES['collection']
-    )
-    schema = 'http://schema.org/CollectionPage'
-    records = models.ManyToManyField('Record')
-
-    def __str__(self):
-        return 'coll: {}'.format(self.name)
 
