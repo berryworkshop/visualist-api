@@ -37,8 +37,6 @@ export default {
 };
 </script>
 
-<style scoped>
-  .page_title {
-    color: green;
-  }
+<style lang="scss" scoped>
+
 </style>

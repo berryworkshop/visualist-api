@@ -10,17 +10,9 @@ ALLOWED_HOSTS = [
     '.bcw-visualist-staging.herokuapp.com',
 ]
 
-INSTALLED_APPS += ()
+INSTALLED_APPS += []
 
 ## database connections handled by Heroku, via DATABASE_URL env var
 DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'myproject',
-#         'USER': 'myprojectuser',
-#         'PASSWORD': 'password',
-#         'HOST': 'localhost',
-#         'PORT': '',
-#     }
+    'default': dj_database_url.config(),
 }
-DATABASES['default'] =  dj_database_url.config()

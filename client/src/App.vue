@@ -11,12 +11,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+@import '~normalize.css/normalize.css';
+
 body{
   font-size: 18px;
-}
 
-#app {
-  font-family: 'Work Sans', sans-serif;
+  #app {
+    font-family: 'Helvetica', sans-serif;
+  }
 }
 </style>
