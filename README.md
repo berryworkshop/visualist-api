@@ -42,52 +42,9 @@ The Visualist
 It's alive!
 
 
-Database
----
+## testing
 
-Currently, I'm running MongoDB as the database, which seems OK.  (Maybe in the future this will change.)  But for now, for development, you'll need a local `Mongod` process running, with a database `visualist`, and an admin user `visualist_admin`.  See the environment variables below for more details.
-
-
-Environment Variables
----
-
-This project needs these environment variables to be set, probably via a `.env` file (check out `autoenv` on Mac... works great):
-
-At the `/visualist` level, something like:
-
-    SECRET_KEY=<<50 char random key>>
-    PROJ_PATH=$HOME/Projects/visualist
-
-At the `/api` level:
-
-    SETTINGS_MODE=development
-    FLASK_APP=api
-    FLASK_DEBUG=true
-    MONGO_USERNAME=visualist_admin
-    MONGO_PASSWORD=<<db_password>>
-    MONGO_SERVER=localhost
-    MONGO_PORT=27017
-    MONGO_DBNAME=visualist
-
-
-Deploy
----
-
-General deployment for the API and NGINX happens via Git and Docker.
-
-    git push origin master
-    ssh visualist_digitalocean
-    cd /srv/visualist
-    git pull origin master
-    docker-compose stop
-    docker-compose up --build -d
-    exit
-
-Environment variables for the Digital Ocean VM are located at `/etc/environment`.
-
-Deployment for the Frontend is detailed in that directory's README.
-
-Running the API's development server (and an alternative deployment for the API to Heroku) is detailed in that directory's README.
+`./manage.py test && cd client && yarn run test && cd ..`
 
 
 Credits

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <p><router-link :to="{name: 'home'}">The Visualist</router-link></p>
+    <img src="./assets/logo.png">
     <router-view></router-view>
   </div>
 </template>
@@ -11,14 +11,13 @@ export default {
 };
 </script>
 
-<style lang="scss">
-@import '~normalize.css/normalize.css';
-
-body{
-  font-size: 18px;
-
-  #app {
-    font-family: 'Helvetica', sans-serif;
-  }
+<style>
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>
