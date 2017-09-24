@@ -1,28 +1,57 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+	<!-- Header -->
+			<vis-header></vis-header>
+
+		<!-- Main -->
+			<div id="main">
+
+				<!-- One -->
+        <section-one></section-one>
+
+				<!-- Two -->
+				<section-two></section-two>
+
+				<!-- Three -->
+				<section-three></section-three>
+
+				<!-- Four -->
+				<section-four></section-four>
+
+			</div>
+
+		<!-- Footer -->
+      <vis-footer></vis-footer>
+
+      <!-- Scripts -->
+
+      <!-- <script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.poptrox.min.js"></script>
+			<script src="../assets/js/skel.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script> -->
+
   </div>
 </template>
 
 <script>
+import VisHeader from './Header';
+import VisFooter from './Footer';
+import SectionOne from './SectionOne';
+import SectionTwo from './SectionTwo';
+import SectionThree from './SectionThree';
+import SectionFour from './SectionFour';
+
 export default {
   name: 'hello',
+  components: {
+    VisHeader,
+    VisFooter,
+    SectionOne,
+    SectionTwo,
+    SectionThree,
+    SectionFour,
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
@@ -32,7 +61,10 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style lang='scss'>
+@import '../assets/css/main.css';
+
+
 h1, h2 {
   font-weight: normal;
 }
