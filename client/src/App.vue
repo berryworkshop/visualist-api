@@ -1,23 +1,55 @@
 <template>
   <div id="app">
-    <!-- <img src="./assets/logo.png"> -->
-    <router-view></router-view>
+    <console id="console"></console>
+    <router-view id="layout"></router-view>
   </div>
 </template>
 
 <script>
+import Console from './components/common/Console';
+
 export default {
   name: 'app',
+  components: {
+    Console,
+  },
 };
 </script>
 
-<style>
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
+<style lang="scss">
+@import '~normalize.css/normalize.css';
+
+body * {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto Mono', monospace;
+  background-color: hsl(0, 0, 95%);
+  color: hsl(0, 0, 20%);
+  font-size: 14px;
+
+  .container {
+    padding: 1rem;
+  }
+}
+
+
+
+#app {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+
+  #console {
+    flex-basis: 16rem;
+    min-height: 100vh;
+    height: 100%;
+  }
+  #layout {
+    flex: 1;
+    min-height: 100vh;
+  }
+}
+
 </style>
