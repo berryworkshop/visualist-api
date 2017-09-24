@@ -1,15 +1,14 @@
 <template>
   <div class="layout">
-
     <vis-header id="header"></vis-header>
     <nav-breadcrumb id="breadcrumb"></nav-breadcrumb>
     <main id="main" class="container">
       <slot></slot>
     </main>
     <vis-footer id="footer"></vis-footer>
-
   </div>
 </template>
+
 
 <script>
 import VisHeader from '../common/VisHeader';
@@ -26,24 +25,19 @@ export default {
 };
 </script>
 
+
 <style lang='scss'>
 @import '../../assets/global.scss';
 
 .layout {
   display: flex;
   flex-direction: column;
-
-  #header {
-    flex: 0;
-  }
-  #breadcrumb {}
+  // #header {}
+  // #breadcrumb {}
   main {
     flex: 1;
   }
-  #footer {
-    flex: 0;
-  }
-
+  // #footer {}
   @include screen_tablet_landscape_up {
     min-height: 100vh;
   }

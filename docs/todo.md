@@ -5,9 +5,10 @@
 
 1. Basic e2e
   ✓ `/` should load
-    • should have header and footer
-    • should be responsive
-    • header should have links to `/directory`, `/calendar`, `/map`, `/user`
+    ✓ should have header and footer
+    ✓ should be responsive
+    ✓ header should have links to `/directory`, `/calendar`, `/map`, `/user`, `/search`
+    • figure out how nightwatch "pages" work; implement
 
 1. Users
   • `User.generate_key()` should generate new random key, and save at `User.key`
@@ -38,7 +39,7 @@
   • `Event` owner should be logged-in user
 
 1. `/calendar`
-  • should load
+  ✓ should load
   • if logged in, else opposite
     • should find token in request
     • login toggle should be true

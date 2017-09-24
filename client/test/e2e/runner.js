@@ -1,3 +1,5 @@
+require('babel-register')();
+
 // 1. start the dev server using production config
 process.env.NODE_ENV = 'testing';
 const server = require('../../build/dev-server.js');
