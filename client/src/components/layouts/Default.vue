@@ -27,10 +27,11 @@ export default {
 </script>
 
 <style lang='scss'>
+@import '../../assets/global.scss';
+
 .layout {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 
   #header {
     flex: 0;
@@ -41,6 +42,10 @@ export default {
   }
   #footer {
     flex: 0;
+  }
+
+  @include screen_tablet_landscape_up {
+    min-height: 100vh;
   }
 }
 </style>
