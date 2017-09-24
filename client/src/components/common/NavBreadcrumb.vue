@@ -1,6 +1,6 @@
 <template>
   <nav class="container">
-    <p>Breadcrumb</p>
+    <span>Breadcrumb</span>
   </nav>
 </template>
 
