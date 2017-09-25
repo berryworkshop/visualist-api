@@ -1,0 +1,50 @@
+[
+  {
+    "path": "/",
+    name: "home",
+    component: Home,
+    meta: {
+      breadcrumb: "Home",
+    },
+  },
+  {
+    path: "/calendar",
+    name: "calendar",
+    component: Calendar,
+    meta: {
+      breadcrumb: "Calendar",
+    },
+  },
+  {
+    path: "/directory",
+    name: "directory",
+    component: Directory,
+    meta: {
+      breadcrumb: "Directory",
+    },
+  },
+  {
+    path: "/map",
+    name: "map",
+    component: Map,
+    meta: {
+      breadcrumb: "Map",
+    },
+  },
+  {
+    path: "/search",
+    name: "search",
+    component: Search,
+    meta: {
+      breadcrumb: "Search",
+    },
+  },
+  {
+    path: "/user",
+    name: "user",
+    component: User,
+    meta: {
+      breadcrumb: "User",
+    },
+  },
+]

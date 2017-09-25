@@ -7,6 +7,12 @@ from .views import AppView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^api/', include(api_urls)),
+
+    # client urls
+    url(r'^calendar', AppView.as_view(), name='calendar'),
     url(r'^directory', AppView.as_view(), name='directory'),
-    url(r'^$', AppView.as_view(), name='app'),
+    url(r'^map', AppView.as_view(), name='map'),
+    url(r'^search', AppView.as_view(), name='search'),
+    url(r'^user', AppView.as_view(), name='user'),
+    url(r'^$', AppView.as_view(), name='home'),
 ]

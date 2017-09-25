@@ -17,4 +17,4 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class RecordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Record
-        fields = ('title', 'slug', 'label',)
+        fields = ('slug', 'label',)

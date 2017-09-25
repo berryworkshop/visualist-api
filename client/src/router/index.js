@@ -10,6 +10,9 @@ import User from '@/components/User';
 
 Vue.use(Router);
 
+// When you add new root-level routes, make sure you include them in the Django url definitions!
+// Otherwise SPA routes will 404 on direct access.
+
 export default new Router({
   mode: 'history',
   routes: [

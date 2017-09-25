@@ -253,7 +253,7 @@ class Identifier(Base):
 
 class Relation(models.Model):
     PREDICATES = (
-        (('has_category'), ('has category')),
+        # frbr 'work' level (thing-level)
         (('has_contributor'), ('has contributor')),
         (('has_creator'), ('has creator')),
         (('has_curator'), ('has curator')),
@@ -268,6 +268,12 @@ class Relation(models.Model):
         (('has_producer'), ('has producer')),
         (('has_publisher'), ('has publisher')),
         (('has_spouse'), ('has spouse')),
+
+        # frbr 'item' level (record-level)
+        (('has_record_parent'), ('has record parent')),
+        (('has_record_owner'), ('has record owner')),
+        (('has_record_category'), ('has record category')),
+        (('has_record_submitter'), ('has record submitter')),
     )
     subject = models.ForeignKey('Record',
         related_name='relation_subject',
@@ -360,9 +366,9 @@ class Record(Base, Sourced):
     )
 
     # classification
-    title = models.CharField(
-        max_length=250,
-    )
+    # title = models.CharField(
+    #     max_length=250,
+    # )
     slug = models.SlugField(
         unique=True,
     )
@@ -460,7 +466,7 @@ class Record(Base, Sourced):
 
     # methods
     def __str__(self):
-        return '{}'.format(self.slug)
+        return '{}: {}'.format(self.label, self.slug)
 
     def name():
         pass

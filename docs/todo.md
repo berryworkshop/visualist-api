@@ -61,14 +61,14 @@
   • Should build JSON schema based on model fields
   • schema should be compatible with Vee-Validate requirements
   • should have basic fields
-    • `title`
+    • `label`
     • `slug`
 
 1. `/submit`
   if logged in
     • should provide form
     • should have basic fields
-      • `title`
+      • `label`
       • `slug` (hidden field)
     • form
       • should validate against schema
