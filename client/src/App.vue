@@ -19,7 +19,10 @@ export default {
 <style lang="scss">
 @import './assets/global.scss';
 
+
 #app {
+  background-color: hsl(0, 0, 95%);
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -34,7 +37,7 @@ export default {
     #console {
       flex-basis: 16rem;
       min-height: 100vh;
-      height: 100%;
+      height: inherit;
     }
     #layout {
       min-height: 100vh;

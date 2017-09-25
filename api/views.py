@@ -1,5 +1,6 @@
 from django.views.generic.base import TemplateView
 from django.http import JsonResponse
+from django.db.models import Q
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from .serializers import UserSerializer, GroupSerializer, RecordSerializer
@@ -38,5 +39,18 @@ class EventViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows events to be viewed or edited.
     """
-    queryset = Record.objects.all()
+    queryset = Record.objects.filter(label='event')
     serializer_class = RecordSerializer
+
+
+class EntityViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows people and organizations to be viewed or edited.
+    """
+
+    queryset = Record.objects.filter(
+        Q(label='person') | Q(label='organization')
+    )
+    serializer_class = RecordSerializer
+
+

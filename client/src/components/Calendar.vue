@@ -3,14 +3,14 @@
     <h2>Calendar</h2>
 
     <section id="events">
-      <h3>Records</h3>
+      <h3>Events</h3>
       <ul>
-        <li v-for="record in records"
-            :key="record.slug">
-          <div class="record" id="record.slug">
-            <h4>{{ record.label }}: {{ record.slug }}</h4>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam veniam libero in! Laborum in corrupti alias reprehenderit cumque enim, fugiat velit dolorum, nobis maxime ea veniam. Nam ducimus accusantium aliquam.</p>
-          </div>
+        <li
+          v-for="event in events"
+          :key="event.slug">
+          <card-record :data="event" :id="event.slug">
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusantium, cumque dolorum nulla veniam error sapiente architecto modi rem soluta voluptatem velit maxime pariatur. Labore est quos ab nemo atque beatae!</p>
+          </card-record>
         </li>
       </ul>
     </section>
@@ -20,15 +20,17 @@
 <script>
 import req from 'superagent';
 import LayoutDefault from './layouts/Default';
+import CardRecord from './common/CardRecord';
 
 export default {
   name: 'calendar',
   components: {
     LayoutDefault,
+    CardRecord,
   },
   data() {
     return {
-      records: [],
+      events: [],
     };
   },
   async created() {
@@ -37,8 +39,8 @@ export default {
       if (process.env.NODE_ENV === 'development') {
         apiRoot = 'http://localhost:8000';
       }
-      const res = await req.get(`${apiRoot}/api/records.json`);
-      this.records = res.body.results;
+      const res = await req.get(`${apiRoot}/api/events.json`);
+      this.events = res.body.results;
     } catch (err) {
       console.error(err); // eslint-disable-line no-console
     }
@@ -48,5 +50,22 @@ export default {
 
 
 <style lang='scss' scoped>
+
+// this is duplicate in Directory: DRY up
+$gutter: 1rem;
+
+ul {
+  padding-left: 0;
+  list-style-type: none;
+
+  display: flex;
+  flex-wrap: wrap;
+  margin: -.5 * $gutter;
+
+  li {
+    flex: 1 0 18rem;
+    margin: .5 * $gutter;
+  }
+}
 
 </style>
