@@ -25,9 +25,18 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
+
 class RecordViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows records to be viewed or edited.
+    """
+    queryset = Record.objects.all()
+    serializer_class = RecordSerializer
+
+
+class EventViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows events to be viewed or edited.
     """
     queryset = Record.objects.all()
     serializer_class = RecordSerializer
