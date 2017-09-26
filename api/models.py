@@ -1,5 +1,5 @@
 from django.db import models
-# from django.contrib.postgres import fields as pg
+from django.contrib.postgres import fields as pg
 
 # todo:
     # PyDoc for classes
@@ -253,7 +253,7 @@ class Identifier(Base):
 
 class Relation(models.Model):
     PREDICATES = (
-        # frbr 'work' level (thing-level)
+        # item-level
         (('has_contributor'), ('has contributor')),
         (('has_creator'), ('has creator')),
         (('has_curator'), ('has curator')),
@@ -269,7 +269,8 @@ class Relation(models.Model):
         (('has_publisher'), ('has publisher')),
         (('has_spouse'), ('has spouse')),
 
-        # frbr 'item' level (record-level)
+        # meta-level
+        (('has_record_source'), ('has record source')),
         (('has_record_parent'), ('has record parent')),
         (('has_record_owner'), ('has record owner')),
         (('has_record_category'), ('has record category')),
@@ -287,7 +288,13 @@ class Relation(models.Model):
         related_name='relation_direct_object',
         on_delete=models.PROTECT,
     )
-    # properties = pg.JSONField()
+    properties = pg.JSONField(
+        default=dict(),
+    )
+    dates = pg.DateTimeRangeField(
+        blank=True,
+        null=True,
+    )
 
     def __str__(self):
         return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
@@ -393,6 +400,10 @@ class Record(Base, Sourced):
     )
     license = models.ForeignKey('License',
         related_name='records_licensed',
+    )
+
+    properties = pg.JSONField(
+        default=dict(),
     )
 
     # common
