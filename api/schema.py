@@ -6,27 +6,11 @@ RecordSchema = {
   'description': {
     'type': 'string'
   },
-  'featured': {
-    'type': 'boolean',
-    'default': False
-  },
-  'approved': {
-    'type': 'boolean',
-    'default': False
-  },
-  'public': {
-    'type': 'boolean',
-    'default': False
-  },
   'categories': {
     'type': 'list',
     'schema': {
       'type': 'string'
     }
-  },
-  'same_as': {
-    'type': 'string',
-    'unique': True
   },
   'identifiers': {
     'type': 'dict',
@@ -48,91 +32,24 @@ RecordSchema = {
       }
     }
   }
-}
-
-WorkSchema = {**RecordSchema, **{
-  'categories': {
+  'urls': {
     'type': 'list',
     'schema': {
-      'type': 'string',
-      'allowed': [
-        'article',
-        'book',
-        'installation',
-        'photograph',
-        'sculpture',
-        'visual artwork',
-        'website'
-      ]
+      'type': 'dict',
+      'schema': {
+        'label': {
+          'type': 'string',
+        },
+        'description': {
+          'type': 'string',
+        }
+        'href': {
+          'type': 'string',
+          'required': True
+        }
+      }
     }
   },
-  'work_date_created': {
-    'type': 'datetime'
-  },
-  'work_date_modified': {
-    'type': 'datetime'
-  },
-  'work_date_published': {
-    'type': 'datetime'
-  },
-  'work_version': {
-    'type': 'string'
-  },
-  'url': {
-    'type': 'string'
-  }
-}}
-
-
-PageSchema = {**RecordSchema, **{
-  'text': {
-    'type': 'string'
-  },
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'allowed': [
-        'standard',
-        'article',
-        'review'
-      ]
-    }
-  }
-}}
-
-
-CollectionSchema = {**RecordSchema, **{
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'allowed': [
-        'standard',
-        'tour'
-      ]
-    }
-  }
-}}
-
-
-TagSchema = {**RecordSchema, **{
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'allowed': [
-        'genre',
-        'medium',
-        'period',
-        'technique'
-      ]
-    }
-  }
-}}
-
-
-EntitySchema = {**RecordSchema, **{
   'emails': {
     'type': 'list',
     'schema': {
@@ -140,7 +57,9 @@ EntitySchema = {**RecordSchema, **{
       'schema': {
         'label': {
           'type': 'string',
-          'required': True
+        },
+        'description': {
+          'type': 'string',
         },
         'address': {
           'required': True,
@@ -155,6 +74,12 @@ EntitySchema = {**RecordSchema, **{
     'schema': {
       'type': 'dict',
       'schema': {
+        'label': {
+          'type': 'string',
+        },
+        'description': {
+          'type': 'string',
+        },
         'country': {
           'type': 'integer',
           'required': True
@@ -182,6 +107,12 @@ EntitySchema = {**RecordSchema, **{
     'schema': {
       'type': 'dict',
       'schema': {
+        'label': {
+          'type': 'string',
+        },
+        'description': {
+          'type': 'string',
+        },
         'service': {
           'required': True,
           'type': 'string',
@@ -213,23 +144,33 @@ EntitySchema = {**RecordSchema, **{
       }
     }
   }
-}}
+}
 
-EventSchema = {**EntitySchema, **{
-  'categories': {
-    'allowed': [
-      'course',
-      'exhibition',
-      'performance',
-      'reception',
-      'residency',
-      'workshop'
-    ]
+WorkSchema = {**RecordSchema, **{
+  'date_created': {
+    'type': 'date'
   },
-  'date_start': {
+  'date_published': {
     'type': 'datetime'
   },
-  'date_end': {
+  'version': {
+    'type': 'string'
+  },
+}}
+
+
+PageSchema = {**RecordSchema, **{
+  'body': {
+    'type': 'string'
+  },
+}}
+
+
+EventSchema = {**RecordSchema, **{
+  'datetime_start': {
+    'type': 'datetime'
+  },
+  'datetime_end': {
     'type': 'datetime'
   },
   'status': {
@@ -248,7 +189,7 @@ EventSchema = {**EntitySchema, **{
 }}
 
 
-PersonSchema = {**EntitySchema, **{
+PersonSchema = {**RecordSchema, **{
   'name': {
     'type': 'dict',
     'required': True,
@@ -262,75 +203,21 @@ PersonSchema = {**EntitySchema, **{
       }
     }
   },
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'allowed': [
-        'artist',
-        'writer',
-        'architect',
-        'filmmaker',
-        'curator',
-        'gallerist',
-        'professor'
-      ]
-    }
-  },
   'date_born': {
     'type': 'datetime'
   },
   'date_died': {
     'type': 'datetime'
   },
-  'gender': {
-    'type': 'string',
-    'allowed': [
-      'male',
-      'female',
-      'other'
-    ]
-  },
-  'nationalities': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'default': 'American'
-    }
-  }
 }}
-# relations:
-#   - has_address (Place)
-#   - has_email (Email)
-#   - has_phone (Phone)
-#   - has_social_account (SocialAccount)
 
-OrganizationSchema = {**EntitySchema, **{
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'allowed': [
-        'archive',
-        'association',
-        'company',
-        'consortium',
-        'foundation',
-        'library',
-        'museum',
-        'school'
-      ]
-    }
-  },
+
+OrganizationSchema = {**RecordSchema, **{
   'date_founded': {
     'type': 'datetime'
   },
   'date_dissolved': {
     'type': 'datetime'
-  },
-  'nonprofit': {
-    'type': 'boolean',
-    'default': True
   },
   'appointment_only': {
     'type': 'boolean',
@@ -340,38 +227,9 @@ OrganizationSchema = {**EntitySchema, **{
     'type': 'string'
   }
 }}
-# relations:
-#   - has_address (Place)
-#   - has_email (Email)
-#   - has_logo (Image)
-#   - has_phone (Phone)
-#   - has_social_account (SocialAccount)
-#   - founded_at (Place)
-#   - founded_by (Person)
-#   - member_of (Organization)
-#   - part_of (Organization)
-# calculated:
-#   - distance
-#   - date
 
-PlaceSchema = {**EntitySchema, **{
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string',
-      'allowed': [
-        'spot',
-        'area',
-        'island',
-        'neighborhood',
-        'city',
-        'county',
-        'region',
-        'state',
-        'country'
-      ]
-    }
-  },
+
+PlaceSchema = {**RecordSchema, **{
   'location': {
     'type': 'point',
     'unique': True
@@ -379,34 +237,4 @@ PlaceSchema = {**EntitySchema, **{
   'polygons': {
     'type': 'multipolygon'
   },
-  'address': {
-    'unique': True,
-    'type': 'dict',
-    'schema': {
-      'street': {
-        'type': 'string'
-      },
-      'locality': {
-        'type': 'string',
-        'default': 'Chicago'
-      },
-      'region': {
-        'type': 'string',
-        'default': 'IL'
-      },
-      'postal_code': {
-        'type': 'string'
-      },
-      'country': {
-        'type': 'string',
-        'default': 'US'
-      }
-    }
-  }
 }}
-# calculated:
-#   - address
-#   - geo
-#   - distance
-
-
