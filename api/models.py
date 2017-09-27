@@ -252,22 +252,50 @@ class Identifier(Base):
 
 
 class Relation(models.Model):
+
     PREDICATES = (
         # item-level
-        (('has_contributor'), ('has contributor')),
-        (('has_creator'), ('has creator')),
-        (('has_curator'), ('has curator')),
-        (('has_employee'), ('has employee')),
-        (('has_exhibitor'), ('has exhibitor')),
-        (('has_friend'), ('has friend')),
-        (('has_member'), ('has member')),
-        (('has_organizer'), ('has organizer')),
-        (('has_owner'), ('has owner')),
-        (('has_parent'), ('has parent')),
-        (('has_place'), ('has place')),
-        (('has_producer'), ('has producer')),
-        (('has_publisher'), ('has publisher')),
-        (('has_spouse'), ('has spouse')),
+            # relations flow in this direction, when possible
+                # Event
+                # Work
+                # Organization
+                # Person
+                # Place
+                # Page
+
+            # event
+            # (('has_event'), ('has event')), # reverse
+
+            # work
+            # (('has_work'), ('has work')), # reverse
+
+            # person/organization
+            (('has_contributor'), ('has contributor')),
+            (('has_creator'), ('has creator')),
+            (('has_curator'), ('has curator')),
+            (('has_employee'), ('has employee')),
+            (('has_exhibitor'), ('has exhibitor')),
+            (('has_friend'), ('has friend')),
+            (('has_member'), ('has member')),
+            (('has_organizer'), ('has organizer')),
+            (('has_owner'), ('has owner')),
+            (('has_parent'), ('has parent')),
+            (('has_producer'), ('has producer')),
+            (('has_publisher'), ('has publisher')),
+            (('has_affiliation'), ('has affiliation')),
+            (('has_spouse'), ('has spouse')),
+            (('has_venue'), ('has_venue')),
+
+            # place
+            (('located_at'), ('located at')),
+            (('started_at'), ('started at')),
+            (('ended_at'), ('ended at')),
+            (('born_at'), ('born at')),
+            (('died_at'), ('died at')),
+
+            # generic
+            (('part_of'), ('part of')),
+            (('same_as'), ('same as')),
 
         # meta-level
         (('has_record_source'), ('has record source')),
