@@ -132,6 +132,13 @@
     "expire_date": "2017-10-08T22:25:52.142Z"
   }
 }, {
+  "model": "sessions.session",
+  "pk": "i2gt4yu68xnoj92a8u4reucm7nlnkdyh",
+  "fields": {
+    "session_data": "NjliYWEzMzM3OWI1YTQwYzRkMjVlZjM1OGJmMDNhOTFhYmMyZWI3Mzp7Il9hdXRoX3VzZXJfaWQiOiIxIiwiX2F1dGhfdXNlcl9iYWNrZW5kIjoiZGphbmdvLmNvbnRyaWIuYXV0aC5iYWNrZW5kcy5Nb2RlbEJhY2tlbmQiLCJfYXV0aF91c2VyX2hhc2giOiIxMmU1OTM2NGYzNDRiNTQwMWJiMTQzYWY3MWI5YmE1YTJiMGMxN2I1In0=",
+    "expire_date": "2017-10-10T05:12:54.390Z"
+  }
+}, {
   "model": "api.license",
   "pk": 1,
   "fields": {
@@ -167,7 +174,9 @@
   "fields": {
     "subject": 15,
     "predicate": "has_record_owner",
-    "dobject": 1
+    "dobject": 1,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -175,7 +184,9 @@
   "fields": {
     "subject": 12,
     "predicate": "has_creator",
-    "dobject": 10
+    "dobject": 10,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -183,7 +194,9 @@
   "fields": {
     "subject": 11,
     "predicate": "has_creator",
-    "dobject": 10
+    "dobject": 10,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -191,7 +204,9 @@
   "fields": {
     "subject": 1,
     "predicate": "has_friend",
-    "dobject": 2
+    "dobject": 2,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -199,7 +214,9 @@
   "fields": {
     "subject": 1,
     "predicate": "has_friend",
-    "dobject": 3
+    "dobject": 3,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -207,7 +224,9 @@
   "fields": {
     "subject": 1,
     "predicate": "has_spouse",
-    "dobject": 6
+    "dobject": 6,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -215,7 +234,13 @@
   "fields": {
     "subject": 5,
     "predicate": "has_parent",
-    "dobject": 1
+    "dobject": 1,
+    "properties": {
+      "cute": true,
+      "nameLast": "Funk-Berry",
+      "nameFirst": "Rex Allan"
+    },
+    "dates": "{\"bounds\": \"[)\", \"lower\": \"2017-07-10T00:00:00+00:00\", \"upper\": null}"
   }
 }, {
   "model": "api.relation",
@@ -223,7 +248,9 @@
   "fields": {
     "subject": 4,
     "predicate": "has_parent",
-    "dobject": 1
+    "dobject": 1,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -231,7 +258,9 @@
   "fields": {
     "subject": 3,
     "predicate": "has_spouse",
-    "dobject": 2
+    "dobject": 2,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -239,7 +268,9 @@
   "fields": {
     "subject": 17,
     "predicate": "has_parent",
-    "dobject": 16
+    "dobject": 16,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -247,7 +278,9 @@
   "fields": {
     "subject": 17,
     "predicate": "has_parent",
-    "dobject": 16
+    "dobject": 16,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -255,7 +288,9 @@
   "fields": {
     "subject": 17,
     "predicate": "has_record_submitter",
-    "dobject": 1
+    "dobject": 1,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.relation",
@@ -263,7 +298,9 @@
   "fields": {
     "subject": 16,
     "predicate": "has_record_submitter",
-    "dobject": 1
+    "dobject": 1,
+    "properties": {},
+    "dates": null
   }
 }, {
   "model": "api.record",
@@ -271,9 +308,9 @@
   "fields": {
     "created_on": "2017-09-24T22:29:28.275Z",
     "modified_on": "2017-09-24T22:29:28.275Z",
-    "source": null,
     "slug": "berry-allan",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -288,9 +325,9 @@
   "fields": {
     "created_on": "2017-09-24T22:29:50.795Z",
     "modified_on": "2017-09-24T22:29:50.795Z",
-    "source": null,
     "slug": "duguid-meg",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -305,9 +342,9 @@
   "fields": {
     "created_on": "2017-09-24T22:30:06.756Z",
     "modified_on": "2017-09-24T22:30:06.756Z",
-    "source": null,
     "slug": "thomas-michael",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -322,9 +359,9 @@
   "fields": {
     "created_on": "2017-09-24T22:30:22.750Z",
     "modified_on": "2017-09-24T22:30:22.750Z",
-    "source": null,
     "slug": "funk-berry-griffin",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -339,9 +376,9 @@
   "fields": {
     "created_on": "2017-09-24T22:30:45.535Z",
     "modified_on": "2017-09-24T22:30:45.535Z",
-    "source": null,
     "slug": "funk-berry-rex",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -356,9 +393,9 @@
   "fields": {
     "created_on": "2017-09-24T22:31:03.365Z",
     "modified_on": "2017-09-24T22:31:03.365Z",
-    "source": null,
     "slug": "funk-tiffany",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -373,9 +410,9 @@
   "fields": {
     "created_on": "2017-09-24T22:31:39.833Z",
     "modified_on": "2017-09-24T22:31:39.833Z",
-    "source": null,
     "slug": "art-institute-chicago",
     "label": "organization",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -390,9 +427,9 @@
   "fields": {
     "created_on": "2017-09-24T22:32:13.206Z",
     "modified_on": "2017-09-24T22:32:13.206Z",
-    "source": null,
     "slug": "chicago-artists-coalition",
     "label": "organization",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -407,9 +444,9 @@
   "fields": {
     "created_on": "2017-09-24T22:32:45.934Z",
     "modified_on": "2017-09-24T22:32:45.934Z",
-    "source": null,
     "slug": "carl-hammer-gallery",
     "label": "organization",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -424,9 +461,9 @@
   "fields": {
     "created_on": "2017-09-24T22:33:05.910Z",
     "modified_on": "2017-09-24T22:33:05.910Z",
-    "source": null,
     "slug": "picasso-pablo",
     "label": "person",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -441,9 +478,9 @@
   "fields": {
     "created_on": "2017-09-24T22:34:32.301Z",
     "modified_on": "2017-09-24T22:34:32.301Z",
-    "source": null,
     "slug": "les-demoiselles-davignon",
     "label": "work",
+    "properties": {},
     "license": 2,
     "is_active": true,
     "is_featured": false,
@@ -458,9 +495,9 @@
   "fields": {
     "created_on": "2017-09-24T22:34:59.392Z",
     "modified_on": "2017-09-24T22:34:59.392Z",
-    "source": null,
     "slug": "guernica",
     "label": "work",
+    "properties": {},
     "license": 2,
     "is_active": true,
     "is_featured": false,
@@ -475,9 +512,9 @@
   "fields": {
     "created_on": "2017-09-24T22:35:35.937Z",
     "modified_on": "2017-09-24T22:35:35.937Z",
-    "source": null,
     "slug": "about",
     "label": "page",
+    "properties": {},
     "license": 2,
     "is_active": true,
     "is_featured": false,
@@ -492,9 +529,9 @@
   "fields": {
     "created_on": "2017-09-24T22:36:05.898Z",
     "modified_on": "2017-09-24T22:36:05.898Z",
-    "source": null,
     "slug": "copyright",
     "label": "page",
+    "properties": {},
     "license": 2,
     "is_active": true,
     "is_featured": false,
@@ -509,9 +546,9 @@
   "fields": {
     "created_on": "2017-09-24T22:36:34.442Z",
     "modified_on": "2017-09-24T22:36:34.442Z",
-    "source": null,
     "slug": "allans-collection",
     "label": "collection",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -526,9 +563,9 @@
   "fields": {
     "created_on": "2017-09-24T22:41:32.527Z",
     "modified_on": "2017-09-24T22:41:32.527Z",
-    "source": null,
     "slug": "expo-chicago",
     "label": "event",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -543,9 +580,9 @@
   "fields": {
     "created_on": "2017-09-24T22:42:06.131Z",
     "modified_on": "2017-09-24T22:42:06.131Z",
-    "source": null,
     "slug": "gallery-opening",
     "label": "event",
+    "properties": {},
     "license": 1,
     "is_active": true,
     "is_featured": false,
@@ -560,9 +597,9 @@
   "fields": {
     "created_on": "2017-09-25T22:46:27.114Z",
     "modified_on": "2017-09-25T22:46:27.114Z",
-    "source": null,
     "slug": "the-visualist",
     "label": "work",
+    "properties": {},
     "license": 3,
     "is_active": true,
     "is_featured": false,
@@ -1008,7 +1045,7 @@
   "pk": 1,
   "fields": {
     "password": "pbkdf2_sha256$36000$SvEurwStb6z1$moJz9HKx/XHMhhrROAXslYhu3zRF69VLk8Hn/FyubII=",
-    "last_login": "2017-09-24T22:25:52.133Z",
+    "last_login": "2017-09-26T05:12:54.387Z",
     "is_superuser": true,
     "username": "admin",
     "first_name": "",
@@ -1463,5 +1500,29 @@
     "object_repr": "work: the-visualist",
     "action_flag": 1,
     "change_message": "[{\"added\": {}}]"
+  }
+}, {
+  "model": "admin.logentry",
+  "pk": 38,
+  "fields": {
+    "action_time": "2017-09-26T05:18:09.974Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "8",
+    "object_repr": "( person: funk-berry-rex )-[ has_parent ]->( person: berry-allan )",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"properties\"]}}]"
+  }
+}, {
+  "model": "admin.logentry",
+  "pk": 39,
+  "fields": {
+    "action_time": "2017-09-26T05:18:44.647Z",
+    "user": 1,
+    "content_type": 14,
+    "object_id": "8",
+    "object_repr": "( person: funk-berry-rex )-[ has_parent ]->( person: berry-allan )",
+    "action_flag": 2,
+    "change_message": "[{\"changed\": {\"fields\": [\"dates\"]}}]"
   }
 }]

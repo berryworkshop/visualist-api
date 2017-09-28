@@ -1,5 +1,16 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 from django.contrib.postgres import fields as pg
+from cerberus import Validator
+from .schema import (
+    work_schema,
+    page_schema,
+    event_schema,
+    person_schema,
+    organization_schema,
+    place_schema,
+)
+
 
 # todo:
     # PyDoc for classes
@@ -24,6 +35,7 @@ class License(Base):
     )
     description = models.TextField(
         blank=True,
+        null=True,
     )
     url = models.URLField(
         blank=True,
@@ -33,7 +45,7 @@ class License(Base):
         return self.title
 
 
-class Image(Base, Sourced):
+class Image(Base):
     schema = 'http://schema.org/ImageObject'
     title = models.CharField(
         max_length=250,
@@ -63,32 +75,38 @@ class Image(Base, Sourced):
         return self.name
 
 
-class Category(Base):
-    class Meta:
-        unique_together = (
-            ("value", "vocabulary"),
-            ("value", "parent"),
-        )
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
-    )
-    vocabulary = models.ForeignKey('Record')
-    value = models.CharField(
-        max_length=250,
-    )
-    description = models.TextField()
+# class Category(Base):
+#     class Meta:
+#         unique_together = (
+#             ("value", "vocabulary"),
+#             ("value", "parent"),
+#         )
+#     parent = models.ForeignKey('self',
+#         related_name='children',
+#         blank=True,
+#         null=True,
+#     )
+#     vocabulary = models.ForeignKey('Record')
+#     value = models.CharField(
+#         max_length=250,
+#     )
+#     description = models.TextField(
+        # blank=True,
+        # null=True,
+        # )
 
-    def __str__(self):
-        return self.value
+#     def __str__(self):
+#         return self.value
 
 
 class Tag(Base):
     value = models.SlugField(
         unique=True
     )
-    description = models.TextField()
+    description = models.TextField(
+        blank=True,
+        null=True,
+        )
 
     def __str__(self):
         return self.value
@@ -168,7 +186,8 @@ class Relation(models.Model):
         on_delete=models.PROTECT,
     )
     properties = pg.JSONField(
-        default=dict(),
+        blank=True,
+        null=True
     )
     dates = pg.DateTimeRangeField(
         blank=True,
@@ -179,7 +198,7 @@ class Relation(models.Model):
         return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
 
 
-class Record(Base, Sourced):
+class Record(Base):
     class Meta:
         ordering = [
             '-created_on',
@@ -187,64 +206,64 @@ class Record(Base, Sourced):
 
     schema = 'http://schema.org/Thing'
 
-    CATEGORIES = {
-        'event': [
-            'course',
-            'exhibition',
-            'performance',
-            'reception',
-            'residency',
-            'workshop',
-        ],
-        'work': [
-            'article',
-            'book',
-            'installation',
-            'photograph',
-            'sculpture',
-            'visual artwork',
-            'website',
-            'vocabulary',
-            'license',
-        ],
-        'person': [
-            'artist',
-            'writer',
-            'architect',
-            'filmmaker',
-            'curator',
-            'gallerist',
-            'professor',
-            'manager',
-        ],
-        'organization': [
-            'archive',
-            'association',
-            'company',
-            'consortium',
-            'foundation',
-            'library',
-            'museum',
-            'school',
-        ],
-        'page': [
-            'article',
-            'review',
-            'collection',
-            'tour',
-        ],
-        'place': [
-            'spot',
-            'area',
-            'island',
-            'neighborhood',
-            'city',
-            'county',
-            'region',
-            'state',
-            'country'
-        ],
-    }
+    # CATEGORIES = {
+    #     'event': [
+    #         'course',
+    #         'exhibition',
+    #         'performance',
+    #         'reception',
+    #         'residency',
+    #         'workshop',
+    #     ],
+    #     'work': [
+    #         'article',
+    #         'book',
+    #         'installation',
+    #         'photograph',
+    #         'sculpture',
+    #         'visual artwork',
+    #         'website',
+    #         'vocabulary',
+    #         'license',
+    #     ],
+    #     'person': [
+    #         'artist',
+    #         'writer',
+    #         'architect',
+    #         'filmmaker',
+    #         'curator',
+    #         'gallerist',
+    #         'professor',
+    #         'manager',
+    #     ],
+    #     'organization': [
+    #         'archive',
+    #         'association',
+    #         'company',
+    #         'consortium',
+    #         'foundation',
+    #         'library',
+    #         'museum',
+    #         'school',
+    #     ],
+    #     'page': [
+    #         'article',
+    #         'review',
+    #         'collection',
+    #         'tour',
+    #     ],
+    #     'place': [
+    #         'spot',
+    #         'area',
+    #         'island',
+    #         'neighborhood',
+    #         'city',
+    #         'county',
+    #         'region',
+    #         'state',
+    #         'country'
+    #     ],
+    # }
 
     LABELS = (
         (('event'), ('event')),
@@ -268,7 +287,8 @@ class Record(Base, Sourced):
         choices=LABELS,
     )
     properties = pg.JSONField(
-        default=dict(),
+        blank=True,
+        null=True
     )
 
     # classification
@@ -280,11 +300,16 @@ class Record(Base, Sourced):
     )
     license = models.ForeignKey('License',
         related_name='records_licensed',
+        default=1,
     )
 
-    categories = models.ManyToManyField('self',
-        through='Relation', through_fields=('subject', 'dobject'),
-    )
+    # categories = pg.ArrayField(
+    #     models.ForeignKey('Category',
+    #         blank=True,
+    #         null=True,
+    #         ),
+    #     blank=True
+    #     )
 
     is_active = models.BooleanField(
         default=True,
@@ -302,6 +327,28 @@ class Record(Base, Sourced):
     # methods
     def __str__(self):
         return '{}: {}'.format(self.label, self.slug)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
+
+    def clean(self):
+        # Make sure properties validate correctly.
+        schemas = {
+            'event': event_schema,
+            'work': work_schema,
+            'person': person_schema,
+            'organization': organization_schema,
+            'page': page_schema,
+        }
+        schema = schemas[self.label]
+        if self.properties:
+            v = Validator(schema)
+            if not v.validate(self.properties):
+                raise ValidationError(
+                    {'properties': 'Properties do not fit {} schema.'.format(self.label)})
+
+
 
     def name(): # title
         pass

@@ -1,21 +1,54 @@
 from django.test import TestCase
-from api.models import Resource
+from api.models import Record
+from django.core.exceptions import ValidationError
 
 
-class ResourceTestCase(TestCase):
+class RecordTestCase(TestCase):
+    fixtures = ['api/fixtures/db.json',]
+
     def setUp(self):
-        Resource.objects.create(
-            title="lion",
-            description="A lion roars.",
-            url="http://example.com/lion")
-        Resource.objects.create(
-            title="cat",
-            description="A cat meows.",
-            url="http://example.com/cat")
+        Record.objects.create(
+            slug="party",
+            label="event",
+        )
+        Record.objects.create(
+            slug="exhibition",
+            label="event",
+        )
 
-    def test_resource_str(self):
-        '''Resources are correctly converted to string.'''
-        lion = Resource.objects.get(title="lion")
-        cat = Resource.objects.get(title="cat")
-        self.assertEqual(str(lion), 'lion')
-        self.assertEqual(str(cat), 'cat')
+    def test_record_str(self):
+        '''Records are correctly converted to string.'''
+        party = Record.objects.get(
+            slug="party")
+        exhibition = Record.objects.get(
+            slug="exhibition")
+        self.assertEqual(str(party), 'event: party')
+        self.assertEqual(str(exhibition), 'event: exhibition')
+
+    def test_bad_json(self):
+        '''Bad records do not validate.'''
+        badjson = {
+            "this is": "a test" # does not have required fields
+        }
+        with self.assertRaises(ValidationError):
+            Record.objects.create(
+                slug="badrecord",
+                label="event",
+                properties=badjson
+            )
+            badrecord = Record.objects.get(
+                slug="badrecord")
+
+    def test_good_json(self):
+        '''Good records validate OK.'''
+        goodjson = {
+            "name": "A great exhibition"
+        }
+        Record.objects.create(
+            slug="goodrecord",
+            label="event",
+            properties=goodjson
+        )
+        goodrecord = Record.objects.get(
+            slug="goodrecord")
+        self.assertTrue(goodrecord)

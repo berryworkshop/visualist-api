@@ -1,4 +1,4 @@
-RecordSchema = {
+record_schema = {
   'name': {
     'type': 'string',
     'required': True
@@ -6,32 +6,32 @@ RecordSchema = {
   'description': {
     'type': 'string'
   },
-  'categories': {
-    'type': 'list',
-    'schema': {
-      'type': 'string'
-    }
-  },
-  'identifiers': {
-    'type': 'dict',
-    'unique': True,
-    'schema': {
-      'vocabulary': {
-        'type': 'string',
-        'required': True,
-        'allowed': [
-          'AAT',
-          'ULAN',
-          'LCCN',
-          'VIAF'
-        ]
-      },
-      'value': {
-        'type': 'string',
-        'required': True
-      }
-    }
-  }
+#   'categories': {
+#     'type': 'list',
+#     'schema': {
+#       'type': 'string'
+#     }
+#   },
+#   'identifiers': {
+#     'type': 'dict',
+#     'unique': True,
+#     'schema': {
+#       'vocabulary': {
+#         'type': 'string',
+#         'required': True,
+#         'allowed': [
+#           'AAT',
+#           'ULAN',
+#           'LCCN',
+#           'VIAF'
+#         ]
+#       },
+#       'value': {
+#         'type': 'string',
+#         'required': True
+#       }
+#     }
+#   },
   'urls': {
     'type': 'list',
     'schema': {
@@ -42,7 +42,7 @@ RecordSchema = {
         },
         'description': {
           'type': 'string',
-        }
+        },
         'href': {
           'type': 'string',
           'required': True
@@ -63,7 +63,7 @@ RecordSchema = {
         },
         'address': {
           'required': True,
-          'unique': True,
+        #   'unique': True,
           'type': 'string'
         }
       }
@@ -146,7 +146,7 @@ RecordSchema = {
   }
 }
 
-WorkSchema = {**RecordSchema, **{
+work_schema = {**record_schema, **{
   'date_created': {
     'type': 'date'
   },
@@ -159,14 +159,14 @@ WorkSchema = {**RecordSchema, **{
 }}
 
 
-PageSchema = {**RecordSchema, **{
+page_schema = {**record_schema, **{
   'body': {
     'type': 'string'
   },
 }}
 
 
-EventSchema = {**RecordSchema, **{
+event_schema = {**record_schema, **{
   'datetime_start': {
     'type': 'datetime'
   },
@@ -189,7 +189,7 @@ EventSchema = {**RecordSchema, **{
 }}
 
 
-PersonSchema = {**RecordSchema, **{
+person_schema = {**record_schema, **{
   'name': {
     'type': 'dict',
     'required': True,
@@ -212,7 +212,7 @@ PersonSchema = {**RecordSchema, **{
 }}
 
 
-OrganizationSchema = {**RecordSchema, **{
+organization_schema = {**record_schema, **{
   'date_founded': {
     'type': 'datetime'
   },
@@ -229,10 +229,10 @@ OrganizationSchema = {**RecordSchema, **{
 }}
 
 
-PlaceSchema = {**RecordSchema, **{
+place_schema = {**record_schema, **{
   'location': {
     'type': 'point',
-    'unique': True
+    # 'unique': True
   },
   'polygons': {
     'type': 'multipolygon'
