@@ -75,34 +75,95 @@ class Image(Base):
         return self.name
 
 
-# class Category(Base):
-#     class Meta:
-#         unique_together = (
-#             ("value", "vocabulary"),
-#             ("value", "parent"),
-#         )
-#     parent = models.ForeignKey('self',
-#         related_name='children',
-#         blank=True,
-#         null=True,
-#     )
-#     vocabulary = models.ForeignKey('Record')
-#     value = models.CharField(
-#         max_length=250,
-#     )
-#     description = models.TextField(
-        # blank=True,
-        # null=True,
-        # )
+class Category(Base):
+    class Meta:
+        unique_together = (
+            # ("value", "vocabulary"),
+            ("value", "parent"),
+        )
 
-#     def __str__(self):
-#         return self.value
+    # CATEGORIES = {
+    #     'event': [
+    #         'course',
+    #         'exhibition',
+    #         'performance',
+    #         'reception',
+    #         'residency',
+    #         'workshop',
+    #     ],
+    #     'work': [
+    #         'article',
+    #         'book',
+    #         'installation',
+    #         'photograph',
+    #         'sculpture',
+    #         'visual artwork',
+    #         'website',
+    #         'vocabulary',
+    #         'license',
+    #     ],
+    #     'person': [
+    #         'artist',
+    #         'writer',
+    #         'architect',
+    #         'filmmaker',
+    #         'curator',
+    #         'gallerist',
+    #         'professor',
+    #         'manager',
+    #     ],
+    #     'organization': [
+    #         'archive',
+    #         'association',
+    #         'company',
+    #         'consortium',
+    #         'foundation',
+    #         'library',
+    #         'museum',
+    #         'school',
+    #     ],
+    #     'page': [
+    #         'article',
+    #         'review',
+    #         'collection',
+    #         'tour',
+    #     ],
+    #     'place': [
+    #         'spot',
+    #         'area',
+    #         'island',
+    #         'neighborhood',
+    #         'city',
+    #         'county',
+    #         'region',
+    #         'state',
+    #         'country'
+    #     ],
+    # }
+
+    parent = models.ForeignKey('self',
+        related_name='children',
+        blank=True,
+        null=True,
+    )
+    # vocabulary = models.ForeignKey('Record')
+    value = models.CharField(
+        max_length=250,
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        )
+
+    def __str__(self):
+        return self.value
 
 
 class Tag(Base):
     value = models.SlugField(
         unique=True
     )
+    # vocabulary = models.ForeignKey('Record')
     description = models.TextField(
         blank=True,
         null=True,
@@ -175,7 +236,7 @@ class Relation(models.Model):
     )
     subject = models.ForeignKey('Record',
         related_name='relation_subject',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     predicate = models.CharField(
         choices=PREDICATES,
@@ -183,7 +244,7 @@ class Relation(models.Model):
     )
     dobject = models.ForeignKey('Record',
         related_name='relation_direct_object',
-        on_delete=models.PROTECT,
+        on_delete=models.CASCADE,
     )
     properties = pg.JSONField(
         blank=True,
@@ -205,65 +266,6 @@ class Record(Base):
         ]
 
     schema = 'http://schema.org/Thing'
-
-    # CATEGORIES = {
-    #     'event': [
-    #         'course',
-    #         'exhibition',
-    #         'performance',
-    #         'reception',
-    #         'residency',
-    #         'workshop',
-    #     ],
-    #     'work': [
-    #         'article',
-    #         'book',
-    #         'installation',
-    #         'photograph',
-    #         'sculpture',
-    #         'visual artwork',
-    #         'website',
-    #         'vocabulary',
-    #         'license',
-    #     ],
-    #     'person': [
-    #         'artist',
-    #         'writer',
-    #         'architect',
-    #         'filmmaker',
-    #         'curator',
-    #         'gallerist',
-    #         'professor',
-    #         'manager',
-    #     ],
-    #     'organization': [
-    #         'archive',
-    #         'association',
-    #         'company',
-    #         'consortium',
-    #         'foundation',
-    #         'library',
-    #         'museum',
-    #         'school',
-    #     ],
-    #     'page': [
-    #         'article',
-    #         'review',
-    #         'collection',
-    #         'tour',
-    #     ],
-    #     'place': [
-    #         'spot',
-    #         'area',
-    #         'island',
-    #         'neighborhood',
-    #         'city',
-    #         'county',
-    #         'region',
-    #         'state',
-    #         'country'
-    #     ],
-    # }
 
     LABELS = (
         (('event'), ('event')),
@@ -290,26 +292,24 @@ class Record(Base):
         blank=True,
         null=True
     )
-
-    # classification
-    tags = models.ManyToManyField('Tag',
-        blank=True,
-    )
-    images = models.ManyToManyField('Image',
-        blank=True,
+    status = models.NullBooleanField(
+        default=None,
     )
     license = models.ForeignKey('License',
         related_name='records_licensed',
         default=1,
     )
 
-    # categories = pg.ArrayField(
-    #     models.ForeignKey('Category',
-    #         blank=True,
-    #         null=True,
-    #         ),
-    #     blank=True
-    #     )
+    # classification
+    tags = models.ManyToManyField('Tag',
+        blank=True,
+    )
+    categories = models.ManyToManyField('Category',
+        blank=False,
+    )
+    images = models.ManyToManyField('Image',
+        blank=True,
+    )
 
     is_active = models.BooleanField(
         default=True,
@@ -346,35 +346,36 @@ class Record(Base):
             v = Validator(schema)
             if not v.validate(self.properties):
                 raise ValidationError(
-                    {'properties': 'Properties do not fit {} schema.'.format(self.label)})
+                    {'properties': 'Properties do not fit {} schema.'\
+                    .format(self.label)})
 
 
 
-    def name(): # title
+    def name(self): # title
         pass
 
-    def age():
+    def age(self):
         pass
 
-    def citation():
+    def citation(self):
         pass
 
-    def date():
+    def date(self):
         pass
 
-    def get_absolute_url():
+    def get_absolute_url(self):
         pass
 
-    def location():
+    def location(self):
         pass
 
-    def address():
+    def address(self):
         pass
 
-    def distance():
+    def distance(self):
         pass
 
-    def duration(): # lifespan
+    def duration(self): # lifespan
         pass
 
 

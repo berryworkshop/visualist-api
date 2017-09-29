@@ -1,10 +1,10 @@
 import os
+import sys
 
-env = os.environ.get('MODE', 'production')
-
-if env == 'development':
-    from .development import *
-elif env == 'testing':
+# which environment?
+if 'test' in sys.argv:
     from .testing import *
-else: # env == 'production'
+elif (os.environ.get('MODE', 'production') == 'development'):
+    from .development import *
+else:
     from .production import *

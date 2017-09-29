@@ -4,17 +4,43 @@ from django.core.exceptions import ValidationError
 
 
 class RecordTestCase(TestCase):
-    fixtures = ['api/fixtures/db.json',]
+    fixtures = ['api/fixtures/test_basic.json',]
 
     def setUp(self):
         Record.objects.create(
             slug="party",
             label="event",
+            properties={
+                "name": "Party"
+            }
         )
         Record.objects.create(
             slug="exhibition",
             label="event",
+            properties={
+                "name": "Exhibition"
+            }
         )
+        Record.objects.create(
+            slug="berry-allan",
+            label="person",
+            properties={
+                "name": {
+                    "first": "Allan James",
+                    "last": "Berry"
+                }
+            }
+        )
+
+    def test_record_name(self):
+        '''Records are correctly converted to string.'''
+        party = Record.objects.get(
+            slug="party")
+        allan = Record.objects.get(
+            slug="berry-allan")
+        self.assertEqual(party.name(), 'Party')
+        self.assertEqual(allan.name(), 'Allan James Berry')
+
 
     def test_record_str(self):
         '''Records are correctly converted to string.'''
