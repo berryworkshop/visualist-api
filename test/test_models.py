@@ -11,14 +11,20 @@ class RecordTestCase(TestCase):
             slug="party",
             label="event",
             properties={
-                "name": "Party"
+                "name": "Party",
+                "types": [
+                    "reception"
+                ]
             }
         )
         Record.objects.create(
             slug="exhibition",
             label="event",
             properties={
-                "name": "Exhibition"
+                "name": "Exhibition",
+                "types": [
+                    "exhibition"
+                ]
             }
         )
         Record.objects.create(
@@ -28,7 +34,11 @@ class RecordTestCase(TestCase):
                 "name": {
                     "first": "Allan James",
                     "last": "Berry"
-                }
+                },
+                "types": [
+                    "artist",
+                    "programmer"
+                ]
             }
         )
 
@@ -39,7 +49,7 @@ class RecordTestCase(TestCase):
         allan = Record.objects.get(
             slug="berry-allan")
         self.assertEqual(party.name(), 'Party')
-        self.assertEqual(allan.name(), 'Allan James Berry')
+        self.assertEqual(allan.name(), 'Berry, Allan James')
 
 
     def test_record_str(self):
@@ -48,8 +58,8 @@ class RecordTestCase(TestCase):
             slug="party")
         exhibition = Record.objects.get(
             slug="exhibition")
-        self.assertEqual(str(party), 'event: party')
-        self.assertEqual(str(exhibition), 'event: exhibition')
+        self.assertEqual(str(party), 'event: Party')
+        self.assertEqual(str(exhibition), 'event: Exhibition')
 
     def test_bad_json(self):
         '''Bad records do not validate.'''
@@ -68,7 +78,8 @@ class RecordTestCase(TestCase):
     def test_good_json(self):
         '''Good records validate OK.'''
         goodjson = {
-            "name": "A great exhibition"
+            "name": "A great exhibition",
+            "types": ["exhibition"]
         }
         Record.objects.create(
             slug="goodrecord",

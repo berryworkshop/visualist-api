@@ -75,88 +75,29 @@ class Image(Base):
         return self.name
 
 
-class Category(Base):
-    class Meta:
-        unique_together = (
-            # ("value", "vocabulary"),
-            ("value", "parent"),
-        )
+# class Category(Base):
+#     class Meta:
+#         unique_together = (
+#             # ("value", "vocabulary"),
+#             ("value", "parent"),
+#         )
 
-    # CATEGORIES = {
-    #     'event': [
-    #         'course',
-    #         'exhibition',
-    #         'performance',
-    #         'reception',
-    #         'residency',
-    #         'workshop',
-    #     ],
-    #     'work': [
-    #         'article',
-    #         'book',
-    #         'installation',
-    #         'photograph',
-    #         'sculpture',
-    #         'visual artwork',
-    #         'website',
-    #         'vocabulary',
-    #         'license',
-    #     ],
-    #     'person': [
-    #         'artist',
-    #         'writer',
-    #         'architect',
-    #         'filmmaker',
-    #         'curator',
-    #         'gallerist',
-    #         'professor',
-    #         'manager',
-    #     ],
-    #     'organization': [
-    #         'archive',
-    #         'association',
-    #         'company',
-    #         'consortium',
-    #         'foundation',
-    #         'library',
-    #         'museum',
-    #         'school',
-    #     ],
-    #     'page': [
-    #         'article',
-    #         'review',
-    #         'collection',
-    #         'tour',
-    #     ],
-    #     'place': [
-    #         'spot',
-    #         'area',
-    #         'island',
-    #         'neighborhood',
-    #         'city',
-    #         'county',
-    #         'region',
-    #         'state',
-    #         'country'
-    #     ],
-    # }
+#     parent = models.ForeignKey('self',
+#         related_name='children',
+#         blank=True,
+#         null=True,
+#     )
+#     # vocabulary = models.ForeignKey('Record')
+#     value = models.CharField(
+#         max_length=250,
+#     )
+#     description = models.TextField(
+#         blank=True,
+#         null=True,
+#         )
 
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
-    )
-    # vocabulary = models.ForeignKey('Record')
-    value = models.CharField(
-        max_length=250,
-    )
-    description = models.TextField(
-        blank=True,
-        null=True,
-        )
-
-    def __str__(self):
-        return self.value
+#     def __str__(self):
+#         return self.value
 
 
 class Tag(Base):
@@ -275,6 +216,8 @@ class Record(Base):
         (('page'), ('page')),
     )
 
+
+
     related = models.ManyToManyField('self',
         through='Relation',
         through_fields=('subject', 'dobject'),
@@ -288,13 +231,7 @@ class Record(Base):
         max_length=25,
         choices=LABELS,
     )
-    properties = pg.JSONField(
-        blank=True,
-        null=True
-    )
-    status = models.NullBooleanField(
-        default=None,
-    )
+    properties = pg.JSONField()
     license = models.ForeignKey('License',
         related_name='records_licensed',
         default=1,
@@ -304,9 +241,9 @@ class Record(Base):
     tags = models.ManyToManyField('Tag',
         blank=True,
     )
-    categories = models.ManyToManyField('Category',
-        blank=False,
-    )
+    # categories = models.ManyToManyField('Category',
+    #     blank=False,
+    # )
     images = models.ManyToManyField('Image',
         blank=True,
     )
@@ -326,7 +263,7 @@ class Record(Base):
 
     # methods
     def __str__(self):
-        return '{}: {}'.format(self.label, self.slug)
+        return '{}: {}'.format(self.label, self.name())
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -352,7 +289,14 @@ class Record(Base):
 
 
     def name(self): # title
-        pass
+        if (self.label == 'person'):
+            return '{}, {}'.format(
+                self.properties['name']['last'],
+                self.properties['name']['first']
+            )
+        else:
+            return self.properties['name']
+
 
     def age(self):
         pass

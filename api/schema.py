@@ -6,32 +6,26 @@ record_schema = {
   'description': {
     'type': 'string'
   },
-#   'categories': {
-#     'type': 'list',
-#     'schema': {
-#       'type': 'string'
-#     }
-#   },
-#   'identifiers': {
-#     'type': 'dict',
-#     'unique': True,
-#     'schema': {
-#       'vocabulary': {
-#         'type': 'string',
-#         'required': True,
-#         'allowed': [
-#           'AAT',
-#           'ULAN',
-#           'LCCN',
-#           'VIAF'
-#         ]
-#       },
-#       'value': {
-#         'type': 'string',
-#         'required': True
-#       }
-#     }
-#   },
+  'identifiers': {
+    'type': 'dict',
+    # 'unique': True,
+    'schema': {
+      'vocabulary': {
+        'type': 'string',
+        'required': True,
+        'allowed': [
+          'AAT',
+          'ULAN',
+          'LCCN',
+          'VIAF'
+        ]
+      },
+      'value': {
+        'type': 'string',
+        'required': True
+      }
+    }
+  },
   'urls': {
     'type': 'list',
     'schema': {
@@ -147,6 +141,26 @@ record_schema = {
 }
 
 work_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'artwork',
+      'allowed': [
+        'article',
+        'artwork',
+        'book',
+        'installation',
+        'license',
+        'photograph',
+        'sculpture',
+        'vocabulary',
+        'website',
+      ]
+    }
+  },
   'date_created': {
     'type': 'date'
   },
@@ -160,6 +174,22 @@ work_schema = {**record_schema, **{
 
 
 page_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'Post',
+      'allowed': [
+        'article',
+        'collection',
+        'post',
+        'review',
+        'tour',
+      ]
+    }
+  },
   'body': {
     'type': 'string'
   },
@@ -167,19 +197,30 @@ page_schema = {**record_schema, **{
 
 
 event_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'Exhibition',
+      'allowed': [
+        'course',
+        'convention',
+        'exhibition',
+        'fair',
+        'performance',
+        'reception',
+        'residency',
+        'workshop',
+      ]
+    }
+  },
   'datetime_start': {
     'type': 'datetime'
   },
   'datetime_end': {
     'type': 'datetime'
-  },
-  'status': {
-    'default': 'OK',
-    'required': True,
-    'allowed': [
-      'OK',
-      'cancelled'
-    ]
   },
   'group_friendly': {
     'type': 'boolean',
@@ -190,6 +231,26 @@ event_schema = {**record_schema, **{
 
 
 person_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'Artist',
+      'allowed': [
+        'architect',
+        'artist',
+        'curator',
+        'filmmaker',
+        'gallerist',
+        'manager',
+        'professor',
+        'programmer',
+        'writer',
+      ]
+    }
+  },
   'name': {
     'type': 'dict',
     'required': True,
@@ -213,6 +274,26 @@ person_schema = {**record_schema, **{
 
 
 organization_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'Gallery',
+      'allowed': [
+        'archive',
+        'association',
+        'company',
+        'consortium',
+        'foundation',
+        'gallery',
+        'library',
+        'museum',
+        'school',
+      ]
+    }
+  },
   'date_founded': {
     'type': 'datetime'
   },
@@ -230,6 +311,26 @@ organization_schema = {**record_schema, **{
 
 
 place_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'Location',
+      'allowed': [
+        'area',
+        'city',
+        'country'
+        'county',
+        'island',
+        'location',
+        'neighborhood',
+        'region',
+        'state',
+      ]
+    }
+  },
   'location': {
     'type': 'point',
     # 'unique': True
