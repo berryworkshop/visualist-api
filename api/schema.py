@@ -3,29 +3,6 @@ record_schema = {
     'type': 'string',
     'required': True
   },
-  'description': {
-    'type': 'string'
-  },
-  'identifiers': {
-    'type': 'dict',
-    # 'unique': True,
-    'schema': {
-      'vocabulary': {
-        'type': 'string',
-        'required': True,
-        'allowed': [
-          'AAT',
-          'ULAN',
-          'LCCN',
-          'VIAF'
-        ]
-      },
-      'value': {
-        'type': 'string',
-        'required': True
-      }
-    }
-  },
   'urls': {
     'type': 'list',
     'schema': {
@@ -38,6 +15,21 @@ record_schema = {
           'type': 'string',
         },
         'href': {
+          'type': 'string',
+          'required': True
+        }
+      }
+    }
+  },
+  'snippets': {
+    'type': 'list',
+    'schema': {
+      'type': 'dict',
+      'schema': {
+        'body': {
+          'type': 'string',
+        },
+        'source': {
           'type': 'string',
           'required': True
         }
@@ -63,6 +55,47 @@ record_schema = {
       }
     }
   },
+  'addresses': {
+    'type': 'list',
+    'schema': {
+      'type': 'dict',
+      'schema': {
+        'label': {
+          'type': 'string',
+        },
+        'description': {
+          'type': 'string',
+        },
+        'street': {
+          'type': 'string'
+        },
+        'locality': {
+          'type': 'string',
+          'default': 'Chicago'
+        },
+        'region': {
+          'type': 'string',
+          'allowed': [
+            'IL',
+            'IN',
+            'MI',
+            'WI',
+          ],
+          'default': 'IL'
+        },
+        'postal_code': {
+          'type': 'string'
+        },
+        'country': {
+          'type': 'string',
+          'allowed': [
+            'US',
+          ],
+          'default': 'US'
+        }
+      }
+    }
+  },
   'phones': {
     'type': 'list',
     'schema': {
@@ -76,6 +109,7 @@ record_schema = {
         },
         'country': {
           'type': 'integer',
+          'default': 1,
           'required': True
         },
         'area_code': {
@@ -137,6 +171,57 @@ record_schema = {
         }
       }
     }
+  },
+  'identifiers': {
+    'type': 'list',
+    'schema': {
+      'type': 'dict',
+      'schema': {
+        'system': {
+          'type': 'string',
+          'required': True,
+          'allowed': [
+            'ISBN',
+            'DOI'
+          ]
+        },
+        'value': {
+          'type': 'string',
+          'required': True
+        }
+      }
+    }
+  },
+  'dates': {
+    'type': 'list',
+    'schema': {
+      'type': 'dict',
+      'schema': {
+        'label': {
+          'type': 'string',
+          'default': 'occurred',
+          'required': True,
+          'allowed': [
+            'occurred',
+            'started',
+            'concluded',
+          ]
+        },
+        'date': {
+          'type': 'string',
+          'required': True
+        },
+        # 'circa': {
+        #   'type': 'list',
+        #   'schema': {
+        #     'type': 'string',
+        #     'allowed': [
+        #       'Y', 'M', 'D'
+        #     ]
+        #   }
+        # }
+      }
+    }
   }
 }
 
@@ -161,14 +246,61 @@ work_schema = {**record_schema, **{
       ]
     }
   },
-  'date_created': {
-    'type': 'date'
-  },
-  'date_published': {
-    'type': 'datetime'
-  },
+
+                # type
+                # title
+
+                # contributor
+                #   type
+                #     author
+                #     editor
+                #     translator
+                #   name_first
+                #   name_last
+
+                # journal
+                # issue
+                # volume
+
+                # id
+                #   value
+                #   type
+                #     ISBN
+                #     ISSN
+                #     DOI
+
+                # publication
+                #   edition
+                #   date
+                #   publisher
+                #   place
+
+                # archive
+                #   name
+                #   place
+
+                # online_source
+                #   name
+                #   URL
+                #   accessed
+
+                # newspaper
+                #   section
+
+                # abstract
+                # note
+
+
+
+  # 'date_created': { # in relation
+  #   'type': 'date'
+  # },
+  # 'date_published': { # in relation
+  #   'type': 'datetime'
+  # },
   'version': {
-    'type': 'string'
+    'type': 'string',
+    'default': '1'
   },
 }}
 
@@ -189,9 +321,6 @@ page_schema = {**record_schema, **{
         'tour',
       ]
     }
-  },
-  'body': {
-    'type': 'string'
   },
 }}
 
@@ -251,6 +380,23 @@ person_schema = {**record_schema, **{
       ]
     }
   },
+  # 'names': {
+  #   'type': 'list',
+  #   'required': True,
+  #   'schema': {
+  #     'type': 'dict',
+  #     'required': True,
+  #     'schema': {
+  #       'last': {
+  #         'type': 'string',
+  #         'required': True
+  #       },
+  #       'first': {
+  #         'type': 'string'
+  #       }
+  #     }
+  #   }
+  # },
   'name': {
     'type': 'dict',
     'required': True,
@@ -263,13 +409,7 @@ person_schema = {**record_schema, **{
         'type': 'string'
       }
     }
-  },
-  'date_born': {
-    'type': 'datetime'
-  },
-  'date_died': {
-    'type': 'datetime'
-  },
+  }
 }}
 
 
@@ -290,15 +430,10 @@ organization_schema = {**record_schema, **{
         'gallery',
         'library',
         'museum',
+        'publisher',
         'school',
       ]
     }
-  },
-  'date_founded': {
-    'type': 'datetime'
-  },
-  'date_dissolved': {
-    'type': 'datetime'
   },
   'appointment_only': {
     'type': 'boolean',
@@ -331,7 +466,7 @@ place_schema = {**record_schema, **{
       ]
     }
   },
-  'location': {
+  'centroid': {
     'type': 'point',
     # 'unique': True
   },

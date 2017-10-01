@@ -29,22 +29,6 @@ class Base(models.Model):
     )
 
 
-class License(Base):
-    title = models.CharField(
-        max_length=250,
-    )
-    description = models.TextField(
-        blank=True,
-        null=True,
-    )
-    url = models.URLField(
-        blank=True,
-    )
-
-    def __str__(self):
-        return self.title
-
-
 class Image(Base):
     schema = 'http://schema.org/ImageObject'
     title = models.CharField(
@@ -75,53 +59,57 @@ class Image(Base):
         return self.name
 
 
-# class Category(Base):
-#     class Meta:
-#         unique_together = (
-#             # ("value", "vocabulary"),
-#             ("value", "parent"),
-#         )
+class Term(Base):
 
-#     parent = models.ForeignKey('self',
-#         related_name='children',
-#         blank=True,
-#         null=True,
-#     )
-#     # vocabulary = models.ForeignKey('Record')
-#     value = models.CharField(
-#         max_length=250,
-#     )
-#     description = models.TextField(
-#         blank=True,
-#         null=True,
-#         )
-
-#     def __str__(self):
-#         return self.value
-
-
-class Tag(Base):
-    value = models.SlugField(
+    value = models.CharField(
+        max_length=250
+    )
+    slug = models.SlugField(
         unique=True
     )
-    # vocabulary = models.ForeignKey('Record')
+    LABELS = (
+        ('tag', 'tag'),
+        ('category', 'category'),
+        ('identifier', 'identifier'),
+    )
+    # label = models.CharField(
+    #     max_length=25,
+    #     choices=LABELS,
+    #     blank=False,
+    #     null=False
+    # )
+    VOCABULARIES = (
+        ('visualist', 'The Visualist'),
+        ('aat', 'Getty Art and Architecture Thesaurus'),
+        ('ulan', 'Getty Union List of Artist Names'),
+        ('lccn', 'Library of Congress Control Number'),
+        ('viaf', 'Virtual International Authority File'),
+    )
+    vocabulary = models.CharField(
+        max_length=25,
+        choices=VOCABULARIES,
+        blank=True,
+        null=True
+    )
     description = models.TextField(
         blank=True,
         null=True,
-        )
-
-    def __str__(self):
-        return self.value
-
-
-class Identifier(Base):
-    value = models.CharField(
-        max_length=250,
     )
-    record = models.ForeignKey('Record')
+    canonical_url = models.URLField(
+        blank=True,
+        null=True,
+    )
+    parent = models.ForeignKey('self',
+        related_name='children',
+        blank=True,
+        null=True,
+    )
+    same_as = models.ManyToManyField('self',
+        blank=True,
+    )
 
     def __str__(self):
-        return self.value
+        return self.slug
 
 
 class Relation(models.Model):
@@ -143,37 +131,39 @@ class Relation(models.Model):
             # (('has_work'), ('has work')), # reverse
 
             # person/organization
-            (('has_contributor'), ('has contributor')),
-            (('has_creator'), ('has creator')),
-            (('has_curator'), ('has curator')),
-            (('has_employee'), ('has employee')),
-            (('has_exhibitor'), ('has exhibitor')),
-            (('has_friend'), ('has friend')),
-            (('has_member'), ('has member')),
-            (('has_organizer'), ('has organizer')),
-            (('has_owner'), ('has owner')),
-            (('has_parent'), ('has parent')),
-            (('has_producer'), ('has producer')),
-            (('has_publisher'), ('has publisher')),
-            (('has_affiliation'), ('has affiliation')),
-            (('has_spouse'), ('has spouse')),
-            (('has_venue'), ('has_venue')),
+            ('has_contributor', 'has contributor'),
+            ('has_creator', 'has creator'),
+            ('has_curator', 'has curator'),
+            ('has_employee', 'has employee'),
+            ('has_exhibitor', 'has exhibitor'),
+            ('has_friend', 'has friend'),
+            ('has_member', 'has member'),
+            ('has_organizer', 'has organizer'),
+            ('has_owner', 'has owner'),
+            ('has_parent', 'has parent'),
+            ('has_producer', 'has producer'),
+            ('has_publisher', 'has publisher'),
+            ('has_affiliation', 'has affiliation'),
+            ('has_spouse', 'has spouse'),
+            ('has_venue', 'has_venue'),
 
             # place
-            (('located_at'), ('located at')),
-            (('started_at'), ('started at')),
-            (('ended_at'), ('ended at')),
-            (('born_at'), ('born at')),
-            (('died_at'), ('died at')),
+            ('located_at', 'located at'),
+            ('started_at', 'started at'),
+            ('ended_at', 'ended at'),
+            ('born_at', 'born at'),
+            ('died_at', 'died at'),
 
             # generic
-            (('part_of'), ('part of')),
-            (('same_as'), ('same as')),
-            (('same_as'), ('same as')),
+            ('part_of', 'part of'),
+            ('same_as', 'same as'),
+            ('same_as', 'same as'),
 
         # meta-level
-        (('has_record_source'), ('has record source')),
-        (('has_record_parent'), ('has record parent')),
+        ('has_record_source', 'has record source'),
+        ('has_record_parent', 'has record parent'),
+        ('has_record_license', 'has record license'),
+
     )
     subject = models.ForeignKey('Record',
         related_name='relation_subject',
@@ -191,10 +181,6 @@ class Relation(models.Model):
         blank=True,
         null=True
     )
-    dates = pg.DateTimeRangeField(
-        blank=True,
-        null=True,
-    )
 
     def __str__(self):
         return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
@@ -209,14 +195,12 @@ class Record(Base):
     schema = 'http://schema.org/Thing'
 
     LABELS = (
-        (('event'), ('event')),
-        (('work'), ('work')),
-        (('person'), ('person')),
-        (('organization'), ('organization')),
-        (('page'), ('page')),
+        ('event', 'event'),
+        ('work', 'work'),
+        ('person', 'person'),
+        ('organization', 'organization'),
+        ('page', 'page'),
     )
-
-
 
     related = models.ManyToManyField('self',
         through='Relation',
@@ -232,23 +216,21 @@ class Record(Base):
         choices=LABELS,
     )
     properties = pg.JSONField()
-    license = models.ForeignKey('License',
-        related_name='records_licensed',
-        default=1,
+
+    body = models.TextField(
+        blank=True,
+        null=True,
     )
 
-    # classification
-    tags = models.ManyToManyField('Tag',
+    terms = models.ManyToManyField('Term',
         blank=True,
     )
-    # categories = models.ManyToManyField('Category',
-    #     blank=False,
-    # )
+
     images = models.ManyToManyField('Image',
         blank=True,
     )
 
-    is_active = models.BooleanField(
+    is_active = models.NullBooleanField(
         default=True,
     )
     is_featured = models.BooleanField(
@@ -263,7 +245,7 @@ class Record(Base):
 
     # methods
     def __str__(self):
-        return '{}: {}'.format(self.label, self.name())
+        return '{} ({}): {}'.format(self.label, self.types(), self.name())
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -283,8 +265,8 @@ class Record(Base):
             v = Validator(schema)
             if not v.validate(self.properties):
                 raise ValidationError(
-                    {'properties': 'Properties do not fit {} schema.'\
-                    .format(self.label)})
+                    {'properties': 'Properties do not fit {} schema.  Errors: {}'\
+                    .format(self.label, v.errors)})
 
 
 
@@ -297,6 +279,8 @@ class Record(Base):
         else:
             return self.properties['name']
 
+    def types(self):
+        return '/'.join(self.properties['types'])
 
     def age(self):
         pass
@@ -321,5 +305,3 @@ class Record(Base):
 
     def duration(self): # lifespan
         pass
-
-
