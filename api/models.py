@@ -2,13 +2,16 @@ from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.postgres import fields as pg
 from cerberus import Validator
-from .schema import (
+from .schemas.record import (
     work_schema,
     page_schema,
     event_schema,
     person_schema,
     organization_schema,
     place_schema,
+)
+from .schemas.relation import (
+    relation_schema,
 )
 
 
@@ -67,11 +70,11 @@ class Term(Base):
     slug = models.SlugField(
         unique=True
     )
-    LABELS = (
-        ('tag', 'tag'),
-        ('category', 'category'),
-        ('identifier', 'identifier'),
-    )
+    # LABELS = (
+    #     ('tag', 'tag'),
+    #     ('category', 'category'),
+    #     ('identifier', 'identifier'),
+    # )
     # label = models.CharField(
     #     max_length=25,
     #     choices=LABELS,
@@ -185,6 +188,18 @@ class Relation(models.Model):
     def __str__(self):
         return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
 
+    # def save(self, *args, **kwargs):
+    #     self.full_clean()
+    #     return super().save(*args, **kwargs)
+
+    # def clean(self):
+    #     if self.properties:
+    #         v = Validator(relation_schema)
+    #         if not v.validate(self.properties):
+    #             raise ValidationError(
+    #                 {'properties': 'Properties do not fit schema.  Errors: {}'\
+    #                 .format(v.errors)})
+
 
 class Record(Base):
     class Meta:
@@ -208,6 +223,9 @@ class Record(Base):
         symmetrical=False,
         blank=True
     )
+    name = models.CharField(
+        max_length=250,
+    )
     slug = models.SlugField(
         unique=True,
     )
@@ -217,7 +235,7 @@ class Record(Base):
     )
     properties = pg.JSONField()
 
-    body = models.TextField(
+    description = models.TextField(
         blank=True,
         null=True,
     )
@@ -245,7 +263,7 @@ class Record(Base):
 
     # methods
     def __str__(self):
-        return '{} ({}): {}'.format(self.label, self.types(), self.name())
+        return '{} ({}): {}'.format(self.label, self.types(), self.name)
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -270,14 +288,14 @@ class Record(Base):
 
 
 
-    def name(self): # title
-        if (self.label == 'person'):
-            return '{}, {}'.format(
-                self.properties['name']['last'],
-                self.properties['name']['first']
-            )
-        else:
-            return self.properties['name']
+    # def name(self): # title
+    #     if (self.label == 'person'):
+    #         return '{}, {}'.format(
+    #             self.properties['name']['last'],
+    #             self.properties['name']['first']
+    #         )
+    #     else:
+    #         return self.properties['name']
 
     def types(self):
         return '/'.join(self.properties['types'])

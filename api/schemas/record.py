@@ -1,8 +1,6 @@
+from .etc import dates_schema
+
 record_schema = {
-  'name': {
-    'type': 'string',
-    'required': True
-  },
   'urls': {
     'type': 'list',
     'schema': {
@@ -194,35 +192,8 @@ record_schema = {
   },
   'dates': {
     'type': 'list',
-    'schema': {
-      'type': 'dict',
-      'schema': {
-        'label': {
-          'type': 'string',
-          'default': 'occurred',
-          'required': True,
-          'allowed': [
-            'occurred',
-            'started',
-            'concluded',
-          ]
-        },
-        'date': {
-          'type': 'string',
-          'required': True
-        },
-        # 'circa': {
-        #   'type': 'list',
-        #   'schema': {
-        #     'type': 'string',
-        #     'allowed': [
-        #       'Y', 'M', 'D'
-        #     ]
-        #   }
-        # }
-      }
-    }
-  }
+    'schema': dates_schema
+  },
 }
 
 work_schema = {**record_schema, **{
@@ -246,51 +217,6 @@ work_schema = {**record_schema, **{
       ]
     }
   },
-
-                # type
-                # title
-
-                # contributor
-                #   type
-                #     author
-                #     editor
-                #     translator
-                #   name_first
-                #   name_last
-
-                # journal
-                # issue
-                # volume
-
-                # id
-                #   value
-                #   type
-                #     ISBN
-                #     ISSN
-                #     DOI
-
-                # publication
-                #   edition
-                #   date
-                #   publisher
-                #   place
-
-                # archive
-                #   name
-                #   place
-
-                # online_source
-                #   name
-                #   URL
-                #   accessed
-
-                # newspaper
-                #   section
-
-                # abstract
-                # note
-
-
 
   # 'date_created': { # in relation
   #   'type': 'date'
@@ -380,36 +306,12 @@ person_schema = {**record_schema, **{
       ]
     }
   },
-  # 'names': {
-  #   'type': 'list',
-  #   'required': True,
-  #   'schema': {
-  #     'type': 'dict',
-  #     'required': True,
-  #     'schema': {
-  #       'last': {
-  #         'type': 'string',
-  #         'required': True
-  #       },
-  #       'first': {
-  #         'type': 'string'
-  #       }
-  #     }
-  #   }
-  # },
-  'name': {
-    'type': 'dict',
-    'required': True,
+  'names_extra': {
+    'type': 'list',
     'schema': {
-      'last': {
-        'type': 'string',
-        'required': True
-      },
-      'first': {
-        'type': 'string'
-      }
+      'type': 'string'
     }
-  }
+  },
 }}
 
 
