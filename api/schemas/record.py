@@ -53,47 +53,6 @@ record_schema = {
       }
     }
   },
-  'addresses': {
-    'type': 'list',
-    'schema': {
-      'type': 'dict',
-      'schema': {
-        'label': {
-          'type': 'string',
-        },
-        'description': {
-          'type': 'string',
-        },
-        'street': {
-          'type': 'string'
-        },
-        'locality': {
-          'type': 'string',
-          'default': 'Chicago'
-        },
-        'region': {
-          'type': 'string',
-          'allowed': [
-            'IL',
-            'IN',
-            'MI',
-            'WI',
-          ],
-          'default': 'IL'
-        },
-        'postal_code': {
-          'type': 'string'
-        },
-        'country': {
-          'type': 'string',
-          'allowed': [
-            'US',
-          ],
-          'default': 'US'
-        }
-      }
-    }
-  },
   'phones': {
     'type': 'list',
     'schema': {
@@ -170,7 +129,26 @@ record_schema = {
       }
     }
   },
-  'identifiers': {
+
+  # 'urls': {
+  #   'type': 'list',
+  #   'schema': {
+  #     'type': 'dict',
+  #     'schema': {
+  #       'label': {
+  #         'type': 'string',
+  #       },
+  #       'description': {
+  #         'type': 'string',
+  #       },
+  #       'href': {
+  #         'type': 'string',
+  #         'required': True
+  #       }
+  #     }
+  #   }
+  # },
+  'same_as': {
     'type': 'list',
     'schema': {
       'type': 'dict',
@@ -180,10 +158,12 @@ record_schema = {
           'required': True,
           'allowed': [
             'ISBN',
-            'DOI'
+            'ISSN',
+            'DOI',
+            'ULAN',
           ]
         },
-        'value': {
+        'identifier': {
           'type': 'string',
           'required': True
         }
@@ -193,6 +173,9 @@ record_schema = {
   'dates': {
     'type': 'list',
     'schema': dates_schema
+  },
+  'note': {
+      'type': 'string',
   },
 }
 
@@ -217,13 +200,6 @@ work_schema = {**record_schema, **{
       ]
     }
   },
-
-  # 'date_created': { # in relation
-  #   'type': 'date'
-  # },
-  # 'date_published': { # in relation
-  #   'type': 'datetime'
-  # },
   'version': {
     'type': 'string',
     'default': '1'
@@ -238,7 +214,7 @@ page_schema = {**record_schema, **{
     'schema': {
       'type': 'string',
       'required': True,
-      'default': 'Post',
+      'default': 'post',
       'allowed': [
         'article',
         'collection',
@@ -258,7 +234,7 @@ event_schema = {**record_schema, **{
     'schema': {
       'type': 'string',
       'required': True,
-      'default': 'Exhibition',
+      'default': 'exhibition',
       'allowed': [
         'course',
         'convention',
@@ -292,7 +268,7 @@ person_schema = {**record_schema, **{
     'schema': {
       'type': 'string',
       'required': True,
-      'default': 'Artist',
+      'default': 'artist',
       'allowed': [
         'architect',
         'artist',
@@ -315,6 +291,104 @@ person_schema = {**record_schema, **{
 }}
 
 
+place_schema = {**record_schema, **{
+  'types': {
+    'type': 'list',
+    'required': True,
+    'schema': {
+      'type': 'string',
+      'required': True,
+      'default': 'point',
+      'allowed': [
+        # locative
+        'area',
+        'point',
+
+        # political
+        'region',
+        'neighborhood',
+        'city',
+        'county',
+        'state',
+        'country',
+
+        # physical
+        'building',
+        'park',
+        'plaza',
+
+        # geographic
+        'island',
+      ]
+    }
+  },
+  'location': {
+    'type': 'dict',
+    'schema': {
+      'latitude': {
+        'type': 'float',
+        'required': True
+      },
+      'longitude': {
+        'type': 'float',
+        'required': True
+      },
+      'altitude': {
+        'type': 'float'
+      },
+    }
+  },
+  'polygons': {
+    'type': 'string'
+  },
+  'address': {
+    'type': 'dict',
+    'schema': {
+      'label': {
+        'type': 'string',
+      },
+      'description': {
+        'type': 'string',
+      },
+      'street': {
+        'type': 'list',
+        'required': True,
+        'schema': {
+          'type': 'string',
+        }
+      },
+      'locality': {
+        'type': 'string',
+        'default': 'Chicago',
+        'required': True,
+      },
+      'region': {
+        'type': 'string',
+        'required': True,
+        'allowed': [
+          'IL',
+          'IN',
+          'MI',
+          'WI',
+        ],
+        'default': 'IL'
+      },
+      'postal_code': {
+        'type': 'string'
+      },
+      'country': {
+        'type': 'string',
+        'allowed': [
+          'US',
+        ],
+        'default': 'US',
+        'required': True,
+      }
+    }
+  },
+}}
+
+
 organization_schema = {**record_schema, **{
   'types': {
     'type': 'list',
@@ -322,7 +396,7 @@ organization_schema = {**record_schema, **{
     'schema': {
       'type': 'string',
       'required': True,
-      'default': 'Gallery',
+      'default': 'gallery',
       'allowed': [
         'archive',
         'association',
@@ -344,35 +418,4 @@ organization_schema = {**record_schema, **{
   'hours': {
     'type': 'string'
   }
-}}
-
-
-place_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'Location',
-      'allowed': [
-        'area',
-        'city',
-        'country'
-        'county',
-        'island',
-        'location',
-        'neighborhood',
-        'region',
-        'state',
-      ]
-    }
-  },
-  'centroid': {
-    'type': 'point',
-    # 'unique': True
-  },
-  'polygons': {
-    'type': 'multipolygon'
-  },
 }}

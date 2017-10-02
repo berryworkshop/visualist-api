@@ -9,6 +9,7 @@ dates_schema = {
         'occurred',
         'started',
         'concluded',
+        'accessed',
       ]
     },
     'date': {
