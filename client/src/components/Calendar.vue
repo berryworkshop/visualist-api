@@ -51,7 +51,7 @@ export default {
 
 <style lang='scss' scoped>
 
-// this is duplicate in Directory: DRY up
+// this is duplicate in Directory and Map: DRY up
 $gutter: 1rem;
 
 ul {

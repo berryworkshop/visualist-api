@@ -9,6 +9,7 @@ router.register(r'groups', views.GroupViewSet)
 router.register(r'records', views.RecordViewSet)
 router.register(r'events', views.EventViewSet)
 router.register(r'entities', views.EntityViewSet)
+router.register(r'places', views.PlaceViewSet)
 
 urlpatterns = [
     # url(r'^$', views.base_view),

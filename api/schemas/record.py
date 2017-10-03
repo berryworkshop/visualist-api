@@ -305,6 +305,7 @@ place_schema = {**record_schema, **{
         'point',
 
         # political
+        'address',
         'region',
         'neighborhood',
         'city',

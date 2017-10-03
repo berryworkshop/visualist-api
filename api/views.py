@@ -53,4 +53,14 @@ class EntityViewSet(viewsets.ModelViewSet):
     )
     serializer_class = RecordSerializer
 
+class PlaceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows places to be viewed or edited.
+    """
+
+    queryset = Record.objects.filter(
+        label='place'
+    )
+    serializer_class = RecordSerializer
+
 
