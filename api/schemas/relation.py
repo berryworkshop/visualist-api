@@ -1,20 +1,21 @@
-from .etc import dates_schema
+from .etc import date_schema, location_schema
 
 
 relation_schema = {
-    'dates': {
-        'type': 'list',
-        'schema': dates_schema
-    },
+    # 'dates': {
+    #     'type': 'list',
+    #     'schema': date_schema
+    # },
+    # 'locations': {
+    #     'type': 'list',
+    #     'schema': location_schema
+    # },
     'note': {
         'type': 'string',
     },
 }
 
 reference_schema = {**relation_schema, **{
-    'pages': {
-        'type': 'string',
-    },
     'section': {
         'type': 'string',
     },

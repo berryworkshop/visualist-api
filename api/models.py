@@ -4,10 +4,8 @@ from django.contrib.postgres import fields as pg
 from cerberus import Validator
 from .schemas.record import (
     work_schema,
-    page_schema,
     event_schema,
     person_schema,
-    place_schema,
     organization_schema,
 )
 from .schemas.relation import (
@@ -64,7 +62,6 @@ class Image(Base):
 
 
 class Term(Base):
-
     value = models.CharField(
         max_length=250
     )
@@ -120,17 +117,63 @@ class Term(Base):
         return '{}{}'.format(vocab, self.value)
 
 
-class Relation(models.Model):
+class Date(Base):
+    pass
 
-    PREDICATES = (
+
+class Location(Base):
+    pass
+
+
+class Source(Base):
+    pass
+
+
+TIMESPACE_LABELS = (
+    ('is_born','is born'),
+    ('dies','dies'),
+    ('starts','starts'),
+    ('ends','ends'),
+    ('lives','lives'),
+    ('performs','performs'),
+    ('occurs','occurs'),
+    ('is','is'),
+    ('is_created','is created'),
+)
+
+class RecordDate(Base):
+    label = models.CharField(
+        max_length=25,
+        choices=TIMESPACE_LABELS,
+    )
+    record = models.ForeignKey('Record')
+    date = models.ForeignKey('Date')
+
+
+class RecordLocation(Base):
+    label = models.CharField(
+        max_length=25,
+        choices=TIMESPACE_LABELS,
+    )
+    record = models.ForeignKey('Record')
+    location = models.ForeignKey('Location')
+
+
+class RecordSource(Base):
+    accessed = models.DateField()
+    record = models.ForeignKey('Record')
+    source = models.ForeignKey('Source')
+
+
+class Relation(Base):
+
+    PREDICATES =  TIMESPACE_LABELS + (
         # item-level
             # relations flow in this direction, when possible
                 # Event
                 # Work
                 # Organization
                 # Person
-                # Place
-                # Page
 
             # event
             # (('has_event'), ('has event')), # reverse
@@ -157,26 +200,14 @@ class Relation(models.Model):
             ('has_translator', 'has translator'),
             ('has_venue', 'has_venue'),
 
-            # place
-            ('born_at', 'born at'),
-            ('created_at', 'created at'),
-            ('died_at', 'died at'),
-            ('ended_at', 'ended at'),
-            ('located_at', 'located at'),
-            ('occurred_at', 'occurred at'),
-            ('performed_at', 'performed at'),
-            ('started_at', 'started at'),
-
             # generic
             ('part_of', 'part of'),
             ('same_as', 'same as'),
 
-        # meta-level
-        ('has_record_source', 'has record source'),
-        ('has_record_parent', 'has record parent'),
-        ('has_record_license', 'has record license'),
-
+            # meta
+            ('has_record_parent', 'has record parent'),
     )
+
     subject = models.ForeignKey('Record',
         related_name='relation_subject',
         on_delete=models.CASCADE,
@@ -189,10 +220,14 @@ class Relation(models.Model):
         related_name='relation_direct_object',
         on_delete=models.CASCADE,
     )
-    properties = pg.JSONField(
-        blank=True,
-        null=True
-    )
+    # properties = pg.JSONField(
+    #     blank=True,
+    #     null=True
+    # )
+
+    dates = models.ManyToManyField('Date')
+    locations = models.ManyToManyField('Location')
+    sources = models.ManyToManyField('Source')
 
     def __str__(self):
         return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
@@ -229,8 +264,6 @@ class Record(Base):
         ('work', 'work'),
         ('person', 'person'),
         ('organization', 'organization'),
-        ('place', 'place'),
-        ('page', 'page'),
     )
 
     related = models.ManyToManyField('self',
@@ -254,6 +287,16 @@ class Record(Base):
     description = models.TextField(
         blank=True,
         null=True,
+    )
+
+    dates = models.ManyToManyField('Date',
+        through='RecordDate',
+    )
+    locations = models.ManyToManyField('Location',
+        through='RecordLocation',
+    )
+    sources = models.ManyToManyField('Source',
+        through='RecordSource',
     )
 
     terms = models.ManyToManyField('Term',
@@ -292,8 +335,6 @@ class Record(Base):
             'work': work_schema,
             'person': person_schema,
             'organization': organization_schema,
-            'place': place_schema,
-            'page': page_schema,
         }
         schema = schemas[self.label]
         if self.properties:

@@ -58,9 +58,10 @@ class PlaceViewSet(viewsets.ModelViewSet):
     API endpoint that allows places to be viewed or edited.
     """
 
-    queryset = Record.objects.filter(
-        label='place'
-    )
+    queryset = Record.objects.all()
+    # queryset = Record.objects.filter(
+    #     label='place'
+    # )
     serializer_class = RecordSerializer
 
 

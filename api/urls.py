@@ -1,15 +1,22 @@
 from django.conf.urls import url, include
 from rest_framework import routers
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token
-from . import views
+from .views import (
+    UserViewSet,
+    GroupViewSet,
+    RecordViewSet,
+    EventViewSet,
+    EntityViewSet,
+    PlaceViewSet,
+)
 
 router = routers.DefaultRouter()
-router.register(r'users', views.UserViewSet)
-router.register(r'groups', views.GroupViewSet)
-router.register(r'records', views.RecordViewSet)
-router.register(r'events', views.EventViewSet)
-router.register(r'entities', views.EntityViewSet)
-router.register(r'places', views.PlaceViewSet)
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+router.register(r'records', RecordViewSet)
+router.register(r'events', EventViewSet)
+router.register(r'entities', EntityViewSet)
+router.register(r'places', PlaceViewSet)
 
 urlpatterns = [
     # url(r'^$', views.base_view),

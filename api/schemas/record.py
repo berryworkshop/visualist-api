@@ -1,4 +1,4 @@
-from .etc import dates_schema
+# from .etc import date_schema, location_schema
 
 record_schema = {
   'urls': {
@@ -170,10 +170,14 @@ record_schema = {
       }
     }
   },
-  'dates': {
-    'type': 'list',
-    'schema': dates_schema
-  },
+  # 'dates': {
+  #   'type': 'list',
+  #   'schema': date_schema
+  # },
+  # 'locations': {
+  #   'type': 'list',
+  #   'schema': location_schema
+  # },
   'note': {
       'type': 'string',
   },
@@ -207,24 +211,24 @@ work_schema = {**record_schema, **{
 }}
 
 
-page_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'post',
-      'allowed': [
-        'article',
-        'collection',
-        'post',
-        'review',
-        'tour',
-      ]
-    }
-  },
-}}
+# page_schema = {**record_schema, **{
+#   'types': {
+#     'type': 'list',
+#     'required': True,
+#     'schema': {
+#       'type': 'string',
+#       'required': True,
+#       'default': 'post',
+#       'allowed': [
+#         'article',
+#         'collection',
+#         'post',
+#         'review',
+#         'tour',
+#       ]
+#     }
+#   },
+# }}
 
 
 event_schema = {**record_schema, **{
@@ -289,106 +293,6 @@ person_schema = {**record_schema, **{
     }
   },
 }}
-
-
-place_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'point',
-      'allowed': [
-        # locative
-        'area',
-        'point',
-
-        # political
-        'address',
-        'region',
-        'neighborhood',
-        'city',
-        'county',
-        'state',
-        'country',
-
-        # physical
-        'building',
-        'park',
-        'plaza',
-
-        # geographic
-        'island',
-      ]
-    }
-  },
-  'location': {
-    'type': 'dict',
-    'schema': {
-      'latitude': {
-        'type': 'float',
-        'required': True
-      },
-      'longitude': {
-        'type': 'float',
-        'required': True
-      },
-      'altitude': {
-        'type': 'float'
-      },
-    }
-  },
-  'polygons': {
-    'type': 'string'
-  },
-  'address': {
-    'type': 'dict',
-    'schema': {
-      'label': {
-        'type': 'string',
-      },
-      'description': {
-        'type': 'string',
-      },
-      'street': {
-        'type': 'list',
-        'required': True,
-        'schema': {
-          'type': 'string',
-        }
-      },
-      'locality': {
-        'type': 'string',
-        'default': 'Chicago',
-        'required': True,
-      },
-      'region': {
-        'type': 'string',
-        'required': True,
-        'allowed': [
-          'IL',
-          'IN',
-          'MI',
-          'WI',
-        ],
-        'default': 'IL'
-      },
-      'postal_code': {
-        'type': 'string'
-      },
-      'country': {
-        'type': 'string',
-        'allowed': [
-          'US',
-        ],
-        'default': 'US',
-        'required': True,
-      }
-    }
-  },
-}}
-
 
 organization_schema = {**record_schema, **{
   'types': {
