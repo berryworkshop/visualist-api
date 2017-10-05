@@ -1,15 +1,4 @@
-from .etc import date_schema, location_schema
-
-
 relation_schema = {
-    # 'dates': {
-    #     'type': 'list',
-    #     'schema': date_schema
-    # },
-    # 'locations': {
-    #     'type': 'list',
-    #     'schema': location_schema
-    # },
     'note': {
         'type': 'string',
     },

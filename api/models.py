@@ -12,6 +12,9 @@ from .schemas.relation import (
     relation_schema,
     reference_schema,
 )
+from .schemas.etc import (
+    source_schema,
+)
 
 
 # todo:
@@ -118,27 +121,117 @@ class Term(Base):
 
 
 class Date(Base):
-    pass
+    class Meta:
+        unique_together = (
+            ("date", "precision_days"),
+        )
+
+    date = models.DateField()
+    precision_days = models.PositiveIntegerField(
+        # https://goo.gl/vA8HD8
+        default=0
+    )
+
+    def __str__(self):
+        return str(self.date)
 
 
 class Location(Base):
-    pass
+    class Meta:
+        unique_together = (
+            ("latitude", "longitude", "altitude"),
+        )
+
+    latitude = models.DecimalField(
+        decimal_places=7,
+        max_digits=10,
+    )
+    longitude = models.DecimalField(
+        decimal_places=7,
+        max_digits=10,
+    )
+    altitude = models.DecimalField(
+        decimal_places=7,
+        max_digits=10,
+        blank=True,
+        null=True,
+    )
+    street = models.TextField(
+        blank=True,
+        null=True,
+    )
+    locality = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+        default='Chicago',
+    )
+    REGIONS = (
+        ('IL','Illinois'),
+        ('IN','Indiana'),
+        ('MI','Michigan'),
+        ('WI','Wisconsin'),
+    )
+    regions = models.CharField(
+        choices=REGIONS,
+        max_length=250,
+        default="IL",
+        blank=True,
+        null=True,
+    )
+    postal_code = models.CharField(
+        max_length=250,
+        blank=True,
+        null=True,
+    )
+    COUNTRIES = (
+        ('CA','Canada'),
+        ('FR','France'),
+        ('MX','Mexico'),
+        ('US','United States'),
+    )
+    countries = models.CharField(
+        choices=COUNTRIES,
+        max_length=250,
+        default="US",
+        blank=True,
+        null=True,
+    )
+
+    # def __str__(self):
+    #     pass
 
 
 class Source(Base):
-    pass
+    value = pg.JSONField()
+
+    def __str__(self):
+        return value
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
+
+    def clean(self):
+        # Make sure properties validate correctly.
+        schema = source_schema
+
+        v = Validator(schema)
+        if not v.validate(self.value):
+            raise ValidationError(
+                {'properties': 'Properties do not fit schema for source.  Errors: {}'\
+                .format(v.errors)})
 
 
 TIMESPACE_LABELS = (
-    ('is_born','is born'),
-    ('dies','dies'),
-    ('starts','starts'),
-    ('ends','ends'),
-    ('lives','lives'),
-    ('performs','performs'),
-    ('occurs','occurs'),
-    ('is','is'),
-    ('is_created','is created'),
+    ('born','born'),
+    ('died','died'),
+    ('started','started'),
+    ('ended','ended'),
+    ('lived','lived'),
+    ('performed','performed'),
+    ('occurred','occurred'),
+    ('created','created'),
 )
 
 class RecordDate(Base):

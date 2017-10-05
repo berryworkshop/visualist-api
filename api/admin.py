@@ -4,6 +4,9 @@ from api.models import (
     Record,
     Relation,
     Term,
+    Date,
+    Location,
+    Source,
 )
 
 class RecordAdmin(admin.ModelAdmin):
@@ -20,3 +23,6 @@ admin.site.register(Image)
 admin.site.register(Record, RecordAdmin)
 admin.site.register(Relation)
 admin.site.register(Term, TermAdmin)
+admin.site.register(Date)
+admin.site.register(Location)
+admin.site.register(Source)

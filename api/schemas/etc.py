@@ -1,109 +1,97 @@
-date_schema = {
-  'type': 'dict',
-  'schema': {
-    'label': {
-      'type': 'string',
-      'default': 'occurred',
-      'required': True,
-      'allowed': [
-        'occurred',
-        'started',
-        'concluded',
-        'accessed',
-      ]
+source_schema = {
+    'format': {
+        'type': 'string',
+        'allowed': [
+            'book',
+            'letter',
+            'artwork',
+            'newspaper article',
+            'website',
+        ]
+    },
+    'title': {
+        'type': 'string',
+    },
+    'parent_title': {
+        'type': 'string',
+    },
+    'identifiers': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'schema': {
+                'system': {
+                    'type': 'string',
+                    'allowed': [
+                        'ISBN',
+                        'ISSN',
+                        'DOI',
+                    ]
+                },
+                'value': {
+                    'type': 'string',
+                }
+            }
+        }
+    },
+    'authors': {
+        'type': 'list',
+        'schema': {
+            'type': 'string',
+        }
+    },
+    'editors': {
+        'type': 'list',
+        'schema': {
+            'type': 'string',
+        }
+    },
+    'translators': {
+        'type': 'list',
+        'schema': {
+            'type': 'string',
+        }
+    },
+    'archive': {
+        'type': 'dict',
+        'schema': {
+            'name': {
+                'type': 'string',
+                'required': True
+            },
+            'call_no': {
+                'type': 'string',
+            },
+            'location_in_archive': {
+                'type': 'string',
+            },
+        }
+    },
+    'publisher': {
+        'type': 'string',
+    },
+    'place': {
+        'type': 'string',
     },
     'date': {
-      'type': 'string',
-      'required': True
+        'type': 'string',
     },
-  }
-}
-
-location_schema = {
-  'type': 'dict',
-  'schema': {
-    'label': {
-      'type': 'string',
-      'default': 'occurred',
-      'required': True,
-      'allowed': [
-        'born',
-        'created',
-        'died',
-        'ended',
-        'lived',
-        'located',
-        'occurred',
-        'performed',
-        'started',
-      ]
+    'edition': {
+        'type': 'string',
     },
-    'coordinates': {
-      'type': 'list',
-      'schema': {
-        'type': 'dict',
-        'schema': {
-          'latitude': {
-            'type': 'float',
-            'required': True
-          },
-          'longitude': {
-            'type': 'float',
-            'required': True
-          },
-          'altitude': {
-            'type': 'float'
-          },
-        }
-      }
+    'volume': {
+        'type': 'string',
     },
-    'addresses': {
-      'type': 'list',
-      'schema': {
-        'type': 'dict',
-        'schema': {
-          'label': {
-            'type': 'string',
-          },
-          'description': {
-            'type': 'string',
-          },
-          'street': {
-            'type': 'list',
-            'required': True,
-            'schema': {
-              'type': 'string',
-            }
-          },
-          'locality': {
-            'type': 'string',
-            'default': 'Chicago',
-            'required': True,
-          },
-          'region': {
-            'type': 'string',
-            'required': True,
-            'allowed': [
-              'IL',
-              'IN',
-              'MI',
-              'WI',
-            ],
-            'default': 'IL'
-          },
-          'postal_code': {
-            'type': 'string'
-          },
-          'country': {
-            'type': 'string',
-            'allowed': [
-              'US',
-            ],
-            'default': 'US',
-            'required': True,
-          }
-        }
-      }
+    'series': {
+        'type': 'string',
+    },
+    'pages': {
+        'type': 'string',
+    },
+    'section': {
+        'type': 'string',
+    },
+    'url': {
+        'type': 'string',
     }
-  }
 }
