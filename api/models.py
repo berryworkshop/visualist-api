@@ -112,11 +112,15 @@ class Term(Base):
 class Date(Base):
     class Meta:
         unique_together = (
-            ("date", "precision_days"),
+            ("date", "duration", 'precision'),
         )
 
-    date = models.DateField()
-    precision_days = models.PositiveIntegerField(
+    date = models.DateTimeField()
+    duration = models.PositiveIntegerField(
+        # https://goo.gl/vA8HD8
+        default=0
+    )
+    precision = models.PositiveIntegerField(
         # https://goo.gl/vA8HD8
         default=0
     )
@@ -245,57 +249,6 @@ class Source(Base):
                 .format(v.errors)})
 
 
-TIMESPACE_LABELS = (
-    ('born','born'),
-    ('died','died'),
-    ('started','started'),
-    ('ended','ended'),
-    ('lived','lived'),
-    ('performed','performed'),
-    ('occurred','occurred'),
-    ('created','created'),
-)
-
-class RecordDate(Base):
-    label = models.CharField(
-        max_length=25,
-        choices=TIMESPACE_LABELS,
-    )
-    record = models.ForeignKey('Record')
-    date = models.ForeignKey('Date')
-
-
-class RecordLocation(Base):
-    label = models.CharField(
-        max_length=25,
-        choices=TIMESPACE_LABELS,
-    )
-    record = models.ForeignKey('Record')
-    location = models.ForeignKey('Location')
-
-    properties = pg.JSONField(
-        default=dict(),
-        blank=True,
-    )
-
-    def __str__(self):
-        return '({})-[{}]->({})'.format(self.record, self.label, self.location)
-
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        return super().save(*args, **kwargs)
-
-    def clean(self):
-        # Make sure properties validate correctly.
-        schema = schemas.record_source_schema
-
-        v = Validator(schema)
-        if self.properties and not v.validate(self.properties):
-            raise ValidationError(
-                {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
-                .format(v.errors)})
-
-
 class RecordSource(Base):
     class Meta:
         unique_together = (
@@ -333,7 +286,7 @@ class RecordSource(Base):
 
 class Relation(Base):
 
-    PREDICATES =  TIMESPACE_LABELS + (
+    PREDICATES = (
         # item-level
             # relations flow in this direction, when possible
                 # Event
@@ -347,31 +300,35 @@ class Relation(Base):
             # work
             # (('has_work'), ('has work')), # reverse
 
+
             # person/organization
+            ('has_affiliation', 'affiliated with'),
             ('has_contributor', 'has contributor'),
             ('has_creator', 'has creator'),
             ('has_curator', 'has curator'),
+            ('has_date', 'has date'),
             ('has_editor', 'has editor'),
             ('has_employee', 'has employee'),
             ('has_exhibitor', 'has exhibitor'),
+            ('has_existence', 'exists'),
             ('has_friend', 'has friend'),
+            ('has_life', 'is alive'),
+            ('has_location', 'has location (NOT venue)'),
             ('has_member', 'has member'),
             ('has_organizer', 'has organizer'),
             ('has_owner', 'has owner'),
             ('has_parent', 'has parent'),
+            ('has_performer','has performer'),
+            ('has_primary', 'is a subsidiary of'),
             ('has_producer', 'has producer'),
             ('has_publisher', 'has publisher'),
-            ('has_affiliation', 'has affiliation'),
-            ('has_spouse', 'has spouse'),
+            ('has_spouse', 'is married to'),
             ('has_translator', 'has translator'),
-            ('has_venue', 'has_venue'),
+            ('has_venue', 'has venue'),
 
             # generic
             ('part_of', 'part of'),
             ('same_as', 'same as'),
-
-            # meta
-            ('has_record_parent', 'has record parent'),
     )
 
     subject = models.ForeignKey('Record',
@@ -385,18 +342,30 @@ class Relation(Base):
     dobject = models.ForeignKey('Record',
         related_name='relation_direct_object',
         on_delete=models.CASCADE,
+        blank=True,
+        null=True
     )
-    # properties = pg.JSONField(
-    #     blank=True,
-    #     null=True
-    # )
+    properties = pg.JSONField(
+        default={},
+        blank=True,
+        null=True,
+    )
 
-    dates = models.ManyToManyField('Date')
-    locations = models.ManyToManyField('Location')
-    sources = models.ManyToManyField('Source')
+    dates = models.ManyToManyField('Date',
+        blank=True,
+    )
+    locations = models.ManyToManyField('Location',
+        blank=True,
+    )
+    sources = models.ManyToManyField('Source',
+        blank=True,
+    )
 
     def __str__(self):
-        return '( {} )-[ {} ]->( {} )'.format(self.subject, self.predicate, self.dobject)
+        s = '( {} )-[ {} ]'.format(self.subject, self.predicate)
+        if self.dobject:
+            s = s + '->( {} )'.format(self.dobject)
+        return s
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -452,26 +421,17 @@ class Record(Base):
         blank=True,
         default=dict()
     )
-
     description = models.TextField(
         blank=True,
         null=True,
     )
 
-    dates = models.ManyToManyField('Date',
-        through='RecordDate',
-    )
-    locations = models.ManyToManyField('Location',
-        through='RecordLocation',
-    )
     sources = models.ManyToManyField('Source',
         through='RecordSource',
     )
-
     terms = models.ManyToManyField('Term',
         blank=True,
     )
-
     images = models.ManyToManyField('Image',
         blank=True,
     )
@@ -499,13 +459,13 @@ class Record(Base):
 
     def clean(self):
         # Make sure properties validate correctly.
-        schemas = {
+        record_schemas = {
             'event': schemas.event_schema,
             'work': schemas.work_schema,
             'person': schemas.person_schema,
             'organization': schemas.organization_schema,
         }
-        schema = schemas[self.label]
+        schema = record_schemas[self.label]
         if self.properties:
             v = Validator(schema)
             if not v.validate(self.properties):

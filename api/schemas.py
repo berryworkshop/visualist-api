@@ -454,6 +454,22 @@ record_source_schema = {
     'section': {
         'type': 'string',
     },
+    'urls': {
+      'type': 'list',
+      'schema': {
+        'type': 'dict',
+        'schema': {
+          'label': {
+            'type': 'string',
+          },
+          'description': {
+            'type': 'string',
+          },
+          'href': {
+            'type': 'string',
+            'required': True
+          }
+        }
+      }
+    },
 }
-
-record_location_schema = {}
