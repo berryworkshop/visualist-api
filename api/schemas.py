@@ -324,3 +324,136 @@ organization_schema = {**record_schema, **{
     'type': 'string'
   }
 }}
+
+
+relation_schema = {
+    'note': {
+        'type': 'string',
+    },
+}
+
+reference_schema = {**relation_schema, **{
+    'section': {
+        'type': 'string',
+    },
+    'place': {
+        'type': 'string',
+    },
+    'url': {
+        'type': 'string',
+    },
+    'journal': {
+        'type': 'dict',
+        'schema': {
+            'name': {
+                'type': 'string',
+                'required': True,
+            },
+            'issue': {
+                'type': 'string',
+            },
+            'volume': {
+                'type': 'string',
+            },
+        }
+    },
+    'archive': {
+        'type': 'dict',
+        'schema': {
+            'name': {
+                'type': 'string',
+                'required': True,
+            },
+            'place': {
+                'type': 'string',
+            },
+            'url': {
+                'type': 'string',
+            },
+            'accessed': {
+                'type': 'datetime',
+            }
+        }
+    }
+}}
+
+source_schema = {
+    'authors': {
+        'type': 'list',
+        'schema': {
+            'type': 'string',
+        }
+    },
+    'editors': {
+        'type': 'list',
+        'schema': {
+            'type': 'string',
+        }
+    },
+    'translators': {
+        'type': 'list',
+        'schema': {
+            'type': 'string',
+        }
+    },
+        'collection_title': {
+        'type': 'string',
+    },
+    'identifiers': {
+        'type': 'list',
+        'schema': {
+            'type': 'dict',
+            'schema': {
+                'system': {
+                    'type': 'string',
+                    'allowed': [
+                        'ISBN',
+                        'ISSN',
+                        'DOI',
+                    ]
+                },
+                'value': {
+                    'type': 'string',
+                }
+            }
+        }
+    },
+    'archive': {
+        'type': 'dict',
+        'schema': {
+            'name': {
+                'type': 'string',
+                'required': True
+            },
+            'call_no': {
+                'type': 'string',
+            },
+            'location_in_archive': {
+                'type': 'string',
+            },
+        }
+    },
+    'edition': {
+        'type': 'string',
+    },
+    'pages': {
+        'type': 'string',
+    },
+    'volume': {
+        'type': 'string',
+    },
+    'series': {
+        'type': 'string',
+    },
+}
+
+record_source_schema = {
+    'pages': {
+        'type': 'string',
+    },
+    'section': {
+        'type': 'string',
+    },
+}
+
+record_location_schema = {}

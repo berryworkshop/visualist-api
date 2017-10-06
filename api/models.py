@@ -1,20 +1,9 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.contrib.postgres import fields as pg
+from django.utils.timezone import now
 from cerberus import Validator
-from .schemas.record import (
-    work_schema,
-    event_schema,
-    person_schema,
-    organization_schema,
-)
-from .schemas.relation import (
-    relation_schema,
-    reference_schema,
-)
-from .schemas.etc import (
-    source_schema,
-)
+import schemas
 
 
 # todo:
@@ -172,7 +161,7 @@ class Location(Base):
         ('MI','Michigan'),
         ('WI','Wisconsin'),
     )
-    regions = models.CharField(
+    region = models.CharField(
         choices=REGIONS,
         max_length=250,
         default="IL",
@@ -198,15 +187,48 @@ class Location(Base):
         null=True,
     )
 
-    # def __str__(self):
-    #     pass
+    def __str__(self):
+        street_single_line = self.street.replace('\r\n', ', ')
+        return '{}, {} {}'.format(street_single_line, self.locality, self.region)
 
 
 class Source(Base):
-    value = pg.JSONField()
+    LABELS = (
+        ('book','book'),
+        ('website','website'),
+        ('journal_article','journal article'),
+        ('newspaper_article','newspaper article'),
+    )
+    label = models.CharField(
+        max_length=25,
+        choices=LABELS,
+    )
+    title = models.CharField(
+        max_length=250
+    )
+    publisher = models.CharField(
+        max_length=250,
+        blank=True
+    )
+    place = models.CharField(
+        max_length=250,
+        blank=True
+    )
+    date = models.CharField(
+        max_length=250,
+        blank=True
+    )
+    url = models.URLField(
+        max_length=250,
+        blank=True,
+    )
+    properties = pg.JSONField(
+        default=dict(),
+        blank=True,
+    )
 
     def __str__(self):
-        return value
+        return self.title
 
     def save(self, *args, **kwargs):
         self.full_clean()
@@ -214,12 +236,12 @@ class Source(Base):
 
     def clean(self):
         # Make sure properties validate correctly.
-        schema = source_schema
+        schema = schemas.source_schema
 
         v = Validator(schema)
-        if not v.validate(self.value):
+        if self.properties and not v.validate(self.properties):
             raise ValidationError(
-                {'properties': 'Properties do not fit schema for source.  Errors: {}'\
+                {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
                 .format(v.errors)})
 
 
@@ -251,11 +273,62 @@ class RecordLocation(Base):
     record = models.ForeignKey('Record')
     location = models.ForeignKey('Location')
 
+    properties = pg.JSONField(
+        default=dict(),
+        blank=True,
+    )
+
+    def __str__(self):
+        return '({})-[{}]->({})'.format(self.record, self.label, self.location)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
+
+    def clean(self):
+        # Make sure properties validate correctly.
+        schema = schemas.record_source_schema
+
+        v = Validator(schema)
+        if self.properties and not v.validate(self.properties):
+            raise ValidationError(
+                {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
+                .format(v.errors)})
+
 
 class RecordSource(Base):
-    accessed = models.DateField()
+    class Meta:
+        unique_together = (
+            ('record','source'),
+        )
+
+    accessed = models.DateField(
+        default = now
+    )
     record = models.ForeignKey('Record')
     source = models.ForeignKey('Source')
+
+    properties = pg.JSONField(
+        default=dict(),
+        blank=True,
+    )
+
+    def __str__(self):
+        return '{} --> {}'.format(self.record, self.source)
+
+    def save(self, *args, **kwargs):
+        self.full_clean()
+        return super().save(*args, **kwargs)
+
+    def clean(self):
+        # Make sure properties validate correctly.
+        schema = schemas.record_source_schema
+
+        v = Validator(schema)
+        if self.properties and not v.validate(self.properties):
+            raise ValidationError(
+                {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
+                .format(v.errors)})
 
 
 class Relation(Base):
@@ -332,9 +405,9 @@ class Relation(Base):
     def clean(self):
         # Make sure properties validate correctly.
         if self.predicate == 'has_record_source':
-            schema = reference_schema
+            schema = schemas.reference_schema
         else:
-            schema = relation_schema
+            schema = schemas.relation_schema
 
         if self.properties:
             v = Validator(schema)
@@ -375,7 +448,10 @@ class Record(Base):
         max_length=25,
         choices=LABELS,
     )
-    properties = pg.JSONField()
+    properties = pg.JSONField(
+        blank=True,
+        default=dict()
+    )
 
     description = models.TextField(
         blank=True,
@@ -424,10 +500,10 @@ class Record(Base):
     def clean(self):
         # Make sure properties validate correctly.
         schemas = {
-            'event': event_schema,
-            'work': work_schema,
-            'person': person_schema,
-            'organization': organization_schema,
+            'event': schemas.event_schema,
+            'work': schemas.work_schema,
+            'person': schemas.person_schema,
+            'organization': schemas.organization_schema,
         }
         schema = schemas[self.label]
         if self.properties:
