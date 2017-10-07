@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from .models import Record
+from .models import Record, Relation
 from rest_framework import serializers
 
 
@@ -18,4 +18,13 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class RecordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Record
-        fields = ('slug', 'label')
+        fields = ('url', 'slug', 'label', 'name',
+            # 'description',
+            'relations_by_subject'
+        )
+
+
+class RelationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Relation
+        fields = ('subject', 'predicate', 'dobject')

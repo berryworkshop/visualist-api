@@ -63,7 +63,7 @@ ul {
   margin: -.5 * $gutter;
 
   li {
-    flex: 1 0 18rem;
+    flex: 0 0 18rem;
     margin: .5 * $gutter;
   }
 }

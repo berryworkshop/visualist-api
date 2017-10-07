@@ -3,8 +3,10 @@ from django.http import JsonResponse
 from django.db.models import Q
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer, RecordSerializer
-from .models import Record
+from .serializers import (
+    UserSerializer, GroupSerializer, RecordSerializer, RelationSerializer
+)
+from .models import Record, Relation
 
 
 def base_view(req):
@@ -31,7 +33,7 @@ class RecordViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows records to be viewed or edited.
     """
-    queryset = Record.objects.all()
+    queryset = Record.objects.filter(is_primary=True)
     serializer_class = RecordSerializer
 
 
@@ -39,7 +41,7 @@ class EventViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows events to be viewed or edited.
     """
-    queryset = Record.objects.filter(label='event')
+    queryset = Record.objects.filter(is_primary=True, label='event')
     serializer_class = RecordSerializer
 
 
@@ -49,19 +51,18 @@ class EntityViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Record.objects.filter(
-        Q(label='person') | Q(label='organization')
-    )
+        Q(label='person') | Q(label='organization'))\
+        .filter(is_primary=True)
     serializer_class = RecordSerializer
 
-class PlaceViewSet(viewsets.ModelViewSet):
+
+class RelationViewSet(viewsets.ModelViewSet):
     """
-    API endpoint that allows places to be viewed or edited.
+    API endpoint that allows relations to be viewed or edited.
     """
 
-    queryset = Record.objects.all()
+    queryset = Relation.objects.all()
     # queryset = Record.objects.filter(
     #     label='place'
     # )
-    serializer_class = RecordSerializer
-
-
+    serializer_class = RelationSerializer

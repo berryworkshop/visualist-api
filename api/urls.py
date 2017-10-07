@@ -7,7 +7,7 @@ from .views import (
     RecordViewSet,
     EventViewSet,
     EntityViewSet,
-    PlaceViewSet,
+    RelationViewSet,
 )
 
 router = routers.DefaultRouter()
@@ -16,7 +16,7 @@ router.register(r'groups', GroupViewSet)
 router.register(r'records', RecordViewSet)
 router.register(r'events', EventViewSet)
 router.register(r'entities', EntityViewSet)
-router.register(r'places', PlaceViewSet)
+router.register(r'relations', RelationViewSet)
 
 urlpatterns = [
     # url(r'^$', views.base_view),

@@ -1,5 +1,3 @@
-# from .etc import date_schema, location_schema
-
 record_schema = {
   'urls': {
     'type': 'list',
@@ -170,40 +168,12 @@ record_schema = {
       }
     }
   },
-  # 'dates': {
-  #   'type': 'list',
-  #   'schema': date_schema
-  # },
-  # 'locations': {
-  #   'type': 'list',
-  #   'schema': location_schema
-  # },
   'note': {
       'type': 'string',
   },
 }
 
 work_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'artwork',
-      'allowed': [
-        'article',
-        'artwork',
-        'book',
-        'installation',
-        'license',
-        'photograph',
-        'sculpture',
-        'vocabulary',
-        'website',
-      ]
-    }
-  },
   'version': {
     'type': 'string',
     'default': '1'
@@ -211,52 +181,7 @@ work_schema = {**record_schema, **{
 }}
 
 
-# page_schema = {**record_schema, **{
-#   'types': {
-#     'type': 'list',
-#     'required': True,
-#     'schema': {
-#       'type': 'string',
-#       'required': True,
-#       'default': 'post',
-#       'allowed': [
-#         'article',
-#         'collection',
-#         'post',
-#         'review',
-#         'tour',
-#       ]
-#     }
-#   },
-# }}
-
-
 event_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'exhibition',
-      'allowed': [
-        'course',
-        'convention',
-        'exhibition',
-        'fair',
-        'performance',
-        'reception',
-        'residency',
-        'workshop',
-      ]
-    }
-  },
-  'datetime_start': {
-    'type': 'datetime'
-  },
-  'datetime_end': {
-    'type': 'datetime'
-  },
   'group_friendly': {
     'type': 'boolean',
     'required': True,
@@ -266,26 +191,6 @@ event_schema = {**record_schema, **{
 
 
 person_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'artist',
-      'allowed': [
-        'architect',
-        'artist',
-        'curator',
-        'filmmaker',
-        'gallerist',
-        'manager',
-        'professor',
-        'programmer',
-        'writer',
-      ]
-    }
-  },
   'names_extra': {
     'type': 'list',
     'schema': {
@@ -295,27 +200,6 @@ person_schema = {**record_schema, **{
 }}
 
 organization_schema = {**record_schema, **{
-  'types': {
-    'type': 'list',
-    'required': True,
-    'schema': {
-      'type': 'string',
-      'required': True,
-      'default': 'gallery',
-      'allowed': [
-        'archive',
-        'association',
-        'company',
-        'consortium',
-        'foundation',
-        'gallery',
-        'library',
-        'museum',
-        'publisher',
-        'school',
-      ]
-    }
-  },
   'appointment_only': {
     'type': 'boolean',
     'default': False

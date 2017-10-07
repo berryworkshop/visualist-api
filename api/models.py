@@ -222,14 +222,14 @@ class Source(Base):
         max_length=250,
         blank=True
     )
-    url = models.URLField(
+    source_url = models.URLField(
         max_length=250,
         blank=True,
     )
-    properties = pg.JSONField(
-        default=dict(),
-        blank=True,
-    )
+    # properties = pg.JSONField(
+    #     default=dict(),
+    #     blank=True,
+    # )
 
     def __str__(self):
         return self.title
@@ -238,15 +238,15 @@ class Source(Base):
         self.full_clean()
         return super().save(*args, **kwargs)
 
-    def clean(self):
-        # Make sure properties validate correctly.
-        schema = schemas.source_schema
+    # def clean(self):
+    #     # Make sure properties validate correctly.
+    #     schema = schemas.source_schema
 
-        v = Validator(schema)
-        if self.properties and not v.validate(self.properties):
-            raise ValidationError(
-                {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
-                .format(v.errors)})
+    #     v = Validator(schema)
+    #     if self.properties and not v.validate(self.properties):
+    #         raise ValidationError(
+    #             {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
+    #             .format(v.errors)})
 
 
 class RecordSource(Base):
@@ -261,10 +261,10 @@ class RecordSource(Base):
     record = models.ForeignKey('Record')
     source = models.ForeignKey('Source')
 
-    properties = pg.JSONField(
-        default=dict(),
-        blank=True,
-    )
+    # properties = pg.JSONField(
+    #     default=dict(),
+    #     blank=True,
+    # )
 
     def __str__(self):
         return '{} --> {}'.format(self.record, self.source)
@@ -273,15 +273,15 @@ class RecordSource(Base):
         self.full_clean()
         return super().save(*args, **kwargs)
 
-    def clean(self):
-        # Make sure properties validate correctly.
-        schema = schemas.record_source_schema
+    # def clean(self):
+    #     # Make sure properties validate correctly.
+    #     schema = schemas.record_source_schema
 
-        v = Validator(schema)
-        if self.properties and not v.validate(self.properties):
-            raise ValidationError(
-                {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
-                .format(v.errors)})
+    #     v = Validator(schema)
+    #     if self.properties and not v.validate(self.properties):
+    #         raise ValidationError(
+    #             {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
+    #             .format(v.errors)})
 
 
 class Relation(Base):
@@ -332,7 +332,7 @@ class Relation(Base):
     )
 
     subject = models.ForeignKey('Record',
-        related_name='relation_subject',
+        related_name='relations_by_subject',
         on_delete=models.CASCADE,
     )
     predicate = models.CharField(
@@ -340,16 +340,16 @@ class Relation(Base):
         max_length=25,
     )
     dobject = models.ForeignKey('Record',
-        related_name='relation_direct_object',
+        related_name='relations_by_dobject',
         on_delete=models.CASCADE,
         blank=True,
         null=True
     )
-    properties = pg.JSONField(
-        default={},
-        blank=True,
-        null=True,
-    )
+    # properties = pg.JSONField(
+    #     default={},
+    #     blank=True,
+    #     null=True,
+    # )
 
     dates = models.ManyToManyField('Date',
         blank=True,
@@ -371,19 +371,19 @@ class Relation(Base):
         self.full_clean()
         return super().save(*args, **kwargs)
 
-    def clean(self):
-        # Make sure properties validate correctly.
-        if self.predicate == 'has_record_source':
-            schema = schemas.reference_schema
-        else:
-            schema = schemas.relation_schema
+    # def clean(self):
+    #     # Make sure properties validate correctly.
+    #     if self.predicate == 'has_record_source':
+    #         schema = schemas.reference_schema
+    #     else:
+    #         schema = schemas.relation_schema
 
-        if self.properties:
-            v = Validator(schema)
-            if not v.validate(self.properties):
-                raise ValidationError(
-                    {'properties': 'Properties do not fit schema for predicate {}.  Errors: {}'\
-                    .format(self.predicate, v.errors)})
+    #     if self.properties:
+    #         v = Validator(schema)
+    #         if not v.validate(self.properties):
+    #             raise ValidationError(
+    #                 {'properties': 'Properties do not fit schema for predicate {}.  Errors: {}'\
+    #                 .format(self.predicate, v.errors)})
 
 
 class Record(Base):
@@ -393,13 +393,6 @@ class Record(Base):
         ]
 
     schema = 'http://schema.org/Thing'
-
-    LABELS = (
-        ('event', 'event'),
-        ('work', 'work'),
-        ('person', 'person'),
-        ('organization', 'organization'),
-    )
 
     related = models.ManyToManyField('self',
         through='Relation',
@@ -413,14 +406,78 @@ class Record(Base):
     slug = models.SlugField(
         unique=True,
     )
+
+    LABELS = (
+        ('event', 'event'),
+        ('work', 'work'),
+        ('person', 'person'),
+        ('organization', 'organization'),
+    )
+    SUBLABELS = {
+        'event': [
+            'course',
+            'convention',
+            'exhibition',
+            'fair',
+            'performance',
+            'reception',
+            'residency',
+            'workshop',
+        ],
+        'work': [
+            'article',
+            'artwork',
+            'book',
+            'installation',
+            'license',
+            'photograph',
+            'sculpture',
+            'vocabulary',
+            'website',
+        ],
+        'person': [
+            'architect',
+            'artist',
+            'curator',
+            'filmmaker',
+            'gallerist',
+            'manager',
+            'professor',
+            'programmer',
+            'writer',
+        ],
+        'organization': [
+            'archive',
+            'association',
+            'company',
+            'consortium',
+            'foundation',
+            'gallery',
+            'library',
+            'museum',
+            'publisher',
+            'school',
+        ],
+        # 'page': [
+        #     'article',
+        #     'collection',
+        #     'post',
+        #     'review',
+        #     'tour',
+        # ]
+    }
     label = models.CharField(
         max_length=25,
         choices=LABELS,
     )
-    properties = pg.JSONField(
-        blank=True,
-        default=dict()
+    sublabels = pg.ArrayField(
+        models.CharField(max_length=25)
     )
+
+    # properties = pg.JSONField(
+    #     blank=True,
+    #     default=dict()
+    # )
     description = models.TextField(
         blank=True,
         null=True,
@@ -439,6 +496,10 @@ class Record(Base):
     is_active = models.NullBooleanField(
         default=True,
     )
+
+    is_primary = models.BooleanField(
+        default=True,
+    )
     is_featured = models.BooleanField(
         default=False,
     )
@@ -451,30 +512,34 @@ class Record(Base):
 
     # methods
     def __str__(self):
-        return '{}/{}: {}'.format(self.label, self.types(), self.name)
+        sublabels = '/'.join(self.sublabels)
+        return '{}/{}: {}'.format(self.label, sublabels, self.name)
 
     def save(self, *args, **kwargs):
         self.full_clean()
         return super().save(*args, **kwargs)
 
     def clean(self):
-        # Make sure properties validate correctly.
-        record_schemas = {
-            'event': schemas.event_schema,
-            'work': schemas.work_schema,
-            'person': schemas.person_schema,
-            'organization': schemas.organization_schema,
-        }
-        schema = record_schemas[self.label]
-        if self.properties:
-            v = Validator(schema)
-            if not v.validate(self.properties):
+        for sublabel in self.sublabels:
+            if sublabel not in Record.SUBLABELS[self.label]:
                 raise ValidationError(
-                    {'properties': 'Properties do not fit {} schema.  Errors: {}'\
-                    .format(self.label, v.errors)})
+                    {'sublabels': 'Sublabels do not fit {} label.  Choices are: {}'\
+                    .format(self.label, Record.SUBLABELS[self.label])})
+        # Make sure properties validate correctly.
+        # record_schemas = {
+        #     'event': schemas.event_schema,
+        #     'work': schemas.work_schema,
+        #     'person': schemas.person_schema,
+        #     'organization': schemas.organization_schema,
+        # }
+        # schema = record_schemas[self.label]
+        # if self.properties:
+        #     v = Validator(schema)
+        #     if not v.validate(self.properties):
+        #         raise ValidationError(
+        #             {'properties': 'Properties do not fit {} schema.  Errors: {}'\
+        #             .format(self.label, v.errors)})
 
-    def types(self):
-        return '/'.join(self.properties['types'])
 
     def age(self):
         pass

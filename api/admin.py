@@ -12,9 +12,16 @@ from api.models import (
 
 class RecordAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("name",)}
+    list_filter = ('label', 'terms', 'is_primary')
+    search_fields = ('name',
+    # 'properties'
+    )
 
 class RelationAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("value",)}
+    list_filter = ('predicate',)
+    search_fields = ('subject__name', 'predicate', 'dobject__name',
+    # 'properties',
+    )
 
 class TermAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("vocabulary", "value",)}
@@ -22,7 +29,7 @@ class TermAdmin(admin.ModelAdmin):
 
 admin.site.register(Image)
 admin.site.register(Record, RecordAdmin)
-admin.site.register(Relation)
+admin.site.register(Relation, RelationAdmin)
 admin.site.register(Term, TermAdmin)
 admin.site.register(Date)
 admin.site.register(Location)
