@@ -43,5 +43,9 @@ export default {
       min-height: 100vh;
     }
   }
+
+  .router-link-active {
+    font-weight: 700;
+  }
 }
 </style>

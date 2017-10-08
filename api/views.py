@@ -4,7 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from .serializers import (
-    UserSerializer, GroupSerializer, RecordSerializer, RelationSerializer
+    UserSerializer, GroupSerializer, RecordSerializer
 )
 from .models import Record, Relation
 
@@ -54,15 +54,3 @@ class EntityViewSet(viewsets.ModelViewSet):
         Q(label='person') | Q(label='organization'))\
         .filter(is_primary=True)
     serializer_class = RecordSerializer
-
-
-class RelationViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows relations to be viewed or edited.
-    """
-
-    queryset = Relation.objects.all()
-    # queryset = Record.objects.filter(
-    #     label='place'
-    # )
-    serializer_class = RelationSerializer

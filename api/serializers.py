@@ -1,30 +1,39 @@
 from django.contrib.auth.models import User, Group
-from .models import Record, Relation
+from .models import Snippet, Record, Relation
 from rest_framework import serializers
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups')
+        fields = ('pk', 'url', 'username', 'email', 'groups')
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
-        fields = ('url', 'name')
+        fields = ('pk', 'url', 'name')
+
+
+class SnippetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Snippet
+        fields = ('pk', 'value',
+            # 'source'
+        )
 
 
 class RecordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Record
-        fields = ('url', 'slug', 'label', 'name',
-            # 'description',
-            'relations_by_subject'
+        fields = ('pk', 'url', 'slug', 'label', 'name', 'sublabels',
+            'descriptions',
+            # 'relations'
         )
 
+    descriptions = SnippetSerializer(many=True)
 
-class RelationSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Relation
-        fields = ('subject', 'predicate', 'dobject')
+    def create(self, validated_data):
+        return Record.objects.create(**validated_data)
+
+

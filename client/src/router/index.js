@@ -6,6 +6,7 @@ import Directory from '@/components/Directory';
 import Map from '@/components/Map';
 import Search from '@/components/Search';
 import User from '@/components/User';
+import Record from '@/components/Record';
 
 
 Vue.use(Router);
@@ -62,6 +63,14 @@ export default new Router({
       component: User,
       meta: {
         breadcrumb: 'User',
+      },
+    },
+    {
+      path: '/record/:id',
+      name: 'record',
+      component: Record,
+      meta: {
+        breadcrumb: 'Record',
       },
     },
   ],

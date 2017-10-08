@@ -7,7 +7,7 @@ from api.models import (
     Date,
     Location,
     Source,
-    RecordSource,
+    Snippet,
 )
 
 class RecordAdmin(admin.ModelAdmin):
@@ -34,4 +34,4 @@ admin.site.register(Term, TermAdmin)
 admin.site.register(Date)
 admin.site.register(Location)
 admin.site.register(Source)
-admin.site.register(RecordSource)
+admin.site.register(Snippet)

@@ -23,6 +23,19 @@ class Base(models.Model):
     )
 
 
+class Snippet(Base):
+    value = models.TextField()
+    source = models.ForeignKey('Source',
+        blank=True,
+        null=True,
+    )
+
+    def __str__(self):
+        if len(self.value) > 50:
+            return self.value[:50] + '...'
+        return self.value
+
+
 class Image(Base):
     schema = 'http://schema.org/ImageObject'
     title = models.CharField(
@@ -249,39 +262,39 @@ class Source(Base):
     #             .format(v.errors)})
 
 
-class RecordSource(Base):
-    class Meta:
-        unique_together = (
-            ('record','source'),
-        )
+# class RecordSource(Base):
+#     class Meta:
+#         unique_together = (
+#             ('record','source'),
+#         )
 
-    accessed = models.DateField(
-        default = now
-    )
-    record = models.ForeignKey('Record')
-    source = models.ForeignKey('Source')
+#     accessed = models.DateField(
+#         default = now
+#     )
+#     record = models.ForeignKey('Record')
+#     source = models.ForeignKey('Source')
 
-    # properties = pg.JSONField(
-    #     default=dict(),
-    #     blank=True,
-    # )
+#     # properties = pg.JSONField(
+#     #     default=dict(),
+#     #     blank=True,
+#     # )
 
-    def __str__(self):
-        return '{} --> {}'.format(self.record, self.source)
+#     def __str__(self):
+#         return '{} --> {}'.format(self.record, self.source)
 
-    def save(self, *args, **kwargs):
-        self.full_clean()
-        return super().save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         self.full_clean()
+#         return super().save(*args, **kwargs)
 
-    # def clean(self):
-    #     # Make sure properties validate correctly.
-    #     schema = schemas.record_source_schema
+#     # def clean(self):
+#     #     # Make sure properties validate correctly.
+#     #     schema = schemas.record_source_schema
 
-    #     v = Validator(schema)
-    #     if self.properties and not v.validate(self.properties):
-    #         raise ValidationError(
-    #             {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
-    #             .format(v.errors)})
+#     #     v = Validator(schema)
+#     #     if self.properties and not v.validate(self.properties):
+#     #         raise ValidationError(
+#     #             {'properties': 'Extra properties do not fit schema for Source.  Errors: {}'\
+#     #             .format(v.errors)})
 
 
 class Relation(Base):
@@ -332,7 +345,6 @@ class Relation(Base):
     )
 
     subject = models.ForeignKey('Record',
-        related_name='relations_by_subject',
         on_delete=models.CASCADE,
     )
     predicate = models.CharField(
@@ -340,7 +352,7 @@ class Relation(Base):
         max_length=25,
     )
     dobject = models.ForeignKey('Record',
-        related_name='relations_by_dobject',
+        related_name='reverse_relations',
         on_delete=models.CASCADE,
         blank=True,
         null=True
@@ -357,8 +369,10 @@ class Relation(Base):
     locations = models.ManyToManyField('Location',
         blank=True,
     )
-    sources = models.ManyToManyField('Source',
+
+    source = models.ForeignKey('Source',
         blank=True,
+        null=True,
     )
 
     def __str__(self):
@@ -478,13 +492,8 @@ class Record(Base):
     #     blank=True,
     #     default=dict()
     # )
-    description = models.TextField(
+    descriptions = models.ManyToManyField('Snippet',
         blank=True,
-        null=True,
-    )
-
-    sources = models.ManyToManyField('Source',
-        through='RecordSource',
     )
     terms = models.ManyToManyField('Term',
         blank=True,

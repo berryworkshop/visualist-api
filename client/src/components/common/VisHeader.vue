@@ -1,12 +1,5 @@
 <template>
   <header class="container">
-    <nav id="primary-nav">
-      <ul>
-        <li><router-link :to="{name: 'calendar'}">Calendar</router-link></li>
-        <li><router-link :to="{name: 'directory'}">Directory</router-link></li>
-        <li><router-link :to="{name: 'map'}">Map</router-link></li>
-      </ul>
-    </nav>
     <nav id="secondary-nav">
       <ul>
         <router-link :to="{name: 'user'}">User</router-link>
@@ -37,13 +30,6 @@ header {
     }
   }
 
-  .router-link-active {
-    font-weight: 700;
-  }
-
-  #primary-nav {
-    flex: 1;
-  }
   #secondary-nav {
     flex: 1;
     text-align: right;
