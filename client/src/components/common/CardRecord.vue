@@ -12,7 +12,7 @@
       </li>
     </ul>
 
-    <p :key="desc.pk" v-for="desc of data.descriptions">{{ desc.value | truncate(250)}}</p>
+    <p v-if="data.description">{{ data.description.value | truncate(250)}}</p>
 
     <!-- <slot>
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam veniam libero in! Laborum in corrupti alias reprehenderit cumque enim, fugiat velit dolorum, nobis maxime ea veniam. Nam ducimus accusantium aliquam.</p>
@@ -31,7 +31,7 @@ export default {
     truncate(value, length) {
       if (!value) return '';
       const val = value.substring(0, length);
-      if (val.length <= value) return val;
+      if (value.length < length) return val;
       return `${val}...`;
     },
   },

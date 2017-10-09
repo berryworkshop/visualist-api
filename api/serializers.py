@@ -18,7 +18,9 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class SnippetSerializer(serializers.ModelSerializer):
     class Meta:
         model = Snippet
-        fields = ('pk', 'value',
+        fields = (
+            # 'pk',
+            'value', 'source_url',
             # 'source'
         )
 
@@ -26,12 +28,15 @@ class SnippetSerializer(serializers.ModelSerializer):
 class RecordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Record
-        fields = ('pk', 'url', 'slug', 'label', 'name', 'sublabels',
-            'descriptions',
+        fields = (
+            # 'pk',
+            'url',
+            'slug', 'label', 'name', 'sublabels',
+            'description',
             # 'relations'
         )
 
-    descriptions = SnippetSerializer(many=True)
+    description = SnippetSerializer()
 
     def create(self, validated_data):
         return Record.objects.create(**validated_data)

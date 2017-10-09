@@ -29,6 +29,16 @@ class Snippet(Base):
         blank=True,
         null=True,
     )
+    source_url = models.URLField(
+        blank=True,
+        null=True
+    )
+    # source_pages = models.CharField(
+    #     max_length=250,
+    #     blank=True,
+    #     null=True
+    # )
+
 
     def __str__(self):
         if len(self.value) > 50:
@@ -97,7 +107,7 @@ class Term(Base):
         blank=True,
         null=True
     )
-    description = models.TextField(
+    description = models.ForeignKey('Snippet',
         blank=True,
         null=True,
     )
@@ -105,14 +115,14 @@ class Term(Base):
         blank=True,
         null=True,
     )
-    parent = models.ForeignKey('self',
-        related_name='children',
-        blank=True,
-        null=True,
-    )
-    same_as = models.ManyToManyField('self',
-        blank=True,
-    )
+    # parent = models.ForeignKey('self',
+    #     related_name='children',
+    #     blank=True,
+    #     null=True,
+    # )
+    # same_as = models.ManyToManyField('self',
+    #     blank=True,
+    # )
 
     def __str__(self):
         if self.vocabulary:
@@ -235,7 +245,7 @@ class Source(Base):
         max_length=250,
         blank=True
     )
-    source_url = models.URLField(
+    base_url = models.URLField(
         max_length=250,
         blank=True,
     )
@@ -492,8 +502,9 @@ class Record(Base):
     #     blank=True,
     #     default=dict()
     # )
-    descriptions = models.ManyToManyField('Snippet',
+    description = models.ForeignKey('Snippet',
         blank=True,
+        null=True,
     )
     terms = models.ManyToManyField('Term',
         blank=True,
@@ -529,11 +540,17 @@ class Record(Base):
         return super().save(*args, **kwargs)
 
     def clean(self):
-        for sublabel in self.sublabels:
-            if sublabel not in Record.SUBLABELS[self.label]:
-                raise ValidationError(
-                    {'sublabels': 'Sublabels do not fit {} label.  Choices are: {}'\
-                    .format(self.label, Record.SUBLABELS[self.label])})
+        if self.sublabels:
+            for sublabel in self.sublabels:
+                if sublabel not in Record.SUBLABELS[self.label]:
+                    raise ValidationError(
+                        {'sublabels': 'Sublabels do not fit {} label.  Choices are: {}'\
+                        .format(self.label, Record.SUBLABELS[self.label])})
+        else:
+            raise ValidationError(
+                {'sublabels': 'Please select at least one sublabel.  Choices are: {}'\
+                .format(Record.SUBLABELS[self.label])})
+
         # Make sure properties validate correctly.
         # record_schemas = {
         #     'event': schemas.event_schema,

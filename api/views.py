@@ -2,7 +2,9 @@ from django.views.generic.base import TemplateView
 from django.http import JsonResponse
 from django.db.models import Q
 from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins, generics
+from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
+from rest_framework.views import APIView
 from .serializers import (
     UserSerializer, GroupSerializer, RecordSerializer
 )
@@ -37,18 +39,11 @@ class RecordViewSet(viewsets.ModelViewSet):
     serializer_class = RecordSerializer
 
 
-class EventViewSet(viewsets.ModelViewSet):
+class EntityList(generics.ListAPIView):
     """
-    API endpoint that allows events to be viewed or edited.
+    List all records which are entities.
     """
-    queryset = Record.objects.filter(is_primary=True, label='event')
-    serializer_class = RecordSerializer
-
-
-class EntityViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows people and organizations to be viewed or edited.
-    """
+    renderer_classes = (JSONRenderer, BrowsableAPIRenderer)
 
     queryset = Record.objects.filter(
         Q(label='person') | Q(label='organization'))\

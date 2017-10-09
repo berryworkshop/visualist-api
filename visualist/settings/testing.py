@@ -11,9 +11,9 @@ INSTALLED_APPS += []
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'visualist_test',
-        'USER': 'visualist',
-        'PASSWORD': 'p@ssw0rd',
+        'NAME': 'vis_db_test',
+        'USER': 'vis_user',
+        'PASSWORD': 'vis_pass',
         'HOST': 'localhost',
         'PORT': '5432',
     }
