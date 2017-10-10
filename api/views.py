@@ -39,13 +39,16 @@ class RecordViewSet(viewsets.ModelViewSet):
     serializer_class = RecordSerializer
 
 
-class EntityList(generics.ListAPIView):
+class EventViewSet(RecordViewSet):
     """
-    List all records which are entities.
+    API endpoint for all records which are events.
     """
-    renderer_classes = (JSONRenderer, BrowsableAPIRenderer)
+    queryset = RecordViewSet.queryset.filter(label='event')
 
-    queryset = Record.objects.filter(
-        Q(label='person') | Q(label='organization'))\
-        .filter(is_primary=True)
-    serializer_class = RecordSerializer
+
+class EntityViewSet(RecordViewSet):
+    """
+    API endpoint for all records which are entities.
+    """
+    queryset = RecordViewSet.queryset.filter(
+        Q(label='person') | Q(label='organization'))

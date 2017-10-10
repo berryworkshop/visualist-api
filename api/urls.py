@@ -5,14 +5,19 @@ from rest_framework.urlpatterns import format_suffix_patterns
 from .views import (
     UserViewSet,
     GroupViewSet,
+    EntityViewSet,
+    EventViewSet,
     RecordViewSet,
-    EntityList,
 )
 
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 router.register(r'groups', GroupViewSet)
-router.register(r'records', RecordViewSet)
+
+# records
+router.register(r'events', EventViewSet)
+router.register(r'entities', EntityViewSet)
+router.register(r'records', RecordViewSet) # needs to come last
 
 urlpatterns = [
     # url(r'^$', views.base_view),
@@ -20,8 +25,5 @@ urlpatterns = [
     url(r'^token-auth', obtain_jwt_token),
     url(r'^token-refresh', refresh_jwt_token),
 
-    url(r'^entities', EntityList.as_view(), name='entity-list'),
-
     url(r'^', include(router.urls)),
-
 ]
